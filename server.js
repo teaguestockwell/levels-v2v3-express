@@ -1,15 +1,31 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
 const app = express()
-// const mongoose = require('mongoose')
+
+app.use(cors())
 
 //set port for api
 app.set('port', process.env.PORT || 8000);
 app.use(express.json());
 
-//connect to db
-// mongoose.connect(process.env.DATABASE_URL, { useUnifiedTopology: true })
-// const db = mongoose.connection
+app.get('/', function (req, res) {
+  console.log('hi express')
+  res.send(
+    {
+      id: 'hello frmo your api',
+
+
+
+
+    }
+
+
+
+
+  )
+})
+
 
 // db.on('error', (error) => console.error(error))
 // db.once('open', () => console.log('connnected to db'))
