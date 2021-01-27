@@ -7,12 +7,9 @@ const cors = require('cors')
 const aircraft = require('./routes/aircraft');
 //const general = require('./routes/general');
 
-app.set('port', process.env.port || 8000);
+app.set('port', process.env.PORT || 8080);
 app.use(express.json());
-
-app.set('port', process.env.port || 8000);
-app.use(express.json());
-app.use(cors());
+//app.use(cors());
 
 app.use('/aircraft', aircraft);
 //app.use('/general', general);

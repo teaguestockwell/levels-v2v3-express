@@ -18,6 +18,8 @@ async function main(){
   console.log(newAircraft)
   console.log("query air")
   console.log(q)
+  console.log("this is the most recent api build")
+  
   q.forEach((a) => console.log(a))
 }
 
