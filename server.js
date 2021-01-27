@@ -1,33 +1,22 @@
-require('dotenv').config()
-const express = require('express')
-const cors = require('cors')
-app.use(cors())
-const app = express()
+'use strict';
 
-//set port for api
-app.set('port', process.env.PORT || 8000);
+const express = require('express');
+const app = express();
+
+const cors = require('cors')
+const aircraft = require('./routes/aircraft');
+//const general = require('./routes/general');
+
+app.set('port', process.env.port || 8000);
 app.use(express.json());
 
-var 
+app.set('port', process.env.port || 8000);
+app.use(express.json());
+app.use(cors());
 
-app.get('/', function (req, res) {
-  console.log('hi express')
-  res.send(
-    {
-      id: 'hello frmo your api',
+app.use('/aircraft', aircraft);
+//app.use('/general', general);
 
+app.listen(app.get('port'), () => console.log(`listening on ${app.get('port')}`))
 
-
-
-    }
-
-
-
-
-  )
-})
-
-
-// db.on('error', (error) => console.error(error))
-// db.once('open', () => console.log('connnected to db'))
-app.listen(app.get('port'), ()=>{console.log('server started ')}) 
+module.exports = app;

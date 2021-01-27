@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "nodemon server.js",
+    "devstart": "nodemon server.js",
+    "start": "node server.js",
     "prisma-gui": "npx prisma studio",
     "index": "npx ts-node index.ts",
+    "seed": "node seeds/aircraft-seed.js",
     "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature"
   },
   "author": "",
@@ -13,15 +15,14 @@
   "dependencies": {
     "@prisma/client": "^2.15.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.11.13"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@prisma/cli": "^2.15.0",
-    "@types/node": "^14.14.22",
+    "@types/express": "^4.17.11",
     "dotenv": "^8.2.0",
+    "eslint": "^7.7.0",
     "nodemon": "^2.0.7",
-    "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }
 }
