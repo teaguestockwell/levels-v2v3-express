@@ -1,13 +1,14 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const app = express()
-
 app.use(cors())
+const app = express()
 
 //set port for api
 app.set('port', process.env.PORT || 8000);
 app.use(express.json());
+
+var 
 
 app.get('/', function (req, res) {
   console.log('hi express')

@@ -6,5 +6,7 @@ COPY . /api
 
 EXPOSE 8080
 
-CMD npm run devstart
+RUN npm install
+
+CMD ["/bin/bash", "/api/entrypoint.sh"]
 

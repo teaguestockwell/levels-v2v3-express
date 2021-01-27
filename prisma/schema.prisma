@@ -1,6 +1,7 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
+//Whenever you make changes to your Prisma schema in the future,
+// you manually need to invoke prisma generate in order to accomodate the changes in your Prisma Client API
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -8,13 +9,15 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  binaryTargets = ["debian-openssl-1.1.x","native"]
 }
 
 model Aircraft{
   id      Int    @id @default(autoincrement())
-  name    String 
+  name    String
+  fs0     Int
+  fs1     Int
   tanks   Tank[] 
-  
 }
 
 model Tank{
