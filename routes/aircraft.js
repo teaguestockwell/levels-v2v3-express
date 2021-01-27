@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const services = require('../db/services');
 
-router.get('/aircraft', async (req, res) => {
+router.get('fl-api/aircraft', async (req, res) => {
   console.log("aircraft route called in api")
   try {
     let airs = await services.readAllAircraft()
