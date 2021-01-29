@@ -1,7 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-//Whenever you make changes to your Prisma schema in the future,
-// you manually need to invoke prisma generate in order to accomodate the changes in your Prisma Client API
+// If changes are made to prisma schema
+// when you run: npx prisma generate 
+// then inteli sense will refrect new models
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -12,15 +11,117 @@ generator client {
   binaryTargets = ["debian-openssl-1.1.x","native"]
 }
 
-model Aircraft{
-  id      Int    @id @default(autoincrement())
-  name    String
-  fs0     Int
-  fs1     Int
-  tanks   Tank[] 
+//db admin role can be added by assing new llinks for each entry
+model General{
+  // Primary Key
+  role          Int     @id @default(autoincrement())
+
+  // Scalar Fields
+  title         String
+  body          String
+  icondata      Int[]
+  url           String[]
 }
 
+model admin{
+  // Primary Key
+  email          String     @id
+
+  // Scalar Fields
+  aircraftname   String
+}
+
+
+model Aircraft{
+  // Primary Key
+  id            Int     @id @default(autoincrement())
+
+  // Scalar Fields
+  name          String  @unique 
+  fs0           Float 
+  fs1           Float
+  mom0          Float 
+  mom1          Float
+  weight0       Float
+  weight1       Float
+  cargoweight1  Float
+  lemac         Float
+  mac           Float
+  simplemom     Float   
+
+  // 1-n Relationships
+  glossarys     Glossary[]
+  tanks         Tank[] 
+  configs       Config[] 
+  cargos        Cargo[]
+}
+
+model Glossary{
+  // Primary Key
+  id            Int @id @default(autoincrement())
+
+  // Relation Fields / Foriegn Key
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
+
+  // Scalar Fields
+  title         String
+  body          String
+}
 model Tank{
-  id      Int @id @default(autoincrement())
-  name    String 
+  // Primary Key
+  id            Int @id @default(autoincrement())
+
+  // Relation Fields / Foriegn Key
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
+
+  // Scalar Fields
+  name          String 
+  weights       String//Int[]
+  simplemoms    String//Float[]
+}
+
+model Config{
+  // Primary Key
+  id            Int @id @default(autoincrement())
+
+  // Relation Fields / Foriegn Key
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int     
+
+  // Scalar Fields
+  name    String @unique
+
+  // 1-n Relationships
+  cargoinconfig  CargoInConfig[]
+}
+
+model Cargo{
+  // Primary Key
+  id            Int @id @default(autoincrement())
+
+  // Relation Fields / Foriegn Key
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
+
+  // Scalar Fields
+  name          String
+  weight        Float
+  fs            Float? //nullable
+}
+
+model CargoInConfig{
+  // Primary Key
+  id            Int @id @default(autoincrement())
+
+  // Relation Fields / Foriegn Key
+  cargo         Cargo @relation(fields: [cargoid], references: [id])
+  cargoid       Int
+  config        Config @relation(fields: [configid], references: [id])
+  configid      Int
+
+  // Scalar Fields
+  fs            Float
+  qty           Int
 }
