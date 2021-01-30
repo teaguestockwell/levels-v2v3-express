@@ -16,7 +16,7 @@ enum Role {
   ADMIN
 }
 
-//db admin role can be greeted with admin inscructions on home screen
+//db admin role can be greeted with admin inscructions on home screen by changing title and body
 model General{
   // Primary Key
   role          Role @id
@@ -28,7 +28,7 @@ model General{
   url           String[]
 }
 
-model admin{
+model Admin{
   // Compund forien key, unique admin email per aircraftname
   @@id([email,aircraftname])
   email          String 
@@ -101,7 +101,7 @@ model Config{
   name          String
 
   // 1-n Relationships
-  cargoinconfig  CargoInConfig[]
+  configcargos  ConfigCargo[]
 }
 
 model Cargo{
@@ -113,25 +113,26 @@ model Cargo{
   aircraftname  String
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique
   name          String
   weight        Float
   fs            Float    @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
 }
 
-model CargoInConfig{
+model ConfigCargo{
   // Compund foriegn key, no two cargos with the same name will be under the same config and aircraft
-  @@id([cargoid,configid,aircraftname])
+  @@id([configid,aircraftname])
 
   // Relation Fields / Foriegn Key
-  cargo         Cargo @relation(fields: [cargoid], references: [id])
-  cargoid       Int
   config        Config @relation(fields: [configid], references: [id])
   configid      Int
   aircraft      Aircraft @relation(fields: [aircraftname], references:[name])
   aircraftname  String 
 
   // Scalar Fields, cargo in config overide config fs, and also add qty
-  fs            Float
-  qty           Int
+
+  //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
+  name          String
+  weight        Float
+  fs            Float 
+  qty           Int      
 }

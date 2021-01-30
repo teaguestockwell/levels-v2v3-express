@@ -246,6 +246,28 @@ async function C_17_ER(){
       }]
     },
 
+    configs:{create:
+      [{
+        name: 'AE-1',
+        configcargos: {create:
+          [{
+            name: 'Water container',
+            weight: 40,
+            fs: 358,
+            qty: 3,
+            aircraft: {connect: {name: 'C-17A-ER'}}
+          }
+
+          ]
+        }
+
+      }
+
+      ]
+    } 
+
+
+
     
     
 
