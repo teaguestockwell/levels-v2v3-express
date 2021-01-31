@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 
 
-async function C_17A_ER(){
+async function main(){
 
   await prisma.aircraft.create({
   data: {
@@ -3508,7 +3508,6 @@ async function C_17A_ER(){
   
 }})
 
-}
 
 
 
@@ -3516,7 +3515,8 @@ async function C_17A_ER(){
 
 
 
-async function C_17A(){
+
+
 
   await prisma.aircraft.create({
   data: {
@@ -7023,11 +7023,46 @@ async function C_17A(){
   
 }})
 
+
+
+  await prisma.general.create({
+    data: {
+      role: 'USER',
+      title: 'Disclaimer',
+      body: 'Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
+      icondata: [59478,57360], //flutter material icon data
+      url: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
+    }
+  })
+
+  await prisma.general.create({
+    data: {
+      role: 'ADMIN',
+      title: 'Disclaimer',
+      body: 'Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
+      icondata: [59478,57360], //flutter material icon data
+      url: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
+    }
+  })
+
+  const generals = await prisma.general.findMany()
+  console.log(generals)
+
+
+
+  await prisma.admin.create({
+    data: {
+      email: 'teague.stockwell@us.af.mil'
+    }
+  })
+
+  const admins = await prisma.admin.findMany()
+  console.log(admins)
+  console.log('seed finished')
 }
 
 
 
-C_17A_ER()
-C_17A()
+main()
   .catch(e => {throw e})
   .finally(async () =>  await prisma.$disconnect())

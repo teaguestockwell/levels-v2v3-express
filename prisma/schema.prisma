@@ -30,16 +30,8 @@ model General{
 }
 
 model Admin{
-  // Compund forien key, unique admin email per aircraftname
-  @@id([email,aircraftname])
-  email          String 
-
-  // Relation Fields / Foriegn Key
-  aircraft       Aircraft @relation(fields:[aircraftname], references:[name])
-  aircraftname   String
-
-  //scalar fields
-  id            Int       @default(autoincrement()) @unique  
+  // PK
+  email          String  @id
 }
 
 

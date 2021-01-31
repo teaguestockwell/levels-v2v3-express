@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
+var atob = require('atob');
 
 
 
@@ -22,7 +23,33 @@ module.exports = {
       glossarys: true,
       configs: {include:{configcargos: true}}
     }
-  })
+  }),
+
+  isAdmin: async function(req){
+    console.log('is admin called')
+
+    try{
+    let auth = req.get('authorization')
+    let jwt = JSON.parse(atob(auth.split('.')[1]))
+    let email = jwt.email
+    console.log(email)
+
+    const admin = await prisma.admin.findMany({
+      where: {email: {equals: email}}
+    })
+
+    if(admin.length > 0){
+      console.log(' = admin')
+      return true
+    }
+    else{
+      console.log(' != admin')
+      return false
+    }
+  } catch(e){console.log(e)}
+
+    return false
+  }
   //readAllGeneral: () =>
 
   //update
