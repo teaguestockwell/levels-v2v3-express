@@ -22,6 +22,7 @@ model General{
   role          Role @id
 
   // Scalar Fields
+  id            Int       @default(autoincrement()) @unique  
   title         String
   body          String
   icondata      Int[]
@@ -36,14 +37,18 @@ model Admin{
   // Relation Fields / Foriegn Key
   aircraft       Aircraft @relation(fields:[aircraftname], references:[name])
   aircraftname   String
+
+  //scalar fields
+  id            Int       @default(autoincrement()) @unique  
 }
 
 
 model Aircraft{
   // Primary Key
-  name          String  @id  
+  id            Int     @id @default(autoincrement()) 
 
   // Scalar Fields
+  name          String  @unique 
   fs0           Float 
   fs1           Float
   mom0          Float 
@@ -64,37 +69,38 @@ model Aircraft{
 
 model Glossary{
   // Compund forein key, title will be unique in a given aircraft
-  @@id([title,aircraftname])
+  @@id([title,aircraftid])
 
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
 
   // Scalar Fields
-  title         String @unique
+  id            Int       @default(autoincrement()) @unique   
+  title         String 
   body          String
 }
 model Tank{
   // Compund forien key, unique tank tame for each aircraft
-  @@id([aircraftname,name])
+  @@id([aircraftid,name])
   name          String 
 
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
 
   // Scalar Fields
+  id            Int       @default(autoincrement()) @unique  
   weights       String // csv
   simplemoms    String // csv
 }
 
 model Config{
   // Compund foriegn key, one config name per aircraftname
-  @@id([name,aircraftname])
-  
+  @@id([name,aircraftid])
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String     
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int     
 
   // Scalar Fields
   id            Int       @default(autoincrement()) @unique
@@ -106,13 +112,14 @@ model Config{
 
 model Cargo{
   // Compund foriegn key, one cargo name per aircraft name
-  @@id([name,aircraftname])
+  @@id([name,aircraftid])
   
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
 
   // Scalar Fields
+  id            Int       @default(autoincrement()) @unique  
   name          String
   weight        Float
   fs            Float    @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
@@ -120,17 +127,17 @@ model Cargo{
 
 model ConfigCargo{
   // Compund foriegn key, no two cargos with the same name will be under the same config and aircraft
-  @@id([configid,aircraftname])
+  @@id([configid,aircraftid,name])
 
   // Relation Fields / Foriegn Key
   config        Config @relation(fields: [configid], references: [id])
   configid      Int
-  aircraft      Aircraft @relation(fields: [aircraftname], references:[name])
-  aircraftname  String 
+  aircraft      Aircraft @relation(fields: [aircraftid], references:[id])
+  aircraftid    Int 
 
-  // Scalar Fields, cargo in config overide config fs, and also add qty
-
+  // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
+  id            Int       @default(autoincrement()) @unique  
   name          String
   weight        Float
   fs            Float 
