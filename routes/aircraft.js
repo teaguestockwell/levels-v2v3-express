@@ -11,6 +11,7 @@ router.get('/', async (req, res) => {
     console.log('/aircraft called and sent 200')
   }
   catch (error) {
+    console.log(error)
     res.status(500).send("oops")
   }
 })

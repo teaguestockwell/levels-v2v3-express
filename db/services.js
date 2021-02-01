@@ -21,7 +21,7 @@ module.exports = {
       cargos: true,
       tanks: true,
       glossarys: true,
-      configs: {include:{configcargos: true}}
+      configs: {include:{configcargos: {include:{cargo:true}}}}
     }
   }),
 
@@ -34,7 +34,7 @@ module.exports = {
     let email = jwt.email
     console.log(email)
 
-    const admin = await prisma.admin.findMany({
+    const admin = await prisma.auth.findMany({
       where: {email: {equals: email}}
     })
 

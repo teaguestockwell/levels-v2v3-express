@@ -6,7 +6,7 @@
     "devstart": "nodemon server.js",
     "start": "node server.js",
     "prisma-gui": "npx prisma studio",
-    "seed": "npx ts-node seeds/aircraft-seed.ts",
+    "seed": "npx ts-node seeds/aircraft-seed-nested.ts",
     "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature"
   },
   "author": "",

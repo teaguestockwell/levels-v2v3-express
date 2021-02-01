@@ -12,8 +12,9 @@ generator client {
 }
 
 enum Role {
-  USER
-  ADMIN
+  USER // can do w/b for aircraft they are authorized for
+  ADMIN // user + can add user to acft,rm user from acft, make admins
+  DB  // admin +  can rm admins, can add db, edit db 
 }
 
 //db admin role can be greeted with admin inscructions on home screen by changing title and body
@@ -29,10 +30,15 @@ model General{
   url           String[]
 }
 
-model Admin{
+model Auth{
   // PK
   email          String  @id
+
+  role           Role
+  aircrafids     Int[] //db does not need any, because they have
 }
+
+
 
 
 model Aircraft{
@@ -118,20 +124,22 @@ model Cargo{
 }
 
 model ConfigCargo{
-  // Compund foriegn key, no two cargos with the same name will be under the same config and aircraft
-  @@id([configid,aircraftid,name])
+  // Compund foriegn key, no two cargoid will be under the same config and aircraft
+  // for example aircraft c17a with c2 config cannot have 2 rows of watercontainers. 
+  // additinal qty is hanlded by the qty, not by adding more rows 
+  @@id([configid,aircraftid,cargoid])
 
   // Relation Fields / Foriegn Key
   config        Config @relation(fields: [configid], references: [id])
   configid      Int
   aircraft      Aircraft @relation(fields: [aircraftid], references:[id])
   aircraftid    Int 
+  cargo         Cargo @relation(fields: [cargoid], references:[id])
+  cargoid       Int
 
   // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
   id            Int       @default(autoincrement()) @unique  
-  name          String
-  weight        Float
   fs            Float 
   qty           Int      
 }
