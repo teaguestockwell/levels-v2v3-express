@@ -402,55 +402,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -458,55 +458,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -514,25 +514,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -551,61 +551,61 @@ async function main(){
         // stewards equipment tot weight 3897 tot mom 157.5
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -613,55 +613,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -669,25 +669,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -706,55 +706,55 @@ async function main(){
         // stewards equipment tot weight 282, tot mom 12.6 //pas service
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:34}}, // pass service
+          cargo: {connect: {cargoid:34}}, // pass service
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -762,55 +762,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -818,25 +818,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -854,61 +854,61 @@ async function main(){
         // stewards equipment tot weight 3897 tot mom 157.5
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up
+          cargo: {connect: {cargoid:4}}, // hw clean up
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -916,55 +916,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -972,25 +972,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1008,55 +1008,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -1064,55 +1064,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -1120,25 +1120,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1156,55 +1156,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -1212,55 +1212,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -1268,25 +1268,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1305,55 +1305,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -1361,55 +1361,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -1417,25 +1417,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1454,61 +1454,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -1516,55 +1516,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -1572,25 +1572,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1608,55 +1608,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -1664,55 +1664,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -1720,25 +1720,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1756,55 +1756,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -1812,55 +1812,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -1868,25 +1868,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -1904,55 +1904,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -1960,55 +1960,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2016,25 +2016,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2052,55 +2052,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -2108,55 +2108,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2164,25 +2164,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2200,61 +2200,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -2262,55 +2262,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2318,25 +2318,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2354,55 +2354,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -2410,55 +2410,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2466,25 +2466,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2502,55 +2502,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -2558,55 +2558,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2614,25 +2614,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2650,55 +2650,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -2706,55 +2706,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2762,25 +2762,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2798,61 +2798,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -2860,55 +2860,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -2916,25 +2916,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -2952,61 +2952,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -3014,55 +3014,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -3070,25 +3070,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -3106,79 +3106,79 @@ async function main(){
         // stewards equipment tot weight 13697, tot mom 802.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:1}}, //water container
+          cargo: {connect: {cargoid:1}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:2}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:2}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:3}}, // hot cup
+          cargo: {connect: {cargoid:3}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:4}}, // hw clean up kit
+          cargo: {connect: {cargoid:4}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:5}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:1}},
-          cargo: {connect: {id:6}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:5}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:7}}, // blanket small
+          cargo: {connect: {cargoid:6}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:1}},
+          cargo: {connect: {cargoid:7}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:8}}, // pillow small w case
+          cargo: {connect: {cargoid:8}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:9}}, // expendables
+          cargo: {connect: {cargoid:9}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:12}}, // atgl
+          cargo: {connect: {cargoid:12}}, // atgl
           fs: 401,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:31}}, // slicc berth
+          cargo: {connect: {cargoid:31}}, // slicc berth
           fs: 401,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:32}}, // slic confence
+          cargo: {connect: {cargoid:32}}, // slic confence
           fs: 401,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:30}}, // slip
+          cargo: {connect: {cargoid:30}}, // slip
           fs: 401,
           qty: 1,
         },
@@ -3186,55 +3186,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:17}}, // lpu 10p
+          cargo: {connect: {cargoid:17}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:13}}, // lpu 6
+          cargo: {connect: {cargoid:13}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:14}}, // ac life pres
+          cargo: {connect: {cargoid:14}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:15}}, // pck
+          cargo: {connect: {cargoid:15}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:18}}, // epos
+          cargo: {connect: {cargoid:18}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:19}}, // pbe
+          cargo: {connect: {cargoid:19}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:16}}, // parachute
+          cargo: {connect: {cargoid:16}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:21}}, // bod armor
+          cargo: {connect: {cargoid:21}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:20}}, // survial vest
+          cargo: {connect: {cargoid:20}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -3242,25 +3242,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:33}}, // to file
+          cargo: {connect: {cargoid:33}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:29}}, // acft armor
+          cargo: {connect: {cargoid:29}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:27}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:27}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:1}},
-          cargo: {connect: {id:28}}, // flare pacards
+          cargo: {connect: {cargoid:28}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -3273,40 +3273,40 @@ async function main(){
   await prisma.aircraft.update({
     data: {
       cargos: {connect:[
-        {id:1},
-        {id:2},
-        {id:3},
-        {id:4},
-        {id:5},
-        {id:6},
-        {id:7},
-        {id:8},
-        {id:9},
-        {id:10},
-        {id:11},
-        {id:12},
-        {id:13},
-        {id:14},
-        {id:15},
-        {id:16},
-        {id:17},
-        {id:18},
-        {id:19},
-        {id:20},
-        {id:21},
-        {id:22},
-        {id:23},
-        {id:24},
-        {id:25},
-        {id:26},
-        {id:27},
-        {id:28},
-        {id:29},
-        {id:30},
-        {id:31},
-        {id:32},
-        {id:33},
-        {id:34},
+        {cargoid:1},
+        {cargoid:2},
+        {cargoid:3},
+        {cargoid:4},
+        {cargoid:5},
+        {cargoid:6},
+        {cargoid:7},
+        {cargoid:8},
+        {cargoid:9},
+        {cargoid:10},
+        {cargoid:11},
+        {cargoid:12},
+        {cargoid:13},
+        {cargoid:14},
+        {cargoid:15},
+        {cargoid:16},
+        {cargoid:17},
+        {cargoid:18},
+        {cargoid:19},
+        {cargoid:20},
+        {cargoid:21},
+        {cargoid:22},
+        {cargoid:23},
+        {cargoid:24},
+        {cargoid:25},
+        {cargoid:26},
+        {cargoid:27},
+        {cargoid:28},
+        {cargoid:29},
+        {cargoid:30},
+        {cargoid:31},
+        {cargoid:32},
+        {cargoid:33},
+        {cargoid:34},
       ]}
     },
     where: {id:1}
@@ -3316,25 +3316,25 @@ async function main(){
   await prisma.aircraft.update({
     data:{
       configs:{connect: [
-        {id:1},
-        {id:2},
-        {id:3},
-        {id:4},
-        {id:5},
-        {id:6},
-        {id:7},
-        {id:8},
-        {id:9},
-        {id:10},
-        {id:11},
-        {id:12},
-        {id:13},
-        {id:14},
-        {id:15},
-        {id:16},
-        {id:17},
-        {id:18},
-        {id:19},
+        {configid:1},
+        {configid:2},
+        {configid:3},
+        {configid:4},
+        {configid:5},
+        {configid:6},
+        {configid:7},
+        {configid:8},
+        {configid:9},
+        {configid:10},
+        {configid:11},
+        {configid:12},
+        {configid:13},
+        {configid:14},
+        {configid:15},
+        {configid:16},
+        {configid:17},
+        {configid:18},
+        {configid:19},
       ]}
     },
     where: {id:1}
@@ -3740,55 +3740,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -3796,55 +3796,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -3852,25 +3852,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -3889,61 +3889,61 @@ async function main(){
         // stewards equipment tot weight 3897 tot mom 157.5
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -3951,55 +3951,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4007,25 +4007,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4044,55 +4044,55 @@ async function main(){
         // stewards equipment tot weight 282, tot mom 12.6 //pas service
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:68}}, // pass service
+          cargo: {connect: {cargoid:68}}, // pass service
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -4100,55 +4100,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4156,25 +4156,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4192,61 +4192,61 @@ async function main(){
         // stewards equipment tot weight 3897 tot mom 157.5
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up
+          cargo: {connect: {cargoid:38}}, // hw clean up
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -4254,55 +4254,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4310,25 +4310,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4346,55 +4346,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -4402,55 +4402,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4458,25 +4458,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4494,55 +4494,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -4550,55 +4550,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4606,25 +4606,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4643,55 +4643,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -4699,55 +4699,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4755,25 +4755,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4792,61 +4792,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -4854,55 +4854,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -4910,25 +4910,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -4946,55 +4946,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -5002,55 +5002,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5058,25 +5058,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5094,55 +5094,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -5150,55 +5150,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5206,25 +5206,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5242,55 +5242,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -5298,55 +5298,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5354,25 +5354,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5390,55 +5390,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -5446,55 +5446,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5502,25 +5502,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5538,61 +5538,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -5600,55 +5600,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5656,25 +5656,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5692,55 +5692,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -5748,55 +5748,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5804,25 +5804,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5840,55 +5840,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -5896,55 +5896,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -5952,25 +5952,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -5988,55 +5988,55 @@ async function main(){
         // stewards equipment tot weight 277, tot mom 12.4
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
@@ -6044,55 +6044,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -6100,25 +6100,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -6136,61 +6136,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -6198,55 +6198,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -6254,25 +6254,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -6290,61 +6290,61 @@ async function main(){
         // stewards equipment tot weight 3897, tot mom 157.5
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
@@ -6352,55 +6352,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -6408,25 +6408,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -6444,79 +6444,79 @@ async function main(){
         // stewards equipment tot weight 13697, tot mom 802.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:35}}, //water container
+          cargo: {connect: {cargoid:35}}, //water container
           fs: 358,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:36}}, //std 2 gal liquid
+          cargo: {connect: {cargoid:36}}, //std 2 gal liquid
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:37}}, // hot cup
+          cargo: {connect: {cargoid:37}}, // hot cup
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:38}}, // hw clean up kit
+          cargo: {connect: {cargoid:38}}, // hw clean up kit
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:39}}, // blanket large
-          fs: 280,
-          qty: 6,
-        },
-        {
-          aircraft: {connect: {id:2}},
-          cargo: {connect: {id:40}}, //pilllow lrg with case
+          cargo: {connect: {cargoid:39}}, // blanket large
           fs: 280,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:41}}, // blanket small
+          cargo: {connect: {cargoid:40}}, //pilllow lrg with case
+          fs: 280,
+          qty: 6,
+        },
+        {
+          aircraft: {connect: {id:2}},
+          cargo: {connect: {cargoid:41}}, // blanket small
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:42}}, // pillow small w case
+          cargo: {connect: {cargoid:42}}, // pillow small w case
           fs: 744,
           qty: 54,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:43}}, // expendables
+          cargo: {connect: {cargoid:43}}, // expendables
           fs: 260,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:46}}, // atgl
+          cargo: {connect: {cargoid:46}}, // atgl
           fs: 401,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:65}}, // slicc berth
+          cargo: {connect: {cargoid:65}}, // slicc berth
           fs: 401,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:66}}, // slic confence
+          cargo: {connect: {cargoid:66}}, // slic confence
           fs: 401,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:64}}, // slip
+          cargo: {connect: {cargoid:64}}, // slip
           fs: 401,
           qty: 1,
         },
@@ -6524,55 +6524,55 @@ async function main(){
         //emergency equip tot weight 612, tot mom 35.6
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:51}}, // lpu 10p
+          cargo: {connect: {cargoid:51}}, // lpu 10p
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:47}}, // lpu 6
+          cargo: {connect: {cargoid:47}}, // lpu 6
           fs: 280,
           qty: 3,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:48}}, // ac life pres
+          cargo: {connect: {cargoid:48}}, // ac life pres
           fs: 744,
           qty: 110,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:49}}, // pck
+          cargo: {connect: {cargoid:49}}, // pck
           fs: 280,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:52}}, // epos
+          cargo: {connect: {cargoid:52}}, // epos
           fs: 744,
           qty: 102,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:53}}, // pbe
+          cargo: {connect: {cargoid:53}}, // pbe
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:50}}, // parachute
+          cargo: {connect: {cargoid:50}}, // parachute
           fs: 280,
           qty: 2,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:55}}, // bod armor
+          cargo: {connect: {cargoid:55}}, // bod armor
           fs: 280,
           qty: 5,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:54}}, // survial vest
+          cargo: {connect: {cargoid:54}}, // survial vest
           fs: 280,
           qty: 5,
         },
@@ -6580,25 +6580,25 @@ async function main(){
         //extra equip tot weight 1430, tot mom 45.1
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:67}}, // to file
+          cargo: {connect: {cargoid:67}}, // to file
           fs: 305,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:63}}, // acft armor
+          cargo: {connect: {cargoid:63}}, // acft armor
           fs: 217,
           qty: 1,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:61}}, // flarees/ flare cans
+          cargo: {connect: {cargoid:61}}, // flarees/ flare cans
           fs: 744,
           qty: 6,
         },
         {
           aircraft: {connect: {id:2}},
-          cargo: {connect: {id:62}}, // flare pacards
+          cargo: {connect: {cargoid:62}}, // flare pacards
           fs: 400,
           qty: 4,
         },
@@ -6611,40 +6611,40 @@ async function main(){
   await prisma.aircraft.update({
     data: {
       cargos: {connect:[
-        {id:35},
-        {id:36},
-        {id:37},
-        {id:38},
-        {id:39},
-        {id:40},
-        {id:41},
-        {id:42},
-        {id:43},
-        {id:44},
-        {id:45},
-        {id:46},
-        {id:47},
-        {id:48},
-        {id:49},
-        {id:50},
-        {id:51},
-        {id:52},
-        {id:53},
-        {id:54},
-        {id:55},
-        {id:56},
-        {id:57},
-        {id:58},
-        {id:59},
-        {id:60},
-        {id:61},
-        {id:62},
-        {id:63},
-        {id:64},
-        {id:65},
-        {id:66},
-        {id:67},
-        {id:68},
+        {cargoid:35},
+        {cargoid:36},
+        {cargoid:37},
+        {cargoid:38},
+        {cargoid:39},
+        {cargoid:40},
+        {cargoid:41},
+        {cargoid:42},
+        {cargoid:43},
+        {cargoid:44},
+        {cargoid:45},
+        {cargoid:46},
+        {cargoid:47},
+        {cargoid:48},
+        {cargoid:49},
+        {cargoid:50},
+        {cargoid:51},
+        {cargoid:52},
+        {cargoid:53},
+        {cargoid:54},
+        {cargoid:55},
+        {cargoid:56},
+        {cargoid:57},
+        {cargoid:58},
+        {cargoid:59},
+        {cargoid:60},
+        {cargoid:61},
+        {cargoid:62},
+        {cargoid:63},
+        {cargoid:64},
+        {cargoid:65},
+        {cargoid:66},
+        {cargoid:67},
+        {cargoid:68},
       ]}
     },
     where: {id:2}
@@ -6654,25 +6654,25 @@ async function main(){
   await prisma.aircraft.update({
     data:{
       configs:{connect: [
-        {id:20},
-        {id:21},
-        {id:22},
-        {id:23},
-        {id:24},
-        {id:25},
-        {id:26},
-        {id:27},
-        {id:28},
-        {id:29},
-        {id:30},
-        {id:31},
-        {id:32},
-        {id:33},
-        {id:34},
-        {id:35},
-        {id:36},
-        {id:37},
-        {id:38},
+        {configid:20},
+        {configid:21},
+        {configid:22},
+        {configid:23},
+        {configid:24},
+        {configid:25},
+        {configid:26},
+        {configid:27},
+        {configid:28},
+        {configid:29},
+        {configid:30},
+        {configid:31},
+        {configid:32},
+        {configid:33},
+        {configid:34},
+        {configid:35},
+        {configid:36},
+        {configid:37},
+        {configid:38},
       ]}
     },
     where: {id:2}
@@ -6695,8 +6695,8 @@ async function main(){
       role: 'ADMIN',
       title: 'Disclaimer',
       body: 'Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
-      icondata: [59478,57360], //flutter material icon data
-      url: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
+      icondatas: [59478,57360], //flutter material icon data
+      urls: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
     }
   })
 
@@ -6705,8 +6705,8 @@ async function main(){
       role: 'DB',
       title: 'Disclaimer',
       body: 'Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
-      icondata: [59478,57360], //flutter material icon data
-      url: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
+      icondatas: [59478,57360], //flutter material icon data
+      urls: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
     }
   })
 
@@ -6715,8 +6715,8 @@ async function main(){
       role: 'USER',
       title: 'Disclaimer',
       body: 'Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
-      icondata: [59478,57360], //flutter material icon data
-      url: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
+      icondatas: [59478,57360], //flutter material icon data
+      urls: ['https://forms.gle/Bbqvubn6gwC6fRnc8','https://tsappdevelopment.github.io/hellohtml/']
     }
   })
 }        

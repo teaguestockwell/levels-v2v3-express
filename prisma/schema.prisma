@@ -23,11 +23,10 @@ model General{
   role          Role @id
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique  
   title         String
   body          String
-  icondata      Int[]
-  url           String[]
+  icondatas      Int[]
+  urls           String[]
 }
 
 model Auth{
@@ -88,7 +87,7 @@ model Tank{
   aircraftid    Int
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique  
+  tankid            Int       @default(autoincrement()) @unique  
   weights       String // csv
   simplemoms    String // csv
 }
@@ -101,7 +100,7 @@ model Config{
   aircraftid    Int     
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique
+  configid            Int       @default(autoincrement()) @unique
   name          String
 
   // 1-n Relationships
@@ -117,7 +116,7 @@ model Cargo{
   aircraftid    Int
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique  
+  cargoid            Int       @default(autoincrement()) @unique  
   name          String
   weight        Float
   fs            Float    @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
@@ -130,16 +129,16 @@ model ConfigCargo{
   @@id([configid,aircraftid,cargoid])
 
   // Relation Fields / Foriegn Key
-  config        Config @relation(fields: [configid], references: [id])
+  config        Config @relation(fields: [configid], references: [configid])
   configid      Int
   aircraft      Aircraft @relation(fields: [aircraftid], references:[id])
   aircraftid    Int 
-  cargo         Cargo @relation(fields: [cargoid], references:[id])
+  cargo         Cargo @relation(fields: [cargoid], references:[cargoid])
   cargoid       Int
 
   // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
-  id            Int       @default(autoincrement()) @unique  
+  configcargoid            Int       @default(autoincrement()) @unique  
   fs            Float 
   qty           Int      
 }
