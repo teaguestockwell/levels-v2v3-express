@@ -11,29 +11,30 @@ generator client {
   binaryTargets = ["debian-openssl-1.1.x","native"]
 }
 
-enum Role {
-  USER // can do w/b for aircraft they are authorized for
-  ADMIN // user + can add user to acft,rm user from acft, make admins
-  DB  // admin +  can rm admins, can add db, edit db 
-}
+// 0 no role
+// 1 can do w/b for aircraft they are authorized for
+// 2 1 + can add user to acft,rm user from acft, make admins
+// 3 2 +  can rm admins, can add db, edit db 
+
 
 //db admin role can be greeted with admin inscructions on home screen by changing title and body
 model General{
   // Primary Key
-  role          Role @id
+  role          Int @id
 
   // Scalar Fields
   title         String
   body          String
-  icondatas      Int[]
-  urls           String[]
+  names         String[]
+  icondatas     Int[]
+  urls          String[]
 }
 
 model Auth{
   // PK
   email          String  @id
 
-  role           Role
+  role           Int @default(0)
   aircrafids     Int[] //db does not need any, because they have
 }
 

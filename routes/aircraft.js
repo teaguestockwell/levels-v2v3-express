@@ -4,7 +4,7 @@ const services = require('../db/services');
 
 router.get('/', async (req, res) => {
   try {
-    let admin = await services.isAdmin(req)
+    //let role = await services.getRole(req)
 
     let airs = await services.readAllAircraft()
     res.status(200).send(airs)

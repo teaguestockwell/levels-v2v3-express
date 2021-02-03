@@ -2,8 +2,6 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 var atob = require('atob');
 
-
-
 module.exports = {
 
   //create
@@ -24,31 +22,39 @@ module.exports = {
       configs: {include:{configcargos: {include:{cargo:true}}}}
     }
   }),
-
-  isAdmin: async function(req){
-    console.log('is admin called')
+  /// 0 no role, 1 user, 3 admin 4 db 
+  getRole: async function(req){
+    console.log('get role called')
 
     try{
-    let auth = req.get('authorization')
-    let jwt = JSON.parse(atob(auth.split('.')[1]))
-    let email = jwt.email
-    console.log(email)
+      let auth = req.get('authorization')
+      let jwt = JSON.parse(atob(auth.split('.')[1]))
+      let email = jwt.email
+      console.log(email)
 
-    const admin = await prisma.auth.findMany({
-      where: {email: {equals: email}}
-    })
+      const ppl = await prisma.auth.findMany({
+        where: {email: {equals: email}}
+      })
 
-    if(admin.length > 0){
-      console.log(' = admin')
-      return true
-    }
-    else{
-      console.log(' != admin')
-      return false
-    }
-  } catch(e){console.log(e)}
+      console.log('${email} Role: ${ppl[0].role}')
 
-    return false
+      return ppl[0].role
+    } catch(e){console.log(e)}
+
+    console.log('no role found')
+    return 0
+  },
+
+  readGeneralAtRole: async function(rol){
+    console.log('read general at role called')
+    try{
+      let general = await prisma.general.findFirst({
+        where: {role: {equals: rol}}
+      })
+
+      return general
+
+    } catch(e) {console.log(e)}
   }
   //readAllGeneral: () =>
 

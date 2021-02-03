@@ -4,8 +4,12 @@ const services = require('../db/services');
 
 router.get('/', async (req, res) => {
   try {
-    let airs = await services.readAllAircraft()
-    res.status(200).send(airs)
+    let role = await services.getRole(req)
+
+    let general = await services.readGeneralAtRole(role)
+
+    res.status(200).send(general)
+    
     console.log('/general called and sent 200')
   }
   catch (error) {
