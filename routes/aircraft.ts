@@ -1,6 +1,14 @@
-const express = require('express');
-const router = express.Router();
-const services = require('../db/services');
+// const express = require('express');
+// const router = express.Router();
+// const services = require('../db/services');
+
+
+import { Router } from 'express'
+const router  = Router();
+
+
+
+
 
 router.get('/', async (req, res) => {
   try {
@@ -16,4 +24,5 @@ router.get('/', async (req, res) => {
   }
 })
 
-module.exports = router
+export {router};
+
