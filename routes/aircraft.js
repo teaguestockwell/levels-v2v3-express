@@ -6,7 +6,7 @@ router.get('/', async (req, res) => {
   try {
     //let role = await services.getRole(req)
 
-    let airs = await services.readAllAircraft()
+    let airs = await services.readAllAircraft(req)
     res.status(200).send(airs)
     console.log('/aircraft called and sent 200')
   }

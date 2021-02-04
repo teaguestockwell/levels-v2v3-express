@@ -4,7 +4,7 @@ const services = require('../db/services');
 
 router.get('/', async (req, res) => {
   try {
-    let role = await services.getRole(req)
+    let role = await services.readOneRole(req)
 
     let general = await services.readGeneralAtRole(role)
 
