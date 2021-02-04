@@ -11,7 +11,7 @@ module.exports = {
     console.log('create admin')
 
     const admin = await prisma.a
-  }
+  },
 
   //1 Aircraft (name,fs0,fs1,mom0,mom1,weight0,weight1,cargoweight1,lemac,mac,mommultiplier)
   //1 Glossary (aircraftname,title,body)
