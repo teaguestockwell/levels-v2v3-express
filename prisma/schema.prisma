@@ -11,39 +11,42 @@ generator client {
   binaryTargets = ["debian-openssl-1.1.x","native"]
 }
 
-enum Role {
-  USER
-  ADMIN
-}
+// 0 no role
+// 1 can do w/b for aircraft they are authorized for
+// 2 1 + can add user to acft,rm user from acft, make admins
+// 3 2 +  can rm admins, can add db, edit db 
 
-//db admin role can be greeted with admin inscructions on home screen
+
+//db admin role can be greeted with admin inscructions on home screen by changing title and body
 model General{
   // Primary Key
-  role          Role @id
+  role          Int @id
 
   // Scalar Fields
   title         String
   body          String
-  icondata      Int[]
-  url           String[]
+  names         String[]
+  icondatas     Int[]
+  urls          String[]
 }
 
-model admin{
-  // Compund forien key, unique admin email per aircraftname
-  @@id([email,aircraftname])
-  email          String 
+model Auth{
+  // PK
+  email          String  @id
 
-  // Relation Fields / Foriegn Key
-  aircraft       Aircraft @relation(fields:[aircraftname], references:[name])
-  aircraftname   String
+  role           Int @default(0)
+  aircrafids     Int[] //db does not need any, because they have
 }
+
+
 
 
 model Aircraft{
   // Primary Key
-  name          String  @id  
+  id            Int     @id @default(autoincrement()) 
 
   // Scalar Fields
+  name          String  @unique 
   fs0           Float 
   fs1           Float
   mom0          Float 
@@ -64,74 +67,79 @@ model Aircraft{
 
 model Glossary{
   // Compund forein key, title will be unique in a given aircraft
-  @@id([title,aircraftname])
+  @@id([title,aircraftid])
 
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
 
   // Scalar Fields
-  title         String @unique
+  glossaryid    Int       @default(autoincrement()) @unique
+  title         String 
   body          String
 }
 model Tank{
   // Compund forien key, unique tank tame for each aircraft
-  @@id([aircraftname,name])
+  @@id([aircraftid,name])
   name          String 
 
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
 
   // Scalar Fields
+  tankid            Int       @default(autoincrement()) @unique  
   weights       String // csv
   simplemoms    String // csv
 }
 
 model Config{
   // Compund foriegn key, one config name per aircraftname
-  @@id([name,aircraftname])
-  
+  @@id([name,aircraftid])
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String     
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int     
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique
+  configid            Int       @default(autoincrement()) @unique
   name          String
 
   // 1-n Relationships
-  cargoinconfig  CargoInConfig[]
+  configcargos  ConfigCargo[]
 }
 
 model Cargo{
   // Compund foriegn key, one cargo name per aircraft name
-  @@id([name,aircraftname])
+  @@id([name,aircraftid])
   
   // Relation Fields / Foriegn Key
-  aircraft      Aircraft  @relation(fields: [aircraftname], references: [name])
-  aircraftname  String
+  aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
 
   // Scalar Fields
-  id            Int       @default(autoincrement()) @unique
+  cargoid            Int       @default(autoincrement()) @unique  
   name          String
   weight        Float
   fs            Float    @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
 }
 
-model CargoInConfig{
-  // Compund foriegn key, no two cargos with the same name will be under the same config and aircraft
-  @@id([cargoid,configid,aircraftname])
+model ConfigCargo{
+  // Compund foriegn key, no two cargoid will be under the same config and aircraft
+  // for example aircraft c17a with c2 config cannot have 2 rows of watercontainers. 
+  // additinal qty is hanlded by the qty, not by adding more rows 
+  @@id([configid,aircraftid,cargoid])
 
   // Relation Fields / Foriegn Key
-  cargo         Cargo @relation(fields: [cargoid], references: [id])
-  cargoid       Int
-  config        Config @relation(fields: [configid], references: [id])
+  config        Config @relation(fields: [configid], references: [configid])
   configid      Int
-  aircraft      Aircraft @relation(fields: [aircraftname], references:[name])
-  aircraftname  String 
+  aircraft      Aircraft @relation(fields: [aircraftid], references:[id])
+  aircraftid    Int 
+  cargo         Cargo @relation(fields: [cargoid], references:[cargoid])
+  cargoid       Int
 
-  // Scalar Fields, cargo in config overide config fs, and also add qty
-  fs            Float
-  qty           Int
+  // Scalar Fields,
+  //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
+  configcargoid            Int       @default(autoincrement()) @unique  
+  fs            Float 
+  qty           Int      
 }
