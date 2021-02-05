@@ -1,17 +1,27 @@
-const { PrismaClient } = require("@prisma/client")
-const prisma = new PrismaClient()
-var atob = require('atob');
+import { Request, Response } from 'express';
+import {PrismaClient} from '@prisma/client';
+import atob  from 'atob';
 
-module.exports = {
+const prisma = new PrismaClient()
+
+
+const service = {
 
   //create
 
   //1 Admin (email,aircraftname)
-  createAdmin: async function(email , aircraftid){
+  createAdmin: async function(email: string , aircraftid: number[]){
     console.log('create admin')
 
-    const admin = await prisma.a
-  }
+    const admin = await prisma.auth.create({
+      data: {
+        role: 3,
+        email: email,
+        aircrafids: aircraftid
+      }
+    })
+    console.log(admin.email + 'created as admin with: ' + aircraftid.toString())
+  },
 
   //1 Aircraft (name,fs0,fs1,mom0,mom1,weight0,weight1,cargoweight1,lemac,mac,mommultiplier)
   //1 Glossary (aircraftname,title,body)
@@ -23,11 +33,11 @@ module.exports = {
   //read
 
   //1 Aircraft where(id)
-  readAircraftAtID: async function(id){
+  readAircraftAtID: async function(id: number){
     console.log('readOneAircraftAtID: ' + id)
 
     const air = await prisma.aircraft.findUnique({
-      where: {id:{equals: id}},
+      where: {id},
       include: {
         cargos: true,
         tanks: true,
@@ -40,8 +50,8 @@ module.exports = {
   },
 
   //n Aircraft() 
-  readAircrafts: async function(req){  
-    console.log('readAllAircraft')
+  readAircrafts: async function(req: Request){  
+    console.log('readAircrafts')
 
 
     const airs = await prisma.aircraft.findMany({
@@ -51,27 +61,33 @@ module.exports = {
         glossarys: true,
         configs: {include:{configcargos: {include:{cargo:true}}}}
       }
-    }),
+    })
 
     return airs
   },
 
   ///1 role (endpoint request)
-  readRole: async function(req){
-    console.log('readOneRole')/// 0 no role, 1 user, 3 admin 4 db 
+  readRole: async function(req: Request){
+    console.log('readRole')/// 0 no role, 1 user, 3 admin 4 db 
 
     try{
+
       const auth = req.get('authorization')
+
+      if(auth != null){
       const jwt = JSON.parse(atob(auth.split('.')[1]))
-      const email = jwt.email
+      const email:string = jwt.email
 
       const ppl = await prisma.auth.findUnique({
-        where: {email: {equals: email}}
+        where: {email}
       })
       
-      console.log(ppl.role)
-
-      return ppl.role
+      if(ppl != null && ppl.role != null){
+        console.log(ppl.role)
+        return ppl.role
+      }
+    }
+  
     } catch(e){console.log(e)}
 
     console.log('no role found')
@@ -79,28 +95,30 @@ module.exports = {
   },
 
   //1 person (endpoint request)
-  readPerson: async function(req){
+  readPerson: async function(req: Request){
     console.log('readOnePerson')
 
     try{
+      
       const auth = req.get('authorization')
+      if(auth !=null ){
       const jwt = JSON.parse(atob(auth.split('.')[1]))
-      const email = jwt.email
+      const email:string = jwt.email
 
       const person = await prisma.auth.findUnique({
-        where: {email: {equals: email}}
+        where: {email}
       })
 
-      return person
-
+        if(person != null){return person}
+      }
     } catch(e) {console.log(e)}
   },
 
-  readGeneral: async function(intRole){
-    console.log('read general at role called')
+  readGeneral: async function(role: number){
+    console.log('read general')
 
     const general = await prisma.general.findFirst({
-      where: {role: {equals: intRole}}
+      where: {role: {equals: role}}
     })
 
     return general
@@ -118,3 +136,5 @@ module.exports = {
     //all CongfCargo (Config.id)
     //
 }
+
+export default service;

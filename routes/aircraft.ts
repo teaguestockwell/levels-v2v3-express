@@ -1,20 +1,12 @@
-// const express = require('express');
-// const router = express.Router();
-// const services = require('../db/services');
-
-
-import { Router } from 'express'
+import service from './../db/services'
+import { Router, Request, Response } from 'express'
 const router  = Router();
 
-
-
-
-
-router.get('/', async (req, res) => {
+router.get('/', async (req: Request, res: Response) => {
   try {
     //let role = await services.getRole(req)
 
-    let airs = await services.readAllAircraft(req)
+    let airs = await service.readAircrafts(req)
     res.status(200).send(airs)
     console.log('/aircraft called and sent 200')
   }
@@ -24,5 +16,5 @@ router.get('/', async (req, res) => {
   }
 })
 
-export {router};
+export default router;
 

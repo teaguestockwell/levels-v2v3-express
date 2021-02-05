@@ -4,14 +4,15 @@
   "description": "",
   "scripts": {
     "start": "npx ts-node server.ts",
-    "seed": "npx ts-node prisma/seeds.ts",
+    "seed": "npx ts-node db/seed.ts",
     "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "atob": "^2.1.2",
     "@prisma/client": "^2.15.0",
+    "@types/atob": "^2.1.2",
+    "atob": "^2.1.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mocha": "^8.1.1",
