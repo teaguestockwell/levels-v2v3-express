@@ -11,13 +11,10 @@ generator client {
   binaryTargets = ["debian-openssl-1.1.x","native"]
 }
 
-// 0 no role
-// 1 can do w/b for aircraft they are authorized for
-// 2 1 + can add user to acft,rm user from acft, make admins
-// 3 2 +  can rm admins, can add db, edit db 
 
 
-//db admin role can be greeted with admin inscructions on home screen by changing title and body
+
+//differnt greetings for diffrent roles
 model General{
   // Primary Key
   role          Int @id
@@ -30,12 +27,18 @@ model General{
   urls          String[]
 }
 
-model Auth{
-  // PK
-  email          String  @id
+model User{
+  // Composite key, no two aircraft will have same email
+  // However, one email may have multiple accses levels, as long as they are on diffrent aircraft on diffrent aircraft
+  @@id([aircraftid,email])
 
-  role           Int @default(0)
-  aircrafids     Int[] //db does not need any, because they have
+  aircraft      Aircraft @relation(fields: [aircraftid], references: [id])
+  aircraftid    Int
+
+  //scalar values
+  roleid        Int @default(autoincrement()) @unique
+  email         String // used to identify users, but this is not unique because it will be duplicatied it the user is assined to multple aircraft
+  role          Int @default(0)
 }
 
 
@@ -46,7 +49,7 @@ model Aircraft{
   id            Int     @id @default(autoincrement()) 
 
   // Scalar Fields
-  name          String  @unique 
+  name          String
   fs0           Float 
   fs1           Float
   mom0          Float 
@@ -59,6 +62,7 @@ model Aircraft{
   mommultiplyer Float  
 
   // 1-n Relationships
+  users         User[]
   glossarys     Glossary[]
   tanks         Tank[] 
   configs       Config[] 
