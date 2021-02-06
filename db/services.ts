@@ -9,18 +9,19 @@ const service = {
 
   //create
 
-  //1 Admin (email,aircraftid[])
-  createAdmin: async (email: string , aircraftid: number[]) => {
+  //1 Admin (email,aircraftid, role)
+  createUser: async (email: string , aircraftid: number, role:number) => {
     console.log('create admin')
 
-    const admin = await prisma.auth.create({
+    const admin = await prisma.user.create({
       data: {
-        role: 3,
+        role: role,
         email: email,
-        aircrafids: aircraftid
+        aircraft: {connect:{id:aircraftid}}
       }
     })
-    console.log(admin.email + 'created as admin with: ' + aircraftid.toString())
+
+    console.log(admin.email + 'created with role: ' + role.toString() + ' on aircraftid: ' + aircraftid.toString())
   },
 
   //1 Aircraft (name,fs0,fs1,mom0,mom1,weight0,weight1,cargoweight1,lemac,mac,mommultiplier)
@@ -32,7 +33,66 @@ const service = {
   
   //read
 
-  //1 Aircraft where(id)
+  // //1 bool (req, aircraftid)
+  // Role: async (aircraftid: number, req: Request, role: number): Promise<boolean> => {
+  //   let verrifiedRole = await service.readRole(req)
+  //   if(verrifiedRole == role){return true}
+  //   else{return false}
+  // },
+
+  // 1 bool (req, role, aircraftid)
+  roleAtAircraft: async (req: Request, role: number, aircraftid:number): Promise<boolean> => {
+    console.log('isRoleAtAircraft')
+    try{
+      const ema = service.readEmail(req)
+
+      const air = await prisma.aircraft.findUnique({
+        where: {
+          id: aircraftid,
+        },
+        include: {users: true}
+      })
+
+      if(air != null && ema != null){
+        const find = air.users.find(x => x.email == ema && x.role == role) 
+        if(find != null){return true}
+      }
+
+    }catch(e){console.log('not role at aircraft')}
+    return false
+  },
+
+  readHighestRole: async (req: Request): Promise<number> => {
+    console.log('read highest role')
+    try{
+      const email = service.readEmail(req)
+      if(email != null){
+
+        const users = await prisma.user.findMany({
+          where: {email}
+        })
+
+        let highest = 0
+        users.forEach(u => {if(u.role > highest){highest = u.role}})
+        return highest
+      }
+    } catch(e){
+      console.log('highest role is 0')
+    }
+    return 0
+  },
+
+  readEmail: (req: Request): string | null => {
+    const auth = req.get('authorization')
+    if(auth != null){
+      const jwt = JSON.parse(atob(auth.split('.')[1]))
+      const email:string = jwt.email
+      return email
+    }
+    else{return null}
+  },
+
+  //1 Aircraft(id)
   readAircraftAtID: async (id: number) => {
     console.log('readOneAircraftAtID: ' + id)
 
@@ -67,52 +127,52 @@ const service = {
   },
 
   ///1 role (endpoint request)
-  readRole: async (req: Request) => {
-    console.log('readRole')/// 0 no role, 1 user, 3 admin 4 db 
+  // readRole: async (req: Request) => {
+  //   console.log('readRole')/// 0 no role, 1 user, 3 admin 4 db 
 
-    try{
+  //   try{
 
-      const auth = req.get('authorization')
+  //     const auth = req.get('authorization')
 
-      if(auth != null){
-      const jwt = JSON.parse(atob(auth.split('.')[1]))
-      const email:string = jwt.email
+  //     if(auth != null){
+  //     const jwt = JSON.parse(atob(auth.split('.')[1]))
+  //     const email:string = jwt.email
 
-      const ppl = await prisma.auth.findUnique({
-        where: {email}
-      })
+  //     const ppl = await prisma.auth.findUnique({
+  //       where: {email}
+  //     })
       
-      if(ppl != null && ppl.role != null){
-        console.log(ppl.role)
-        return ppl.role
-      }
-    }
+  //     if(ppl != null && ppl.role != null){
+  //       console.log(ppl.role)
+  //       return ppl.role
+  //     }
+  //   }
   
-    } catch(e){console.log(e)}
+  //   } catch(e){console.log(e)}
 
-    console.log('no role found')
-    return 0
-  },
+  //   console.log('no role found')
+  //   return 0
+  // },
 
-  //1 person (endpoint request)
-  readPerson: async (req: Request) => {
-    console.log('readOnePerson')
+  // //1 person (endpoint request)
+  // readPerson: async (req: Request) => {
+  //   console.log('readOnePerson')
 
-    try{
+  //   try{
       
-      const auth = req.get('authorization')
-      if(auth !=null ){
-      const jwt = JSON.parse(atob(auth.split('.')[1]))
-      const email:string = jwt.email
+  //     const auth = req.get('authorization')
+  //     if(auth !=null ){
+  //     const jwt = JSON.parse(atob(auth.split('.')[1]))
+  //     const email:string = jwt.email
 
-      const person = await prisma.auth.findUnique({
-        where: {email}
-      })
+  //     const person = await prisma.auth.findUnique({
+  //       where: {email}
+  //     })
 
-        if(person != null){return person}
-      }
-    } catch(e) {console.log(e)}
-  },
+  //       if(person != null){return person}
+  //     }
+  //   } catch(e) {console.log(e)}
+  // },
 
   readGeneral: async (role: number) => {
     console.log('read general')

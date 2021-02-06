@@ -6,7 +6,7 @@ async function main(){
   //create aircraft, glossary, tanks
   const air1 = await prisma.aircraft.create({
     data:{
-      name : 'C-17A-ER',
+    name : 'C-17A-ER',
     fs0 : 80.5,
     fs1: 2168,
     mom0: 9999,
@@ -17,6 +17,17 @@ async function main(){
     lemac: 793.6,
     mac: 309.5,
     mommultiplyer: 10000,
+    users : {create: [
+      {
+        email: 'teague.stockwell@us.af.mil',
+        role: 3
+      },
+      {
+        email: 'john.snuffy@fakemail.com',
+        role: 3
+      }
+    ]},
+
 
     glossarys: {create: 
       [{
@@ -3356,6 +3367,16 @@ async function main(){
     lemac: 793.6,
     mac: 309.5,
     mommultiplyer: 10000,
+    users : {create: [
+      {
+        email: 'teague.stockwell@us.af.mil',
+        role: 3
+      },
+      {
+        email: 'john.snuffy@fakemail.com',
+        role: 3
+      }
+    ]},
 
     glossarys: {create: 
       [{
@@ -6680,13 +6701,13 @@ async function main(){
 
 
 
-  //create admins
-  await prisma.auth.create({
-    data: {
-      email: 'teague.stockwell@us.af.mil',
-      role: 3,
-    }
-  })
+  // //create admins
+  // await prisma.auth.create({
+  //   data: {
+  //     email: 'teague.stockwell@us.af.mil',
+  //     role: 3,
+  //   }
+  // })
 
   //create general
 
