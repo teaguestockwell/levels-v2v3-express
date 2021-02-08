@@ -10,9 +10,9 @@ const router  = Router();
 // admin users to perform crud ops on a users auth object
 router.get('/', async (req: Request, res: Response) => {
   try {
-    let role = await service.readHighestRole(req)
+    const role = await service.readHighestRole(req)
 
-    let general = await service.readGeneral(role)
+    const general = await service.readGeneral(role)
 
     res.status(200).send(general)
     
