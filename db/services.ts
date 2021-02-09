@@ -10,10 +10,11 @@ const service = {
   upsertUser: async (user: User): Promise<void> => {
     const userid = user.userid
 
-    await prisma.user.upsert({ // this will throw if admin updates email to non unique aircraft id email combo
+    await prisma.user.upsert({
+      // this will throw if admin updates email to non unique aircraft id email combo
       where: {userid},
-      update: user, 
-      create:{
+      update: user,
+      create: {
         aircraftid: user.aircraftid,
         email: user.email,
         role: user.role,
@@ -31,27 +32,30 @@ const service = {
   // n admins(aircraftid)
   readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
     return await prisma.user.findMany({
-      where: {aircraftid}
+      where: {aircraftid},
     })
   },
 
-  readRoleAtUserID: async (userid: number):Promise<number> =>{
-    try{
-      await prisma.user.findFirst({
-      where: {userid}
-    }).then((u) => {return u.role})
-    } catch(e){
+  readRoleAtUserID: async (userid: number): Promise<number> => {
+    try {
+      await prisma.user
+        .findFirst({
+          where: {userid},
+        })
+        .then((u) => {
+          return u.role
+        })
+    } catch (e) {
       console.log('could not read role at user ')
       return 0
     }
   },
 
-  readUserAtUserID: async(userid: number): Promise<User> => {
-    return await prisma.user.findFirst({where:{userid}})
-  }, 
+  readUserAtUserID: async (userid: number): Promise<User> => {
+    return await prisma.user.findFirst({where: {userid}})
+  },
 
   // //1 bool (req, aircraftid)
-  
 
   // 1 bool (req, role, aircraftid)
   readIsReqRoleAtAircraftGreaterThan: async (
@@ -61,23 +65,16 @@ const service = {
   ): Promise<boolean> => {
     console.log('isRoleAtAircraft')
     try {
-      const ema = service.readEmail(req)
-
-      const air = await prisma.aircraft.findUnique({
-        where: {
-          id: aircraftid,
-        },
-        include: {users: true},
-      })
-
-      if (air != null && ema != null) {
-        const find = air.users.find((x) => x.email == ema && x.role > role)
-        if (find != null) {
-          return true
-        }
+      const reqUser = await service.readUserAtReqAndAircraftId(req, aircraftid)
+      if (reqUser.role > role) {
+        console.log('request role: ' + reqUser.role + ' > ' + role)
+        return true
+      } else {
+        console.log('request role: ' + reqUser.role + ' < ' + role)
+        return false
       }
     } catch (e) {
-      console.log('not role at aircraft')
+      console.log('not role at aircraft ' + aircraftid)
     }
     return false
   },
@@ -153,12 +150,13 @@ const service = {
     return airs
   },
 
-
-
   // 1 role (endpoint request)
-  readUserAtReqAndAircraftId: async (req: Request, aircraftid: number): Promise<User> => {
+  readUserAtReqAndAircraftId: async (
+    req: Request,
+    aircraftid: number
+  ): Promise<User> => {
     const reqEmail = service.readEmail(req)
-    const aircraftid_email = {email: reqEmail,aircraftid: aircraftid,}
+    const aircraftid_email = {email: reqEmail, aircraftid: aircraftid}
     return await prisma.user.findUnique({where: {aircraftid_email}})
   },
 
@@ -296,13 +294,11 @@ const service = {
   },
 
   // 1 User
-  deleteUserAtUserid: async(userid: number): Promise<void> => {
+  deleteUserAtUserid: async (userid: number): Promise<void> => {
     await prisma.user.delete({
-      where: {userid}
+      where: {userid},
     })
-  }
+  },
 }
 
 export default service
-
-
