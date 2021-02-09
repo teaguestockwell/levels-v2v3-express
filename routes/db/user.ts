@@ -32,6 +32,7 @@ router.post('/', async (req: Request, res: Response) => {
 // get
 // n users({aircraftid}) // if no body returns all airs
 router.get('/', async (req: Request, res: Response) => {
+  console.log('GET db/user called on api')
   try {
     if ((await service.readHighestRole(req)) >= 2) {
       const aircraftid: number = req.body.aircraftid

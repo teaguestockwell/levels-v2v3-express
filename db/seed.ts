@@ -27,6 +27,26 @@ async function main() {
             email: 'john.snuffy@fakemail.com',
             role: 3,
           },
+          {
+            email: 'role0@test.com',
+            role: 0
+          },
+          {
+            email: 'role1@test.com',
+            role: 1
+          },
+          {
+            email: 'role2@test.com',
+            role: 2
+          },
+          {
+            email: 'role3@test.com',
+            role: 3
+          },
+          {
+            email: 'role4@test.com',
+            role: 4
+          },
         ],
       },
 

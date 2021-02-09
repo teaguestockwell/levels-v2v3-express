@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
+    "test:unit": "npx ts-node db/seed.ts && mocha -r ts-node/register test/**/*.test.ts --exit",
+    "test": "mocha -r ts-node/register test/**/*.test.ts --exit",
     "start": "npx ts-node server.ts",
     "seed": "npx ts-node db/seed.ts",
     "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature"
@@ -11,10 +13,17 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^2.15.0",
+    "assert": "^2.0.0",
     "atob": "^2.1.2",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "nyc": "^15.1.0"
   },
   "devDependencies": {
+    "btoa": "^1.2.1",
+    "@types/btoa": "^1.2.3",
+    "@types/mocha": "^8.2.0",
+    "@types/assert": "^1.5.4",
+    "@types/supertest": "^2.0.10",
     "@prisma/cli": "^2.15.0",
     "@types/atob": "^2.1.2",
     "@types/express": "^4.17.11",
