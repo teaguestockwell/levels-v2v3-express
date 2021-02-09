@@ -1,31 +1,25 @@
 import {Request, Response} from 'express'
-import {Aircraft, General, PrismaClient} from '@prisma/client'
+import {Aircraft, General, PrismaClient, User} from '@prisma/client'
 import atob from 'atob'
 
 const prisma = new PrismaClient()
 
 const service = {
   // create
-  // 1 Admin (email,aircraftid, role)
-  createUser: async (email: string, aircraftid: number, role: number):Promise<void> => {
-    console.log('create admin')
-    const admin = await prisma.user.create({
-      data: {
-        role: role,
-        email: email,
-        aircraft: {connect: {id: aircraftid}},
+  // 1 User (email,aircraftid, role)
+  upsertUser: async (user: User): Promise<void> => {
+    const userid = user.userid
+
+    await prisma.user.upsert({ // this will throw if admin updates email to non unique aircraft id email combo
+      where: {userid},
+      update: user, 
+      create:{
+        aircraftid: user.aircraftid,
+        email: user.email,
+        role: user.role,
       },
     })
-
-    console.log(
-      admin.email +
-        'created with role: ' +
-        role.toString() +
-        ' on aircraftid: ' +
-        aircraftid.toString()
-    )
   },
-
   // 1 Aircraft (name,fs0,fs1,mom0,mom1,weight0,weight1,cargoweight1,lemac,mac,mommultiplier)
   // 1 Glossary (aircraftname,title,body)
   // 1 Tank (aircraftname,name,weights,simplemoms)
@@ -34,16 +28,33 @@ const service = {
   // 1 ConfigCargo (configid,aircraftid,name,weight,fs,qty)
 
   // read
+  // n admins(aircraftid)
+  readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
+    return await prisma.user.findMany({
+      where: {aircraftid}
+    })
+  },
+
+  readRoleAtUserID: async (userid: number):Promise<number> =>{
+    try{
+      await prisma.user.findFirst({
+      where: {userid}
+    }).then((u) => {return u.role})
+    } catch(e){
+      console.log('could not read role at user ')
+      return 0
+    }
+  },
+
+  readUserAtUserID: async(userid: number): Promise<User> => {
+    return await prisma.user.findFirst({where:{userid}})
+  }, 
 
   // //1 bool (req, aircraftid)
-  // Role: async (aircraftid: number, req: Request, role: number): Promise<boolean> => {
-  //   let verrifiedRole = await service.readRole(req)
-  //   if(verrifiedRole == role){return true}
-  //   else{return false}
-  // },
+  
 
   // 1 bool (req, role, aircraftid)
-  roleAtAircraft: async (
+  readIsReqRoleAtAircraftGreaterThan: async (
     req: Request,
     role: number,
     aircraftid: number
@@ -60,7 +71,7 @@ const service = {
       })
 
       if (air != null && ema != null) {
-        const find = air.users.find((x) => x.email == ema && x.role == role)
+        const find = air.users.find((x) => x.email == ema && x.role > role)
         if (find != null) {
           return true
         }
@@ -142,33 +153,14 @@ const service = {
     return airs
   },
 
-  /// 1 role (endpoint request)
-  // readRole: async (req: Request) => {
-  //   console.log('readRole')/// 0 no role, 1 user, 3 admin 4 db
 
-  //   try{
 
-  //     const auth = req.get('authorization')
-
-  //     if(auth != null){
-  //     const jwt = JSON.parse(atob(auth.split('.')[1]))
-  //     const email:string = jwt.email
-
-  //     const ppl = await prisma.auth.findUnique({
-  //       where: {email}
-  //     })
-
-  //     if(ppl != null && ppl.role != null){
-  //       console.log(ppl.role)
-  //       return ppl.role
-  //     }
-  //   }
-
-  //   } catch(e){console.log(e)}
-
-  //   console.log('no role found')
-  //   return 0
-  // },
+  // 1 role (endpoint request)
+  readUserAtReqAndAircraftId: async (req: Request, aircraftid: number): Promise<User> => {
+    const reqEmail = service.readEmail(req)
+    const aircraftid_email = {email: reqEmail,aircraftid: aircraftid,}
+    return await prisma.user.findUnique({where: {aircraftid_email}})
+  },
 
   // //1 person (endpoint request)
   // readPerson: async (req: Request) => {
@@ -302,6 +294,13 @@ const service = {
       where: {aircraftid},
     })
   },
+
+  // 1 User
+  deleteUserAtUserid: async(userid: number): Promise<void> => {
+    await prisma.user.delete({
+      where: {userid}
+    })
+  }
 }
 
 export default service

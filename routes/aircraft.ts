@@ -12,7 +12,7 @@ router.get('/', async (req: Request, res: Response) => {
     
     //let role = await services.getRole(req)
 
-    let airs = await service.readAircrafts(req)
+    const airs = await service.readAircrafts(req)
     res.status(200).send(airs)
     console.log('/aircraft called and sent 200')
   }

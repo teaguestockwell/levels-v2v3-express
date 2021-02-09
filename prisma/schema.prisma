@@ -29,15 +29,16 @@ model General{
 
 model User{
   // Composite key, no two aircraft will have same email
-  // However, one email may have multiple accses levels, as long as they are on diffrent aircraft on diffrent aircraft
+  // However, one email may have multiple accses levels, as long as they are on diffrent aircraft
   @@id([aircraftid,email])
+
 
   aircraft      Aircraft @relation(fields: [aircraftid], references: [id])
   aircraftid    Int
 
   //scalar values
-  roleid        Int @default(autoincrement()) @unique
-  email         String // used to identify users, but this is not unique because it will be duplicatied it the user is assined to multple aircraft
+  userid        Int @default(autoincrement()) @unique
+  email         String // used to identify users, but this is not unique because it will be duplicatied if the user is assined to multple aircraft
   role          Int @default(0)
 }
 
