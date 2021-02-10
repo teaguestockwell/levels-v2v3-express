@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test:unit": "npx ts-node db/seed.ts && mocha -r ts-node/register test/**/*.test.ts --exit",
-    "test": "mocha -r ts-node/register test/**/*.test.ts --exit",
+    "test:unit": "nyc --reporter=lcovonly npx ts-node db/seed.ts && mocha -r ts-node/register test/**/*.test.ts --exit",
+    "test": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --exit",
     "start": "npx ts-node server.ts",
     "seed": "npx ts-node db/seed.ts",
     "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature"

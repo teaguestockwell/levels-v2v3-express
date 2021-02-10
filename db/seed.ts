@@ -20,31 +20,31 @@ async function main() {
       users: {
         create: [
           {
-            email: 'teague.stockwell@us.af.mil',
+            email: 'teague.stockwell@us.af.mil', //uid 1
             role: 3,
           },
           {
-            email: 'john.snuffy@fakemail.com',
+            email: 'john.snuffy@fakemail.com', //uid 2
             role: 3,
           },
           {
-            email: 'role0@test.com',
+            email: 'role0@test.com', // uid 3
             role: 0
           },
           {
-            email: 'role1@test.com',
+            email: 'role1@test.com', // uid 4
             role: 1
           },
           {
-            email: 'role2@test.com',
+            email: 'role2@test.com', // uid 5
             role: 2
           },
           {
-            email: 'role3@test.com',
+            email: 'role3@test.com', // uid 6
             role: 3
           },
           {
-            email: 'role4@test.com',
+            email: 'role4@test.com', // uid 7
             role: 4
           },
         ],

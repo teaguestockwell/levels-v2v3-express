@@ -6,21 +6,13 @@ const prisma = new PrismaClient()
 
 const service = {
   // create
-  // 1 User (email,aircraftid, role)
-  upsertUser: async (user: User): Promise<void> => {
-    const userid = user.userid
-
-    await prisma.user.upsert({
-      // this will throw if admin updates email to non unique aircraft id email combo
-      where: {userid},
-      update: user,
-      create: {
-        aircraftid: user.aircraftid,
-        email: user.email,
-        role: user.role,
-      },
+  // 1 User (User)
+  createUser: async (user:User):Promise<User> => {
+    return await prisma.user.create({
+      data: user
     })
   },
+
   // 1 Aircraft (name,fs0,fs1,mom0,mom1,weight0,weight1,cargoweight1,lemac,mac,mommultiplier)
   // 1 Glossary (aircraftname,title,body)
   // 1 Tank (aircraftname,name,weights,simplemoms)
@@ -33,6 +25,13 @@ const service = {
   readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
     return await prisma.user.findMany({
       where: {aircraftid},
+    })
+  },
+
+  readUserAtUserWithoutUserId: async (user:User): Promise<User> => {
+    const aircraftid_email = {aircraftid: user.aircraftid, email: user.email}
+    return await prisma.user.findUnique({
+      where: {aircraftid_email}
     })
   },
 
@@ -55,29 +54,6 @@ const service = {
     return await prisma.user.findFirst({where: {userid}})
   },
 
-  // //1 bool (req, aircraftid)
-
-  // 1 bool (req, role, aircraftid)
-  readIsReqRoleAtAircraftGreaterThan: async (
-    req: Request,
-    role: number,
-    aircraftid: number
-  ): Promise<boolean> => {
-    console.log('isRoleAtAircraft')
-    try {
-      const reqUser = await service.readUserAtReqAndAircraftId(req, aircraftid)
-      if (reqUser.role > role) {
-        console.log('request role: ' + reqUser.role + ' > ' + role)
-        return true
-      } else {
-        console.log('request role: ' + reqUser.role + ' < ' + role)
-        return false
-      }
-    } catch (e) {
-      console.log('not role at aircraft ' + aircraftid)
-    }
-    return false
-  },
 
   readHighestRole: async (req: Request): Promise<number> => {
     console.log('read highest role')
@@ -160,26 +136,6 @@ const service = {
     return await prisma.user.findUnique({where: {aircraftid_email}})
   },
 
-  // //1 person (endpoint request)
-  // readPerson: async (req: Request) => {
-  //   console.log('readOnePerson')
-
-  //   try{
-
-  //     const auth = req.get('authorization')
-  //     if(auth !=null ){
-  //     const jwt = JSON.parse(atob(auth.split('.')[1]))
-  //     const email:string = jwt.email
-
-  //     const person = await prisma.auth.findUnique({
-  //       where: {email}
-  //     })
-
-  //       if(person != null){return person}
-  //     }
-  //   } catch(e) {console.log(e)}
-  // },
-
   readGeneral: async (role: number): Promise<General> => {
     console.log('read general')
 
@@ -190,7 +146,21 @@ const service = {
     return general
   },
 
-  // update
+  // upsert
+  upsertUser: async (user: User): Promise<void> => {
+    const userid = user.userid
+
+    await prisma.user.upsert({
+      // this will throw if admin updates email to non unique aircraft id email combo
+      where: {userid},
+      update: user,
+      create: {
+        aircraftid: user.aircraftid,
+        email: user.email,
+        role: user.role,
+      },
+    })
+  },
 
   // delete
   // 1 Aircraft cascade to all relashionships/recursive (Aircraft.id)

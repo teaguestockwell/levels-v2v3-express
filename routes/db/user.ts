@@ -3,21 +3,19 @@ import service from '../../db/services'
 const router = Router()
 import {User} from '@prisma/client'
 
-// post || put / upsert 
-//1 user({role,email,aircraftid,userid?})
+// post / update with a fallback of create
+//1 user(User)
 router.post('/', async (req: Request, res: Response) => {
   try {
-    // when sending new user, make sure userid = 0
-    const user: User = req.body
+    const reqBodyUser: User = req.body
+    const reqUser: User = await service.readUserAtReqAndAircraftId(req,reqBodyUser.aircraftid)
 
     if (
-      await service.readIsReqRoleAtAircraftGreaterThan(
-        req,
-        user.role,
-        user.aircraftid
-      )
+      reqUser.role >= 2 
+      &&
+      reqUser.role > reqBodyUser.role
     ) {
-      await service.upsertUser(user).then(() => res.status(200).send())
+      await service.upsertUser(reqBodyUser).then(() => res.status(200).send())
 
       // if the admin user does not have >= role on the aircraft they are tring to assign
     } else {
@@ -34,8 +32,8 @@ router.post('/', async (req: Request, res: Response) => {
 router.get('/', async (req: Request, res: Response) => {
   console.log('GET db/user called on api')
   try {
+    const aircraftid: number = req.body.aircraftid
     if ((await service.readHighestRole(req)) >= 2) {
-      const aircraftid: number = req.body.aircraftid
 
       await service
         .readUsersAtAircraftID(aircraftid)
@@ -52,7 +50,7 @@ router.get('/', async (req: Request, res: Response) => {
 })
 
 // delete
-// 1 user(userid)
+// 1 user({userid})
 router.delete('/', async (req: Request, res: Response) => {
   try {
     const userid = req.body.userid
