@@ -50,6 +50,25 @@ const service = {
     }
   },
 
+  /** 
+   * given a request, then return all aircraftids
+   * that are assined to the users with a role > x
+  */
+  readAllAircraftIDsOfRoleWhereRoleGreaterThanX: async (req:Request, x:number):Promise<number[]> => {
+    const ret: number[] = []
+    const email = await service.readEmail(req)
+
+    const users  = await prisma.user.findMany({
+      where: {
+        email: {equals: email},
+        role: {gt: x}
+      }
+    })
+
+    users.forEach((u)=> ret.push(u.aircraftid))
+    return ret
+  }, 
+
   readUserAtUserID: async (userid: number): Promise<User> => {
     return await prisma.user.findFirst({where: {userid}})
   },
@@ -90,6 +109,10 @@ const service = {
   },
 
   // 1 Aircraft(id)
+  /**
+   * returns a recusive aircraft object with all nested relations
+   * @param id the aircraftid
+   */
   readAircraftAtID: async (id: number): Promise<Aircraft> => {
     console.log('readOneAircraftAtID: ' + id)
 
@@ -108,8 +131,10 @@ const service = {
     return air
   },
 
+  
+
   // n Aircraft()
-  readAircrafts: async (req: Request): Promise<Aircraft[]> => {
+  readAircrafts: async (): Promise<Aircraft[]> => {
     console.log('readAircrafts')
 
     const airs = await prisma.aircraft.findMany({
@@ -124,6 +149,14 @@ const service = {
     })
 
     return airs
+  },
+
+  
+  readAircraftsAsMap: async(): Promise<Map<number,Aircraft>> => {
+    const ret = new Map<number,Aircraft>()
+    const allairs = await service.readAircrafts()
+    allairs.forEach((a) => ret.set(a.id,a))
+    return ret
   },
 
   // 1 role (endpoint request)
