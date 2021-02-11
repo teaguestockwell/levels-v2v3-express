@@ -62,8 +62,8 @@ describe('GET /aircraft/id', () => {
       .set('authorization', role2OnAir1e)
       .expect(200)
       .expect(async (res) => {
-        const air3 = await query.readAircraftAtID(1)
-        assert.deepStrictEqual(res.body, air3)
+        const air1 = await query.readAircraftAtID(1)
+        assert.deepStrictEqual(res.body, air1)
       })
       .end(done)
   })
