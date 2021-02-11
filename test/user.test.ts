@@ -1,10 +1,10 @@
 import { Done } from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
-import app from '../../server'
-import {role0e, role1e, role2e, role3e, role4e} from '../utils'
+import app from '../server'
+import {role0e, role1e, role2e, role3e, role4e} from './utils'
 import { User } from '@prisma/client'
-import service from '../../db/services'
+import query from '../prisma/query'
 
 const newUserRole1:User = {
   aircraftid: 1,
@@ -37,11 +37,11 @@ const mockDuplicateUserUpdate:User = {
 
 
 // Read
-describe('GET /db/user', () => {
+describe('GET /user', () => {
 
   it('Should return all users given empty body && request.user.role >= 2', (done:Done) => {
     req(app)
-    .get('/db/user')
+    .get('/user')
     .set('authorization', role2e)
     //.send()
     .expect(200)
@@ -51,7 +51,7 @@ describe('GET /db/user', () => {
 
   it('Should return users of a given aircraft when request.user.role >= 2', (done:Done) => {
     req(app)
-    .get('/db/user')
+    .get('/user')
     .set('authorization', role2e)
     .send({aircraftid: 1})
     .expect(200)
@@ -61,7 +61,7 @@ describe('GET /db/user', () => {
 
   it('Should deny requests that have an accses level < 2', (done:Done) => {
     req(app)
-    .get('/db/user')
+    .get('/user')
     .set('authorization', role1e)
     .send({aircraftid: 1})
     .expect(403)
@@ -71,11 +71,11 @@ describe('GET /db/user', () => {
 
 
 // Create / Update
-describe('POST /db/user', ()=>{
+describe('POST /user', ()=>{
 
   it('Should deny reqs that have accses level < 2', (done:Done) => {
     req(app)
-    .post('/db/user')
+    .post('/user')
     .set('authorization', role1e)
     .send(newUserRole1)
     .expect(403)
@@ -84,7 +84,7 @@ describe('POST /db/user', ()=>{
 
   it('Should deny reqs posting users with >= requesters role', (done:Done) => {
     req(app)
-    .post('/db/user')
+    .post('/user')
     .set('authorization', role2e)
     .send(newUserRole10)
     .expect(403)
@@ -93,12 +93,12 @@ describe('POST /db/user', ()=>{
 
   it('Should update existing users', (done:Done) => {
     req(app)
-    .post('/db/user')
+    .post('/user')
     .set('authorization', role3e)
     .send(seededUserRole0)
     .expect(200)
     .expect(async ()=> {
-      const updated:User = await service.readUserAtUserID(seededUserRole0.userid)
+      const updated:User = await query.readUserAtUserID(seededUserRole0.userid)
       assert.deepStrictEqual(updated, seededUserRole0)
     })
     .end(done)
@@ -106,12 +106,12 @@ describe('POST /db/user', ()=>{
 
   it('Should create new users', (done:Done) => {
     req(app)
-    .post('/db/user')
+    .post('/user')
     .set('authorization', role3e)
     .send(newUserRole1)
     .expect(200)
     .expect(async ()=> {
-      const updated:User = await service.readUserAtUserID(newUserRole1.userid)
+      const updated:User = await query.readUserAtUserID(newUserRole1.userid)
       assert.deepStrictEqual(updated, newUserRole1)
     })
     .end(done)
@@ -119,12 +119,12 @@ describe('POST /db/user', ()=>{
 
   it('Should 400 request that post users that dont have unique email-aircraft', (done:Done) => {
     req(app)
-    .post('/db/user')
+    .post('/user')
     .set('authorization', role4e)
     .send(mockDuplicateUserUpdate)
     .expect(400)
     .expect(async () =>{
-      const db = await service.readUserAtUserID(mockDuplicateUserUpdate.userid)
+      const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userid)
       assert.notStrictEqual(db.email, mockDuplicateUserUpdate.email)
     })
     .end(done)
@@ -132,19 +132,19 @@ describe('POST /db/user', ()=>{
 
   after(async ()=>{
     const teardown = seededUserRole0; teardown.role = 0
-    await service.upsertUser(teardown)
+    await query.upsertUser(teardown)
 
-    const teardown2 = await service.readUserAtUserWithoutUserId(newUserRole1)
-    await service.deleteUserAtUserid(teardown2.userid)
+    const teardown2 = await query.readUserAtUserWithoutUserId(newUserRole1)
+    await query.deleteUserAtUserid(teardown2.userid)
   })
 })
 
 // Delete
-describe('DELETE db/user', ()=>{
+describe('DELETE /user', ()=>{
 
   it('Should 403 when reqest.role <= userid.role', (done:Done)=> {
     req(app)
-    .delete('/db/user')
+    .delete('/user')
     .set('authorization', role1e)
     .send({userid:7})
     .expect(403)
@@ -153,7 +153,7 @@ describe('DELETE db/user', ()=>{
 
   it('Should delete when reqest.role > userid.role', (done:Done)=> {
     req(app)
-    .delete('/db/user')
+    .delete('/user')
     .set('authorization', role4e)
     .send({userid:6})
     .expect(200)
@@ -162,7 +162,7 @@ describe('DELETE db/user', ()=>{
 
   after(async ()=>{
     const teardown: User = {userid:6, email: 'role3@test.com', role: 3, aircraftid:1}
-    await service.createUser(teardown)
+    await query.createUser(teardown)
   })
 
 })

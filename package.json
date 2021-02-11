@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test:unit": "nyc --reporter=lcovonly npx ts-node db/seed.ts && mocha -r ts-node/register test/**/*.test.ts --exit",
+    "drop": "npx prisma format",
+    "test:unit": "nyc --reporter=lcovonly npx ts-node prisma/seed.ts && mocha -r ts-node/register test/**/*.test.ts --exit",
     "test": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --exit",
     "start": "npx ts-node server.ts",
-    "seed": "npx ts-node db/seed.ts",
-    "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature"
+    "seed": "npx ts-node prisma/seed.ts",
+    "seeddev": "npx ts-node prisma/seeddev.ts",
+    "create-tables-for-prisma-models": "npx prisma migrate dev --name init --preview-feature",
+    "update schema_model intelisense": "npx prisma generate"
   },
   "author": "",
   "license": "ISC",
