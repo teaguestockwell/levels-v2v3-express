@@ -8,8 +8,103 @@ import query from '../prisma/query'
 
 const prisma = new PrismaClient()
 
-// Create / UPDATE / POST
+const createAir:Aircraft = {
+  id: 0,
+  name: 'new air',
+  fs0: 100,
+  fs1: 2000,
+  mom0: 5000,
+  mom1: 10000,
+  weight0: 100000,
+  weight1: 200000,
+  cargoweight1: 20000,
+  lemac: 700,
+  mac: 90,
+  mommultiplyer: 10000
+}
 
+const createAirNonUniqueName:Aircraft = {
+  id: 0,
+  name: 'C-17A-ER',
+  fs0: 100,
+  fs1: 2000,
+  mom0: 5000,
+  mom1: 10000,
+  weight0: 100000,
+  weight1: 200000,
+  cargoweight1: 20000,
+  lemac: 700,
+  mac: 90,
+  mommultiplyer: 10000
+}
+
+const updateAirNonUniqueName:Aircraft = {
+  id: 1,
+  name: 'C-17A', // update the C-17A to reflect non unique er name
+  fs0: 100,
+  fs1: 2000,
+  mom0: 5000,
+  mom1: 10000,
+  weight0: 100000,
+  weight1: 200000,
+  cargoweight1: 20000,
+  lemac: 700,
+  mac: 90,
+  mommultiplyer: 10000
+}
+
+const updateAir:Aircraft = {
+  id:1,
+  name: 'C-17A-Er', // update 'r'to be lowercase
+  fs0: 80.5,
+  fs1: 2168,
+  mom0: 9999,
+  mom1: 50000,
+  weight0: 260000,
+  weight1: 300000,
+  cargoweight1: 300000,
+  lemac: 793.6,
+  mac: 309.5,
+  mommultiplyer: 10000,
+}
+
+// POST / CREATE
+describe('POST /aircraft', () => {
+  it('Should 403 if the req.highest role <= 2', (done:Done)=>{
+    req(app)
+    .post('/aircraft')
+    .set('authorization', role2e)
+    .send(createAir)
+    .expect(403)
+    .end(done)
+  })
+
+  it('Should 400 if the name is not unique', (done:Done)=>{
+    req(app)
+    .post('/aircraft')
+    .set('authorization', role3e)
+    .send(createAirNonUniqueName)
+    .expect(400)
+    .end(done)
+  })
+
+  it('Should 200 when the acft is valid, and req.role >= 3', (done:Done)=>{
+    req(app)
+    .post('/aircraft')
+    .set('authorization', role3e)
+    .send(createAir)
+    .expect(200)
+    .expect(async (res) => {
+      const didfind = await prisma.aircraft.findUnique({where:{name:createAir.name}})
+      assert.deepStrictEqual(didfind,createAir)
+    })
+    .end(done)
+  })
+
+  after(async ()=>{
+    await prisma.aircraft.delete({where:{name: createAir.name}})
+  })
+})
 
 // Read
 describe('GET /aircraft', () => {
@@ -69,6 +164,46 @@ describe('GET /aircraft/id', () => {
   })
 })
 
+// PUT / UPDATE
+describe('PUT /aircraft', ()=> {
+  it('Should 403 if the req role <= 2', (done:Done)=>{
+    req(app)
+    .put('/aircraft')
+    .set('authorization', role2e)
+    .send(updateAir)
+    .expect(403)
+    .end(done)
+  })
+
+  it('Should 200 and update when the acft is valid, and req.role >= 3', (done:Done)=>{
+    req(app)
+    .put('/aircraft')
+    .set('authorization', role3e)
+    .send(updateAir)
+    .expect(200)
+    .expect(async (res) => {
+      const didfind = await prisma.aircraft.findUnique({where:{id:updateAir.id}})
+      assert.deepStrictEqual(didfind,updateAir)
+    })
+    .end(done)
+  })
+
+  it('Should 400 if the name is not unique', (done:Done)=>{
+    req(app)
+    .put('/aircraft')
+    .set('authorization', role3e)
+    .send(updateAirNonUniqueName)
+    .expect(400)
+    .end(done)
+  })
+
+  after(async ()=> {
+    const after = updateAir;
+    after.name = 'C-17A-ER' // revert Er to ER
+    await query.updateAircraftShallow(after)
+  })
+})
+
 // Delete
 describe('DELETE /aircraft/id', () => {
   let air3;
@@ -88,7 +223,7 @@ describe('DELETE /aircraft/id', () => {
   it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
     req(app)
       .delete('/aircraft/3')
-      .set('authorization', role3e)
+      .set('authorization', role4e)
       .expect(200)
       .expect(async (res) => {
         const didFind: boolean[] = []
@@ -156,5 +291,4 @@ describe('DELETE /aircraft/id', () => {
       })
       .end(done)
   })
-
 })

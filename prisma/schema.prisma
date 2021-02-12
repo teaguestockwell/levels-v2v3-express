@@ -50,7 +50,7 @@ model Aircraft{
   id            Int     @id @default(autoincrement()) 
 
   // Scalar Fields
-  name          String
+  name          String @unique
   fs0           Float 
   fs1           Float
   mom0          Float 

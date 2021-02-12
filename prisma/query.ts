@@ -5,7 +5,8 @@ import atob from 'atob'
 const prisma = new PrismaClient()
 
 const query = {
-  // create
+  //////////////////////////////CREATE//////////////////////////////////////
+
   // 1 User (User)
   createUser: async (user: User): Promise<User> => {
     return await prisma.user.create({
@@ -18,14 +19,19 @@ const query = {
     await prisma.aircraft.create({data: aircraft})
   },
 
-  // 1 Aircraft (name,fs0,fs1,mom0,mom1,weight0,weight1,cargoweight1,lemac,mac,mommultiplier)
+  // 1 Aircraft (Aircraft)
+  createAircraftShallow: async (aircraft:Aircraft): Promise<void> => {
+    await prisma.aircraft.create({data: aircraft})
+  },
+
   // 1 Glossary (aircraftname,title,body)
   // 1 Tank (aircraftname,name,weights,simplemoms)
   // 1 Config (aircraftname,name)
   // 1 Cargo (aircraftname,name,weight,fs?)
   // 1 ConfigCargo (configid,aircraftid,name,weight,fs,qty)
 
-  // read
+  //////////////////////////////READ//////////////////////////////////////
+  
   // n admins(aircraftid)
   readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
     return await prisma.user.findMany({
@@ -135,7 +141,6 @@ const query = {
   // 1 Aircraft(id)
   /**
    * returns a recusive aircraft object with all nested relations
-   * @param id the aircraftid
    */
   readAircraftAtID: async (id: number): Promise<Aircraft> => {
     console.log('readOneAircraftAtID: ' + id)
@@ -232,7 +237,7 @@ const query = {
     })
   },
 
-  readCargosAtCargoID: async (cargoid:number): Promise<Cargo> => {  
+  readCargoAtCargoID: async (cargoid:number): Promise<Cargo> => {  
     return await prisma.cargo.findUnique({
       where: {cargoid}
     })
@@ -258,7 +263,16 @@ const query = {
     })
   },
 
-  // delete
+  //////////////////////////////UPDATE//////////////////////////////////////
+  updateAircraftShallow: async (aircraft:Aircraft): Promise<void> => {
+    await prisma.aircraft.update({
+      where: {id: aircraft.id},
+      data: aircraft
+    })
+  },
+
+  //////////////////////////////DELETE//////////////////////////////////////
+
   // 1 Aircraft cascade to all relashionships/recursive (Aircraft.id)
   deleteAircraft: async (aircraftid: number): Promise<void> => {
     await query.deleteGlossarys(aircraftid)

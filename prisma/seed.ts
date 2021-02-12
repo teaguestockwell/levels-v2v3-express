@@ -6766,7 +6766,7 @@ async function main() {
   // create aircraft, glossary, tanks
   const air3 = await prisma.aircraft.create({
     data: {
-      name: 'C-17A',
+      name: 'C-17A3',
       fs0: 80.5,
       fs1: 2168,
       mom0: 9999,
@@ -6800,7 +6800,7 @@ async function main() {
             role: 2
           },
           {
-            email: 'role3@test.com', // uid 6
+            email: 'role123123@test.com', // uid 6
             role: 3
           },
           {
