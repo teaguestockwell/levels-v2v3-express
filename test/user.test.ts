@@ -16,7 +16,6 @@ const newUserRole1: User = {
 
 // Read
 describe('GET /user', () => {
-
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
@@ -59,7 +58,6 @@ describe('GET /user', () => {
 
 // Create / Update
 describe('POST /user', () => {
-
   const seededUserRole0: User = {
     aircraftid: 1,
     userid: 1,
@@ -148,7 +146,6 @@ describe('POST /user', () => {
 
 // Delete
 describe('DELETE /user', () => {
-
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()

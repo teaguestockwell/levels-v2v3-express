@@ -1,11 +1,11 @@
-// post 
-  //1 cargo({aircraftid, name, weight, fs})
+// post
+//1 cargo({aircraftid, name, weight, fs})
 
-// get 
-  // n cargos({aircraftid})
+// get
+// n cargos({aircraftid})
 
-// put 
-  //1 cargo({aircraftid, cargoid, name, weight, fs})
+// put
+//1 cargo({aircraftid, cargoid, name, weight, fs})
 
-// delete 
-  // 1 cargo({cargoid})
+// delete
+// 1 cargo({cargoid})

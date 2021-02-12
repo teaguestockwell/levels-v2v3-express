@@ -8,13 +8,12 @@ import {User} from '@prisma/client'
 router.post('/', async (req: Request, res: Response) => {
   try {
     const reqBodyUser: User = req.body
-    const reqUser: User = await query.readUserAtReqAndAircraftId(req,reqBodyUser.aircraftid)
+    const reqUser: User = await query.readUserAtReqAndAircraftId(
+      req,
+      reqBodyUser.aircraftid
+    )
 
-    if (
-      reqUser.role >= 2 
-      &&
-      reqUser.role > reqBodyUser.role
-    ) {
+    if (reqUser.role >= 2 && reqUser.role > reqBodyUser.role) {
       await query.upsertUser(reqBodyUser).then(() => res.status(200).send())
 
       // if the admin user does not have >= role on the aircraft they are tring to assign
@@ -34,7 +33,6 @@ router.get('/', async (req: Request, res: Response) => {
   try {
     const aircraftid: number = req.body.aircraftid
     if ((await query.readHighestRole(req)) >= 2) {
-
       await query
         .readUsersAtAircraftID(aircraftid)
         .then((users) => res.status(200).json(users))

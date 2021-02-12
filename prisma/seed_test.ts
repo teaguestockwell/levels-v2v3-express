@@ -1,28 +1,28 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {PrismaClient} from '@prisma/client'
-import query from './query'
 const prisma = new PrismaClient()
 
 export const seedTest = {
   deleteAll: async (): Promise<void> => {
     const dbSchemaName = 'public'
 
-    for (const { tablename } of await prisma.$queryRaw(
+    for (const {tablename} of await prisma.$queryRaw(
       `SELECT tablename FROM pg_tables WHERE schemaname='${dbSchemaName}'`
     )) {
       await prisma.$queryRaw(
         `TRUNCATE TABLE "${dbSchemaName}"."${tablename}" CASCADE;`
-      );
+      )
     }
-    for (const { relname } of await prisma.$queryRaw(
+    for (const {relname} of await prisma.$queryRaw(
       `SELECT c.relname FROM pg_class AS c JOIN pg_namespace AS n ON c.relnamespace = n.oid WHERE c.relkind='S' AND n.nspname='${dbSchemaName}';`
     )) {
       await prisma.$queryRaw(
         `ALTER SEQUENCE "${dbSchemaName}"."${relname}" RESTART WITH 1;`
-      );
+      )
     }
   },
 
-  generals: async(): Promise<void> => {
+  generals: async (): Promise<void> => {
     await prisma.general.create({
       data: {
         role: 3,
@@ -37,7 +37,7 @@ export const seedTest = {
         ],
       },
     })
-  
+
     await prisma.general.create({
       data: {
         role: 2,
@@ -52,7 +52,7 @@ export const seedTest = {
         ],
       },
     })
-  
+
     await prisma.general.create({
       data: {
         role: 1,
@@ -67,7 +67,7 @@ export const seedTest = {
         ],
       },
     })
-  
+
     await prisma.general.create({
       data: {
         role: 0,
@@ -103,7 +103,7 @@ export const seedTest = {
         users: {
           create: [
             {
-              email: 'role0@test.com', 
+              email: 'role0@test.com',
               role: 0,
             },
             {
@@ -111,11 +111,11 @@ export const seedTest = {
               role: 1,
             },
             {
-              email: 'role2@test.com', 
+              email: 'role2@test.com',
               role: 2,
             },
             {
-              email: 'role3@test.com', 
+              email: 'role3@test.com',
               role: 3,
             },
             {

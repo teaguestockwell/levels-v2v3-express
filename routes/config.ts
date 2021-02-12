@@ -1,11 +1,11 @@
-// post 
-  //1 config({aircraftid, name})
+// post
+//1 config({aircraftid, name})
 
-// get 
-  //n configs({aircraftid})
+// get
+//n configs({aircraftid})
 
-// put 
-  //1 config({aircraftid, name, configid})
+// put
+//1 config({aircraftid, name, configid})
 
 // delete
-  // 1 config({configid})
+// 1 config({configid})

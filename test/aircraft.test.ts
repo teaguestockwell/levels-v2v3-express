@@ -3,13 +3,21 @@ import req from 'supertest'
 import assert from 'assert'
 import app from '../server'
 import {role0e, role1e, role2e, role3e, role4e, role2OnAir1e} from './utils'
-import {Aircraft, Cargo, Config, ConfigCargo, Glossary, Prisma, Tank, User, PrismaClient} from '@prisma/client'
+import {
+  Aircraft,
+  Cargo,
+  ConfigCargo,
+  Glossary,
+  Tank,
+  User,
+  PrismaClient,
+} from '@prisma/client'
 import query from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
 
 const prisma = new PrismaClient()
 
-const createAir:Aircraft = {
+const createAir: Aircraft = {
   id: 0,
   name: 'new air',
   fs0: 100,
@@ -21,10 +29,10 @@ const createAir:Aircraft = {
   cargoweight1: 20000,
   lemac: 700,
   mac: 90,
-  mommultiplyer: 10000
+  mommultiplyer: 10000,
 }
 
-const createAirNonUniqueName:Aircraft = {
+const createAirNonUniqueName: Aircraft = {
   id: 0,
   name: 'C-17A-ER',
   fs0: 100,
@@ -36,11 +44,11 @@ const createAirNonUniqueName:Aircraft = {
   cargoweight1: 20000,
   lemac: 700,
   mac: 90,
-  mommultiplyer: 10000
+  mommultiplyer: 10000,
 }
 
-const updateAirNonUniqueName:Aircraft = {
-  id: 1, 
+const updateAirNonUniqueName: Aircraft = {
+  id: 1,
   name: 'C-17A', // update from C-17A-ER to reflect a non unique name
   fs0: 100,
   fs1: 2000,
@@ -51,11 +59,11 @@ const updateAirNonUniqueName:Aircraft = {
   cargoweight1: 20000,
   lemac: 700,
   mac: 90,
-  mommultiplyer: 10000
+  mommultiplyer: 10000,
 }
 
-const updateAir:Aircraft = {
-  id:1,
+const updateAir: Aircraft = {
+  id: 1,
   name: 'C-17A-Er', // update 'r'to be lowercase
   fs0: 80.5,
   fs1: 2168,
@@ -76,41 +84,42 @@ describe('POST /aircraft', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should 403 if the req.highest role <= 2', (done:Done)=>{
+  it('Should 403 if the req.highest role <= 2', (done: Done) => {
     req(app)
-    .post('/aircraft')
-    .set('authorization', role2e)
-    .send(createAir)
-    .expect(403)
-    .end(done)
+      .post('/aircraft')
+      .set('authorization', role2e)
+      .send(createAir)
+      .expect(403)
+      .end(done)
   })
 
-  it('Should 400 if the name is not unique', (done:Done)=>{
+  it('Should 400 if the name is not unique', (done: Done) => {
     req(app)
-    .post('/aircraft')
-    .set('authorization', role3e)
-    .send(createAirNonUniqueName)
-    .expect(400)
-    .end(done)
+      .post('/aircraft')
+      .set('authorization', role3e)
+      .send(createAirNonUniqueName)
+      .expect(400)
+      .end(done)
   })
 
-  it('Should 200 when the acft is valid, and req.role >= 3', (done:Done)=>{
+  it('Should 200 when the acft is valid, and req.role >= 3', (done: Done) => {
     req(app)
-    .post('/aircraft')
-    .set('authorization', role3e)
-    .send(createAir)
-    .expect(200)
-    .expect(async (res) => {
-      const didfind = await prisma.aircraft.findUnique({where:{name:createAir.name}})
-      assert.deepStrictEqual(didfind,createAir)
-    })
-    .end(done)
+      .post('/aircraft')
+      .set('authorization', role3e)
+      .send(createAir)
+      .expect(200)
+      .expect(async () => {
+        const didfind = await prisma.aircraft.findUnique({
+          where: {name: createAir.name},
+        })
+        assert.deepStrictEqual(didfind, createAir)
+      })
+      .end(done)
   })
 })
 
 // Read
 describe('GET /aircraft', () => {
-
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
@@ -152,7 +161,6 @@ describe('GET /aircraft', () => {
 })
 
 describe('GET /aircraft/id', () => {
-
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
@@ -180,49 +188,50 @@ describe('GET /aircraft/id', () => {
 })
 
 // PUT / UPDATE
-describe('PUT /aircraft', ()=> {
-
+describe('PUT /aircraft', () => {
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
     await seedTest.C_17_A()
   })
 
-  it('Should 403 if the req role <= 2', (done:Done)=>{
+  it('Should 403 if the req role <= 2', (done: Done) => {
     req(app)
-    .put('/aircraft')
-    .set('authorization', role2e)
-    .send(updateAir)
-    .expect(403)
-    .end(done)
+      .put('/aircraft')
+      .set('authorization', role2e)
+      .send(updateAir)
+      .expect(403)
+      .end(done)
   })
 
-  it('Should 200 and update when the acft is valid, and req.role >= 3', (done:Done)=>{
+  it('Should 200 and update when the acft is valid, and req.role >= 3', (done: Done) => {
     req(app)
-    .put('/aircraft')
-    .set('authorization', role3e)
-    .send(updateAir)
-    .expect(200)
-    .expect(async (res) => {
-      const didfind = await prisma.aircraft.findUnique({where:{id:updateAir.id}})
-      assert.deepStrictEqual(didfind,updateAir)
-    })
-    .end(done)
+      .put('/aircraft')
+      .set('authorization', role3e)
+      .send(updateAir)
+      .expect(200)
+      .expect(async () => {
+        const didfind = await prisma.aircraft.findUnique({
+          where: {id: updateAir.id},
+        })
+        assert.deepStrictEqual(didfind, updateAir)
+      })
+      .end(done)
   })
 
-  it('Should 400 if the name is not unique', (done:Done)=>{
+  it('Should 400 if the name is not unique', (done: Done) => {
     req(app)
-    .put('/aircraft')
-    .set('authorization', role3e)
-    .send(updateAirNonUniqueName)
-    .expect(400)
-    .end(done)
+      .put('/aircraft')
+      .set('authorization', role3e)
+      .send(updateAirNonUniqueName)
+      .expect(400)
+      .end(done)
   })
 })
 
 // Delete
 describe('DELETE /aircraft/id', () => {
-  let air1;
+  let air1
 
   before(async () => {
     await seedTest.deleteAll()
@@ -243,63 +252,76 @@ describe('DELETE /aircraft/id', () => {
       .delete('/aircraft/1')
       .set('authorization', role4e)
       .expect(200)
-      .expect(async (res) => {
+      .expect(async () => {
         const didFind: boolean[] = []
 
         // did the top lvl delete?
-        try{
+        try {
           await query.readAircraftAtID(1)
           didFind.push(true)
-        } catch (e){didFind.push(false)}
+        } catch (e) {
+          didFind.push(false)
+        }
 
         // did users cascade delete
-        air1.users.forEach(async (u:User) => {
-          try{
+        air1.users.forEach(async (u: User) => {
+          try {
             await query.readUserAtUserID(u.userid)
             didFind.push(true)
-          }catch (e){didFind.push(false)}
-        });
+          } catch (e) {
+            didFind.push(false)
+          }
+        })
 
         // did glossarys cascade delete
-        air1.glossarys.forEach(async (g:Glossary) => {
-          try{
+        air1.glossarys.forEach(async (g: Glossary) => {
+          try {
             await query.readGlossaryAtGlossaryID(g.glossaryid)
             didFind.push(true)
-          }catch (e){didFind.push(false)}
-        });
+          } catch (e) {
+            didFind.push(false)
+          }
+        })
 
         // did tanks cascade delete
-        air1.tanks.forEach(async (t:Tank) => {
-          try{
+        air1.tanks.forEach(async (t: Tank) => {
+          try {
             await query.readTankAtTankID(t.tankid)
             didFind.push(true)
-          }catch (e){didFind.push(false)}
-        });
+          } catch (e) {
+            didFind.push(false)
+          }
+        })
 
         // did configs cascasde delete
-        air1.configs.forEach(async (c:any) => {
-
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        air1.configs.forEach(async (c: any) => {
           // did cargo configs cascade delete
-          c.configcargos.forEach(async(cc: ConfigCargo) => {
-            try{
+          c.configcargos.forEach(async (cc: ConfigCargo) => {
+            try {
               await query.readConfigCargoAtCargoConfigID(cc.configcargoid)
               didFind.push(true)
-            }catch (e){didFind.push(false)}
-          });
+            } catch (e) {
+              didFind.push(false)
+            }
+          })
 
-          try{
+          try {
             await query.readConfigAtConfigID(c.configid)
             didFind.push(true)
-          }catch (e){didFind.push(false)}
-
-        });
+          } catch (e) {
+            didFind.push(false)
+          }
+        })
 
         // did cargos cascade delete
-        air1.cargos.forEach(async (c:Cargo) => {
-          try{
+        air1.cargos.forEach(async (c: Cargo) => {
+          try {
             await query.readConfigCargoAtCargoConfigID(c.cargoid)
             didFind.push(true)
-          }catch (e){didFind.push(false)}
+          } catch (e) {
+            didFind.push(false)
+          }
         })
 
         console.log(didFind.length)
