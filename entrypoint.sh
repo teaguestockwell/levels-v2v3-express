@@ -1,5 +1,5 @@
 sleep 5
-npm run create-tables
-npm run seed
+npm run prisma
 npm run test
+npm run seed
 npm start

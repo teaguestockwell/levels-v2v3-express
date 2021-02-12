@@ -9,7 +9,7 @@ const router = Router()
 
 // POST / create
 router.post('/', async (req: Request, res: Response) => {
-  console.log('POST /aircraft')
+  console.log('POST /aircraft EP')
   try {
     const highestRole = await query.readHighestRole(req)
     if (highestRole >= 3) {
@@ -29,7 +29,7 @@ router.post('/', async (req: Request, res: Response) => {
 
 // GET / READ
 router.get('/', async (req: Request, res: Response) => {
-  console.log('GET /aircraft')
+  console.log('GET /aircraft EP')
   try {
     // faster to read all data, and sort it then to make many request to db
     // also more flexible than writing nested query
@@ -58,7 +58,7 @@ router.get('/', async (req: Request, res: Response) => {
 router.get('/:id', async (req: Request, res: Response) => {
   try {
     const id: number = parseInt(req.params.id)
-    console.log(`/aircraft/${id}`)
+    console.log('get id: '+ id)
     
     const role = await query.readRoleAtAircraftID(req, id)
     
@@ -76,7 +76,7 @@ router.get('/:id', async (req: Request, res: Response) => {
 
 // PUT / UPDATE
 router.put('/', async (req: Request, res: Response) => {
-  console.log('PUT /aircraft')
+  console.log('PUT /aircraft EP')
   try {
     const role = await query.readRoleAtAircraftID(req,req.body.id)
     if (role >= 3) {
@@ -96,7 +96,7 @@ router.put('/', async (req: Request, res: Response) => {
 
 //DELETE
 router.delete('/:id', async (req: Request, res: Response) => {
-  console.log('DELETE /aircraft')
+  console.log('DELETE /aircraft EP')
   try {
     const id: number = parseInt(req.params.id)
     console.log(`/aircraft/${id}`)

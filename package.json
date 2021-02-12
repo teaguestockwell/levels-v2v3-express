@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "create-tables": "npx prisma migrate dev --name init --preview-feature",
     "seed": "npx ts-node prisma/seed.ts",
-    "test:unit": "npx ts-node prisma/seed.ts && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "prisma": "npx prisma migrate dev --name init --preview-feature",
+    "test:unit": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "start": "npx ts-node server.ts"
   },

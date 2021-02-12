@@ -1,168 +1,174 @@
-import { Done } from 'mocha'
+import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import app from '../server'
 import {role0e, role1e, role2e, role3e, role4e} from './utils'
-import { User } from '@prisma/client'
+import {User} from '@prisma/client'
 import query from '../prisma/query'
+import {seedTest} from '../prisma/seed_test'
 
-const newUserRole1:User = {
+const newUserRole1: User = {
   aircraftid: 1,
-  userid:0, // 0 tells upsert that user was created by ui, and to assign them a userid
-  email: "newb@email",
-  role: 1
+  userid: 0, // 0 tells upsert that user was created by ui, and to assign them a userid
+  email: 'newb@email',
+  role: 1,
 }
-
-const newUserRole10:User = {
-  aircraftid: 1,
-  userid:0, // 0 tells upsert that user was created by ui, and to assign them a userid
-  email: "newb@email",
-  role: 10 // fake role to assert this user has higher role than request maker
-}
-
-const seededUserRole0:User = {
-  aircraftid: 1,
-  userid: 3,
-  email: 'role0@test.com',
-  role: 2 // updating role 0 to role 2
-}
-
-
-const mockDuplicateUserUpdate:User = {
-  aircraftid: 1,
-  userid: 4, // this coresponds to email role1@test.com
-  email: 'role0@test.com', // cannot post to duplicate user
-  role: 2
-}
-
 
 // Read
 describe('GET /user', () => {
 
-  it('Should return all users given empty body && request.user.role >= 2', (done:Done) => {
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+  })
+  // after(async () => {})
+
+  it('Should return all users given empty body && request.user.role >= 2', (done: Done) => {
     req(app)
-    .get('/user')
-    .set('authorization', role2e)
-    //.send()
-    .expect(200)
-    .expect((res)=>{assert(res.body.length>1)})
-    .end(done)
+      .get('/user')
+      .set('authorization', role2e)
+      //.send()
+      .expect(200)
+      .expect((res) => {
+        assert(res.body.length > 1)
+      })
+      .end(done)
   })
 
-  it('Should return users of a given aircraft when request.user.role >= 2', (done:Done) => {
+  it('Should return users of a given aircraft when request.user.role >= 2', (done: Done) => {
     req(app)
-    .get('/user')
-    .set('authorization', role2e)
-    .send({aircraftid: 1})
-    .expect(200)
-    .expect((res)=>{assert(res.body.length>1)})
-    .end(done)
+      .get('/user')
+      .set('authorization', role2e)
+      .send({aircraftid: 1})
+      .expect(200)
+      .expect((res) => {
+        assert(res.body.length > 1)
+      })
+      .end(done)
   })
 
-  it('Should deny requests that have an accses level < 2', (done:Done) => {
+  it('Should deny requests that have an accses level < 2', (done: Done) => {
     req(app)
-    .get('/user')
-    .set('authorization', role1e)
-    .send({aircraftid: 1})
-    .expect(403)
-    .end(done)
+      .get('/user')
+      .set('authorization', role1e)
+      .send({aircraftid: 1})
+      .expect(403)
+      .end(done)
   })
 })
 
-
 // Create / Update
-describe('POST /user', ()=>{
+describe('POST /user', () => {
 
-  it('Should deny reqs that have accses level < 2', (done:Done) => {
-    req(app)
-    .post('/user')
-    .set('authorization', role1e)
-    .send(newUserRole1)
-    .expect(403)
-    .end(done)
+  const seededUserRole0: User = {
+    aircraftid: 1,
+    userid: 1,
+    email: 'role0@test.com',
+    role: 2, // updating role 0 to role 2
+  }
+
+  const newUserRole10: User = {
+    aircraftid: 1,
+    userid: 0, // 0 tells upsert that user was created by ui, and to assign them a userid
+    email: 'newb@email',
+    role: 10, // fake role to assert this user has higher role than request maker
+  }
+
+  const mockDuplicateUserUpdate: User = {
+    aircraftid: 1,
+    userid: 4, // this coresponds to email role1@test.com
+    email: 'role0@test.com', // cannot post to duplicate user
+    role: 2,
+  }
+
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
   })
 
-  it('Should deny reqs posting users with >= requesters role', (done:Done) => {
+  it('Should deny reqs that have accses level < 2', (done: Done) => {
     req(app)
-    .post('/user')
-    .set('authorization', role2e)
-    .send(newUserRole10)
-    .expect(403)
-    .end(done)
+      .post('/user')
+      .set('authorization', role1e)
+      .send(newUserRole1)
+      .expect(403)
+      .end(done)
   })
 
-  it('Should update existing users', (done:Done) => {
+  it('Should deny reqs posting users with >= requesters role', (done: Done) => {
     req(app)
-    .post('/user')
-    .set('authorization', role3e)
-    .send(seededUserRole0)
-    .expect(200)
-    .expect(async ()=> {
-      const updated:User = await query.readUserAtUserID(seededUserRole0.userid)
-      assert.deepStrictEqual(updated, seededUserRole0)
-    })
-    .end(done)
+      .post('/user')
+      .set('authorization', role2e)
+      .send(newUserRole10)
+      .expect(403)
+      .end(done)
   })
 
-  it('Should create new users', (done:Done) => {
+  it('Should update existing users', (done: Done) => {
     req(app)
-    .post('/user')
-    .set('authorization', role3e)
-    .send(newUserRole1)
-    .expect(200)
-    .expect(async ()=> {
-      const updated:User = await query.readUserAtUserID(newUserRole1.userid)
-      assert.deepStrictEqual(updated, newUserRole1)
-    })
-    .end(done)
+      .post('/user')
+      .set('authorization', role3e)
+      .send(seededUserRole0)
+      .expect(200)
+      .expect(async () => {
+        const updated: User = await query.readUserAtUserID(
+          seededUserRole0.userid
+        )
+        assert.deepStrictEqual(updated, seededUserRole0)
+      })
+      .end(done)
   })
 
-  it('Should 400 request that post users that dont have unique email-aircraft', (done:Done) => {
+  it('Should create new users', (done: Done) => {
     req(app)
-    .post('/user')
-    .set('authorization', role4e)
-    .send(mockDuplicateUserUpdate)
-    .expect(400)
-    .expect(async () =>{
-      const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userid)
-      assert.notStrictEqual(db.email, mockDuplicateUserUpdate.email)
-    })
-    .end(done)
+      .post('/user')
+      .set('authorization', role3e)
+      .send(newUserRole1)
+      .expect(200)
+      .expect(async () => {
+        const updated: User = await query.readUserAtUserID(newUserRole1.userid)
+        assert.deepStrictEqual(updated, newUserRole1)
+      })
+      .end(done)
   })
 
-  after(async ()=>{
-    const teardown = seededUserRole0; teardown.role = 0
-    await query.upsertUser(teardown)
-
-    const teardown2 = await query.readUserAtUserWithoutUserId(newUserRole1)
-    await query.deleteUserAtUserid(teardown2.userid)
+  it('Should 400 request that post users that dont have unique email-aircraft', (done: Done) => {
+    req(app)
+      .post('/user')
+      .set('authorization', role4e)
+      .send(mockDuplicateUserUpdate)
+      .expect(400)
+      .expect(async () => {
+        const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userid)
+        assert.notStrictEqual(db.email, mockDuplicateUserUpdate.email)
+      })
+      .end(done)
   })
 })
 
 // Delete
-describe('DELETE /user', ()=>{
+describe('DELETE /user', () => {
 
-  it('Should 403 when reqest.role <= userid.role', (done:Done)=> {
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+  })
+
+  it('Should 403 when reqest.role <= userid.role', (done: Done) => {
     req(app)
-    .delete('/user')
-    .set('authorization', role1e)
-    .send({userid:7})
-    .expect(403)
-    .end(done)
+      .delete('/user')
+      .set('authorization', role1e)
+      .send({userid: 7})
+      .expect(403)
+      .end(done)
   })
 
-  it('Should delete when reqest.role > userid.role', (done:Done)=> {
+  it('Should delete when reqest.role > userid.role', (done: Done) => {
     req(app)
-    .delete('/user')
-    .set('authorization', role4e)
-    .send({userid:6})
-    .expect(200)
-    .end(done)
+      .delete('/user')
+      .set('authorization', role4e)
+      .send({userid: 6})
+      .expect(200)
+      .end(done)
   })
-
-  after(async ()=>{
-    const teardown: User = {userid:6, email: 'role3@test.com', role: 3, aircraftid:1}
-    await query.createUser(teardown)
-  })
-
 })

@@ -56,7 +56,7 @@ const query = {
           return u.role
         })
     } catch (e) {
-      console.log('could not read role at user ')
+      //console.log('could not read role at user ')
       return 0
     }
   },
@@ -105,7 +105,7 @@ const query = {
   },
 
   readHighestRole: async (req: Request): Promise<number> => {
-    console.log('read highest role')
+    ////console.log('read highest role')
     try {
       const email = query.readEmail(req)
       if (email != null) {
@@ -122,7 +122,7 @@ const query = {
         return highest
       }
     } catch (e) {
-      console.log('highest role is 0')
+      //console.log('highest role is 0')
     }
     return 0
   },
@@ -143,7 +143,7 @@ const query = {
    * returns a recusive aircraft object with all nested relations
    */
   readAircraftAtID: async (id: number): Promise<Aircraft> => {
-    console.log('readOneAircraftAtID: ' + id)
+    //console.log('readOneAircraftAtID: ' + id)
 
     const air = await prisma.aircraft.findUnique({
       where: {id},
@@ -161,7 +161,7 @@ const query = {
   },
 
   readAircraftAtIDIncludeUsers: async (id: number): Promise<Aircraft> => {
-    console.log('readOneAircraftAtID: ' + id)
+    //console.log('readOneAircraftAtID: ' + id)
 
     const air = await prisma.aircraft.findUnique({
       where: {id},
@@ -180,7 +180,7 @@ const query = {
 
   // n Aircraft()
   readAircrafts: async (): Promise<Aircraft[]> => {
-    console.log('readAircrafts')
+    //console.log('readAircrafts')
 
     const airs = await prisma.aircraft.findMany({
       include: {
@@ -214,7 +214,7 @@ const query = {
   },
 
   readGeneral: async (role: number): Promise<General> => {
-    console.log('read general')
+    //console.log('read general')
 
     const general = await prisma.general.findFirst({
       where: {role},

@@ -5,6 +5,7 @@ import app from '../server'
 import {role0e, role1e, role2e, role3e, role4e, role2OnAir1e} from './utils'
 import {Aircraft, Cargo, Config, ConfigCargo, Glossary, Prisma, Tank, User, PrismaClient} from '@prisma/client'
 import query from '../prisma/query'
+import {seedTest} from '../prisma/seed_test'
 
 const prisma = new PrismaClient()
 
@@ -39,8 +40,8 @@ const createAirNonUniqueName:Aircraft = {
 }
 
 const updateAirNonUniqueName:Aircraft = {
-  id: 1,
-  name: 'C-17A', // update the C-17A to reflect non unique er name
+  id: 1, 
+  name: 'C-17A', // update from C-17A-ER to reflect a non unique name
   fs0: 100,
   fs1: 2000,
   mom0: 5000,
@@ -70,6 +71,11 @@ const updateAir:Aircraft = {
 
 // POST / CREATE
 describe('POST /aircraft', () => {
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+  })
+
   it('Should 403 if the req.highest role <= 2', (done:Done)=>{
     req(app)
     .post('/aircraft')
@@ -100,14 +106,17 @@ describe('POST /aircraft', () => {
     })
     .end(done)
   })
-
-  after(async ()=>{
-    await prisma.aircraft.delete({where:{name: createAir.name}})
-  })
 })
 
 // Read
 describe('GET /aircraft', () => {
+
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+    await seedTest.C_17_A()
+  })
+
   it('Should return empty[] for users with roles < 1', (done: Done) => {
     req(app)
       .get('/aircraft')
@@ -143,6 +152,12 @@ describe('GET /aircraft', () => {
 })
 
 describe('GET /aircraft/id', () => {
+
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+  })
+
   it('Should deny users without roles to that aircraft', (done: Done) => {
     req(app)
       .get('/aircraft/1')
@@ -166,6 +181,13 @@ describe('GET /aircraft/id', () => {
 
 // PUT / UPDATE
 describe('PUT /aircraft', ()=> {
+
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+    await seedTest.C_17_A()
+  })
+
   it('Should 403 if the req role <= 2', (done:Done)=>{
     req(app)
     .put('/aircraft')
@@ -196,20 +218,16 @@ describe('PUT /aircraft', ()=> {
     .expect(400)
     .end(done)
   })
-
-  after(async ()=> {
-    const after = updateAir;
-    after.name = 'C-17A-ER' // revert Er to ER
-    await query.updateAircraftShallow(after)
-  })
 })
 
 // Delete
 describe('DELETE /aircraft/id', () => {
-  let air3;
+  let air1;
 
   before(async () => {
-    air3 = await query.readAircraftAtIDIncludeUsers(3)
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+    air1 = await query.readAircraftAtID(1)
   })
 
   it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
@@ -222,7 +240,7 @@ describe('DELETE /aircraft/id', () => {
 
   it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
     req(app)
-      .delete('/aircraft/3')
+      .delete('/aircraft/1')
       .set('authorization', role4e)
       .expect(200)
       .expect(async (res) => {
@@ -230,12 +248,12 @@ describe('DELETE /aircraft/id', () => {
 
         // did the top lvl delete?
         try{
-          await query.readAircraftAtID(3)
+          await query.readAircraftAtID(1)
           didFind.push(true)
         } catch (e){didFind.push(false)}
 
         // did users cascade delete
-        air3.users.forEach(async (u:User) => {
+        air1.users.forEach(async (u:User) => {
           try{
             await query.readUserAtUserID(u.userid)
             didFind.push(true)
@@ -243,7 +261,7 @@ describe('DELETE /aircraft/id', () => {
         });
 
         // did glossarys cascade delete
-        air3.glossarys.forEach(async (g:Glossary) => {
+        air1.glossarys.forEach(async (g:Glossary) => {
           try{
             await query.readGlossaryAtGlossaryID(g.glossaryid)
             didFind.push(true)
@@ -251,7 +269,7 @@ describe('DELETE /aircraft/id', () => {
         });
 
         // did tanks cascade delete
-        air3.tanks.forEach(async (t:Tank) => {
+        air1.tanks.forEach(async (t:Tank) => {
           try{
             await query.readTankAtTankID(t.tankid)
             didFind.push(true)
@@ -259,7 +277,7 @@ describe('DELETE /aircraft/id', () => {
         });
 
         // did configs cascasde delete
-        air3.configs.forEach(async (c:any) => {
+        air1.configs.forEach(async (c:any) => {
 
           // did cargo configs cascade delete
           c.configcargos.forEach(async(cc: ConfigCargo) => {
@@ -277,7 +295,7 @@ describe('DELETE /aircraft/id', () => {
         });
 
         // did cargos cascade delete
-        air3.cargos.forEach(async (c:Cargo) => {
+        air1.cargos.forEach(async (c:Cargo) => {
           try{
             await query.readConfigCargoAtCargoConfigID(c.cargoid)
             didFind.push(true)
