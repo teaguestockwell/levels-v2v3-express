@@ -7,7 +7,8 @@
     "prisma": "npx prisma migrate dev --name init --preview-feature",
     "test:unit": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "start": "npx ts-node server.ts"
+    "start": "npx ts-node server.ts",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
