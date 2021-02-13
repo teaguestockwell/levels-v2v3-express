@@ -1,4 +1,4 @@
-the db endpoint is for use by database admins that will perform crud ops on aircraft, adn thier children objects within the databse
+db admins that will perform crud ops on aircraft, and thier children objects 
 
 the db route will not be acsessible by the ui without the proper general role apon ui init request to general endpoint
 
