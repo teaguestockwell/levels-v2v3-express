@@ -1,0 +1,4 @@
+include:
+  - project: 'platform-one/devops/pipeline-products'
+    ref: 'five-level-app'
+    file: '/products/tron/five-level/api-ci.yml'
