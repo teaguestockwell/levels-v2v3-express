@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import app from '../server'
-import {role0e, role1e, role2e, role3e, role4e, role2OnAir1e} from './utils'
+import {role0e, role2e, role3e, role4e, role2OnAir1e} from './utils'
 import {
   Aircraft,
   Cargo,
