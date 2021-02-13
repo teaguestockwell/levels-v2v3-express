@@ -6,9 +6,9 @@
     "seed": "npx ts-node prisma/seed.ts",
     "prisma": "npx prisma migrate dev --name init --preview-feature",
     "test:unit": "./populate.sh && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "test": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test": "npm install && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "start": "npx ts-node server.ts",
-    "lint": "eslint ."
+    "lint": "npm install && eslint ."
   },
   "author": "",
   "license": "ISC",
