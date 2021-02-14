@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import {PrismaClient} from '@prisma/client'
 const prisma = new PrismaClient()
 
@@ -86,7 +86,7 @@ export const seedTest = {
 
   C_17_A_ER: async (): Promise<void> => {
     // create aircraft, glossary, tanks
-    const air1 = await prisma.aircraft.create({
+    await prisma.aircraft.create({
       data: {
         id: 1,
         name: 'C-17A-ER',
@@ -223,7 +223,7 @@ export const seedTest = {
     })
 
     // create cargo
-    const air1c1 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Water Container (5 Gallon)',
         fs: 358,
@@ -232,7 +232,7 @@ export const seedTest = {
       },
     })
 
-    const air1c2 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Std 2 gal liquid container',
         weight: 25,
@@ -241,7 +241,7 @@ export const seedTest = {
       },
     })
 
-    const air1c3 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Hot Cup',
         fs: 260,
@@ -250,7 +250,7 @@ export const seedTest = {
       },
     })
 
-    const air1c4 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Human Waste Clean-up kit',
         fs: 280,
@@ -259,7 +259,7 @@ export const seedTest = {
       },
     })
 
-    const air1c5 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Blanket Large',
         fs: 280,
@@ -268,7 +268,7 @@ export const seedTest = {
       },
     })
 
-    const air1c6 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Pillow Large w/Case',
         fs: 280,
@@ -277,7 +277,7 @@ export const seedTest = {
       },
     })
 
-    const air1c7 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Blanket Small',
         fs: -1,
@@ -286,7 +286,7 @@ export const seedTest = {
       },
     })
 
-    const air1c8 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Pillow Small w/Case',
         fs: -1,
@@ -295,7 +295,7 @@ export const seedTest = {
       },
     })
 
-    const air1c9 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Expendable Supplies',
         fs: 260,
@@ -304,7 +304,7 @@ export const seedTest = {
       },
     })
 
-    const air1c10 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Passenger Demo Kit',
         fs: 380,
@@ -313,7 +313,7 @@ export const seedTest = {
       },
     })
 
-    const air1c11 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Pax info cards (102)',
         fs: 280,
@@ -322,7 +322,7 @@ export const seedTest = {
       },
     })
 
-    const air1c12 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'ATGL (Serviced)',
         fs: 401,
@@ -331,7 +331,7 @@ export const seedTest = {
       },
     })
 
-    const air1c13 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'LPU-6P Infant Cot',
         fs: 280,
@@ -340,7 +340,7 @@ export const seedTest = {
       },
     })
 
-    const air1c14 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'A/C Life Preserver',
         fs: -1,
@@ -349,7 +349,7 @@ export const seedTest = {
       },
     })
 
-    const air1c15 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Protective clothing kit',
         fs: 280,
@@ -358,7 +358,7 @@ export const seedTest = {
       },
     })
 
-    const air1c16 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'BA-22 Parachute',
         fs: 280,
@@ -367,7 +367,7 @@ export const seedTest = {
       },
     })
 
-    const air1c17 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'LPU-10P',
         fs: 280,
@@ -376,7 +376,7 @@ export const seedTest = {
       },
     })
 
-    const air1c18 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'EPOS',
         fs: -1,
@@ -385,7 +385,7 @@ export const seedTest = {
       },
     })
 
-    const air1c19 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'PBE',
         fs: 280,
@@ -394,7 +394,7 @@ export const seedTest = {
       },
     })
 
-    const air1c20 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Survival Vest',
         fs: 280,
@@ -403,7 +403,7 @@ export const seedTest = {
       },
     })
 
-    const air1c21 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Aircrew Body Armor (Level IIIA)',
         fs: 280,
@@ -412,7 +412,7 @@ export const seedTest = {
       },
     })
 
-    const air1c22 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: '60 Hz Backup Converter',
         fs: 252,
@@ -421,7 +421,7 @@ export const seedTest = {
       },
     })
 
-    const air1c23 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Additional Aeromedical Stations',
         fs: -1,
@@ -430,7 +430,7 @@ export const seedTest = {
       },
     })
 
-    const air1c24 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Seat Pallets DV (5 Seats/Pallet)',
         fs: -1,
@@ -439,7 +439,7 @@ export const seedTest = {
       },
     })
 
-    const air1c25 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Seat Pallets DV (10 Seats/pallet)',
         fs: -1,
@@ -448,7 +448,7 @@ export const seedTest = {
       },
     })
 
-    const air1c26 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Seat Pallets Mass (15 Seats/pallet)',
         fs: -1,
@@ -457,7 +457,7 @@ export const seedTest = {
       },
     })
 
-    const air1c27 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Flares/Flare Cans (Note 1)',
         fs: 744,
@@ -466,7 +466,7 @@ export const seedTest = {
       },
     })
 
-    const air1c28 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Flare Hazard Placards (Note 1)',
         fs: 400,
@@ -475,7 +475,7 @@ export const seedTest = {
       },
     })
 
-    const air1c29 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Aircraft Armor (Note 1)',
         fs: 217,
@@ -484,7 +484,7 @@ export const seedTest = {
       },
     })
 
-    const air1c30 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'SLIP (unoccupied)',
         fs: -1,
@@ -493,7 +493,7 @@ export const seedTest = {
       },
     })
 
-    const air1c31 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'SLICC Berthing Capsule',
         fs: 580,
@@ -502,7 +502,7 @@ export const seedTest = {
       },
     })
 
-    const air1c32 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'SLICC Conference Capsule',
         fs: 685,
@@ -511,7 +511,7 @@ export const seedTest = {
       },
     })
 
-    const air1c33 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'MX TO File',
         fs: 305,
@@ -520,7 +520,7 @@ export const seedTest = {
       },
     })
 
-    const air1c34 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Kit, Passenger service',
         fs: 280,
@@ -531,7 +531,7 @@ export const seedTest = {
 
     // create configs
 
-    const air1config1 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'AE-1',
@@ -679,7 +679,7 @@ export const seedTest = {
       },
     })
 
-    const air1config2 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'AE-2',
@@ -833,7 +833,7 @@ export const seedTest = {
       },
     })
 
-    const air1config3 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'AE-3',
@@ -981,7 +981,7 @@ export const seedTest = {
       },
     })
 
-    const air1config4 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'AEC-1',
@@ -1135,7 +1135,7 @@ export const seedTest = {
       },
     })
 
-    const air1config5 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'C-1',
@@ -1283,7 +1283,7 @@ export const seedTest = {
       },
     })
 
-    const air1config6 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'C-2',
@@ -1431,7 +1431,7 @@ export const seedTest = {
       },
     })
 
-    const air1config7 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'C-3',
@@ -1579,7 +1579,7 @@ export const seedTest = {
       },
     })
 
-    const air1config8 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'P-1',
@@ -1733,7 +1733,7 @@ export const seedTest = {
       },
     })
 
-    const air1config9 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'SP-X',
@@ -1881,7 +1881,7 @@ export const seedTest = {
       },
     })
 
-    const air1config10 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'CP-X',
@@ -2029,7 +2029,7 @@ export const seedTest = {
       },
     })
 
-    const air1config11 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'ADP-1',
@@ -2177,7 +2177,7 @@ export const seedTest = {
       },
     })
 
-    const air1config12 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'ADP-2',
@@ -2325,7 +2325,7 @@ export const seedTest = {
       },
     })
 
-    const air1config13 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'ADP-3',
@@ -2479,7 +2479,7 @@ export const seedTest = {
       },
     })
 
-    const air1config14 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'ADC-1',
@@ -2627,7 +2627,7 @@ export const seedTest = {
       },
     })
 
-    const air1config15 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'ADC-2',
@@ -2775,7 +2775,7 @@ export const seedTest = {
       },
     })
 
-    const air1config16 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'CDS-1',
@@ -2923,7 +2923,7 @@ export const seedTest = {
       },
     })
 
-    const air1config17 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'DV-1',
@@ -3077,7 +3077,7 @@ export const seedTest = {
       },
     })
 
-    const air1config18 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'SD-1',
@@ -3231,7 +3231,7 @@ export const seedTest = {
       },
     })
 
-    const air1config19 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 1}},
         name: 'SLC-1',
@@ -3481,7 +3481,7 @@ export const seedTest = {
 
   C_17_A: async (): Promise<void> => {
     // create aircraft, glossary, tanks
-    const air2 = await prisma.aircraft.create({
+    await prisma.aircraft.create({
       data: {
         id: 2,
         name: 'C-17A',
@@ -3614,7 +3614,7 @@ export const seedTest = {
     })
 
     // create cargo
-    const air2c1 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Water Container (5 Gallon)',
         fs: 358,
@@ -3623,7 +3623,7 @@ export const seedTest = {
       },
     })
 
-    const air2c2 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Std 2 gal liquid container',
         weight: 25,
@@ -3632,7 +3632,7 @@ export const seedTest = {
       },
     })
 
-    const air2c3 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Hot Cup',
         fs: 260,
@@ -3641,7 +3641,7 @@ export const seedTest = {
       },
     })
 
-    const air2c4 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Human Waste Clean-up kit',
         fs: 280,
@@ -3650,7 +3650,7 @@ export const seedTest = {
       },
     })
 
-    const air2c5 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Blanket Large',
         fs: 280,
@@ -3659,7 +3659,7 @@ export const seedTest = {
       },
     })
 
-    const air2c6 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Pillow Large w/Case',
         fs: 280,
@@ -3668,7 +3668,7 @@ export const seedTest = {
       },
     })
 
-    const air2c7 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Blanket Small',
         fs: -1,
@@ -3677,7 +3677,7 @@ export const seedTest = {
       },
     })
 
-    const air2c8 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Pillow Small w/Case',
         fs: -1,
@@ -3686,7 +3686,7 @@ export const seedTest = {
       },
     })
 
-    const air2c9 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Expendable Supplies',
         fs: 260,
@@ -3695,7 +3695,7 @@ export const seedTest = {
       },
     })
 
-    const air2c10 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Passenger Demo Kit',
         fs: 380,
@@ -3704,7 +3704,7 @@ export const seedTest = {
       },
     })
 
-    const air2c11 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Pax info cards (102)',
         fs: 280,
@@ -3713,7 +3713,7 @@ export const seedTest = {
       },
     })
 
-    const air2c12 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'ATGL (Serviced)',
         fs: 401,
@@ -3722,7 +3722,7 @@ export const seedTest = {
       },
     })
 
-    const air2c13 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'LPU-6P Infant Cot',
         fs: 280,
@@ -3731,7 +3731,7 @@ export const seedTest = {
       },
     })
 
-    const air2c14 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'A/C Life Preserver',
         fs: -1,
@@ -3740,7 +3740,7 @@ export const seedTest = {
       },
     })
 
-    const air2c15 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Protective clothing kit',
         fs: 280,
@@ -3749,7 +3749,7 @@ export const seedTest = {
       },
     })
 
-    const air2c16 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'BA-22 Parachute',
         fs: 280,
@@ -3758,7 +3758,7 @@ export const seedTest = {
       },
     })
 
-    const air2c17 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'LPU-10P',
         fs: 280,
@@ -3767,7 +3767,7 @@ export const seedTest = {
       },
     })
 
-    const air2c18 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'EPOS',
         fs: -1,
@@ -3776,7 +3776,7 @@ export const seedTest = {
       },
     })
 
-    const air2c19 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'PBE',
         fs: 280,
@@ -3785,7 +3785,7 @@ export const seedTest = {
       },
     })
 
-    const air2c20 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Survival Vest',
         fs: 280,
@@ -3794,7 +3794,7 @@ export const seedTest = {
       },
     })
 
-    const air2c21 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Aircrew Body Armor (Level IIIA)',
         fs: 280,
@@ -3803,7 +3803,7 @@ export const seedTest = {
       },
     })
 
-    const air2c22 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: '60 Hz Backup Converter',
         fs: 252,
@@ -3812,7 +3812,7 @@ export const seedTest = {
       },
     })
 
-    const air2c23 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Additional Aeromedical Stations',
         fs: -1,
@@ -3821,7 +3821,7 @@ export const seedTest = {
       },
     })
 
-    const air2c24 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Seat Pallets DV (5 Seats/Pallet)',
         fs: -1,
@@ -3830,7 +3830,7 @@ export const seedTest = {
       },
     })
 
-    const air2c25 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Seat Pallets DV (10 Seats/pallet)',
         fs: -1,
@@ -3839,7 +3839,7 @@ export const seedTest = {
       },
     })
 
-    const air2c26 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Seat Pallets Mass (15 Seats/pallet)',
         fs: -1,
@@ -3848,7 +3848,7 @@ export const seedTest = {
       },
     })
 
-    const air2c27 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Flares/Flare Cans (Note 1)',
         fs: 744,
@@ -3857,7 +3857,7 @@ export const seedTest = {
       },
     })
 
-    const air2c28 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Flare Hazard Placards (Note 1)',
         fs: 400,
@@ -3866,7 +3866,7 @@ export const seedTest = {
       },
     })
 
-    const air2c29 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Aircraft Armor (Note 1)',
         fs: 217,
@@ -3875,7 +3875,7 @@ export const seedTest = {
       },
     })
 
-    const air2c30 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'SLIP (unoccupied)',
         fs: -1,
@@ -3884,7 +3884,7 @@ export const seedTest = {
       },
     })
 
-    const air2c31 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'SLICC Berthing Capsule',
         fs: 580,
@@ -3893,7 +3893,7 @@ export const seedTest = {
       },
     })
 
-    const air2c32 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'SLICC Conference Capsule',
         fs: 685,
@@ -3902,7 +3902,7 @@ export const seedTest = {
       },
     })
 
-    const air2c33 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'MX TO File',
         fs: 305,
@@ -3911,7 +3911,7 @@ export const seedTest = {
       },
     })
 
-    const air2c34 = await prisma.cargo.create({
+    await prisma.cargo.create({
       data: {
         name: 'Kit, Passenger service',
         fs: 280,
@@ -3921,7 +3921,7 @@ export const seedTest = {
     })
 
     // create configs
-    const air2config1 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'AE-1',
@@ -4069,7 +4069,7 @@ export const seedTest = {
       },
     })
 
-    const air2config2 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'AE-2',
@@ -4223,7 +4223,7 @@ export const seedTest = {
       },
     })
 
-    const air2config3 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'AE-3',
@@ -4371,7 +4371,7 @@ export const seedTest = {
       },
     })
 
-    const air2config4 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'AEC-1',
@@ -4525,7 +4525,7 @@ export const seedTest = {
       },
     })
 
-    const air2config5 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'C-1',
@@ -4673,7 +4673,7 @@ export const seedTest = {
       },
     })
 
-    const air2config6 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'C-2',
@@ -4821,7 +4821,7 @@ export const seedTest = {
       },
     })
 
-    const air2config7 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'C-3',
@@ -4969,7 +4969,7 @@ export const seedTest = {
       },
     })
 
-    const air2config8 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'P-1',
@@ -5123,7 +5123,7 @@ export const seedTest = {
       },
     })
 
-    const air2config9 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'SP-X',
@@ -5271,7 +5271,7 @@ export const seedTest = {
       },
     })
 
-    const air2config10 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'CP-X',
@@ -5419,7 +5419,7 @@ export const seedTest = {
       },
     })
 
-    const air2config11 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'ADP-1',
@@ -5567,7 +5567,7 @@ export const seedTest = {
       },
     })
 
-    const air2config12 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'ADP-2',
@@ -5715,7 +5715,7 @@ export const seedTest = {
       },
     })
 
-    const air2config13 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'ADP-3',
@@ -5869,7 +5869,7 @@ export const seedTest = {
       },
     })
 
-    const air2config14 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'ADC-1',
@@ -6017,7 +6017,7 @@ export const seedTest = {
       },
     })
 
-    const air2config15 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'ADC-2',
@@ -6165,7 +6165,7 @@ export const seedTest = {
       },
     })
 
-    const air2config16 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'CDS-1',
@@ -6313,7 +6313,7 @@ export const seedTest = {
       },
     })
 
-    const air2config17 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'DV-1',
@@ -6467,7 +6467,7 @@ export const seedTest = {
       },
     })
 
-    const air2config18 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'SD-1',
@@ -6621,7 +6621,7 @@ export const seedTest = {
       },
     })
 
-    const air2config19 = await prisma.config.create({
+    await prisma.config.create({
       data: {
         aircraft: {connect: {id: 2}},
         name: 'SLC-1',
