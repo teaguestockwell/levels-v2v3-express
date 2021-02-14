@@ -74,7 +74,7 @@ const query = {
   },
 
   readRoleAtAircraftID: async (req: Request, id: number): Promise<number> => {
-    const email = await query.readEmail(req)
+    const email = query.readEmail(req)
     const aircraftid_email = {aircraftid: id, email: email}
 
     try {
@@ -99,7 +99,7 @@ const query = {
     x: number
   ): Promise<number[]> => {
     const ret: number[] = []
-    const email = await query.readEmail(req)
+    const email = query.readEmail(req)
 
     const users = await prisma.user.findMany({
       where: {
