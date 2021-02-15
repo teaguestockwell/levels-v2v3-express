@@ -247,7 +247,7 @@ describe('DELETE /aircraft/id', () => {
       .end(done)
   })
 
-  it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
+  it('Should delete all recusivly where requests role @ aircraft > 2',(done:Done) => {
     req(app)
       .delete('/aircraft/1')
       .set('authorization', role4e)
@@ -264,7 +264,7 @@ describe('DELETE /aircraft/id', () => {
         }
 
         // did users cascade delete
-        air1.users.forEach(async (u: User) => {
+        const users:Promise<boolean>[] = await air1.users.map(async (u: User) => {
           try {
             await query.readUserAtUserID(u.userid)
             didFind.push(true)
@@ -274,7 +274,7 @@ describe('DELETE /aircraft/id', () => {
         })
 
         // did glossarys cascade delete
-        air1.glossarys.forEach(async (g: Glossary) => {
+        const glossarys:Promise<boolean>[] = await air1.glossarys.map(async (g: Glossary) => {
           try {
             await query.readGlossaryAtGlossaryID(g.glossaryid)
             didFind.push(true)
@@ -284,7 +284,7 @@ describe('DELETE /aircraft/id', () => {
         })
 
         // did tanks cascade delete
-        air1.tanks.forEach(async (t: Tank) => {
+        const tanks:Promise<boolean>[] = await air1.tanks.map(async (t: Tank) => {
           try {
             await query.readTankAtTankID(t.tankid)
             didFind.push(true)
@@ -294,10 +294,11 @@ describe('DELETE /aircraft/id', () => {
         })
 
         // did configs cascasde delete
+        let conCargo:Promise<boolean>[] = []
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        air1.configs.forEach(async (c: any) => {
+        const configs:Promise<boolean>[] = await air1.configs.map(async (c: any) => {
           // did cargo configs cascade delete
-          c.configcargos.forEach(async (cc: ConfigCargo) => {
+         conCargo = await c.configcargos.map(async (cc: ConfigCargo) => {
             try {
               await query.readConfigCargoAtCargoConfigID(cc.configcargoid)
               didFind.push(true)
@@ -315,7 +316,7 @@ describe('DELETE /aircraft/id', () => {
         })
 
         // did cargos cascade delete
-        air1.cargos.forEach(async (c: Cargo) => {
+        const cargos:Promise<boolean>[] = await air1.cargos.map(async (c: Cargo) => {
           try {
             await query.readConfigCargoAtCargoConfigID(c.cargoid)
             didFind.push(true)
@@ -324,7 +325,9 @@ describe('DELETE /aircraft/id', () => {
           }
         })
 
-        console.log(didFind.length)
+        const allPromises:Promise<boolean>[] = cargos.concat(configs, conCargo, tanks, glossarys, users)
+        await Promise.all(allPromises)
+        console.log(didFind.length + ' did find length')
 
         const foundTrue: boolean = didFind.includes(true)
         assert.deepStrictEqual(foundTrue, false)

@@ -1,7 +1,8 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-const router = Router()
 import {User} from '@prisma/client'
+
+const router = Router()
 
 // post / update with a fallback of create
 //1 user(User)

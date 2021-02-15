@@ -24,6 +24,16 @@ const query = {
     })
   },
 
+  createGlossary: async (glosssary:Glossary):Promise<void> => {
+    await prisma.glossary.create({
+      data: {
+        title: glosssary.title,
+        body: glosssary.body,
+        aircraft: {connect: {id: glosssary.aircraftid}},
+      },
+    })
+  },
+
   //** create 1 aircraft with relationships from deep air object */
   createAircraftFromEntireAircraft: async (
     aircraft: Aircraft
@@ -72,7 +82,7 @@ const query = {
       return 0
     }
   },
-
+  /** if no user => role = 0 */
   readRoleAtAircraftID: async (req: Request, id: number): Promise<number> => {
     const email = query.readEmail(req)
     const aircraftid_email = {aircraftid: id, email: email}
@@ -239,6 +249,10 @@ const query = {
     return await prisma.glossary.findUnique({where: {glossaryid}})
   },
 
+  readGlossarysAtAircraftId: async (aircraftid:number):Promise<Glossary[]> => {
+    return await prisma.glossary.findMany({where: {aircraftid}})
+  },
+
   readTankAtTankID: async (tankid: number): Promise<Tank> => {
     return await prisma.tank.findUnique({where: {tankid}})
   },
@@ -282,6 +296,14 @@ const query = {
     await prisma.aircraft.update({
       where: {id: aircraft.id},
       data: aircraft,
+    })
+  },
+
+  updateGlossary: async (glossary: Glossary):Promise<void> => {
+    const glossaryid = glossary.glossaryid
+    await prisma.glossary.update({
+      where: {glossaryid},
+      data: glossary
     })
   },
 
