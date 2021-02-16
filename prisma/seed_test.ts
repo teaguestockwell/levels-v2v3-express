@@ -315,7 +315,7 @@ export const seedTest = {
 
     await prisma.cargo.create({
       data: {
-        name: 'Pax info cards (102)',
+        name: 'Pax info card',
         fs: 280,
         weight: 3,
         aircraft: {connect: {id: 1}},
@@ -3706,7 +3706,7 @@ export const seedTest = {
 
     await prisma.cargo.create({
       data: {
-        name: 'Pax info cards (102)',
+        name: 'Pax info card',
         fs: 280,
         weight: 3,
         aircraft: {connect: {id: 2}},

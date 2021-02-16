@@ -74,6 +74,19 @@ const query = {
     })
   },
 
+  upsertCargo: async (cargo: Cargo): Promise<void> => {
+    await prisma.cargo.upsert({
+      where: {cargoid: cargo.cargoid},
+      update: cargo,
+      create: {
+        aircraft: {connect: {id: cargo.aircraftid}},
+        name: cargo.name,
+        fs: cargo.fs,
+        weight: cargo.weight,
+      },
+    })
+  },
+
 
 
   //////////////////////////////READ//////////////////////////////////////
@@ -262,6 +275,7 @@ const query = {
     return await prisma.user.findUnique({where: {aircraftid_email}})
   },
 
+
   readGeneral: async (role: number): Promise<General> => {
     //console.log('read general')
 
@@ -305,6 +319,13 @@ const query = {
       where: {cargoid},
     })
   },
+
+  readCargosAtAircraftId: async (aircraftid: number): Promise<Cargo[]> => {
+    return await prisma.cargo.findMany({
+      where: {aircraftid},
+    })
+  },
+
 
   readConfigCargoAtCargoConfigID: async (
     configcargoid: number
