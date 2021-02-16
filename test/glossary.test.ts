@@ -5,13 +5,11 @@ import req from 'supertest'
 import assert from 'assert'
 import app from '../server'
 import {Glossary, PrismaClient} from '@prisma/client'
-import {deepStrictEqual} from 'assert'
-import query from '../prisma/query'
 //import query from '../prisma/query'
 
 const prisma = new PrismaClient()
 
-// READ 
+// READ
 describe('GET /glossary', () => {
   before(async () => {
     await seedTest.deleteAll()
@@ -38,7 +36,6 @@ describe('GET /glossary', () => {
       .expect(403)
       .end(done)
   })
-
 })
 
 // UPDATE || CREATE
@@ -64,12 +61,9 @@ describe('PUT /glossary', () => {
     body: 'info here',
   }
 
-  let oldGloss: Glossary
-
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
-    oldGloss = await prisma.glossary.findFirst({})
   })
 
   it('Should return 200 and update where gloss is unquique && req.role >= 3', (done: Done) => {
@@ -87,14 +81,17 @@ describe('PUT /glossary', () => {
       .set('authorization', role3e)
       .send(newGloss)
       .expect(200)
-      .expect(async ()=>{
-        const title_aircraftid = {aircraftid: newGloss.aircraftid, title: newGloss.title}
+      .expect(async () => {
+        const title_aircraftid = {
+          aircraftid: newGloss.aircraftid,
+          title: newGloss.title,
+        }
         const found = await prisma.glossary.findUnique({
-          where: {title_aircraftid}
+          where: {title_aircraftid},
         })
-        assert.deepStrictEqual(found.title,newGloss.title)
-        assert.deepStrictEqual(found.body,newGloss.body)
-        assert.deepStrictEqual(found.aircraftid,newGloss.aircraftid)
+        assert.deepStrictEqual(found.title, newGloss.title)
+        assert.deepStrictEqual(found.body, newGloss.body)
+        assert.deepStrictEqual(found.aircraftid, newGloss.aircraftid)
       })
       .end(done)
   })
@@ -116,7 +113,6 @@ describe('PUT /glossary', () => {
       .expect(400)
       .end(done)
   })
-
 })
 
 // DELETE

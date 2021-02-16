@@ -42,12 +42,12 @@ router.put('/', async (req: Request, res: Response) => {
     if (reqAir.id == 0 && highestRole >= 3) {
       const reqEmail = await query.readEmail(req)
 
-      // we have asserted that this req has a role >= 3 on some aircraft, 
+      // we have asserted that this req has a role >= 3 on some aircraft,
       // so we can grab a copy of that to pass to the new aircraft
       const reqUser = await query.readFirstUserAtEmail(reqEmail)
 
       // they should be able to create users with role 3
-      reqUser.role = 4 
+      reqUser.role = 4
 
       try {
         await query.upsertAircraftShallow2(reqAir, reqUser)

@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import app from '../server'
-import { role1e, role2e, role3e, role4e} from './utils'
+import {role1e, role2e, role3e, role4e} from './utils'
 import {User} from '@prisma/client'
 import query from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
@@ -57,7 +57,7 @@ describe('GET /user', () => {
 })
 
 // CREATE || UPDATE
-describe('POST /user', () => {
+describe('PUT /user', () => {
   const seededUserRole0: User = {
     aircraftid: 1,
     userid: 1,
@@ -75,7 +75,7 @@ describe('POST /user', () => {
   const mockDuplicateUserUpdate: User = {
     aircraftid: 1,
     userid: 4, // this coresponds to email role1@test.com
-    email: 'role0@test.com', // cannot post to duplicate user
+    email: 'role0@test.com', // cannot put to duplicate user
     role: 2,
   }
 
@@ -86,16 +86,16 @@ describe('POST /user', () => {
 
   it('Should deny reqs that have accses level < 2', (done: Done) => {
     req(app)
-      .post('/user')
+      .put('/user')
       .set('authorization', role1e)
       .send(newUserRole1)
       .expect(403)
       .end(done)
   })
 
-  it('Should deny reqs posting users with >= requesters role', (done: Done) => {
+  it('Should deny reqs puting users with >= requesters role', (done: Done) => {
     req(app)
-      .post('/user')
+      .put('/user')
       .set('authorization', role2e)
       .send(newUserRole10)
       .expect(403)
@@ -104,7 +104,7 @@ describe('POST /user', () => {
 
   it('Should update existing users', (done: Done) => {
     req(app)
-      .post('/user')
+      .put('/user')
       .set('authorization', role3e)
       .send(seededUserRole0)
       .expect(200)
@@ -119,7 +119,7 @@ describe('POST /user', () => {
 
   it('Should create new users', (done: Done) => {
     req(app)
-      .post('/user')
+      .put('/user')
       .set('authorization', role3e)
       .send(newUserRole1)
       .expect(200)
@@ -130,9 +130,9 @@ describe('POST /user', () => {
       .end(done)
   })
 
-  it('Should 400 request that post users that dont have unique email-aircraft', (done: Done) => {
+  it('Should 400 request that put users that dont have unique email-aircraft', (done: Done) => {
     req(app)
-      .post('/user')
+      .put('/user')
       .set('authorization', role4e)
       .send(mockDuplicateUserUpdate)
       .expect(400)
