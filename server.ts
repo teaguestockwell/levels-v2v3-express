@@ -8,7 +8,7 @@ import tankRouter from './routes/tankRouter'
 import cargoRouter from './routes/cargoRouter'
 const server: Application = express();
 
-
+server.disable('x-powered-by')
 server.set('port', process.env.PORT || 8080);
 
 server.use(express.json());
