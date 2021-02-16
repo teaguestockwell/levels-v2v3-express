@@ -8,7 +8,6 @@ interface getN {
   res: Response
   reqRoleGE: number
   bodyIDPara?: string
-  log?: boolean
   readNAtAirID: (id: number) => Promise<any[]>
 }
 
@@ -16,7 +15,6 @@ interface put1 {
   req: Request
   res: Response
   reqRoleGE: number
-  log?: boolean
   upsertType: (obg: any) => Promise<void>
 }
 
@@ -25,7 +23,6 @@ interface delete1 {
   req: Request
   res: Response
   reqRoleGE: number
-  log?: boolean
   delete1: (pk:any) => Promise<void>
   readOBJatPK: (pk:number) => Promise<any>
 }
@@ -36,7 +33,6 @@ export const baseRouter = {
     res,
     reqRoleGE,
     readNAtAirID,
-    log = false,
   }: getN): Promise<void> => {
     try {
       const id: number = req.body.aircraftid
@@ -44,20 +40,16 @@ export const baseRouter = {
 
       if (roleAtAircraft >= reqRoleGE) {
         const n: any[] = await readNAtAirID(id)
-        if (log) {
           console.log(`sent 200 length: ${n.length}`)
-        }
         res.status(200).send(n)
       } else {
-          if(log){console.log(`req with role: ${roleAtAircraft} denyed`)}
+        console.log(`req with role: ${roleAtAircraft} denyed`)
         res
           .status(403)
           .send({msg: `You need a role of at least ${reqRoleGE} to do that`})
       }
     } catch (e) {
-      if (log) {
-        console.log(e)
-      }
+      console.log(e)
       res.status(500).send({
         msg: 'We cant do that right now. Please refresh the previous screen',
       })
@@ -68,7 +60,6 @@ export const baseRouter = {
     req,
     res,
     reqRoleGE,
-    log = false,
     upsertType,
   }: put1): Promise<void> => {
     try {
@@ -80,9 +71,7 @@ export const baseRouter = {
         )
         if (roleAtAircraft >= reqRoleGE) {
           await upsertType(obj)
-          if (log) {
-            console.log(`sent 200, obj upserted`)
-          }
+          console.log(`sent 200, obj upserted`)
           res.status(200).send()
         } else {
           console.log(`req with role: ${roleAtAircraft} denyed`)
@@ -91,15 +80,11 @@ export const baseRouter = {
             .send({msg: `You need a role of at least ${reqRoleGE} to do that`})
         }
       } catch (e) {
-        if (log) {
-          console.log(e)
-        }
+        console.log(e)
         res.status(400).send('Name / title must be unique to aircraft')
       }
     } catch (e) {
-      if (log) {
-        console.log(e)
-      }
+      console.log(e)
       res.status(500).send({
         msg: 'We cant do that right now. Please refresh the previous screen',
       })
@@ -110,7 +95,6 @@ export const baseRouter = {
     req,
     res,
     reqRoleGE,
-    log = false,
     delete1,
     readOBJatPK,
     objPK,
@@ -122,16 +106,14 @@ export const baseRouter = {
   
       if (reqRoleAtOBJ >= reqRoleGE) {
         await delete1(pk)
-        if (log) {
-          console.log(`sent 200, obj deleted`)
-        }
+        console.log(`sent 200, obj deleted`)
         res.status(200).send()
       } else {
-        if(log){console.log(`req with role: ${reqRoleAtOBJ} denyed`)}
+        console.log(`req with role: ${reqRoleAtOBJ} denyed`)
         res.status(403).send({msg: `You need a role of at least ${reqRoleGE} to do that`})
       }
     } catch (e) {
-      if(log){console.log(e)}
+      console.log(e)
       res.status(500).send()
     }
   }
