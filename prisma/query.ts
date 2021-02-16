@@ -30,13 +30,13 @@ const query = {
     })
   },
 
-  upsertConfigShallow: async (config:Config):Promise<void> => {
-    await prisma.config.upsert({
-      where: {configid: config.configid},
-      update: config,
-      create: config
-    })
-  },
+  // upsertConfigShallow: async (config:Config):Promise<void> => {
+  //   await prisma.config.upsert({
+  //     where: {configid: config.configid},
+  //     update: config,
+  //     create: config
+  //   })
+  // },
 
   upsertAircraftShallow: async (
     aircraft: Aircraft,
@@ -109,12 +109,12 @@ const query = {
     })
   },
 
-  readUserAtUserWithoutUserId: async (user: User): Promise<User> => {
-    const aircraftid_email = {aircraftid: user.aircraftid, email: user.email}
-    return await prisma.user.findUnique({
-      where: {aircraftid_email},
-    })
-  },
+  // readUserAtUserWithoutUserId: async (user: User): Promise<User> => {
+  //   const aircraftid_email = {aircraftid: user.aircraftid, email: user.email}
+  //   return await prisma.user.findUnique({
+  //     where: {aircraftid_email},
+  //   })
+  // },
 
   readRoleAtUserID: async (userid: number): Promise<number> => {
     try {
@@ -323,11 +323,11 @@ const query = {
     return await prisma.tank.findMany({where: {aircraftid}})
   },
 
-  readConfigAtConfigID: async (configid: number): Promise<Config> => {
-    return await prisma.config.findUnique({
-      where: {configid},
-    })
-  },
+  // readConfigAtConfigID: async (configid: number): Promise<Config> => {
+  //   return await prisma.config.findUnique({
+  //     where: {configid},
+  //   })
+  // },
 
   readCargoAtCargoID: async (cargoid: number): Promise<Cargo> => {
     return await prisma.cargo.findUnique({
@@ -342,11 +342,11 @@ const query = {
   },
 
 
-  readConfigCargoAtCargoConfigID: async (
-    configcargoid: number
-  ): Promise<ConfigCargo> => {
-    return await prisma.configCargo.findUnique({where: {configcargoid}})
-  },
+  // readConfigCargoAtCargoConfigID: async (
+  //   configcargoid: number
+  // ): Promise<ConfigCargo> => {
+  //   return await prisma.configCargo.findUnique({where: {configcargoid}})
+  // },
 
   //////////////////////////////DELETE//////////////////////////////////////
 
@@ -396,13 +396,13 @@ const query = {
   },
 
   // 1 Config (Config.id)
-  deleteConfig: async (configid: number): Promise<void> => {
-    await query.deleteConfigCargosAtConfig(configid)
+  // deleteConfig: async (configid: number): Promise<void> => {
+  //   await query.deleteConfigCargosAtConfig(configid)
 
-    await prisma.config.delete({
-      where: {configid},
-    })
-  },
+  //   await prisma.config.delete({
+  //     where: {configid},
+  //   })
+  // },
 
   // n config(aircraftid)
   deleteConfigs: async (aircraftid: number): Promise<void> => {
@@ -431,12 +431,12 @@ const query = {
     })
   },
 
-  // 1 ConfigCargo (ConfigCargo.id)
-  deleteConfigCargo: async (configcargoid: number): Promise<void> => {
-    await prisma.configCargo.delete({
-      where: {configcargoid},
-    })
-  },
+  // // 1 ConfigCargo (ConfigCargo.id)
+  // deleteConfigCargo: async (configcargoid: number): Promise<void> => {
+  //   await prisma.configCargo.delete({
+  //     where: {configcargoid},
+  //   })
+  // },
 
   // n CongfCargo (Config.id)
   deleteConfigCargosAtCargo: async (cargoid: number): Promise<void> => {
