@@ -50,7 +50,7 @@ router.put('/', async (req: Request, res: Response) => {
       reqUser.role = 4 
 
       try {
-        await query.upsertAircraftShallow(reqAir, reqUser)
+        await query.upsertAircraftShallow2(reqAir, reqUser)
         res.status(200).send()
       } catch (e) {
         console.log(e)
@@ -67,7 +67,7 @@ router.put('/', async (req: Request, res: Response) => {
           email: 'mock',
           userid: 0,
         }
-        await query.upsertAircraftShallow(reqAir, mockUser)
+        await query.upsertAircraftShallow2(reqAir, mockUser)
         res.status(200).send()
       } catch (e) {
         console.log(e)

@@ -15,12 +15,80 @@ import atob from 'atob'
 const prisma = new PrismaClient()
 
 const query = {
-  //////////////////////////////READ//////////////////////////////////////
+  //////////////////////////////UPDATE || CREATE////////////////////////////
+   //////////////////////////////UPSERT//////////////////////////////////////
 
-  readFirstUserAtEmail: async (email:string): Promise<User> => {
-    return await prisma.user.findFirst({where: {email}})
+   upsertUser: async (user: User): Promise<void> => {
+    await prisma.user.upsert({
+      where: {userid: user.userid},
+      update: user,
+      create: {
+        aircraft: {connect: {id: user.aircraftid}},
+        email: user.email,
+        role: user.role,
+      },
+    })
   },
 
+  upsertAircraftShallow: async (
+    aircraft: Aircraft,
+    reqUser: User
+  ): Promise<void> => {
+    if (aircraft.id == 0) {
+      const newair = await prisma.aircraft.create({
+        data: aircraft,
+      })
+      await prisma.user.create({
+        data: {
+          email: reqUser.email,
+          role: 4,
+          aircraft: {connect: {id: newair.id}},
+        },
+      })
+    } else {
+      await prisma.aircraft.update({
+        where: {id: aircraft.id},
+        data: aircraft,
+      })
+    }
+  },
+
+  upsertAircraftShallow2: async (
+    aircraft: Aircraft,
+    reqUser: User
+  ): Promise<void> => {
+    const newAir = await prisma.aircraft.upsert({
+      where: {id: aircraft.id},
+      update: aircraft,
+      create: aircraft,
+    })
+
+    await prisma.user.create({
+      data: {
+        email: reqUser.email,
+        role: 4,
+        aircraft: {connect: {id: newAir.id}},
+      },
+    })
+  },
+
+  upsertGlossary: async (glossary: Glossary): Promise<void> => {
+    await prisma.glossary.upsert({
+      where: {glossaryid: glossary.glossaryid},
+      update: glossary,
+      create: {
+        aircraft: {connect: {id: glossary.aircraftid}},
+        title: glossary.title,
+        body: glossary.body,
+      },
+    })
+  },
+
+  //////////////////////////////READ//////////////////////////////////////
+
+  readFirstUserAtEmail: async (email: string): Promise<User> => {
+    return await prisma.user.findFirst({where: {email}})
+  },
 
   readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
     return await prisma.user.findMany({
@@ -216,13 +284,14 @@ const query = {
     return await prisma.glossary.findUnique({where: {glossaryid}})
   },
 
-  
-  readGlossarysAtAircraftId: async (aircraftid:number):Promise<Glossary[]> => {
+  readGlossarysAtAircraftId: async (
+    aircraftid: number
+  ): Promise<Glossary[]> => {
     return await prisma.glossary.findMany({where: {aircraftid}})
   },
 
-  readGlossartAtGlossaryId: async (glossaryid: number):Promise<Glossary> => {
-    return await prisma.glossary.findUnique({where:{glossaryid}})
+  readGlossartAtGlossaryId: async (glossaryid: number): Promise<Glossary> => {
+    return await prisma.glossary.findUnique({where: {glossaryid}})
   },
 
   readTankAtTankID: async (tankid: number): Promise<Tank> => {
@@ -245,52 +314,6 @@ const query = {
     configcargoid: number
   ): Promise<ConfigCargo> => {
     return await prisma.configCargo.findUnique({where: {configcargoid}})
-  },
-
-  //////////////////////////////UPSERT//////////////////////////////////////
-
-   upsertUser: async (user: User): Promise<void> => {
-    await prisma.user.upsert({
-      where: {userid: user.userid},
-      update: user,
-      create: {
-        aircraft: {connect: {id: user.aircraftid}},
-        email: user.email,
-        role: user.role,
-      },
-    })
-  },
-
-  upsertAircraftShallow: async (aircraft: Aircraft, reqUser:User): Promise<void> => {
-    if(aircraft.id == 0){
-      const newair = await prisma.aircraft.create({
-        data: aircraft
-      })
-      await prisma.user.create({
-        data:{
-          email: reqUser.email,
-          role: 4,
-          aircraft: {connect:{id: newair.id}}
-        }
-      })
-  } else{
-    await prisma.aircraft.update({
-      where: {id: aircraft.id},
-      data: aircraft,
-    })
-  }
-},
-
-  upsertGlossary: async (glossary: Glossary):Promise<void> => {
-    await prisma.glossary.upsert({
-      where: {glossaryid: glossary.glossaryid},
-      update: glossary,
-      create: {
-        aircraft: {connect: {id: glossary.aircraftid}},
-        title: glossary.title,
-        body: glossary.body
-      }
-    })
   },
 
   //////////////////////////////DELETE//////////////////////////////////////
