@@ -49,9 +49,7 @@ export const baseRouter = {
         }
         res.status(200).send(n)
       } else {
-        if (log) {
           if(log){console.log(`req with role: ${roleAtAircraft} denyed`)}
-        }
         res
           .status(403)
           .send({msg: `You need a role of at least ${reqRoleGE} to do that`})
