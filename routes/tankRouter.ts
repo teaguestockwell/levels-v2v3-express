@@ -1,12 +1,12 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {baseRoute} from './base_route'
+import {baseRouter} from './baseRouter'
 
-const router = Router()
+const tankRouter = Router()
 
 // READ N ({aircraftid})
-router.get('/', async (req: Request, res: Response) => {
-  await baseRoute.getN({
+tankRouter.get('/', async (req: Request, res: Response) => {
+  await baseRouter.getN({
     req: req,
     res: res,
     reqRoleGE: 1,
@@ -15,8 +15,8 @@ router.get('/', async (req: Request, res: Response) => {
 })
 
 // UPDATE 1 || CREATE 1 (Tank)
-router.put('/', async (req: Request, res: Response) => {
-  await baseRoute.put1({
+tankRouter.put('/', async (req: Request, res: Response) => {
+  await baseRouter.put1({
     req: req,
     res: res,
     reqRoleGE: 3,
@@ -25,8 +25,8 @@ router.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE 1 Tank ({tankid})
-router.delete('/', async (req: Request, res: Response) => {
-  await baseRoute.delete1({
+tankRouter.delete('/', async (req: Request, res: Response) => {
+  await baseRouter.delete1({
     req: req,
     res: res,
     reqRoleGE: 3,
@@ -36,4 +36,4 @@ router.delete('/', async (req: Request, res: Response) => {
   })
 })
 
-export const tankRouter = router
+export default tankRouter

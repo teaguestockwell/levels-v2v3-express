@@ -1,24 +1,24 @@
 
 import express, {Application} from 'express';
-import {aircraftRouter} from './routes/aircraft';
-import {generalRouter} from './routes/general';
-import {userRouter} from './routes/user'
-import {glossaryRouter} from './routes/glossary'
-import {tankRouter} from './routes/tank'
-import {cargoRouter} from './routes/cargo'
-const app: Application = express();
+import aircraftRouter from './routes/aircraftRouter';
+import generalRouter from './routes/generalRouter';
+import userRouter from './routes/userRouter'
+import glossaryRouter from './routes/glossaryRouter'
+import tankRouter from './routes/tankRouter'
+import cargoRouter from './routes/cargoRouter'
+const server: Application = express();
 
 
-app.set('port', process.env.PORT || 8080);
+server.set('port', process.env.PORT || 8080);
 
-app.use(express.json());
-app.use('/aircraft', aircraftRouter);
-app.use('/general', generalRouter);
-app.use('/user', userRouter);
-app.use('/glossary',glossaryRouter);
-app.use('/tank',tankRouter);
-app.use('/cargo',cargoRouter);
+server.use(express.json());
+server.use('/aircraft', aircraftRouter);
+server.use('/general', generalRouter);
+server.use('/user', userRouter);
+server.use('/glossary',glossaryRouter);
+server.use('/tank',tankRouter);
+server.use('/cargo',cargoRouter);
 
-app.listen(app.get('port'), () => console.log(`2 listening on ${app.get('port')}`))
+server.listen(server.get('port'), () => console.log(`2 listening on ${server.get('port')}`))
 
-export default app
+export default server

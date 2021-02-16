@@ -30,7 +30,7 @@ interface delete1 {
   readOBJatPK: (pk:number) => Promise<any>
 }
 
-export const baseRoute = {
+export const baseRouter = {
   getN: async ({
     req,
     res,

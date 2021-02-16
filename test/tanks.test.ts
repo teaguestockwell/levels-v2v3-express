@@ -3,7 +3,7 @@ import {role0e, role1e, role2e, role3e} from './utils'
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
-import app from '../server'
+import server from '../server'
 import {Tank, PrismaClient} from '@prisma/client'
 //import query from '../prisma/query'
 
@@ -17,7 +17,7 @@ describe('GET /tank', () => {
   })
 
   it('Should return tanks[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
-    req(app)
+    req(server)
       .get('/tank')
       .set('authorization', role1e)
       .send({aircraftid: 1}) // query all tank on air
@@ -29,7 +29,7 @@ describe('GET /tank', () => {
   })
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .get('/tank')
       .set('authorization', role0e)
       .send({aircraftid: 1}) // query all tank on air
@@ -70,7 +70,7 @@ describe('PUT /tank', () => {
   })
 
   it('Should return 200 and update where tank is unquique && req.role >= 3', (done: Done) => {
-    req(app)
+    req(server)
       .put('/tank')
       .set('authorization', role3e)
       .send(updateTank)
@@ -79,7 +79,7 @@ describe('PUT /tank', () => {
   })
 
   it('Should return 200 and create where tank is unquique && req.role >= 3', (done: Done) => {
-    req(app)
+    req(server)
       .put('/tank')
       .set('authorization', role3e)
       .send(newTank)
@@ -100,7 +100,7 @@ describe('PUT /tank', () => {
   })
 
   it('Should return 403 where req.role <= 2 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .put('/tank')
       .set('authorization', role2e)
       .send(updateTank)
@@ -109,7 +109,7 @@ describe('PUT /tank', () => {
   })
 
   it('Should return 400 where tank name and aircraft id is not unique UPDATE', (done: Done) => {
-    req(app)
+    req(server)
       .put('/tank')
       .set('authorization', role3e)
       .send(updateTankNonUnique)
@@ -126,7 +126,7 @@ describe('DELETE /tank', () => {
   })
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/tank')
       .set('authorization', role2e)
       .send({tankid: 1})
@@ -135,7 +135,7 @@ describe('DELETE /tank', () => {
   })
 
   it('Should 200 and delete where req.role <= 2 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/tank')
       .set('authorization', role3e)
       .send({tankid: 1})

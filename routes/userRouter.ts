@@ -2,10 +2,10 @@ import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
 import {User} from '@prisma/client'
 
-const router = Router()
+const userRouter = Router()
 
 // READ
-router.get('/', async (req: Request, res: Response) => {
+userRouter.get('/', async (req: Request, res: Response) => {
   console.log('GET /user called on api')
   try {
     const aircraftid: number = req.body.aircraftid
@@ -24,7 +24,7 @@ router.get('/', async (req: Request, res: Response) => {
 })
 
 // UPDATE || CREATE
-router.put('/', async (req: Request, res: Response) => {
+userRouter.put('/', async (req: Request, res: Response) => {
   try {
     const reqBodyUser: User = req.body
     const reqUser: User = await query.readUserAtReqAndAircraftId(
@@ -46,7 +46,7 @@ router.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE
-router.delete('/', async (req: Request, res: Response) => {
+userRouter.delete('/', async (req: Request, res: Response) => {
   try {
     const userid = req.body.userid
     const tryDeleteUser = await query.readUserAtUserID(userid)
@@ -66,4 +66,4 @@ router.delete('/', async (req: Request, res: Response) => {
   }
 })
 
-export const userRouter = router
+export default userRouter

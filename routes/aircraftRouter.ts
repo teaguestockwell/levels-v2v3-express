@@ -1,10 +1,10 @@
 import query from '../prisma/query'
 import {Router, Request, Response} from 'express'
 import {Aircraft, User} from '@prisma/client'
-const router = Router()
+const aircraftRouter = Router()
 
 // READ
-router.get('/', async (req: Request, res: Response) => {
+aircraftRouter.get('/', async (req: Request, res: Response) => {
   console.log('GET /aircraft EP')
   try {
     // faster to read all data, and sort it then to make many request to db
@@ -32,7 +32,7 @@ router.get('/', async (req: Request, res: Response) => {
 })
 
 // UPDATE || CREATE
-router.put('/', async (req: Request, res: Response) => {
+aircraftRouter.put('/', async (req: Request, res: Response) => {
   console.log('PUT /aircraft EP')
   try {
     const reqAir: Aircraft = req.body
@@ -40,7 +40,7 @@ router.put('/', async (req: Request, res: Response) => {
     // CREATE
     const highestRole = await query.readHighestRole(req)
     if (reqAir.id == 0 && highestRole >= 3) {
-      const reqEmail = await query.readEmail(req)
+      const reqEmail = query.readEmail(req)
 
       // we have asserted that this req has a role >= 3 on some aircraft,
       // so we can grab a copy of that to pass to the new aircraft
@@ -82,7 +82,7 @@ router.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE
-router.delete('/', async (req: Request, res: Response) => {
+aircraftRouter.delete('/', async (req: Request, res: Response) => {
   console.log('DELETE /aircraft EP')
   try {
     const id: number = req.body.id
@@ -101,4 +101,4 @@ router.delete('/', async (req: Request, res: Response) => {
   }
 })
 
-export const  aircraftRouter = router
+export default aircraftRouter 

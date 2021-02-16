@@ -1,12 +1,12 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {baseRoute} from './base_route'
+import {baseRouter} from './baseRouter'
 
-const router = Router()
+const glossaryRouter = Router()
 
 // READ N ({aircraftid})
-router.get('/', async (req:Request, res:Response) => {
-  await baseRoute.getN({
+glossaryRouter.get('/', async (req:Request, res:Response) => {
+  await baseRouter.getN({
     req: req,
     res: res,
     reqRoleGE: 1,
@@ -15,8 +15,8 @@ router.get('/', async (req:Request, res:Response) => {
 })
 
 // UPDATE 1 || CREATE 1 (Glossary)
-router.put('/', async (req: Request, res: Response) => {
-  baseRoute.put1({
+glossaryRouter.put('/', async (req: Request, res: Response) => {
+  baseRouter.put1({
     req: req,
     res: res,
     upsertType: query.upsertGlossary,
@@ -25,8 +25,8 @@ router.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE 1 Glossary ({glossaryid})
-router.delete('/', async (req:Request, res:Response) => {
-  await baseRoute.delete1({
+glossaryRouter.delete('/', async (req:Request, res:Response) => {
+  await baseRouter.delete1({
     req: req,
     res: res,
     reqRoleGE: 3,
@@ -36,4 +36,4 @@ router.delete('/', async (req:Request, res:Response) => {
   })
 })
 
-export const glossaryRouter = router
+export default glossaryRouter

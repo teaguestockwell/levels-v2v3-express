@@ -1,7 +1,7 @@
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
-import app from '../server'
+import server from '../server'
 import {role1e, role2e, role3e, role4e} from './utils'
 import {User} from '@prisma/client'
 import query from '../prisma/query'
@@ -23,7 +23,7 @@ describe('GET /user', () => {
   // after(async () => {})
 
   it('Should return all users given empty body && request.user.role >= 2', (done: Done) => {
-    req(app)
+    req(server)
       .get('/user')
       .set('authorization', role2e)
       //.send()
@@ -35,7 +35,7 @@ describe('GET /user', () => {
   })
 
   it('Should return users of a given aircraft when request.user.role >= 2', (done: Done) => {
-    req(app)
+    req(server)
       .get('/user')
       .set('authorization', role2e)
       .send({aircraftid: 1})
@@ -47,7 +47,7 @@ describe('GET /user', () => {
   })
 
   it('Should deny requests that have an accses level < 2', (done: Done) => {
-    req(app)
+    req(server)
       .get('/user')
       .set('authorization', role1e)
       .send({aircraftid: 1})
@@ -85,7 +85,7 @@ describe('PUT /user', () => {
   })
 
   it('Should deny reqs that have accses level < 2', (done: Done) => {
-    req(app)
+    req(server)
       .put('/user')
       .set('authorization', role1e)
       .send(newUserRole1)
@@ -94,7 +94,7 @@ describe('PUT /user', () => {
   })
 
   it('Should deny reqs puting users with >= requesters role', (done: Done) => {
-    req(app)
+    req(server)
       .put('/user')
       .set('authorization', role2e)
       .send(newUserRole10)
@@ -103,7 +103,7 @@ describe('PUT /user', () => {
   })
 
   it('Should update existing users', (done: Done) => {
-    req(app)
+    req(server)
       .put('/user')
       .set('authorization', role3e)
       .send(seededUserRole0)
@@ -118,7 +118,7 @@ describe('PUT /user', () => {
   })
 
   it('Should create new users', (done: Done) => {
-    req(app)
+    req(server)
       .put('/user')
       .set('authorization', role3e)
       .send(newUserRole1)
@@ -131,7 +131,7 @@ describe('PUT /user', () => {
   })
 
   it('Should 400 request that put users that dont have unique email-aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .put('/user')
       .set('authorization', role4e)
       .send(mockDuplicateUserUpdate)
@@ -152,7 +152,7 @@ describe('DELETE /user', () => {
   })
 
   it('Should 403 when reqest.role <= userid.role', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/user')
       .set('authorization', role1e)
       .send({userid: 7})
@@ -161,7 +161,7 @@ describe('DELETE /user', () => {
   })
 
   it('Should delete when reqest.role > userid.role', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/user')
       .set('authorization', role4e)
       .send({userid: 6})

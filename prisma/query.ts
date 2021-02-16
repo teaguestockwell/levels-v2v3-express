@@ -30,6 +30,14 @@ const query = {
     })
   },
 
+  upsertConfigShallow: async (config:Config):Promise<void> => {
+    await prisma.config.upsert({
+      where: {configid: config.configid},
+      update: config,
+      create: config
+    })
+  },
+
   upsertAircraftShallow: async (
     aircraft: Aircraft,
     reqUser: User
@@ -238,6 +246,13 @@ const query = {
       },
     })
     return air
+  },
+
+  readConfigsAtAircraftID: async (aircraftid: number): Promise<Config[]> =>{
+    return await prisma.config.findMany({
+      where: {aircraftid},
+      include: {configcargos: {include: {cargo: true}}},
+    })
   },
 
   // n Aircraft()

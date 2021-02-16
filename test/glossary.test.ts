@@ -3,7 +3,7 @@ import {role0e, role1e, role2e, role3e} from './utils'
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
-import app from '../server'
+import server from '../server'
 import {Glossary, PrismaClient} from '@prisma/client'
 //import query from '../prisma/query'
 
@@ -17,7 +17,7 @@ describe('GET /glossary', () => {
   })
 
   it('Should return glossarys[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
-    req(app)
+    req(server)
       .get('/glossary')
       .set('authorization', role1e)
       .send({aircraftid: 1}) // query all gloss on air
@@ -29,7 +29,7 @@ describe('GET /glossary', () => {
   })
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .get('/glossary')
       .set('authorization', role0e)
       .send({aircraftid: 1}) // query all gloss on air
@@ -67,7 +67,7 @@ describe('PUT /glossary', () => {
   })
 
   it('Should return 200 and update where gloss is unquique && req.role >= 3', (done: Done) => {
-    req(app)
+    req(server)
       .put('/glossary')
       .set('authorization', role3e)
       .send(updateGloss)
@@ -76,7 +76,7 @@ describe('PUT /glossary', () => {
   })
 
   it('Should return 200 and create where gloss is unquique && req.role >= 3', (done: Done) => {
-    req(app)
+    req(server)
       .put('/glossary')
       .set('authorization', role3e)
       .send(newGloss)
@@ -97,7 +97,7 @@ describe('PUT /glossary', () => {
   })
 
   it('Should return 403 where req.role <= 2 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .put('/glossary')
       .set('authorization', role2e)
       .send(updateGloss)
@@ -106,7 +106,7 @@ describe('PUT /glossary', () => {
   })
 
   it('Should return 400 where glossary title and aircraft id is not unique UPDATE', (done: Done) => {
-    req(app)
+    req(server)
       .put('/glossary')
       .set('authorization', role3e)
       .send(updateGlossNonUnique)
@@ -123,7 +123,7 @@ describe('DELETE /glossary', () => {
   })
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/glossary')
       .set('authorization', role2e)
       .send({glossaryid: 1})
@@ -132,7 +132,7 @@ describe('DELETE /glossary', () => {
   })
 
   it('Should 200 and delete where req.role <= 2 on aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/glossary')
       .set('authorization', role3e)
       .send({glossaryid: 1})

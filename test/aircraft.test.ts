@@ -1,7 +1,7 @@
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
-import app from '../server'
+import server from '../server'
 import {role0e, role2e, role3e, role4e, role2OnAir1e} from './utils'
 import {
   Aircraft,
@@ -86,7 +86,7 @@ describe('GET /aircraft', () => {
   })
 
   it('Should return empty[] for users with roles < 1', (done: Done) => {
-    req(app)
+    req(server)
       .get('/aircraft')
       .set('authorization', role0e)
       .expect(200)
@@ -97,7 +97,7 @@ describe('GET /aircraft', () => {
   })
 
   it('Should return [].length == 2 for users with roles > 2 on 2 aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .get('/aircraft')
       .set('authorization', role2e)
       .expect(200)
@@ -108,7 +108,7 @@ describe('GET /aircraft', () => {
   })
 
   it('Should return [].length == 1 for users with roles > 2 on 1 aircraft', (done: Done) => {
-    req(app)
+    req(server)
       .get('/aircraft')
       .set('authorization', role2OnAir1e)
       .expect(200)
@@ -128,7 +128,7 @@ describe('PUT /aircraft', () => {
   })
 
   it('Should 403 if the req role <= 2', (done: Done) => {
-    req(app)
+    req(server)
       .put('/aircraft')
       .set('authorization', role2e)
       .send(updateAir)
@@ -137,7 +137,7 @@ describe('PUT /aircraft', () => {
   })
 
   it('Should 200 and update when the acft is valid, and req.role >= 3', (done: Done) => {
-    req(app)
+    req(server)
       .put('/aircraft')
       .set('authorization', role3e)
       .send(updateAir)
@@ -152,7 +152,7 @@ describe('PUT /aircraft', () => {
   })
 
   it('Should 200 and create when the acft is valid, and req.highestrole >= 3', (done: Done) => {
-    req(app)
+    req(server)
       .put('/aircraft')
       .set('authorization', role3e)
       .send(createAir)
@@ -171,7 +171,7 @@ describe('PUT /aircraft', () => {
   })
 
   it('Should 400 if the name is not unique UPDATE', (done: Done) => {
-    req(app)
+    req(server)
       .put('/aircraft')
       .set('authorization', role3e)
       .send(updateAirNonUniqueName)
@@ -180,7 +180,7 @@ describe('PUT /aircraft', () => {
   })
 
   it('Should 400 if the name is not unique CREATE', (done: Done) => {
-    req(app)
+    req(server)
       .put('/aircraft')
       .set('authorization', role3e)
       .send(createAirNonUniqueName)
@@ -200,7 +200,7 @@ describe('DELETE /aircraft', () => {
   })
 
   it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/aircraft')
       .set('authorization', role2e)
       .send({id: 1})
@@ -209,7 +209,7 @@ describe('DELETE /aircraft', () => {
   })
 
   it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
-    req(app)
+    req(server)
       .delete('/aircraft')
       .set('authorization', role4e)
       .send({id: 1})
