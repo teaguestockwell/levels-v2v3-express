@@ -323,11 +323,11 @@ const query = {
     return await prisma.tank.findMany({where: {aircraftid}})
   },
 
-  // readConfigAtConfigID: async (configid: number): Promise<Config> => {
-  //   return await prisma.config.findUnique({
-  //     where: {configid},
-  //   })
-  // },
+  readConfigAtConfigID: async (configid: number): Promise<Config> => {
+    return await prisma.config.findUnique({
+      where: {configid},
+    })
+  },
 
   readCargoAtCargoID: async (cargoid: number): Promise<Cargo> => {
     return await prisma.cargo.findUnique({
@@ -342,11 +342,11 @@ const query = {
   },
 
 
-  // readConfigCargoAtCargoConfigID: async (
-  //   configcargoid: number
-  // ): Promise<ConfigCargo> => {
-  //   return await prisma.configCargo.findUnique({where: {configcargoid}})
-  // },
+  readConfigCargoAtCargoConfigID: async (
+    configcargoid: number
+  ): Promise<ConfigCargo> => {
+    return await prisma.configCargo.findUnique({where: {configcargoid}})
+  },
 
   //////////////////////////////DELETE//////////////////////////////////////
 
