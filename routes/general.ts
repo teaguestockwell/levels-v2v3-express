@@ -8,18 +8,16 @@ const router = Router()
 
 // for example, the home screen will diplay diffrent buttons that allow
 // admin users to perform crud ops on a users auth object
+
+// READ 1 ()
 router.get('/', async (req: Request, res: Response) => {
   try {
     const role = await query.readHighestRole(req)
-
     const general = await query.readGeneral(role)
-
     res.status(200).send(general)
-
-    console.log('/general called and sent 200')
   } catch (error) {
-    res.status(500).send('oops')
+    res.status(500).send()
   }
 })
 
-export default router
+export const generalRouter = router

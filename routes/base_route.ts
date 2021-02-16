@@ -9,7 +9,7 @@ interface getN {
   reqRoleGE: number
   bodyIDPara?: string
   log?: boolean
-  readNAtID: (id: number) => Promise<any[]>
+  readNAtAirID: (id: number) => Promise<any[]>
 }
 
 interface put1 {
@@ -35,7 +35,7 @@ export const baseRoute = {
     req,
     res,
     reqRoleGE,
-    readNAtID,
+    readNAtAirID,
     log = false,
   }: getN): Promise<void> => {
     try {
@@ -43,7 +43,7 @@ export const baseRoute = {
       const roleAtAircraft: number = await query.readRoleAtAircraftID(req, id)
 
       if (roleAtAircraft >= reqRoleGE) {
-        const n: any[] = await readNAtID(id)
+        const n: any[] = await readNAtAirID(id)
         if (log) {
           console.log(`sent 200 length: ${n.length}`)
         }

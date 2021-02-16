@@ -1,72 +1,39 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {Tank} from '@prisma/client'
+import {baseRoute} from './base_route'
 
 const router = Router()
 
-// READ n ({aircraftid})
+// READ N ({aircraftid})
 router.get('/', async (req: Request, res: Response) => {
-  try {
-    const aircraftid: number = req.body.aircraftid
-    const reqRole: number = await query.readRoleAtAircraftID(req, aircraftid)
-
-    if (reqRole >= 1) {
-      const tanks = await query.readTanksAtAircraftId(aircraftid)
-      res.status(200).send(tanks)
-      // if role <1
-    } else {
-      res.status(403).send()
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.getN({
+    req: req,
+    res: res,
+    reqRoleGE: 1,
+    readNAtAirID: query.readTanksAtAircraftId
+  })
 })
 
-// UPDATE || CREATE (Tank)
+// UPDATE 1 || CREATE 1 (Tank)
 router.put('/', async (req: Request, res: Response) => {
-  try {
-    try {
-      const reqBodyTank: Tank = req.body
-      const reqRole: number = await query.readRoleAtAircraftID(
-        req,
-        reqBodyTank.aircraftid
-      )
-
-      if (reqRole >= 3) {
-        await query.upsertTank(reqBodyTank)
-        res.status(200).send()
-        // if role <3
-      } else {
-        res.status(403).send()
-      }
-    } catch (e) {
-      console.log(e)
-      res.status(400).send('Name must be unique to aircraft')
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.put1({
+    req: req,
+    res: res,
+    reqRoleGE: 3,
+    upsertType: query.upsertTank
+  })
 })
 
-// DELETE Tank({tankid: x})
+// DELETE 1 Tank ({tankid})
 router.delete('/', async (req: Request, res: Response) => {
-  try {
-    const reqTankID = req.body.tankid
-    const reqTank: Tank = await query.readTankAtTankID(reqTankID)
-    const role = await query.readRoleAtAircraftID(req, reqTank.aircraftid)
-
-    if (role >= 3) {
-      await query.deleteTank(reqTankID)
-      res.status(200).send()
-    } else {
-      res.status(403).send()
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.delete1({
+    req: req,
+    res: res,
+    reqRoleGE: 3,
+    objPK: 'tankid',
+    delete1: query.deleteTank,
+    readOBJatPK: query.readTankAtTankID,
+  })
 })
 
-export default router
+export const tankRouter = router

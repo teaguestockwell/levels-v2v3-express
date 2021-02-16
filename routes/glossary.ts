@@ -1,69 +1,39 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {Glossary} from '@prisma/client'
+import {baseRoute} from './base_route'
 
 const router = Router()
 
-// READ n ({aircraftid})
+// READ N ({aircraftid})
 router.get('/', async (req:Request, res:Response) => {
-  try {
-    const aircraftid:number = req.body.aircraftid
-    const reqRole: number = await query.readRoleAtAircraftID(req,aircraftid)
-
-    if (reqRole >= 1) {
-      const glossarys = await query.readGlossarysAtAircraftId(aircraftid)
-      res.status(200).send(glossarys)
-      // if role <1
-    } else {
-      res.status(403).send()
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.getN({
+    req: req,
+    res: res,
+    reqRoleGE: 1,
+    readNAtAirID: query.readGlossarysAtAircraftId
+  })
 })
 
-// UPDATE || CREATE (Glossary)
+// UPDATE 1 || CREATE 1 (Glossary)
 router.put('/', async (req: Request, res: Response) => {
-  try{
-    try {
-      const reqBodyGlossary: Glossary = req.body
-      const reqRole: number = await query.readRoleAtAircraftID(req,reqBodyGlossary.aircraftid)
-
-      if (reqRole >= 3) {
-        await query.upsertGlossary(reqBodyGlossary)
-        res.status(200).send()
-        // if role <3
-      } else {
-        res.status(403).send()
-      }
-    } catch (e) {
-      console.log('Title must be unique to aircraft')
-      res.status(400).send('Title must be unique to aircraft')
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  baseRoute.put1({
+    req: req,
+    res: res,
+    upsertType: query.upsertGlossary,
+    reqRoleGE: 3
+  })
 })
 
-// DELETE Glossary({glossaryid: x})
+// DELETE 1 Glossary ({glossaryid})
 router.delete('/', async (req:Request, res:Response) => {
-  try{
-    const reqGlossaryID = req.body.glossaryid
-    const reqGlossary: Glossary = await query.readGlossaryAtGlossaryID(reqGlossaryID)
-    const role = await query.readRoleAtAircraftID(req,reqGlossary.aircraftid)
-
-    if(role >=3){
-      await query.deleteGlossary(reqGlossaryID)
-      res.status(200).send()
-    }else{
-      res.status(403).send()
-    }
-  }catch(e){
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.delete1({
+    req: req,
+    res: res,
+    reqRoleGE: 3,
+    objPK: 'glossaryid',
+    delete1: query.deleteGlossary,
+    readOBJatPK: query.readGlossartAtGlossaryId
+  })
 })
 
-export default router
+export const glossaryRouter = router

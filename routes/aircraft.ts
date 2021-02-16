@@ -101,4 +101,4 @@ router.delete('/', async (req: Request, res: Response) => {
   }
 })
 
-export default router
+export const  aircraftRouter = router

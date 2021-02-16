@@ -10,17 +10,16 @@ router.get('/', async (req: Request, res: Response) => {
   try {
     const aircraftid: number = req.body.aircraftid
     if ((await query.readHighestRole(req)) >= 2) {
-      await query
-        .readUsersAtAircraftID(aircraftid)
-        .then((users) => res.status(200).json(users))
-
-      // not authorized to view roles
+      await query.readUsersAtAircraftID(aircraftid)
+        .then((users) => res.status(200).send(users))
     } else {
-      res.status(403).send()
+      res.status(403).send({msg: `You need a role of at least 2 to do that`})
     }
   } catch (e) {
     console.log(e)
-    res.status(500).send()
+    res.status(500).send({
+      msg: 'We cant do that right now. Please refresh the previous screen',
+    })
   }
 })
 
@@ -67,4 +66,4 @@ router.delete('/', async (req: Request, res: Response) => {
   }
 })
 
-export default router
+export const userRouter = router

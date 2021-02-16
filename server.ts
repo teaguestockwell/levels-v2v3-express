@@ -1,10 +1,10 @@
 
 import express, {Application} from 'express';
-import aircraftRouter from './routes/aircraft';
-import generalRouter from './routes/general';
-import userRouter from './routes/user'
-import glossaryRouter from './routes/glossary'
-import tankRouter from './routes/tank'
+import {aircraftRouter} from './routes/aircraft';
+import {generalRouter} from './routes/general';
+import {userRouter} from './routes/user'
+import {glossaryRouter} from './routes/glossary'
+import {tankRouter} from './routes/tank'
 import {cargoRouter} from './routes/cargo'
 const app: Application = express();
 

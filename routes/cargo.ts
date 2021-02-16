@@ -10,7 +10,7 @@ router.get('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtID: query.readCargosAtAircraftId
+    readNAtAirID: query.readCargosAtAircraftId
   })
 })
 
@@ -24,7 +24,7 @@ router.put('/', async (req: Request, res: Response) => {
   })
 })
 
-// DELETE 1 Cargo({cargoid: x})
+// DELETE 1 Cargo({cargoid})
 router.delete('/', async (req: Request, res: Response) => {
   await baseRoute.delete1({
     req: req,
