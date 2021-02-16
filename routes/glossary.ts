@@ -4,30 +4,6 @@ import {Glossary} from '@prisma/client'
 
 const router = Router()
 
-// CREATE (Glossary)
-router.post('/', async (req: Request, res: Response) => {
-  try{
-    try {
-      const reqBodyGlossary: Glossary = req.body
-      const reqRole: number = await query.readRoleAtAircraftID(req,reqBodyGlossary.aircraftid)
-
-      if (reqRole >= 3) {
-        await query.createGlossary(reqBodyGlossary)
-        res.status(200).send()
-        // if role <3
-      } else {
-        res.status(403).send()
-      }
-    } catch (e) {
-      console.log('Title must be unique to aircraft')
-      res.status(400).send('Title must be unique to aircraft')
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
-})
-
 // READ n ({aircraftid})
 router.get('/', async (req:Request, res:Response) => {
   try {
@@ -47,7 +23,7 @@ router.get('/', async (req:Request, res:Response) => {
   }
 })
 
-// UPDATE (Glossary)
+// UPDATE || CREATE (Glossary)
 router.put('/', async (req: Request, res: Response) => {
   try{
     try {
@@ -55,7 +31,7 @@ router.put('/', async (req: Request, res: Response) => {
       const reqRole: number = await query.readRoleAtAircraftID(req,reqBodyGlossary.aircraftid)
 
       if (reqRole >= 3) {
-        await query.updateGlossary(reqBodyGlossary)
+        await query.upsertGlossary(reqBodyGlossary)
         res.status(200).send()
         // if role <3
       } else {

@@ -14,7 +14,7 @@ const newUserRole1: User = {
   role: 1,
 }
 
-// Read
+// READ
 describe('GET /user', () => {
   before(async () => {
     await seedTest.deleteAll()
@@ -56,7 +56,7 @@ describe('GET /user', () => {
   })
 })
 
-// Create / Update
+// CREATE || UPDATE
 describe('POST /user', () => {
   const seededUserRole0: User = {
     aircraftid: 1,
@@ -144,7 +144,7 @@ describe('POST /user', () => {
   })
 })
 
-// Delete
+// DELETE
 describe('DELETE /user', () => {
   before(async () => {
     await seedTest.deleteAll()

@@ -1,33 +1,9 @@
 import query from '../prisma/query'
 import {Router, Request, Response} from 'express'
-import {Aircraft} from '@prisma/client'
+import {Aircraft, User} from '@prisma/client'
 const router = Router()
 
-// the aircraft route is the main endpoint that the ui will request for
-// a user role of that applicaiton. It will read the users auth object in pg,
-// and return all the aircraft object are associated with it
-
-// POST / create
-router.post('/', async (req: Request, res: Response) => {
-  console.log('POST /aircraft EP')
-  try {
-    const highestRole = await query.readHighestRole(req)
-    if (highestRole >= 3) {
-      try {
-        await query.createAircraftShallow(req.body)
-        res.status(200).send()
-      } catch (e) {
-        res.status(400).send()
-      }
-    } else {
-      res.status(403).send()
-    }
-  } catch (e) {
-    res.status(500).send()
-  }
-})
-
-// GET / READ
+// READ
 router.get('/', async (req: Request, res: Response) => {
   console.log('GET /aircraft EP')
   try {
@@ -55,35 +31,46 @@ router.get('/', async (req: Request, res: Response) => {
   }
 })
 
-router.get('/:id', async (req: Request, res: Response) => {
-  try {
-    const id: number = parseInt(req.params.id)
-    console.log('get id: ' + id)
-
-    const role = await query.readRoleAtAircraftID(req, id)
-
-    if (role >= 2) {
-      const ret = await query.readAircraftAtID(id)
-      res.status(200).send(ret)
-    } else {
-      res.status(403).send()
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).send('oops')
-  }
-})
-
-// PUT / UPDATE
+// UPDATE || CREATE
 router.put('/', async (req: Request, res: Response) => {
   console.log('PUT /aircraft EP')
   try {
-    const role = await query.readRoleAtAircraftID(req, req.body.id)
-    if (role >= 3) {
+    const reqAir: Aircraft = req.body
+
+    // CREATE
+    const highestRole = await query.readHighestRole(req)
+    if (reqAir.id == 0 && highestRole >= 3) {
+      const reqEmail = await query.readEmail(req)
+
+      // we have asserted that this req has a role >= 3 on some aircraft, 
+      // so we can grab a copy of that to pass to the new aircraft
+      const reqUser = await query.readFirstUserAtEmail(reqEmail)
+
+      // they should be able to create users with role 3
+      reqUser.role = 4 
+
       try {
-        await query.updateAircraftShallow(req.body)
+        await query.upsertAircraftShallow(reqAir, reqUser)
         res.status(200).send()
       } catch (e) {
+        console.log(e)
+        res.status(400).send()
+      }
+    }
+
+    // UPDATE
+    else if ((await query.readRoleAtAircraftID(req, reqAir.id)) >= 3) {
+      try {
+        const mockUser: User = {
+          aircraftid: 0,
+          role: 0,
+          email: 'mock',
+          userid: 0,
+        }
+        await query.upsertAircraftShallow(reqAir, mockUser)
+        res.status(200).send()
+      } catch (e) {
+        console.log(e)
         res.status(400).send()
       }
     } else {
@@ -94,7 +81,7 @@ router.put('/', async (req: Request, res: Response) => {
   }
 })
 
-//DELETE
+// DELETE
 router.delete('/:id', async (req: Request, res: Response) => {
   console.log('DELETE /aircraft EP')
   try {

@@ -15,46 +15,13 @@ import atob from 'atob'
 const prisma = new PrismaClient()
 
 const query = {
-  //////////////////////////////CREATE//////////////////////////////////////
-
-  // 1 User (User)
-  createUser: async (user: User): Promise<User> => {
-    return await prisma.user.create({
-      data: user,
-    })
-  },
-
-  createGlossary: async (glosssary:Glossary):Promise<void> => {
-    await prisma.glossary.create({
-      data: {
-        title: glosssary.title,
-        body: glosssary.body,
-        aircraft: {connect: {id: glosssary.aircraftid}},
-      },
-    })
-  },
-
-  //** create 1 aircraft with relationships from deep air object */
-  createAircraftFromEntireAircraft: async (
-    aircraft: Aircraft
-  ): Promise<void> => {
-    await prisma.aircraft.create({data: aircraft})
-  },
-
-  // 1 Aircraft (Aircraft)
-  createAircraftShallow: async (aircraft: Aircraft): Promise<void> => {
-    await prisma.aircraft.create({data: aircraft})
-  },
-
-  // 1 Glossary (aircraftname,title,body)
-  // 1 Tank (aircraftname,name,weights,simplemoms)
-  // 1 Config (aircraftname,name)
-  // 1 Cargo (aircraftname,name,weight,fs?)
-  // 1 ConfigCargo (configid,aircraftid,name,weight,fs,qty)
-
   //////////////////////////////READ//////////////////////////////////////
 
-  // n admins(aircraftid)
+  readFirstUserAtEmail: async (email:string): Promise<User> => {
+    return await prisma.user.findFirst({where: {email}})
+  },
+
+
   readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
     return await prisma.user.findMany({
       where: {aircraftid},
@@ -249,8 +216,13 @@ const query = {
     return await prisma.glossary.findUnique({where: {glossaryid}})
   },
 
+  
   readGlossarysAtAircraftId: async (aircraftid:number):Promise<Glossary[]> => {
     return await prisma.glossary.findMany({where: {aircraftid}})
+  },
+
+  readGlossartAtGlossaryId: async (glossaryid: number):Promise<Glossary> => {
+    return await prisma.glossary.findUnique({where:{glossaryid}})
   },
 
   readTankAtTankID: async (tankid: number): Promise<Tank> => {
@@ -275,35 +247,49 @@ const query = {
     return await prisma.configCargo.findUnique({where: {configcargoid}})
   },
 
-  // upsert
-  upsertUser: async (user: User): Promise<void> => {
-    const userid = user.userid
+  //////////////////////////////UPSERT//////////////////////////////////////
 
+   upsertUser: async (user: User): Promise<void> => {
     await prisma.user.upsert({
-      // this will throw if admin updates email to non unique aircraft id email combo
-      where: {userid},
+      where: {userid: user.userid},
       update: user,
       create: {
-        aircraftid: user.aircraftid,
+        aircraft: {connect: {id: user.aircraftid}},
         email: user.email,
         role: user.role,
       },
     })
   },
 
-  //////////////////////////////UPDATE//////////////////////////////////////
-  updateAircraftShallow: async (aircraft: Aircraft): Promise<void> => {
+  upsertAircraftShallow: async (aircraft: Aircraft, reqUser:User): Promise<void> => {
+    if(aircraft.id == 0){
+      const newair = await prisma.aircraft.create({
+        data: aircraft
+      })
+      await prisma.user.create({
+        data:{
+          email: reqUser.email,
+          role: 4,
+          aircraft: {connect:{id: newair.id}}
+        }
+      })
+  } else{
     await prisma.aircraft.update({
       where: {id: aircraft.id},
       data: aircraft,
     })
-  },
+  }
+},
 
-  updateGlossary: async (glossary: Glossary):Promise<void> => {
-    const glossaryid = glossary.glossaryid
-    await prisma.glossary.update({
-      where: {glossaryid},
-      data: glossary
+  upsertGlossary: async (glossary: Glossary):Promise<void> => {
+    await prisma.glossary.upsert({
+      where: {glossaryid: glossary.glossaryid},
+      update: glossary,
+      create: {
+        aircraft: {connect: {id: glossary.aircraftid}},
+        title: glossary.title,
+        body: glossary.body
+      }
     })
   },
 

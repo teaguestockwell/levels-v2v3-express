@@ -6,66 +6,12 @@ import assert from 'assert'
 import app from '../server'
 import {Glossary, PrismaClient} from '@prisma/client'
 import {deepStrictEqual} from 'assert'
+import query from '../prisma/query'
 //import query from '../prisma/query'
 
 const prisma = new PrismaClient()
 
-// CREATE
-describe('POST /glossary', () => {
-  const newGloss: Glossary = {
-    aircraftid: 1,
-    glossaryid: 0, // 0 means this is a new glossary - no id has been assined by db
-    title: 'new glossary title',
-    body: 'info here',
-  }
-
-  let oldGloss: Glossary
-
-  before(async () => {
-    await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
-    oldGloss = await prisma.glossary.findFirst()
-  })
-
-  it('Should 200 where req.role on aircrat >= 2', (done: Done) => {
-    req(app)
-      .post('/glossary')
-      .set('authorization', role3e)
-      .send(newGloss)
-      .expect(200)
-      .expect(async () => {
-        const aircraftid: number = newGloss.aircraftid
-        const title: string = newGloss.title
-        const title_aircraftid = {aircraftid: aircraftid, title: title}
-
-        const dbRead = await prisma.glossary.findUnique({
-          where: {title_aircraftid},
-        })
-        deepStrictEqual(dbRead, newGloss)
-      })
-      .end(done)
-  })
-
-  it('Should 403 where req.role on aircrat <= 2', (done: Done) => {
-    req(app)
-      .post('/glossary')
-      .set('authorization', role2e)
-      .send(newGloss)
-      .expect(403)
-      .end(done)
-  })
-
-  it('Should 400 where req.role on aircrat <= 2, and gloss title is not unique to aircraft id', (done: Done) => {
-    req(app)
-      .post('/glossary')
-      .set('authorization', role3e)
-      .send(oldGloss)
-      .expect(400)
-      .end(done)
-  })
-})
-
-// READ
+// READ 
 describe('GET /glossary', () => {
   before(async () => {
     await seedTest.deleteAll()
@@ -92,23 +38,10 @@ describe('GET /glossary', () => {
       .expect(403)
       .end(done)
   })
-  // UI will handle this better { onPress: MaterialAppRouter.push(SomePage(this))}
 
-  // it('Should return glossarys of ain aircraft where req.role on that aircraf >= 1', (done: Done) => {
-  //   req(app)
-  //     .get('/glossary')
-  //     .set('authorization', role1e)
-  //     .send({aircraftid: 1, glossaryid: 1}) // query one glossary one air
-  //     .expect(200)
-  //     .expect(async (res) => {
-  //       const expected = await query.readGlossaryAtGlossaryID(1)
-  //       assert.deepStrictEqual(res.body.length, [expected])
-  //     })
-  //     .end(done)
-  // })
 })
 
-// UPDATE
+// UPDATE || CREATE
 describe('PUT /glossary', () => {
   const updateGloss: Glossary = {
     aircraftid: 1,
@@ -124,17 +57,45 @@ describe('PUT /glossary', () => {
     body: 'update info here',
   }
 
+  const newGloss: Glossary = {
+    aircraftid: 1,
+    glossaryid: 0, // 0 means this is a new glossary - no id has been assined by db
+    title: 'new glossary title',
+    body: 'info here',
+  }
+
+  let oldGloss: Glossary
+
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
+    oldGloss = await prisma.glossary.findFirst({})
   })
 
-  it('Should return 200 where gloss is unquique && req.role >= 3', (done: Done) => {
+  it('Should return 200 and update where gloss is unquique && req.role >= 3', (done: Done) => {
     req(app)
       .put('/glossary')
       .set('authorization', role3e)
       .send(updateGloss)
       .expect(200)
+      .end(done)
+  })
+
+  it('Should return 200 and create where gloss is unquique && req.role >= 3', (done: Done) => {
+    req(app)
+      .put('/glossary')
+      .set('authorization', role3e)
+      .send(newGloss)
+      .expect(200)
+      .expect(async ()=>{
+        const title_aircraftid = {aircraftid: newGloss.aircraftid, title: newGloss.title}
+        const found = await prisma.glossary.findUnique({
+          where: {title_aircraftid}
+        })
+        assert.deepStrictEqual(found.title,newGloss.title)
+        assert.deepStrictEqual(found.body,newGloss.body)
+        assert.deepStrictEqual(found.aircraftid,newGloss.aircraftid)
+      })
       .end(done)
   })
 
@@ -147,7 +108,7 @@ describe('PUT /glossary', () => {
       .end(done)
   })
 
-  it('Should return 400 where glossary title and aircraft id is not unique', (done: Done) => {
+  it('Should return 400 where glossary title and aircraft id is not unique UPDATE', (done: Done) => {
     req(app)
       .put('/glossary')
       .set('authorization', role3e)
@@ -155,6 +116,7 @@ describe('PUT /glossary', () => {
       .expect(400)
       .end(done)
   })
+
 })
 
 // DELETE
