@@ -34,29 +34,6 @@ const query = {
     aircraft: Aircraft,
     reqUser: User
   ): Promise<void> => {
-    if (aircraft.id == 0) {
-      const newair = await prisma.aircraft.create({
-        data: aircraft,
-      })
-      await prisma.user.create({
-        data: {
-          email: reqUser.email,
-          role: 4,
-          aircraft: {connect: {id: newair.id}},
-        },
-      })
-    } else {
-      await prisma.aircraft.update({
-        where: {id: aircraft.id},
-        data: aircraft,
-      })
-    }
-  },
-
-  upsertAircraftShallow2: async (
-    aircraft: Aircraft,
-    reqUser: User
-  ): Promise<void> => {
     const newAir = await prisma.aircraft.upsert({
       where: {id: aircraft.id},
       update: aircraft,
@@ -83,6 +60,21 @@ const query = {
       },
     })
   },
+
+  upsertTank: async (tank: Tank): Promise<void> => {
+    await prisma.tank.upsert({
+      where: {tankid: tank.tankid},
+      update: tank,
+      create: {
+        aircraft: {connect: {id: tank.aircraftid}},
+        weights: tank.weights,
+        simplemoms: tank.simplemoms,
+        name: tank.name,
+      },
+    })
+  },
+
+
 
   //////////////////////////////READ//////////////////////////////////////
 
@@ -296,6 +288,10 @@ const query = {
 
   readTankAtTankID: async (tankid: number): Promise<Tank> => {
     return await prisma.tank.findUnique({where: {tankid}})
+  },
+
+  readTanksAtAircraftId: async (aircraftid:number):Promise<Tank[]> => {
+    return await prisma.tank.findMany({where: {aircraftid}})
   },
 
   readConfigAtConfigID: async (configid: number): Promise<Config> => {
