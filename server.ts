@@ -5,7 +5,7 @@ import generalRouter from './routes/general';
 import userRouter from './routes/user'
 import glossaryRouter from './routes/glossary'
 import tankRouter from './routes/tank'
-import cargoRouter from './routes/cargo'
+import {cargoRouter} from './routes/cargo'
 const app: Application = express();
 
 

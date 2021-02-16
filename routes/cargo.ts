@@ -1,72 +1,39 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {Cargo} from '@prisma/client'
+import {baseRoute} from './base_route'
 
 const router = Router()
 
-// READ n ({aircraftid})
+// READ N ({aircraftid})
 router.get('/', async (req: Request, res: Response) => {
-  try {
-    const aircraftid: number = req.body.aircraftid
-    const reqRole: number = await query.readRoleAtAircraftID(req, aircraftid)
-
-    if (reqRole >= 1) {
-      const cargos = await query.readCargosAtAircraftId(aircraftid)
-      res.status(200).send(cargos)
-      // if role <1
-    } else {
-      res.status(403).send()
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.getN({
+    req: req,
+    res: res,
+    reqRoleGE: 1,
+    readNAtID: query.readCargosAtAircraftId
+  })
 })
 
-// UPDATE || CREATE (Cargo)
+// UPDATE 1 || CREATE 1 (Cargo)
 router.put('/', async (req: Request, res: Response) => {
-  try {
-    try {
-      const reqBodyCargo: Cargo = req.body
-      const reqRole: number = await query.readRoleAtAircraftID(
-        req,
-        reqBodyCargo.aircraftid
-      )
-
-      if (reqRole >= 3) {
-        await query.upsertCargo(reqBodyCargo)
-        res.status(200).send()
-        // if role <3
-      } else {
-        res.status(403).send()
-      }
-    } catch (e) {
-      console.log(e)
-      res.status(400).send('Name must be unique to aircraft')
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.put1({
+    req:req,
+    res:res,
+    reqRoleGE: 3,
+    upsertType: query.upsertCargo
+  })
 })
 
-// DELETE Cargo({cargoid: x})
+// DELETE 1 Cargo({cargoid: x})
 router.delete('/', async (req: Request, res: Response) => {
-  try {
-    const reqCargoID = req.body.cargoid
-    const reqCargo: Cargo = await query.readCargoAtCargoID(reqCargoID)
-    const role = await query.readRoleAtAircraftID(req, reqCargo.aircraftid)
-
-    if (role >= 3) {
-      await query.deleteCargo(reqCargoID)
-      res.status(200).send()
-    } else {
-      res.status(403).send()
-    }
-  } catch (e) {
-    console.log(e)
-    res.status(500).send()
-  }
+  await baseRoute.delete1({
+    req: req,
+    res: res,
+    objPK: 'cargoid',
+    reqRoleGE: 3,
+    delete1: query.deleteCargo,
+    readOBJatPK: query.readCargoAtCargoID,
+  })
 })
 
-export default router
+export const cargoRouter = router
