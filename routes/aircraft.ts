@@ -82,11 +82,10 @@ router.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE
-router.delete('/:id', async (req: Request, res: Response) => {
+router.delete('/', async (req: Request, res: Response) => {
   console.log('DELETE /aircraft EP')
   try {
-    const id: number = parseInt(req.params.id)
-    console.log(`/aircraft/${id}`)
+    const id: number = req.body.id
 
     const roleAtAir = await query.readRoleAtAircraftID(req, id)
 

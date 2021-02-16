@@ -190,7 +190,7 @@ describe('PUT /aircraft', () => {
 })
 
 // DELETE
-describe('DELETE /aircraft/id', () => {
+describe('DELETE /aircraft', () => {
   let air1
 
   before(async () => {
@@ -201,16 +201,18 @@ describe('DELETE /aircraft/id', () => {
 
   it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
     req(app)
-      .delete('/aircraft/1')
+      .delete('/aircraft')
       .set('authorization', role2e)
+      .send({id: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
     req(app)
-      .delete('/aircraft/1')
+      .delete('/aircraft')
       .set('authorization', role4e)
+      .send({id: 1})
       .expect(200)
       .expect(async () => {
         const didFind: boolean[] = []
