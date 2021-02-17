@@ -1,4 +1,4 @@
 sleep 5
-npm run test
-npm run seed
+npm test
+npm seed
 npm start
