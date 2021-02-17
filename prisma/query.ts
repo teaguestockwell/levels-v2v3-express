@@ -192,9 +192,8 @@ const query = {
         return highest
       }
     } catch (e) {
-      //console.log('highest role is 0')
+      return 0
     }
-    return 0
   },
 
   readEmail: (req: Request): string | null => {
@@ -292,13 +291,9 @@ const query = {
 
 
   readGeneral: async (role: number): Promise<General> => {
-    //console.log('read general')
-
-    const general = await prisma.general.findFirst({
+    return await prisma.general.findFirst({
       where: {role},
     })
-
-    return general
   },
 
   readGlossaryAtGlossaryID: async (glossaryid: number): Promise<Glossary> => {

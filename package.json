@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "seed": "npx ts-node prisma/seed.ts",
-    "prisma": "npx prisma migrate dev --name init --preview-feature",
     "test:unit": "npm install && npx prisma migrate dev --name init --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "test": "npm install && npx prisma migrate dev --name init --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "start": "npx ts-node server.ts",
-    "lint": "npm install && eslint ."
+    "lint": "npm install && eslint .",
+    "prisma": "prisma migrate dev --name init --preview-feature",
+    "test": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "seed": "npx ts-node prisma/seed.ts",
+    "start": "npx ts-node server.ts"
   },
   "author": "",
   "license": "ISC",

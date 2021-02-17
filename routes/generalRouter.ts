@@ -13,7 +13,9 @@ const generalRouter = Router()
 generalRouter.get('/', async (req: Request, res: Response) => {
   try {
     const role = await query.readHighestRole(req)
+    console.log(role)
     const general = await query.readGeneral(role)
+    console.log(general.toString())
     res.status(200).send(general)
   } catch (error) {
     res.status(500).send()

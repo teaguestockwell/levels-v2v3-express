@@ -1,4 +1,5 @@
 sleep 5
-npm test
-npm seed
-npm start
+npm run prisma
+#npm run test
+npm run seed
+npm run start

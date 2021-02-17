@@ -25,6 +25,51 @@ export const seedTest = {
   generals: async (): Promise<void> => {
     await prisma.general.create({
       data: {
+        role: 6,
+        title: 'App Dev',
+        names: ['Help/Contact', 'About Developer'],
+        body:
+          'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
+        icondatas: [59478, 57360], // flutter material icon data
+        urls: [
+          'https://forms.gle/Bbqvubn6gwC6fRnc8',
+          'https://tsappdevelopment.github.io/hellohtml/',
+        ],
+      },
+    })
+
+    await prisma.general.create({
+      data: {
+        role: 5,
+        title: 'App Owner',
+        names: ['Help/Contact', 'About Developer'],
+        body:
+          'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
+        icondatas: [59478, 57360], // flutter material icon data
+        urls: [
+          'https://forms.gle/Bbqvubn6gwC6fRnc8',
+          'https://tsappdevelopment.github.io/hellohtml/',
+        ],
+      },
+    })
+
+    await prisma.general.create({
+      data: {
+        role: 4,
+        title: 'Aircraft Owner',
+        names: ['Help/Contact', 'About Developer'],
+        body:
+          'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
+        icondatas: [59478, 57360], // flutter material icon data
+        urls: [
+          'https://forms.gle/Bbqvubn6gwC6fRnc8',
+          'https://tsappdevelopment.github.io/hellohtml/',
+        ],
+      },
+    })
+
+    await prisma.general.create({
+      data: {
         role: 3,
         title: 'DB Admin',
         names: ['Help/Contact', 'About Developer'],
