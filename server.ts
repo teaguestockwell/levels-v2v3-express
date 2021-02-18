@@ -6,10 +6,10 @@ import userRouter from './routes/userRouter'
 import glossaryRouter from './routes/glossaryRouter'
 import tankRouter from './routes/tankRouter'
 import cargoRouter from './routes/cargoRouter'
+
 const server: Application = express();
 
 server.disable('x-powered-by')
-server.set('port', process.env.PORT || 8080);
 
 server.use(express.json());
 server.use('/aircraft', aircraftRouter);
@@ -19,6 +19,7 @@ server.use('/glossary',glossaryRouter);
 server.use('/tank',tankRouter);
 server.use('/cargo',cargoRouter);
 
-server.listen(server.get('port'), () => console.log(`2 listening on ${server.get('port')}`))
+const port = process.env.PORT || 8080
+server.listen(port, () => console.log(`server listening on ${port}`))
 
 export default server

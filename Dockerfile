@@ -1,5 +1,7 @@
-#FROM node:latest
-FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/harden-nodejs-12-18-3:8.2.276
+#FROM node:14.15.4
+FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/base-image/harden-nodejs14:14.15.4
+
+LABEL maintainer="tstockwell@tronaf.dev" 
 
 WORKDIR /api
 

@@ -37,7 +37,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
 
       // if the admin user does not have >= role on the aircraft they are tring to assign
     } else {
-      res.status(403).send()
+      res.status(403).send({msg: `You need a role of at least 2 and a role greater than ${reqBodyUser.role} to do that. Your role is: ${reqUser.role}`})
     }
   } catch (e) {
     console.log('Email must be unique to aircraft')
