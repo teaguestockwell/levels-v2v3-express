@@ -16,9 +16,9 @@ const prisma = new PrismaClient()
 
 const query = {
   //////////////////////////////UPDATE || CREATE////////////////////////////
-   //////////////////////////////UPSERT//////////////////////////////////////
+  //////////////////////////////UPSERT//////////////////////////////////////
 
-   upsertUser: async (user: User): Promise<void> => {
+  upsertUser: async (user: User): Promise<void> => {
     await prisma.user.upsert({
       where: {userid: user.userid},
       update: user,
@@ -30,11 +30,11 @@ const query = {
     })
   },
 
-  // upsertConfigShallow: async (config:Config):Promise<void> => {
+  // upsertConfigShallow: async (config: Config): Promise<void> => {
   //   await prisma.config.upsert({
   //     where: {configid: config.configid},
   //     update: config,
-  //     create: config
+  //     create: config,
   //   })
   // },
 
@@ -95,7 +95,13 @@ const query = {
     })
   },
 
-
+  upsertGeneral: async (general: General): Promise<void> => {
+    await prisma.general.upsert({
+      where: {role: general.role},
+      update: general,
+      create: general,
+    })
+  },
 
   //////////////////////////////READ//////////////////////////////////////
 
@@ -108,6 +114,12 @@ const query = {
       where: {aircraftid},
     })
   },
+
+  // readConfigsAtAircraftID: async (
+  //   aircraftid: number
+  // ): Promise<ConfigCargo[]> => {
+  //   return await prisma.configCargo.findMany({where: {aircraftid}})
+  // },
 
   // readUserAtUserWithoutUserId: async (user: User): Promise<User> => {
   //   const aircraftid_email = {aircraftid: user.aircraftid, email: user.email}
@@ -247,12 +259,12 @@ const query = {
     return air
   },
 
-  readConfigsAtAircraftID: async (aircraftid: number): Promise<Config[]> =>{
-    return await prisma.config.findMany({
-      where: {aircraftid},
-      include: {configcargos: {include: {cargo: true}}},
-    })
-  },
+  // readConfigsAtAircraftID: async (aircraftid: number): Promise<Config[]> =>{
+  //   return await prisma.config.findMany({
+  //     where: {aircraftid},
+  //     include: {configcargos: {include: {cargo: true}}},
+  //   })
+  // },
 
   // n Aircraft()
   readAircrafts: async (): Promise<Aircraft[]> => {
@@ -289,7 +301,6 @@ const query = {
     return await prisma.user.findUnique({where: {aircraftid_email}})
   },
 
-
   readGeneral: async (role: number): Promise<General> => {
     return await prisma.general.findFirst({
       where: {role},
@@ -314,7 +325,7 @@ const query = {
     return await prisma.tank.findUnique({where: {tankid}})
   },
 
-  readTanksAtAircraftId: async (aircraftid:number):Promise<Tank[]> => {
+  readTanksAtAircraftId: async (aircraftid: number): Promise<Tank[]> => {
     return await prisma.tank.findMany({where: {aircraftid}})
   },
 
@@ -335,7 +346,6 @@ const query = {
       where: {aircraftid},
     })
   },
-
 
   readConfigCargoAtCargoConfigID: async (
     configcargoid: number
@@ -390,7 +400,7 @@ const query = {
     })
   },
 
-  // 1 Config (Config.id)
+  // // 1 Config (Config.id)
   // deleteConfig: async (configid: number): Promise<void> => {
   //   await query.deleteConfigCargosAtConfig(configid)
 
@@ -458,6 +468,12 @@ const query = {
   deleteUserAtUserid: async (userid: number): Promise<void> => {
     await prisma.user.delete({
       where: {userid},
+    })
+  },
+
+  deleteGeneral: async (role: number): Promise<void> => {
+    await prisma.general.delete({
+      where: {role},
     })
   },
 }

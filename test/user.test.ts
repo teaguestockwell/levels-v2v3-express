@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {role1e, role2e, role3e, role4e} from './utils'
+import {role1e, role2e, role3e, role4e, role5e} from './utils'
 import {User} from '@prisma/client'
 import query from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
@@ -163,8 +163,8 @@ describe('DELETE /user', () => {
   it('Should delete when reqest.role > userid.role', (done: Done) => {
     req(server)
       .delete('/user')
-      .set('authorization', role4e)
-      .send({userid: 6})
+      .set('authorization', role5e)
+      .send({userid: 5})
       .expect(200)
       .end(done)
   })

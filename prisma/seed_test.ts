@@ -1,4 +1,3 @@
-
 import {PrismaClient} from '@prisma/client'
 const prisma = new PrismaClient()
 
@@ -166,6 +165,10 @@ export const seedTest = {
             {
               email: 'role4@test.com',
               role: 4,
+            },
+            {
+              email: 'role5@test.com',
+              role: 5,
             },
             {
               email: 'role2OnAir1@test.com',
