@@ -1,25 +1,24 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
 import {User} from '@prisma/client'
+import { msg } from './baseRouter'
 
 const userRouter = Router()
 
 // READ
 userRouter.get('/', async (req: Request, res: Response) => {
-  console.log('GET /user called on api')
   try {
     const aircraftid: number = req.body.aircraftid
     if ((await query.readHighestRole(req)) >= 2) {
-      await query.readUsersAtAircraftID(aircraftid)
-        .then((users) => res.status(200).send(users))
+      const users = await query.readUsersAtAircraftID(aircraftid)
+      msg.on200(req)
+      res.status(200).send(users)
     } else {
-      res.status(403).send({msg: `You need a role of at least 2 to do that`})
+      const role = await query.readHighestRole(req)
+      res.status(403).send(msg.on403(2,role,req))
     }
   } catch (e) {
-    console.log(e)
-    res.status(500).send({
-      msg: 'We cant do that right now. Please refresh the previous screen',
-    })
+    res.status(500).send(msg.on500(req,e))
   }
 })
 
@@ -33,15 +32,13 @@ userRouter.put('/', async (req: Request, res: Response) => {
     )
 
     if (reqUser.role >= 2 && reqUser.role > reqBodyUser.role) {
-      await query.upsertUser(reqBodyUser).then(() => res.status(200).send())
-
-      // if the admin user does not have >= role on the aircraft they are tring to assign
+      await query.upsertUser(reqBodyUser)
+      res.status(200).send(msg.on200(req))
     } else {
-      res.status(403).send({msg: `You need a role of at least 2 and a role greater than ${reqBodyUser.role} to do that. Your role is: ${reqUser.role}`})
+      res.status(403).send(msg.on403(2,reqUser.role,req))
     }
   } catch (e) {
-    console.log('Email must be unique to aircraft')
-    res.status(400).send('Email must be unique to aircraft')
+    res.status(400).send(msg.on400(req))
   }
 })
 
@@ -56,9 +53,9 @@ userRouter.delete('/', async (req: Request, res: Response) => {
     )
     if (reqUser.role > tryDeleteUser.role) {
       query.deleteUserAtUserid(tryDeleteUser.userid)
-      res.status(200).send()
+      res.status(200).send(msg.on200(req))
     } else {
-      res.status(403).send()
+      res.status(403).send(msg.on403(tryDeleteUser.role+1,reqUser.role,req))
     }
   } catch (e) {
     console.log(e)

@@ -1,11 +1,11 @@
 import query from '../prisma/query'
 import {Router, Request, Response} from 'express'
 import {Aircraft, User} from '@prisma/client'
+import {msg} from './baseRouter'
 const aircraftRouter = Router()
 
 // READ
 aircraftRouter.get('/', async (req: Request, res: Response) => {
-  console.log('GET /aircraft EP')
   try {
     // faster to read all data, and sort it then to make many request to db
     // also more flexible than writing nested query
@@ -22,23 +22,19 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
     // fill ret[] from map
     airids.forEach((id) => ret.push(allAirsMap.get(id)))
 
-    console.log(`${ret.length} aircraft sent`)
-
+    msg.on200(req)
     res.status(200).send(ret)
-  } catch (error) {
-    console.log(error)
-    res.status(500).send('oops')
+  } catch (e) {
+    res.status(500).send(msg.on500(req, e))
   }
 })
 
 // UPDATE || CREATE
 aircraftRouter.put('/', async (req: Request, res: Response) => {
-  console.log('PUT /aircraft EP')
   try {
     const reqAir: Aircraft = req.body
-
-    // CREATE
     const highestRole = await query.readHighestRole(req)
+
     if (reqAir.id == 0 && highestRole >= 3) {
       const reqEmail = query.readEmail(req)
 
@@ -51,10 +47,9 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 
       try {
         await query.upsertAircraftShallow(reqAir, reqUser)
-        res.status(200).send()
+        res.status(200).send(msg.on200(req))
       } catch (e) {
-        console.log(e)
-        res.status(400).send()
+        res.status(400).send(msg.on400(req))
       }
     }
 
@@ -70,35 +65,32 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
         await query.upsertAircraftShallow(reqAir, mockUser)
         res.status(200).send()
       } catch (e) {
-        console.log(e)
-        res.status(400).send()
+        res.status(400).send(msg.on400(req))
       }
     } else {
-      res.status(403).send()
+      const role = await query.readRoleAtAircraftID(req, reqAir.id)
+      res.status(403).send(msg.on403(3, role, req))
     }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).send(msg.on500(req, e))
   }
 })
 
 // DELETE
 aircraftRouter.delete('/', async (req: Request, res: Response) => {
-  console.log('DELETE /aircraft EP')
   try {
     const id: number = req.body.id
-
     const roleAtAir = await query.readRoleAtAircraftID(req, id)
 
     if (roleAtAir > 2) {
       await query.deleteAircraft(id) // recursive delete to all nested relashionships
-      res.status(200).send()
+      res.status(200).send(msg.on200(req))
     } else {
-      res.status(403).send()
+      res.status(403).send(msg.on403(2, roleAtAir, req))
     }
   } catch (e) {
-    console.log(e)
-    res.status(500).send()
+    res.status(500).send(msg.on500(req, e))
   }
 })
 
-export default aircraftRouter 
+export default aircraftRouter
