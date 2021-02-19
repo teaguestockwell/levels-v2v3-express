@@ -1,11 +1,41 @@
-// post
-// 1 configcargo({configid, aircraftid, cargoid, fs, qty})
+import {Router, Request, Response} from 'express'
+import query from '../prisma/query'
+import {baseRouter} from './baseRouter'
 
-// get
-// n configcargos({configid})
+const configCargoRouter = Router()
 
-// put
-// 1 configcargo({configid, aircraftid, cargoid, configcargoid fs, qty})
+// READ N (Config)
+configCargoRouter.get('/', async (req: Request, res: Response) => {
+  await baseRouter.getN({
+    req: req,
+    res: res,
+    reqRoleGE: 1,
+    pk: 'configid',
+    readNAtPK: query.readConfigCargosDeepAtConfigId
+  })
+})
 
-// delete
-// 1 configcargo({configcargoid})
+// UPDATE 1 || CREATE 1 (ConfigCargo)
+configCargoRouter.put('/', async (req: Request, res: Response) => {
+  await baseRouter.put1({
+    req:req,
+    res:res,
+    reqRoleGE: 3,
+    upsertType: query.upsertConfigCargoShallow
+  })
+})
+
+// DELETE 1 ConfigCargo({configcargoid})
+configCargoRouter.delete('/', async (req: Request, res: Response) => {
+  await baseRouter.delete1({
+    req: req,
+    res: res,
+    objPK: 'configid',
+    reqRoleGE: 3,
+    delete1: query.deleteConfigCargo,
+    readOBJatPK: query.readConfigCargoAtConfigCaargoId
+  })
+})
+
+export default configCargoRouter
+

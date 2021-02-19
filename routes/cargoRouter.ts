@@ -10,7 +10,7 @@ cargoRouter.get('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtAirID: query.readCargosAtAircraftId
+    readNAtPK: query.readCargosAtAircraftId
   })
 })
 

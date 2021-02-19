@@ -10,7 +10,7 @@ tankRouter.get('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtAirID: query.readTanksAtAircraftId
+    readNAtPK: query.readTanksAtAircraftId
   })
 })
 

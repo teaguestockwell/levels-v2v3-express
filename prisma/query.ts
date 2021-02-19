@@ -41,35 +41,59 @@ const query = {
     })
   },
 
+  upsertConfigCargoShallow: async (configcargo: ConfigCargo): Promise<void> => {
+    await prisma.configCargo.upsert({
+      where: {configcargoid: configcargo.configcargoid},
+      update: configcargo,
+      create: {
+        config: {connect: {configid: configcargo.configid}},
+        aircraft: {connect: {id: configcargo.aircraftid}},
+        cargo: {connect: {cargoid: configcargo.cargoid}},
+        fs : configcargo.fs,
+        qty: configcargo.qty,
+      }
+    })
+  },
+
+  // PRISMA upsert has bug where upsert does not trigger autoincrement,
+  // the work around is to seperate into create and update
   upsertAircraftShallow: async (
     aircraft: Aircraft,
     reqUser: User
   ): Promise<void> => {
-    const newAir = await prisma.aircraft.upsert({
-      where: {id: aircraft.id},
-      update: aircraft,
-      create: {
-        name: aircraft.name,
-        fs0: aircraft.fs0,
-        fs1: aircraft.fs1,
-        mom0: aircraft.mom0,
-        mom1: aircraft.mom1,
-        weight0: aircraft.weight0,
-        weight1: aircraft.weight1,
-        cargoweight1: aircraft.cargoweight1,
-        lemac: aircraft.lemac,
-        mac: aircraft.mac,
-        mommultiplyer: aircraft.mommultiplyer,
-      }
-    })
 
-    await prisma.user.create({
-      data: {
-        aircraft: {connect: {id: newAir.id}},
-        email: reqUser.email,
-        role: 4,
-      },
-    })
+    // CREATE
+    if(aircraft.id == 0){
+      const newAir = await prisma.aircraft.create({
+        data: {
+          name: aircraft.name,
+          fs0: aircraft.fs0,
+          fs1: aircraft.fs1,
+          mom0: aircraft.mom0,
+          mom1: aircraft.mom1,
+          weight0: aircraft.weight0,
+          weight1: aircraft.weight1,
+          cargoweight1: aircraft.cargoweight1,
+          lemac: aircraft.lemac,
+          mac: aircraft.mac,
+          mommultiplyer: aircraft.mommultiplyer,
+        }
+      })
+
+      await prisma.user.create({
+        data: {
+          aircraft: {connect: {id: newAir.id}},
+          email: reqUser.email,
+          role: 4,
+        },
+      })
+    // UPDATE
+    } else {
+      await prisma.aircraft.update({
+        where: {id: aircraft.id},
+        data: aircraft,
+      })
+    }
   },
 
   upsertGlossary: async (glossary: Glossary): Promise<void> => {
@@ -274,7 +298,7 @@ const query = {
     return air
   },
 
-  readConfigsAtAircraftID: async (aircraftid: number): Promise<Config[]> =>{
+  readConfigsDeepAtAircraftID: async (aircraftid: number): Promise<Config[]> =>{
     return await prisma.config.findMany({
       where: {aircraftid},
       include: {configcargos: {include: {cargo: true}}},
@@ -362,12 +386,21 @@ const query = {
     })
   },
 
-  readConfigCargoAtCargoConfigID: async (
+  readConfigCargoAtConfigCaargoId: async (
     configcargoid: number
   ): Promise<ConfigCargo> => {
     return await prisma.configCargo.findUnique({where: {configcargoid}})
   },
 
+  readConfigCargosDeepAtConfigId: async (configid: number):Promise<ConfigCargo[]> => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const config:any = await prisma.config.findMany({
+      where: {configid},
+      include: {configcargos: {include: {cargo: true}}}
+    })
+    return config.configcargos
+  },
+    
   //////////////////////////////DELETE//////////////////////////////////////
 
   // 1 Aircraft cascade to all relashionships/recursive (Aircraft.id)
@@ -451,12 +484,12 @@ const query = {
     })
   },
 
-  // // 1 ConfigCargo (ConfigCargo.id)
-  // deleteConfigCargo: async (configcargoid: number): Promise<void> => {
-  //   await prisma.configCargo.delete({
-  //     where: {configcargoid},
-  //   })
-  // },
+  // 1 ConfigCargo (ConfigCargo.id)
+  deleteConfigCargo: async (configcargoid: number): Promise<void> => {
+    await prisma.configCargo.delete({
+      where: {configcargoid},
+    })
+  },
 
   // n CongfCargo (Config.id)
   deleteConfigCargosAtCargo: async (cargoid: number): Promise<void> => {

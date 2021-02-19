@@ -10,7 +10,7 @@ glossaryRouter.get('/', async (req:Request, res:Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtAirID: query.readGlossarysAtAircraftId
+    readNAtPK: query.readGlossarysAtAircraftId
   })
 })
 

@@ -19,7 +19,7 @@ const prisma = new PrismaClient()
 
 const createAir: Aircraft = {
   id: 0,
-  name: 'new air',
+  name: 'new',
   fs0: 100,
   fs1: 2000,
   mom0: 5000,
@@ -269,7 +269,7 @@ describe('DELETE /aircraft', () => {
             // did cargo configs cascade delete
             conCargo = await c.configcargos.map(async (cc: ConfigCargo) => {
               try {
-                await query.readConfigCargoAtCargoConfigID(cc.configcargoid)
+                await query.readConfigCargoAtConfigCaargoId(cc.configcargoid)
                 didFind.push(true)
               } catch (e) {
                 didFind.push(false)
@@ -289,7 +289,7 @@ describe('DELETE /aircraft', () => {
         const cargos: Promise<boolean>[] = await air1.cargos.map(
           async (c: Cargo) => {
             try {
-              await query.readConfigCargoAtCargoConfigID(c.cargoid)
+              await query.readConfigCargoAtConfigCaargoId(c.cargoid)
               didFind.push(true)
             } catch (e) {
               didFind.push(false)

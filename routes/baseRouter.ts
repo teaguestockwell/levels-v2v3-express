@@ -8,7 +8,8 @@ interface getN {
   res: Response
   reqRoleGE: number
   bodyIDPara?: string
-  readNAtAirID: (id: number) => Promise<any[]>
+  pk?: string
+  readNAtPK: (id: number) => Promise<any[]>
 }
 
 interface put1 {
@@ -63,14 +64,15 @@ export const baseRouter = {
     req,
     res,
     reqRoleGE,
-    readNAtAirID,
+    readNAtPK,
+    pk = 'aircraftid'
   }: getN): Promise<void> => {
     try {
       const id: number = req.body.aircraftid
       const roleAtAircraft: number = await query.readRoleAtAircraftID(req, id)
-
+      const pkNum: number = req.body[pk]
       if (roleAtAircraft >= reqRoleGE) {
-        const n: any[] = await readNAtAirID(id)
+        const n: any[] = await readNAtPK(pkNum)
         msg.on200(req)
         res.status(200).send(n)
       } else {

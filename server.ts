@@ -7,6 +7,7 @@ import glossaryRouter from './routes/glossaryRouter'
 import tankRouter from './routes/tankRouter'
 import cargoRouter from './routes/cargoRouter'
 import configRouter from './routes/configRouter'
+import configCargoRouter from './routes/configcargoRouter'
 
 const server: Application = express();
 
@@ -20,6 +21,7 @@ server.use('/glossary',glossaryRouter);
 server.use('/tank',tankRouter);
 server.use('/cargo',cargoRouter);
 server.use('/config',configRouter);
+server.use('/configcargo', configCargoRouter);
 
 const port = process.env.PORT || 8080
 server.listen(port, () => console.log(`server listening on ${port}`))

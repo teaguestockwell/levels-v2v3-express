@@ -47,7 +47,7 @@ model User{
 
 model Aircraft{
   // Primary Key
-  id            Int     @id @default(autoincrement()) 
+  id            Int    @default(autoincrement()) @unique
 
   // Scalar Fields
   name          String @unique
