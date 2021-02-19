@@ -121,7 +121,9 @@ describe('GET /aircraft', () => {
 
 // UPDATE || CREATE
 describe('PUT /aircraft', () => {
-  before(async () => {
+  // before each prevents bade state when modifys unique constrains
+  // between tests
+  beforeEach(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
     await seedTest.C_17_A()

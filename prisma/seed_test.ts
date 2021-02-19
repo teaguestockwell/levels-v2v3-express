@@ -132,7 +132,6 @@ export const seedTest = {
     // create aircraft, glossary, tanks
     await prisma.aircraft.create({
       data: {
-        id: 1,
         name: 'C-17A-ER',
         fs0: 80.5,
         fs1: 2168,
@@ -3531,7 +3530,6 @@ export const seedTest = {
     // create aircraft, glossary, tanks
     await prisma.aircraft.create({
       data: {
-        id: 2,
         name: 'C-17A',
         fs0: 80.5,
         fs1: 2168,

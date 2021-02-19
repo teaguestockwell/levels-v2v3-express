@@ -55,8 +55,6 @@ const query = {
     })
   },
 
-  // PRISMA upsert has bug where upsert does not trigger autoincrement,
-  // the work around is to seperate into create and update
   upsertAircraftShallow: async (
     aircraft: Aircraft,
     reqUser: User
