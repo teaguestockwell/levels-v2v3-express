@@ -57,7 +57,7 @@ export const msg ={
     return msg
   },
 }
-
+// TODO: add 400 res for request that dont have aircraft id / pk
 export const baseRouter = {
   getN: async ({
     req,

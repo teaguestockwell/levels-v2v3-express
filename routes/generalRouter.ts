@@ -40,7 +40,7 @@ generalRouter.put('/', async (req: Request, res: Response) => {
   }
 })
 
-// DELETE
+// DELETE ({role})
 generalRouter.delete('/', async (req: Request, res: Response) => {
   try {
     const role = await query.readHighestRole(req)
