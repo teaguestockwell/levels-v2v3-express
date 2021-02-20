@@ -28,17 +28,17 @@ interface delete1 {
   readOBJatPK: (pk: number) => Promise<any>
 }
 
-interface msg {
+interface msgI {
   msg: string
 }
 export const msg = {
-  on200: (req: Request): msg => {
+  on200: (req: Request): msgI=> {
     const msg = {msg: `200: ${req.method} @ ${req.originalUrl}`}
     console.log(msg.msg)
     return msg
   },
 
-  on400: (req: Request): msg => {
+  on400: (req: Request): msgI => {
     const msg = {
       msg: `400: Name / title must be unique to ${req.method} @ ${req.originalUrl}`,
     }
@@ -46,7 +46,7 @@ export const msg = {
     return msg
   },
 
-  on403: (reqRoleGE: number, reqRole: number, req: Request): msg => {
+  on403: (reqRoleGE: number, reqRole: number, req: Request): msgI => {
     const msg = {
       msg: `403: Role greater or equal to ${reqRoleGE} needed to ${req.method} @ ${req.originalUrl}. Your role is ${reqRole}`,
     }
@@ -54,7 +54,7 @@ export const msg = {
     return msg
   },
 
-  on500: (req: Request, e: Error): msg => {
+  on500: (req: Request, e: Error): msgI => {
     const msg = {
       msg: `500: We cant ${req.method} @ ${req.originalUrl}. Please refresh the previous screen`,
     }
