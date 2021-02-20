@@ -44,7 +44,13 @@ const query = {
   upsertConfigCargoShallow: async (configcargo: ConfigCargo): Promise<void> => {
     await prisma.configCargo.upsert({
       where: {configcargoid: configcargo.configcargoid},
-      update: configcargo,
+      update: {
+        // an user may change the cargo type within a config,
+        // however, th UI will prevent them from changing the aircraft, or config
+        cargo: {connect: {cargoid: configcargo.cargoid}},
+        fs : configcargo.fs,
+        qty: configcargo.qty,
+      },
       create: {
         config: {connect: {configid: configcargo.configid}},
         aircraft: {connect: {id: configcargo.aircraftid}},
@@ -384,19 +390,17 @@ const query = {
     })
   },
 
-  readConfigCargoAtConfigCaargoId: async (
+  readConfigCargoAtConfigCargoId: async (
     configcargoid: number
   ): Promise<ConfigCargo> => {
     return await prisma.configCargo.findUnique({where: {configcargoid}})
   },
 
-  readConfigCargosDeepAtConfigId: async (configid: number):Promise<ConfigCargo[]> => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const config:any = await prisma.config.findMany({
-      where: {configid},
-      include: {configcargos: {include: {cargo: true}}}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  readConfigCargosDeepAtConfigId: async (configid: number):Promise<any[]> => {
+    return await prisma.configCargo.findMany({
+      where: {configid}
     })
-    return config.configcargos
   },
     
   //////////////////////////////DELETE//////////////////////////////////////

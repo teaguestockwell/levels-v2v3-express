@@ -1,0 +1,38 @@
+###
+GET http://localhost:8080/fl-api/configcargo
+content-type: application/json
+
+{
+  "aircraftid": 1,
+  "configid": 1,
+  "name": "stuff"
+}
+###
+PUT http://localhost:8080/fl-api/configcargo
+content-type: application/json
+
+{
+  "configcargoid": 0,
+  "aircraftid": 2,
+  "name": "create",
+  "weight": 120,
+  "fs": 300
+}
+###
+PUT http://localhost:8080/fl-api/configcargo
+content-type: application/json
+
+{
+  "configcargoid": 4,
+  "aircraftid": 2,
+  "name": "update",
+  "weight": 120,
+  "fs": 300
+}
+###
+DELETE http://localhost:8080/fl-api/configcargo
+content-type: application/json
+
+{
+  "configcargoid": 4
+}

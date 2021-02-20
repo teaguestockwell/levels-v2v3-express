@@ -1,0 +1,34 @@
+###
+GET http://localhost:8080/fl-api/glossary
+content-type: application/json
+
+{
+  "aircraftid": 2
+}
+###
+PUT http://localhost:8080/fl-api/glossary
+content-type: application/json
+
+{
+  "glossaryid": 0,
+  "aircraftid": 2,
+  "title": "create",
+  "body": "body"
+}
+###
+PUT http://localhost:8080/fl-api/glossary
+content-type: application/json
+
+{
+  "glossaryid": 19,
+  "aircraftid": 2,
+  "title": "update",
+  "body": "body"
+}
+###
+DELETE http://localhost:8080/fl-api/glossary
+content-type: application/json
+
+{
+  "glossaryid": 19
+}

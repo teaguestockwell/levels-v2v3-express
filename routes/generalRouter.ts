@@ -23,7 +23,7 @@ generalRouter.get('/', async (req: Request, res: Response) => {
   }
 })
 
-// UPDATE || CREATE ({General})
+// UPDATE || CREATE (General)
 generalRouter.put('/', async (req: Request, res: Response) => {
   try {
     const reqBodyGeneral: General = req.body

@@ -47,11 +47,12 @@ describe('GET /configcargo', () => {
 
 // UPDATE || CREATE
 describe('PUT /configcargo', () => {
+  // 
   const updateConfigCargo: ConfigCargo = {
     aircraftid: 1,
-    cargoid: 1,
-    configcargoid: 1,
-    configid: 1,
+    cargoid: 10,
+    configcargoid: 24,
+    configid: 2,
     fs: 200,
     qty: 20
   }

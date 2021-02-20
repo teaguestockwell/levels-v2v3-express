@@ -1,0 +1,21 @@
+###
+GET http://localhost:8080/fl-api/general
+###
+PUT http://localhost:8080/fl-api/general
+content-type: application/json
+
+{
+  "role": 1,
+  "title": "Welcome",
+  "body": "disclaimer help",
+  "names": ["about", "help"],
+  "icondatas": [12312,12312],
+  "urls": ["about.com","help.com"]
+}
+###
+DELETE http://localhost:8080/fl-api/general
+content-type: application/json
+
+{
+  "role": 1
+}

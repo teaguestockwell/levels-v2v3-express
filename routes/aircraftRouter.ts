@@ -4,7 +4,7 @@ import {Aircraft, User} from '@prisma/client'
 import {msg} from './baseRouter'
 const aircraftRouter = Router()
 
-// READ
+// READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
     // faster to read all data, and sort it then to make many request to db
@@ -29,7 +29,7 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
   }
 })
 
-// UPDATE || CREATE
+// UPDATE || CREATE (Aircraft)
 aircraftRouter.put('/', async (req: Request, res: Response) => {
   try {
     const reqAir: Aircraft = req.body
@@ -63,7 +63,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
           userid: 0,
         }
         await query.upsertAircraftShallow(reqAir, mockUser)
-        res.status(200).send()
+        res.status(200).send(msg.on200(req))
       } catch (e) {
         res.status(400).send(msg.on400(req))
       }
@@ -76,7 +76,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
   }
 })
 
-// DELETE
+// DELETE ({id})
 aircraftRouter.delete('/', async (req: Request, res: Response) => {
   try {
     const id: number = req.body.id

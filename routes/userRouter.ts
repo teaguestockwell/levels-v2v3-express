@@ -5,7 +5,7 @@ import { msg } from './baseRouter'
 
 const userRouter = Router()
 
-// READ
+// READ ({aircraftid}) || ()
 userRouter.get('/', async (req: Request, res: Response) => {
   try {
     const aircraftid: number = req.body.aircraftid
@@ -22,7 +22,7 @@ userRouter.get('/', async (req: Request, res: Response) => {
   }
 })
 
-// UPDATE || CREATE
+// UPDATE || CREATE (User)
 userRouter.put('/', async (req: Request, res: Response) => {
   try {
     const reqBodyUser: User = req.body
@@ -42,7 +42,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
   }
 })
 
-// DELETE
+// DELETE ({userid})
 userRouter.delete('/', async (req: Request, res: Response) => {
   try {
     const userid = req.body.userid

@@ -271,7 +271,7 @@ describe('DELETE /aircraft', () => {
             // did cargo configs cascade delete
             conCargo = await c.configcargos.map(async (cc: ConfigCargo) => {
               try {
-                await query.readConfigCargoAtConfigCaargoId(cc.configcargoid)
+                await query.readConfigCargoAtConfigCargoId(cc.configcargoid)
                 didFind.push(true)
               } catch (e) {
                 didFind.push(false)
@@ -291,7 +291,7 @@ describe('DELETE /aircraft', () => {
         const cargos: Promise<boolean>[] = await air1.cargos.map(
           async (c: Cargo) => {
             try {
-              await query.readConfigCargoAtConfigCaargoId(c.cargoid)
+              await query.readConfigCargoAtConfigCargoId(c.cargoid)
               didFind.push(true)
             } catch (e) {
               didFind.push(false)

@@ -1,0 +1,36 @@
+###
+GET http://localhost:8080/fl-api/tank
+content-type: application/json
+
+{
+  "aircraftid": 1
+}
+###
+PUT http://localhost:8080/fl-api/tank
+content-type: application/json
+
+{
+  "aircraftid": 1,
+  "tankid": 0,
+  "name": "create",
+  "weights": "2,4,6",
+  "simplemoms": "1,2,3"
+}
+###
+PUT http://localhost:8080/fl-api/tank
+content-type: application/json
+
+{
+  "aircraftid": 1,
+  "tankid": 9,
+  "name": "update",
+  "weights": "2,4,6",
+  "simplemoms": "1,2,3"
+}
+###
+DELETE http://localhost:8080/fl-api/tank
+content-type: application/json
+
+{
+  "tankid": 9
+}

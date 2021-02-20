@@ -1,0 +1,45 @@
+###
+GET http://localhost:8080/fl-api/aircraft
+###
+PUT http://localhost:8080/fl-api/aircraft
+content-type: application/json
+
+{
+  "id": 0,
+  "name": "create",
+  "fs0": 80.5,
+  "fs1": 2168,
+  "mom0": 9999,
+  "mom1": 50000,
+  "weight0": 260000,
+  "weight1": 300000,
+  "cargoweight1": 300000,
+  "lemac": 793.6,
+  "mac": 309.5,
+  "mommultiplyer": 10000
+}
+###
+PUT http://localhost:8080/fl-api/aircraft
+content-type: application/json
+
+{
+  "id": 1,
+  "name": "update",
+  "fs0": 80.5,
+  "fs1": 2168,
+  "mom0": 9999,
+  "mom1": 50000,
+  "weight0": 260000,
+  "weight1": 300000,
+  "cargoweight1": 300000,
+  "lemac": 793.6,
+  "mac": 309.5,
+  "mommultiplyer": 10000
+}
+###
+DELETE http://localhost:8080/fl-api/aircraft
+content-type: application/json
+
+{
+  "id": 4
+}

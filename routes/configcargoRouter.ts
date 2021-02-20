@@ -30,10 +30,10 @@ configCargoRouter.delete('/', async (req: Request, res: Response) => {
   await baseRouter.delete1({
     req: req,
     res: res,
-    objPK: 'configid',
+    objPK: 'configcargoid',
     reqRoleGE: 3,
     delete1: query.deleteConfigCargo,
-    readOBJatPK: query.readConfigCargoAtConfigCaargoId
+    readOBJatPK: query.readConfigCargoAtConfigCargoId
   })
 })
 
