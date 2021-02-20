@@ -31,7 +31,7 @@ interface delete1 {
 interface msgI {
   msg: string
 }
-export const msg = {
+export const resMsg = {
   on200: (req: Request): msgI=> {
     const msg = {msg: `200: ${req.method} @ ${req.originalUrl}`}
     console.log(msg.msg)
@@ -78,13 +78,13 @@ export const baseRouter = {
       const pkNum: number = req.body[pk]
       if (roleAtAircraft >= reqRoleGE) {
         const n: any[] = await readNAtPK(pkNum)
-        msg.on200(req)
+        resMsg.on200(req)
         res.status(200).send(n)
       } else {
-        res.status(403).send(msg.on403(reqRoleGE, roleAtAircraft, req))
+        res.status(403).send(resMsg.on403(reqRoleGE, roleAtAircraft, req))
       }
     } catch (e) {
-      res.status(500).send(msg.on500(req, e))
+      res.status(500).send(resMsg.on500(req, e))
     }
   },
 
@@ -98,15 +98,15 @@ export const baseRouter = {
         )
         if (roleAtAircraft >= reqRoleGE) {
           await upsertType(obj)
-          res.status(200).send(msg.on200(req))
+          res.status(200).send(resMsg.on200(req))
         } else {
-          res.status(403).send(msg.on403(reqRoleGE, roleAtAircraft, req))
+          res.status(403).send(resMsg.on403(reqRoleGE, roleAtAircraft, req))
         }
       } catch (e) {
-        res.status(400).send(msg.on400(req))
+        res.status(400).send(resMsg.on400(req))
       }
     } catch (e) {
-      res.status(500).send(msg.on500(req, e))
+      res.status(500).send(resMsg.on500(req, e))
     }
   },
 
@@ -125,12 +125,12 @@ export const baseRouter = {
 
       if (reqRoleAtOBJ >= reqRoleGE) {
         await delete1(pk)
-        res.status(200).send(msg.on200(req))
+        res.status(200).send(resMsg.on200(req))
       } else {
-        res.status(403).send(msg.on403(reqRoleGE, reqRoleAtOBJ, req))
+        res.status(403).send(resMsg.on403(reqRoleGE, reqRoleAtOBJ, req))
       }
     } catch (e) {
-      res.status(500).send(msg.on500(req, e))
+      res.status(500).send(resMsg.on500(req, e))
     }
   },
 }
