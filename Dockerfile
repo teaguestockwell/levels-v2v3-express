@@ -1,5 +1,5 @@
 #FROM node:14.15.4
-FROM registry1.dso.mil/ironbank/opensource/nodejs/nodejs14:14.15.5
+FROM egistry.il2.dso.mil/platform-one/devops/pipeline-templates/base-image/harden-nodejs14:14.15.5
 
 
 LABEL maintainer="tstockwell@tronaf.dev" 
