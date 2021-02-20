@@ -10,7 +10,7 @@ tankRouter.get('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtPK: query.readTanksAtAircraftId
+    readNAtPK: query.readTanksAtAircraftId,
   })
 })
 
@@ -20,7 +20,7 @@ tankRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
-    upsertType: query.upsertTank
+    upsertType: query.upsertTank,
   })
 })
 

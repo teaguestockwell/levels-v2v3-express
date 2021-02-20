@@ -13,7 +13,7 @@ const prisma = new PrismaClient()
 const configMock: Config = {
   aircraftid: 1,
   configid: 1,
-  name: 'AE-1'
+  name: 'AE-1',
 }
 
 // READ
@@ -47,14 +47,14 @@ describe('GET /configcargo', () => {
 
 // UPDATE || CREATE
 describe('PUT /configcargo', () => {
-  // 
+  //
   const updateConfigCargo: ConfigCargo = {
     aircraftid: 1,
     cargoid: 10,
     configcargoid: 24,
     configid: 2,
     fs: 200,
-    qty: 20
+    qty: 20,
   }
 
   const updateConfigCargoNonUnique: ConfigCargo = {
@@ -63,11 +63,11 @@ describe('PUT /configcargo', () => {
     // because this would make two rows of the same type of cargo,
     // to add more of a cargo in a config, the user will change the qty,
     // they will not add more redundant rows!
-    cargoid: 1, 
+    cargoid: 1,
     configcargoid: 2,
     configid: 1,
     fs: 200,
-    qty: 20
+    qty: 20,
   }
 
   // add pass demo kits to AE-1 on C-17A-ER
@@ -77,7 +77,7 @@ describe('PUT /configcargo', () => {
     configcargoid: 0,
     configid: 1,
     fs: 200,
-    qty: 1337
+    qty: 1337,
   }
 
   before(async () => {
@@ -104,7 +104,7 @@ describe('PUT /configcargo', () => {
         const configid_aircraftid_cargoid = {
           aircraftid: newConfigCargo.aircraftid,
           configid: newConfigCargo.configid,
-          cargoid: newConfigCargo.cargoid
+          cargoid: newConfigCargo.cargoid,
         }
         const found = await prisma.configCargo.findUnique({
           where: {configid_aircraftid_cargoid},

@@ -10,17 +10,17 @@ configRouter.get('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtPK: query.readConfigsDeepAtAircraftID
+    readNAtPK: query.readConfigsDeepAtAircraftID,
   })
 })
 
 // UPDATE 1 || CREATE 1 (Config)
 configRouter.put('/', async (req: Request, res: Response) => {
   await baseRouter.put1({
-    req:req,
-    res:res,
+    req: req,
+    res: res,
     reqRoleGE: 3,
-    upsertType: query.upsertConfigShallow
+    upsertType: query.upsertConfigShallow,
   })
 })
 

@@ -7,5 +7,4 @@ async function main() {
   await seedTest.generals()
   process.exit()
 }
-main().catch(e => console.log(e))
-
+main().catch((e) => console.log(e))

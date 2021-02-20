@@ -1,7 +1,7 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
 import {User} from '@prisma/client'
-import { msg } from './baseRouter'
+import {msg} from './baseRouter'
 
 const userRouter = Router()
 
@@ -15,10 +15,10 @@ userRouter.get('/', async (req: Request, res: Response) => {
       res.status(200).send(users)
     } else {
       const role = await query.readHighestRole(req)
-      res.status(403).send(msg.on403(2,role,req))
+      res.status(403).send(msg.on403(2, role, req))
     }
   } catch (e) {
-    res.status(500).send(msg.on500(req,e))
+    res.status(500).send(msg.on500(req, e))
   }
 })
 
@@ -35,7 +35,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
       await query.upsertUser(reqBodyUser)
       res.status(200).send(msg.on200(req))
     } else {
-      res.status(403).send(msg.on403(2,reqUser.role,req))
+      res.status(403).send(msg.on403(2, reqUser.role, req))
     }
   } catch (e) {
     res.status(400).send(msg.on400(req))
@@ -55,7 +55,7 @@ userRouter.delete('/', async (req: Request, res: Response) => {
       query.deleteUserAtUserid(tryDeleteUser.userid)
       res.status(200).send(msg.on200(req))
     } else {
-      res.status(403).send(msg.on403(tryDeleteUser.role+1,reqUser.role,req))
+      res.status(403).send(msg.on403(tryDeleteUser.role + 1, reqUser.role, req))
     }
   } catch (e) {
     console.log(e)

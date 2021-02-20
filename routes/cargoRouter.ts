@@ -10,17 +10,17 @@ cargoRouter.get('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtPK: query.readCargosAtAircraftId
+    readNAtPK: query.readCargosAtAircraftId,
   })
 })
 
 // UPDATE 1 || CREATE 1 (Cargo)
 cargoRouter.put('/', async (req: Request, res: Response) => {
   await baseRouter.put1({
-    req:req,
-    res:res,
+    req: req,
+    res: res,
     reqRoleGE: 3,
-    upsertType: query.upsertCargo
+    upsertType: query.upsertCargo,
   })
 })
 

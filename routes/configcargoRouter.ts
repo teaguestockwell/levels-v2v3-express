@@ -11,17 +11,17 @@ configCargoRouter.get('/', async (req: Request, res: Response) => {
     res: res,
     reqRoleGE: 1,
     pk: 'configid',
-    readNAtPK: query.readConfigCargosDeepAtConfigId
+    readNAtPK: query.readConfigCargosDeepAtConfigId,
   })
 })
 
 // UPDATE 1 || CREATE 1 (ConfigCargo)
 configCargoRouter.put('/', async (req: Request, res: Response) => {
   await baseRouter.put1({
-    req:req,
-    res:res,
+    req: req,
+    res: res,
     reqRoleGE: 3,
-    upsertType: query.upsertConfigCargoShallow
+    upsertType: query.upsertConfigCargoShallow,
   })
 })
 
@@ -33,9 +33,8 @@ configCargoRouter.delete('/', async (req: Request, res: Response) => {
     objPK: 'configcargoid',
     reqRoleGE: 3,
     delete1: query.deleteConfigCargo,
-    readOBJatPK: query.readConfigCargoAtConfigCargoId
+    readOBJatPK: query.readConfigCargoAtConfigCargoId,
   })
 })
 
 export default configCargoRouter
-

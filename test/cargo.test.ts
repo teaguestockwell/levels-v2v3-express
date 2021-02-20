@@ -45,7 +45,7 @@ describe('PUT /cargo', () => {
     cargoid: 1,
     name: 'update cargo name',
     fs: 221,
-    weight: 200
+    weight: 200,
   }
 
   const updateCargoNonUnique: Cargo = {
@@ -53,7 +53,7 @@ describe('PUT /cargo', () => {
     cargoid: 1,
     name: 'Pax info card',
     fs: 221,
-    weight: 200
+    weight: 200,
   }
 
   const newCargo: Cargo = {
@@ -61,7 +61,7 @@ describe('PUT /cargo', () => {
     cargoid: 0,
     name: 'new cargo',
     fs: 221,
-    weight: 200
+    weight: 200,
   }
 
   before(async () => {
