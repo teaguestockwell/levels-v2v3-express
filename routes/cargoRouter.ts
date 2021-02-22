@@ -20,6 +20,8 @@ cargoRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
+    pk: 'cargoid',
+    readAircraftIDOfOBJpk: query.readAircraftIdAtCargoid,
     upsertType: query.upsertCargo,
   })
 })

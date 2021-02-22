@@ -19,8 +19,10 @@ glossaryRouter.put('/', async (req: Request, res: Response) => {
   baseRouter.put1({
     req: req,
     res: res,
-    upsertType: query.upsertGlossary,
     reqRoleGE: 3,
+    pk: 'glossaryid',
+    readAircraftIDOfOBJpk: query.readAircraftIdAtGlossaryid,
+    upsertType: query.upsertGlossary,
   })
 })
 

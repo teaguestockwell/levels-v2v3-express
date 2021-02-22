@@ -20,6 +20,8 @@ tankRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
+    pk: 'tankid',
+    readAircraftIDOfOBJpk: query.readAircraftIdAtTankid,
     upsertType: query.upsertTank,
   })
 })

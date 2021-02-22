@@ -11,6 +11,7 @@ configCargoRouter.get('/', async (req: Request, res: Response) => {
     res: res,
     reqRoleGE: 1,
     pk: 'configid',
+    readAircraftIDOfOBJpk: query.readAircraftIdAtConfigid,
     readNAtPK: query.readConfigCargosDeepAtConfigId,
   })
 })
@@ -21,6 +22,8 @@ configCargoRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
+    pk: 'configcargoid',
+    readAircraftIDOfOBJpk: query.readAircraftIdAtConfigCargoid,
     upsertType: query.upsertConfigCargoShallow,
   })
 })

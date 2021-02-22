@@ -147,6 +147,35 @@ const query = {
 
   //////////////////////////////READ//////////////////////////////////////
 
+
+  //////// ROLE VERIFICATION //////////////
+  readAircraftIdAtTankid: async (tankid: number): Promise<number> => {
+    return (await prisma.tank.findFirst({where: {tankid}})).aircraftid
+  },
+
+  readAircraftIdAtUserid: async (userid: number): Promise<number> => {
+    return (await prisma.user.findFirst({where: {userid}})).aircraftid
+  },
+
+  readAircraftIdAtGlossaryid: async (glossaryid: number): Promise<number> => {
+    return (await prisma.glossary.findFirst({where: {glossaryid}})).aircraftid
+  },
+
+  readAircraftIdAtConfigid: async (configid: number): Promise<number> => {
+    return (await prisma.config.findFirst({where: {configid}})).aircraftid
+  },
+
+  readAircraftIdAtCargoid: async (cargoid: number): Promise<number> => {
+    return (await prisma.cargo.findFirst({where: {cargoid}})).aircraftid
+  },
+
+  readAircraftIdAtConfigCargoid: async (configcargoid: number):Promise<number> => {
+    return (await prisma.configCargo.findFirst({where: {configcargoid}})).aircraftid
+  },
+
+
+
+
   readFirstUserAtEmail: async (email: string): Promise<User> => {
     return await prisma.user.findFirst({where: {email}})
   },

@@ -1,5 +1,5 @@
 import {seedTest} from '../prisma/seed_test'
-import {role0e, role1e, role2e, role3e} from './utils'
+import {role0e, role1e, role2e, role3e, role3OnAir1e} from './utils'
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
@@ -64,9 +64,18 @@ describe('PUT /cargo', () => {
     weight: 200,
   }
 
+  const updateCargoWithWrongAircraftId: Cargo = {
+    aircraftid: 1,
+    cargoid: 50, // cargo id one does not belong to aircraft id 2
+    name: 'Pax info card',
+    fs: 221,
+    weight: 200,
+  }
+
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
+    await seedTest.C_17_A()
   })
 
   it('Should return 200 and update where cargo is unquique && req.role >= 3', (done: Done) => {
@@ -104,6 +113,18 @@ describe('PUT /cargo', () => {
       .put('/cargo')
       .set('authorization', role2e)
       .send(updateCargo)
+      .expect(403)
+      .end(done)
+  })
+
+  // this user does not have roles on this aircraft,
+  // so they are trying trick our api by sending an aircraft id where they have roles,
+  // not today hacker!
+  it('Should return 403 where req.role <= 2 @ obj with inalid aircraft id', (done: Done) => {
+    req(server)
+      .put('/cargo')
+      .set('authorization', role3OnAir1e) 
+      .send(updateCargoWithWrongAircraftId)
       .expect(403)
       .end(done)
   })

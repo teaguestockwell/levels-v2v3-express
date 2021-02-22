@@ -174,6 +174,10 @@ export const seedTest = {
               role: 2,
             },
             {
+            email: 'role3OnAir1@test.com',
+            role: 3,
+            },
+            {
               email: 'teague.stockwell@us.af.mil',
               role: 3,
             },

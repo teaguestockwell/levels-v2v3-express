@@ -20,6 +20,8 @@ configRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
+    pk: 'configid',
+    readAircraftIDOfOBJpk: query.readAircraftIdAtConfigid,
     upsertType: query.upsertConfigShallow,
   })
 })
