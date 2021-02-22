@@ -122,10 +122,15 @@ model Cargo{
   aircraftid    Int
 
   // Scalar Fields
-  cargoid            Int       @default(autoincrement()) @unique  
+  cargoid       Int       @default(autoincrement()) @unique  
   name          String
   weight        Float
-  fs            Float    @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
+  fs            Float?    @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
+  // enums are not fully supported in all primsa DB, so ints we go:
+  // 1: Steward Equip
+  // 2: Emergency equip
+  // 3: Extra Equip
+  category      Int?      @default(3)
 }
 
 model ConfigCargo{

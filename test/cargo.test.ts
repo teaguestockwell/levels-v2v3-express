@@ -41,6 +41,7 @@ describe('GET /cargo', () => {
 // UPDATE || CREATE
 describe('PUT /cargo', () => {
   const updateCargo: Cargo = {
+    category: null,
     aircraftid: 1,
     cargoid: 1,
     name: 'update cargo name',
@@ -49,6 +50,7 @@ describe('PUT /cargo', () => {
   }
 
   const updateCargoNonUnique: Cargo = {
+    category: null,
     aircraftid: 1,
     cargoid: 1,
     name: 'Pax info card',
@@ -57,6 +59,7 @@ describe('PUT /cargo', () => {
   }
 
   const newCargo: Cargo = {
+    category: null,
     aircraftid: 1,
     cargoid: 0,
     name: 'new cargo',
@@ -65,6 +68,7 @@ describe('PUT /cargo', () => {
   }
 
   const updateCargoWithWrongAircraftId: Cargo = {
+    category: null,
     aircraftid: 1,
     cargoid: 50, // cargo id one does not belong to aircraft id 2
     name: 'Pax info card',
