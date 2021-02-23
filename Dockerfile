@@ -8,7 +8,7 @@ USER root
 RUN node -e "const fs = require('fs');  fs.chown('/home/node/', 950, 950, (error) => {console.log(error)});"
 USER 950
 
-COPY . .
+COPY --chown=950:950 . .
 
 EXPOSE 8080
 
