@@ -1,5 +1,6 @@
 
 import express, {Application} from 'express';
+import compression from 'compression'
 import aircraftRouter from './routes/aircraftRouter';
 import generalRouter from './routes/generalRouter';
 import userRouter from './routes/userRouter'
@@ -10,10 +11,10 @@ import configRouter from './routes/configRouter'
 import configCargoRouter from './routes/configcargoRouter'
 
 const server: Application = express();
-
 server.disable('x-powered-by')
 
 server.use(express.json());
+server.use(compression());
 server.use('/aircraft', aircraftRouter);
 server.use('/general', generalRouter);
 server.use('/user', userRouter);
