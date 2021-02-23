@@ -3,6 +3,11 @@ FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/harden-nodejs-1
 
 WORKDIR /api
 
+# temporary fix until P1 adds chown capabilities or makes /home/node owned by appuser
+USER root
+RUN node -e "const fs = require('fs');  fs.chown('/home/node/', 950, 950, (error) => {console.log(error)});"
+USER 950
+
 COPY . /api
 
 EXPOSE 8080
