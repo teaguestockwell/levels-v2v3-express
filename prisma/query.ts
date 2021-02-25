@@ -417,6 +417,7 @@ const query = {
   readConfigCargosDeepAtConfigId: async (configid: number): Promise<any[]> => {
     return await prisma.configCargo.findMany({
       where: {configid},
+      include: {cargo: true}
     })
   },
 

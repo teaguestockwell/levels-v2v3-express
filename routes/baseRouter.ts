@@ -77,7 +77,8 @@ export const baseRouter = {
     readAircraftIDOfOBJpk
   }: getN): Promise<void> => {
     try {
-      const pkNum: number = req.body[pk]
+      
+      const pkNum = Number(`${req.query[pk]}`)
       let roleAtAircraft: number
 
       // to mitigate role explotation, verify the aircraft id given the obj pk.
@@ -87,7 +88,7 @@ export const baseRouter = {
         const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
         roleAtAircraft = await query.readRoleAtAircraftID(req,verifiedAirId)
       } else{
-        roleAtAircraft = await query.readRoleAtAircraftID(req, req.body.aircraftid)
+        roleAtAircraft = await query.readRoleAtAircraftID(req, Number(`${req.query['aircraftid']}`))
       }
 
       if (roleAtAircraft >= reqRoleGE) {
@@ -148,7 +149,7 @@ export const baseRouter = {
     objPK,
   }: delete1): Promise<void> => {
     try {
-      const pk = req.body[objPK]
+      const pk = Number(`${req.query[objPK]}`)
       const obj: any = await readOBJatPK(pk)
       const reqRoleAtOBJ = await query.readRoleAtAircraftID(req, obj.aircraftid)
 

@@ -1,10 +1,5 @@
 ###
-GET http://localhost:8080/fl-api/cargo
-content-type: application/json
-
-{
-  "aircraftid": 2
-}
+GET http://localhost:8080/fl-api/cargo?aircraftid=3
 ###
 PUT http://localhost:8080/fl-api/cargo
 content-type: application/json
@@ -28,9 +23,4 @@ content-type: application/json
   "fs": 300
 }
 ###
-DELETE http://localhost:8080/fl-api/cargo
-content-type: application/json
-
-{
-  "cargoid": 4
-}
+DELETE http://localhost:8080/fl-api/cargo?cargoid=4

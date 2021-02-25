@@ -18,9 +18,8 @@ describe('GET /glossary', () => {
 
   it('Should return glossarys[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/glossary')
+      .get('/glossary?aircraftid=1')
       .set('authorization', role1e)
-      .send({aircraftid: 1}) // query all gloss on air
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
@@ -30,9 +29,8 @@ describe('GET /glossary', () => {
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
     req(server)
-      .get('/glossary')
+      .get('/glossary?aircraftid=1')
       .set('authorization', role0e)
-      .send({aircraftid: 1}) // query all gloss on air
       .expect(403)
       .end(done)
   })
@@ -124,18 +122,16 @@ describe('DELETE /glossary', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/glossary')
+      .delete('/glossary?glossaryid=1')
       .set('authorization', role2e)
-      .send({glossaryid: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should 200 and delete where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/glossary')
+      .delete('/glossary?glossaryid=1')
       .set('authorization', role3e)
-      .send({glossaryid: 1})
       .expect(200)
       .expect(async () => {
         let didFind: boolean

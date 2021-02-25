@@ -18,9 +18,8 @@ describe('GET /tank', () => {
 
   it('Should return tanks[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/tank')
+      .get('/tank?aircraftid=1')
       .set('authorization', role1e)
-      .send({aircraftid: 1}) // query all tank on air
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
@@ -30,9 +29,8 @@ describe('GET /tank', () => {
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
     req(server)
-      .get('/tank')
+      .get('/tank?aircraftid=1')
       .set('authorization', role0e)
-      .send({aircraftid: 1}) // query all tank on air
       .expect(403)
       .end(done)
   })
@@ -127,18 +125,16 @@ describe('DELETE /tank', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/tank')
+      .delete('/tank?tankid=1')
       .set('authorization', role2e)
-      .send({tankid: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should 200 and delete where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/tank')
+      .delete('/tank?tankid=1')
       .set('authorization', role3e)
-      .send({tankid: 1})
       .expect(200)
       .expect(async () => {
         let didFind: boolean

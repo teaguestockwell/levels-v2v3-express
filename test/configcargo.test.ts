@@ -4,17 +4,10 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {Config, ConfigCargo, PrismaClient} from '@prisma/client'
-//import query from '../prisma/query'
+import {ConfigCargo, PrismaClient} from '@prisma/client'
+
 
 const prisma = new PrismaClient()
-
-// used as request body to query for n config cargo
-const configMock: Config = {
-  aircraftid: 1,
-  configid: 1,
-  name: 'AE-1',
-}
 
 // READ
 describe('GET /configcargo', () => {
@@ -25,9 +18,8 @@ describe('GET /configcargo', () => {
 
   it('Should return configcargos[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/configcargo')
+      .get('/configcargo?aircraftid=1&configid=1')
       .set('authorization', role1e)
-      .send(configMock) // query all configcargo on air
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
@@ -37,9 +29,8 @@ describe('GET /configcargo', () => {
 
   it('Should 403 where req.role <3 on aircraft', (done: Done) => {
     req(server)
-      .get('/configcargo')
+      .get('/configcargo?aircraftid=1&configid=1')
       .set('authorization', role0e)
-      .send(configMock) // query all configcargo on air
       .expect(403)
       .end(done)
   })
@@ -143,18 +134,16 @@ describe('DELETE /configcargo', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/configcargo')
+      .delete('/configcargo?configcargoid=1')
       .set('authorization', role2e)
-      .send({configcargoid: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should 200 and delete where req.role >= 3 on aircraft', (done: Done) => {
     req(server)
-      .delete('/configcargo')
+      .delete('/configcargo?configcargoid=1')
       .set('authorization', role3e)
-      .send({configcargoid: 1})
       .expect(200)
       .expect(async () => {
         let didFind: boolean

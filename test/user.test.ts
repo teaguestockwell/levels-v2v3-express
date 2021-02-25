@@ -20,25 +20,11 @@ describe('GET /user', () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
   })
-  // after(async () => {})
-
-  it('Should return all users given empty body && request.user.role >= 2', (done: Done) => {
-    req(server)
-      .get('/user')
-      .set('authorization', role2e)
-      //.send()
-      .expect(200)
-      .expect((res) => {
-        assert(res.body.length > 1)
-      })
-      .end(done)
-  })
 
   it('Should return users of a given aircraft when request.user.role >= 2', (done: Done) => {
     req(server)
-      .get('/user')
+      .get('/user?aircraftid=1')
       .set('authorization', role2e)
-      .send({aircraftid: 1})
       .expect(200)
       .expect((res) => {
         assert(res.body.length > 1)
@@ -48,9 +34,8 @@ describe('GET /user', () => {
 
   it('Should deny requests that have an accses level < 2', (done: Done) => {
     req(server)
-      .get('/user')
+      .get('/user?aircraftid=1')
       .set('authorization', role1e)
-      .send({aircraftid: 1})
       .expect(403)
       .end(done)
   })
@@ -153,18 +138,16 @@ describe('DELETE /user', () => {
 
   it('Should 403 when reqest.role <= userid.role', (done: Done) => {
     req(server)
-      .delete('/user')
+      .delete('/user?userid=7')
       .set('authorization', role1e)
-      .send({userid: 7})
       .expect(403)
       .end(done)
   })
 
   it('Should delete when reqest.role > userid.role', (done: Done) => {
     req(server)
-      .delete('/user')
+      .delete('/user?userid=5')
       .set('authorization', role5e)
-      .send({userid: 5})
       .expect(200)
       .end(done)
   })

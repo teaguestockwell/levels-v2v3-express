@@ -77,9 +77,9 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE ({id})
-aircraftRouter.delete('/', async (req: Request, res: Response) => {
+aircraftRouter.delete('*', async (req: Request, res: Response) => {
   try {
-    const id: number = req.body.id
+    const id = Number(`${req.query['id']}`)
     const roleAtAir = await query.readRoleAtAircraftID(req, id)
 
     if (roleAtAir > 2) {

@@ -203,18 +203,16 @@ describe('DELETE /aircraft', () => {
 
   it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
     req(server)
-      .delete('/aircraft')
+      .delete('/aircraft?id=1')
       .set('authorization', role2e)
-      .send({id: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
     req(server)
-      .delete('/aircraft')
+      .delete('/aircraft?id=1')
       .set('authorization', role4e)
-      .send({id: 1})
       .expect(200)
       .expect(async () => {
         const didFind: boolean[] = []

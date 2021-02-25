@@ -41,10 +41,10 @@ generalRouter.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE ({role})
-generalRouter.delete('/', async (req: Request, res: Response) => {
+generalRouter.delete('*', async (req: Request, res: Response) => {
   try {
     const role = await query.readHighestRole(req)
-    const generalid = req.body.role
+    const generalid = Number(`${req.query['role']}`)
     if (role >= 5) {
       query.deleteGeneral(generalid)
       res.status(200).send(resMsg.on200(req))

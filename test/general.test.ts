@@ -17,11 +17,10 @@ describe('GET /general', () => {
     await seedTest.generals()
   })
 
-  it('Should return general base on role of aircraft', (done: Done) => {
+  it('Should return general', (done: Done) => {
     req(server)
       .get('/general')
       .set('authorization', role1e)
-      .send({aircraftid: 1}) //
       .expect(200)
       .expect(async (res) => {
         const actual = await prisma.general.findFirst({where: {role: 1}})
@@ -101,18 +100,16 @@ describe('DELETE /general', () => {
 
   it('Should 403 where req.role <= 5 on aircraft', (done: Done) => {
     req(server)
-      .delete('/general')
+      .delete('/general?generalid=1')
       .set('authorization', role2e)
-      .send({generalid: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should 200 and delete where req.role >= 5 on aircraft', (done: Done) => {
     req(server)
-      .delete('/general')
+      .delete('/general?generalid=1')
       .set('authorization', role5e)
-      .send({generalid: 1})
       .expect(200)
       .expect(async () => {
         let didFind: boolean

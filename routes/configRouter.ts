@@ -5,7 +5,7 @@ import {baseRouter} from './baseRouter'
 const configRouter = Router()
 
 // READ N ({aircraftid})
-configRouter.get('/', async (req: Request, res: Response) => {
+configRouter.get('*', async (req: Request, res: Response) => {
   await baseRouter.getN({
     req: req,
     res: res,
@@ -27,7 +27,7 @@ configRouter.put('/', async (req: Request, res: Response) => {
 })
 
 // DELETE 1 Cargo({configid})
-configRouter.delete('/', async (req: Request, res: Response) => {
+configRouter.delete('*', async (req: Request, res: Response) => {
   await baseRouter.delete1({
     req: req,
     res: res,

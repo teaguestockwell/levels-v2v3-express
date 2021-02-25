@@ -37,9 +37,4 @@ content-type: application/json
   "mommultiplyer": 10000
 }
 ###
-DELETE http://localhost:8080/fl-api/aircraft
-content-type: application/json
-
-{
-  "id": 4
-}
+DELETE http://localhost:8080/fl-api/aircraft?id=4

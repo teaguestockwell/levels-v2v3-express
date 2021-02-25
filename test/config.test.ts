@@ -18,9 +18,8 @@ describe('GET /config', () => {
 
   it('Should return configs[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/config')
+      .get('/config?aircraftid=1')
       .set('authorization', role1e)
-      .send({aircraftid: 1}) // query all config on air
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
@@ -30,9 +29,8 @@ describe('GET /config', () => {
 
   it('Should 403 where req.role <3 on aircraft', (done: Done) => {
     req(server)
-      .get('/config')
+      .get('/config?aircraftid=1')
       .set('authorization', role0e)
-      .send({aircraftid: 1}) // query all config on air
       .expect(403)
       .end(done)
   })
@@ -120,18 +118,16 @@ describe('DELETE /config', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/config')
+      .delete('/config?configid=1')
       .set('authorization', role2e)
-      .send({configid: 1})
       .expect(403)
       .end(done)
   })
 
   it('Should 200 and delete where req.role >= 3 on aircraft', (done: Done) => {
     req(server)
-      .delete('/config')
+      .delete('/config?configid=1')
       .set('authorization', role3e)
-      .send({configid: 1})
       .expect(200)
       .expect(async () => {
         let didFind: boolean

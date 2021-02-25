@@ -1,10 +1,5 @@
 ###
-GET http://localhost:8080/fl-api/tank
-content-type: application/json
-
-{
-  "aircraftid": 1
-}
+GET http://localhost:8080/fl-api/tank?aircraftid=1
 ###
 PUT http://localhost:8080/fl-api/tank
 content-type: application/json
@@ -28,9 +23,4 @@ content-type: application/json
   "simplemoms": "1,2,3"
 }
 ###
-DELETE http://localhost:8080/fl-api/tank
-content-type: application/json
-
-{
-  "tankid": 9
-}
+DELETE http://localhost:8080/fl-api/tank?tankid=9

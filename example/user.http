@@ -1,10 +1,5 @@
 ###
-GET http://localhost:8080/fl-api/user
-content-type: application/json
-
-{
-  "aircraftid": 1
-}
+GET http://localhost:8080/fl-api/user?aircraftid=1
 ###
 GET http://localhost:8080/fl-api/user
 ###
@@ -28,9 +23,4 @@ content-type: application/json
   "role": 2
 }
 ###
-DELETE http://localhost:8080/fl-api/user
-content-type: application/json
-
-{
-  "userid": 17
-}
+DELETE http://localhost:8080/fl-api/user?userid=17

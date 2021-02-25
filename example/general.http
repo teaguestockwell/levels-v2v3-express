@@ -13,9 +13,4 @@ content-type: application/json
   "urls": ["about.com","help.com"]
 }
 ###
-DELETE http://localhost:8080/fl-api/general
-content-type: application/json
-
-{
-  "role": 1
-}
+DELETE http://localhost:8080/fl-api/general?role=1
