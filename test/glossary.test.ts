@@ -41,21 +41,21 @@ describe('PUT /glossary', () => {
   const updateGloss: Glossary = {
     aircraftid: 1,
     glossaryid: 1,
-    title: 'update glossary title',
+    name: 'update glossary name',
     body: 'update info here',
   }
 
   const updateGlossNonUnique: Glossary = {
     aircraftid: 1,
     glossaryid: 1,
-    title: '%MAC',
+    name: '%MAC',
     body: 'update info here',
   }
 
   const newGloss: Glossary = {
     aircraftid: 1,
     glossaryid: 0, // 0 means this is a new glossary - no id has been assined by db
-    title: 'new glossary title',
+    name: 'new glossary name',
     body: 'info here',
   }
 
@@ -80,14 +80,14 @@ describe('PUT /glossary', () => {
       .send(newGloss)
       .expect(200)
       .expect(async () => {
-        const title_aircraftid = {
+        const name_aircraftid = {
           aircraftid: newGloss.aircraftid,
-          title: newGloss.title,
+          name: newGloss.name,
         }
         const found = await prisma.glossary.findUnique({
-          where: {title_aircraftid},
+          where: {name_aircraftid},
         })
-        assert.deepStrictEqual(found.title, newGloss.title)
+        assert.deepStrictEqual(found.name, newGloss.name)
         assert.deepStrictEqual(found.body, newGloss.body)
         assert.deepStrictEqual(found.aircraftid, newGloss.aircraftid)
       })
@@ -103,7 +103,7 @@ describe('PUT /glossary', () => {
       .end(done)
   })
 
-  it('Should return 400 where glossary title and aircraft id is not unique UPDATE', (done: Done) => {
+  it('Should return 400 where glossary name and aircraft id is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/glossary')
       .set('authorization', role3e)

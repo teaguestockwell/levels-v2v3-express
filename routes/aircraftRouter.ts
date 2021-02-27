@@ -13,7 +13,7 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
     // roles > 0 of requester are allowed to view aircraft data
     const airids: number[] = await query.readAllAircraftIDsOfRoleWhereRoleGreaterThanX(
-      req, // used to lookup users email
+      req, // used to lookup users name
       0 // roles > 0 have role 1 @ aircraft
     )
 
@@ -36,11 +36,11 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     const highestRole = await query.readHighestRole(req)
 
     if (reqAir.id == 0 && highestRole >= 3) {
-      const reqEmail = query.readEmail(req)
+      const reqname = query.readName(req)
 
       // we have asserted that this req has a role >= 3 on some aircraft,
       // so we can grab a copy of that to pass to the new aircraft
-      const reqUser = await query.readFirstUserAtEmail(reqEmail)
+      const reqUser = await query.readFirstUserAtname(reqname)
 
       // they should be able to create users with role 3
       reqUser.role = 4
@@ -59,7 +59,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
         const mockUser: User = {
           aircraftid: 0,
           role: 0,
-          email: 'mock',
+          name: 'mock',
           userid: 0,
         }
         await query.upsertAircraftShallow(reqAir, mockUser)

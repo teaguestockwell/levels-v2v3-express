@@ -35,7 +35,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
       await query.upsertUser(reqBodyUser)
       res.status(200).send(resMsg.on200(req))
     } else {
-      res.status(403).send(resMsg.on403(2, reqUser.role, req))
+      res.status(403).send(resMsg.on403(reqBodyUser.role, reqUser.role, req))
     }
   } catch (e) {
     res.status(400).send(resMsg.on400(req))

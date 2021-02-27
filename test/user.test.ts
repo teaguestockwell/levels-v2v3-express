@@ -10,7 +10,7 @@ import {seedTest} from '../prisma/seed_test'
 const newUserRole1: User = {
   aircraftid: 1,
   userid: 0, // 0 tells upsert that user was created by ui, and to assign them a userid
-  email: 'newb@email',
+  name: 'newb@name',
   role: 1,
 }
 
@@ -46,21 +46,21 @@ describe('PUT /user', () => {
   const seededUserRole0: User = {
     aircraftid: 1,
     userid: 1,
-    email: 'role0@test.com',
+    name: 'role0@test.com',
     role: 2, // updating role 0 to role 2
   }
 
   const newUserRole10: User = {
     aircraftid: 1,
     userid: 0, // 0 tells upsert that user was created by ui, and to assign them a userid
-    email: 'newb@email',
+    name: 'newb@name',
     role: 10, // fake role to assert this user has higher role than request maker
   }
 
   const mockDuplicateUserUpdate: User = {
     aircraftid: 1,
-    userid: 4, // this coresponds to email role1@test.com
-    email: 'role0@test.com', // cannot put to duplicate user
+    userid: 4, // this coresponds to name role1@test.com
+    name: 'role0@test.com', // cannot put to duplicate user
     role: 2,
   }
 
@@ -115,7 +115,7 @@ describe('PUT /user', () => {
       .end(done)
   })
 
-  it('Should 400 request that put users that dont have unique email-aircraft', (done: Done) => {
+  it('Should 400 request that put users that dont have unique name-aircraft', (done: Done) => {
     req(server)
       .put('/user')
       .set('authorization', role4e)
@@ -123,7 +123,7 @@ describe('PUT /user', () => {
       .expect(400)
       .expect(async () => {
         const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userid)
-        assert.notStrictEqual(db.email, mockDuplicateUserUpdate.email)
+        assert.notStrictEqual(db.name, mockDuplicateUserUpdate.name)
       })
       .end(done)
   })

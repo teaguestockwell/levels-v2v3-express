@@ -34,18 +34,18 @@ describe('GET /general', () => {
 describe('PUT /general', () => {
   const updateGeneral: General = {
     role: 1,
-    title: 'welcome', // update title
+    name: 'welcome', // update name
     body: 'body', //update body
-    names: ['title1', 'title2'],
+    names: ['name1', 'name2'],
     icondatas: [123, 342134],
     urls: ['url 1', 'url2 '],
   }
 
   const newGeneral: General = {
     role: 7,
-    title: 'welcome', // update title
+    name: 'welcome', // update name
     body: 'body', //update body
-    names: ['title1', 'title2'],
+    names: ['name1', 'name2'],
     icondatas: [123, 342134],
     urls: ['url 1', 'url2 '],
   }

@@ -7,7 +7,7 @@ content-type: application/json
 {
   "glossaryid": 0,
   "aircraftid": 2,
-  "title": "create",
+  "name": "create",
   "body": "body"
 }
 ###
@@ -17,7 +17,7 @@ content-type: application/json
 {
   "glossaryid": 19,
   "aircraftid": 2,
-  "title": "update",
+  "name": "update",
   "body": "body"
 }
 ###

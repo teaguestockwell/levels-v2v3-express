@@ -1,6 +1,7 @@
 
 import express, {Application} from 'express';
 import compression from 'compression'
+//import cors from 'cors';
 import aircraftRouter from './routes/aircraftRouter';
 import generalRouter from './routes/generalRouter';
 import userRouter from './routes/userRouter'
@@ -15,6 +16,8 @@ server.disable('x-powered-by')
 
 server.use(express.json());
 server.use(compression());
+//server.use(cors());
+
 server.use('/aircraft', aircraftRouter);
 server.use('/general', generalRouter);
 server.use('/user', userRouter);

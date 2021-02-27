@@ -20,7 +20,7 @@ model General{
   role          Int @id
 
   // Scalar Fields
-  title         String
+  name         String @map("name")
   body          String
   names         String[]
   icondatas     Int[]
@@ -28,9 +28,9 @@ model General{
 }
 
 model User{
-  // Composite key, no two aircraft will have same email
-  // However, one email may have multiple accses levels, as long as they are on diffrent aircraft
-  @@id([aircraftid,email])
+  // Composite key, no two aircraft will have same name
+  // However, one name may have multiple accses levels, as long as they are on diffrent aircraft
+  @@id([aircraftid,name])
 
 
   aircraft      Aircraft @relation(fields: [aircraftid], references: [id])
@@ -38,11 +38,12 @@ model User{
 
   //scalar values
   userid        Int @default(autoincrement()) @unique
-  email         String // used to identify users, but this is not unique because it will be duplicatied if the user is assined to multple aircraft
+  name         String // used to identify users, but this is not unique because it will be duplicatied if the user is assined to multple aircraft @map("name")
   role          Int @default(0)
 }
 
 
+//TODO: add Last modified to all routes
 
 
 model Aircraft{
@@ -71,8 +72,8 @@ model Aircraft{
 }
 
 model Glossary{
-  // Compund forein key, title will be unique in a given aircraft
-  @@id([title,aircraftid])
+  // Compund forein key, name will be unique in a given aircraft
+  @@id([name,aircraftid])
 
   // Relation Fields / Foriegn Key
   aircraft      Aircraft  @relation(fields: [aircraftid], references: [id])
@@ -80,7 +81,7 @@ model Glossary{
 
   // Scalar Fields
   glossaryid    Int       @default(autoincrement()) @unique
-  title         String 
+  name         String     @map("name")
   body          String
 }
 model Tank{

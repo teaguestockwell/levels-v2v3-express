@@ -25,7 +25,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 6,
-        title: 'App Dev',
+        name: 'App Dev',
         names: ['Help/Contact', 'About Developer'],
         body:
           'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -40,7 +40,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 5,
-        title: 'App Owner',
+        name: 'App Owner',
         names: ['Help/Contact', 'About Developer'],
         body:
           'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -55,7 +55,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 4,
-        title: 'Aircraft Owner',
+        name: 'Aircraft Owner',
         names: ['Help/Contact', 'About Developer'],
         body:
           'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -70,7 +70,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 3,
-        title: 'DB Admin',
+        name: 'DB Admin',
         names: ['Help/Contact', 'About Developer'],
         body:
           'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -85,7 +85,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 2,
-        title: 'Admin',
+        name: 'Admin',
         names: ['Help/Contact', 'About Developer'],
         body:
           'Admin: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -100,7 +100,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 1,
-        title: 'User',
+        name: 'User',
         names: ['Help/Contact', 'About Developer'],
         body:
           'DB Admin: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -115,7 +115,7 @@ export const seedTest = {
     await prisma.general.create({
       data: {
         role: 0,
-        title: 'No Role',
+        name: 'No Role',
         names: ['Help/Contact', 'About Developer'],
         body:
           'User: Please be reminded that this app is intended for reference, and education purposes only. While careful consideration has been taken creating this app, we do not warrant, represent or guarantee that the material published on this app, as well as the calculations made, are in all respects accurate, complete or current. To the extent permitted by law, we exclude any liability, including any liability for negligence,  for loss, damage, or bodily injury arising from the reliance on material and calculations made in this application. It is your sole responsibility to make sure all proper measures are taken to ensure safety.',
@@ -146,43 +146,43 @@ export const seedTest = {
         users: {
           create: [
             {
-              email: 'role0@test.com',
+              name: 'role0@test.com',
               role: 0,
             },
             {
-              email: 'role1@test.com',
+              name: 'role1@test.com',
               role: 1,
             },
             {
-              email: 'role2@test.com',
+              name: 'role2@test.com',
               role: 2,
             },
             {
-              email: 'role3@test.com',
+              name: 'role3@test.com',
               role: 3,
             },
             {
-              email: 'role4@test.com',
+              name: 'role4@test.com',
               role: 4,
             },
             {
-              email: 'role5@test.com',
+              name: 'role5@test.com',
               role: 5,
             },
             {
-              email: 'role2OnAir1@test.com',
+              name: 'role2OnAir1@test.com',
               role: 2,
             },
             {
-            email: 'role3OnAir1@test.com',
+            name: 'role3OnAir1@test.com',
             role: 3,
             },
             {
-              email: 'teague.stockwell@us.af.mil',
+              name: 'teague.stockwell@us.af.mil',
               role: 3,
             },
             {
-              email: 'john.snuffy@fakemail.com',
+              name: 'john.snuffy@fakename.com',
               role: 3,
             },
           ],
@@ -191,47 +191,47 @@ export const seedTest = {
         glossarys: {
           create: [
             {
-              title: 'MAC',
+              name: 'MAC',
               body:
                 'The distance between the leading and trailing edge of the wing is known as the chord. If the leading edge and trailing edge are parallel, the chord of the wing is constant along the wing’s length. However, because the wings on the C17 are both tapered and swept, the chord changes along the span of the wing. The average length of the chord is known as the mean aerodynamic chord (MAC). The MAC of the C17 is 309.5in 1C-17A-5-2(2-28)',
             },
             {
-              title: 'Chart C',
+              name: 'Chart C',
               body:
                 "The Chart C is a record of the aircraft weight and balance that is continuously updated by a qualified weight and balance technician. Some equipment is provided by the manufacturer during aircraft delivery to the Air Force and is included in the aircraft's basic weight. Further, To standardize equipment and its location, items listed in Addenda A Table 2.1 are included in the basic weight of the aircraft.",
             },
             {
-              title: '%MAC',
+              name: '%MAC',
               body:
                 'The Percent Mean Aerodynamic Chord identifies where the center or gravity is along the chord of the wing. 0% MAC is located at the LEMAC, and 100% MAC is at the TEMAC(Trailing Edge Mean Aerodynamic Chord). The formula for calculating %MAC is (Balance Arm - LEMAC) / MAC) X 100 1C-17A-5-2(2-28).',
             },
             {
-              title: 'Reference Datum',
+              name: 'Reference Datum',
               body:
                 'The reference datum is a point located 80.5in forward of the nose of the C17. 1C-17A-5-2(2-28)',
             },
             {
-              title: 'Fuselage Station (FS)',
+              name: 'Fuselage Station (FS)',
               body:
                 'An imaginary plane, that runs along the length of the aircraft. It is identified by its distance from the reference datum in inches. FS 0 starts at the reference datum. 1C-17A-5-2(2-28)',
             },
             {
-              title: 'Balance Arm',
+              name: 'Balance Arm',
               body:
                 'The balance arm is the horizontal distance between the reference datum and the center or gravity. Balance arm = total simplified moment X 10,000 / total weight lb.',
             },
             {
-              title: 'Addenda A',
+              name: 'Addenda A',
               body:
                 'Configurations with common items, such as sidewall seat life vests, are listed in the Addenda A chapter 3. The weight and moment of these common configurations or their items can be added as cargo into the calculator. For the most accurate calculation, if the item is not accounted for in the Chart C, not listed in Addenda A table 2.1 as equipment that is included in the aircraft basic weight, add its weight and FS into the calculator. https://static.e-publishing.af.mil/production/1/af_a3/publication/afman11-2c-17v3add-a/afman11-2c-17v3add-a.pdf',
             },
             {
-              title: 'Moment',
+              name: 'Moment',
               body:
                 'The moment of an item is weight in lb multiplied by its arm(distance from the reference datum). Moment is measured in inch-pounds. Moment = Weight in lb x arm. Simplified moment = moment/10000. The moment of fuel is measured in simplified moment and can be found in tables 2-5 or 2-9 for ER jets. The weight and moment of items can be found in AFI 11-2C17V3ADD-A and 1C-17A-5-2',
             },
             {
-              title: 'Lemac',
+              name: 'Lemac',
               body:
                 'The Leading Edge of the Mean Aerodynamic Chord or LEMAC is a measurement of how far the leading edge of the wing is from the reference datum. For swept-wing aircraft, the LEMAC is an average of the distance the leading edge of the wing is from the reference datum. The LEMAC of the C17 is located 793.6in from the reference datum. 1C-17A-5-2(2-28)',
             },
@@ -3582,31 +3582,31 @@ export const seedTest = {
         users: {
           create: [
             {
-              email: 'role0@test.com',
+              name: 'role0@test.com',
               role: 0,
             },
             {
-              email: 'role1@test.com',
+              name: 'role1@test.com',
               role: 1,
             },
             {
-              email: 'role2@test.com',
+              name: 'role2@test.com',
               role: 2,
             },
             {
-              email: 'role3@test.com',
+              name: 'role3@test.com',
               role: 3,
             },
             {
-              email: 'role4@test.com',
+              name: 'role4@test.com',
               role: 4,
             },
             {
-              email: 'teague.stockwell@us.af.mil',
+              name: 'teague.stockwell@us.af.mil',
               role: 3,
             },
             {
-              email: 'john.snuffy@fakemail.com',
+              name: 'john.snuffy@fakename.com',
               role: 3,
             },
           ],
@@ -3615,47 +3615,47 @@ export const seedTest = {
         glossarys: {
           create: [
             {
-              title: 'MAC',
+              name: 'MAC',
               body:
                 'The distance between the leading and trailing edge of the wing is known as the chord. If the leading edge and trailing edge are parallel, the chord of the wing is constant along the wing’s length. However, because the wings on the C17 are both tapered and swept, the chord changes along the span of the wing. The average length of the chord is known as the mean aerodynamic chord (MAC). The MAC of the C17 is 309.5in 1C-17A-5-2(2-28)',
             },
             {
-              title: 'Chart C',
+              name: 'Chart C',
               body:
                 "The Chart C is a record of the aircraft weight and balance that is continuously updated by a qualified weight and balance technician. Some equipment is provided by the manufacturer during aircraft delivery to the Air Force and is included in the aircraft's basic weight. Further, To standardize equipment and its location, items listed in Addenda A Table 2.1 are included in the basic weight of the aircraft.",
             },
             {
-              title: '%MAC',
+              name: '%MAC',
               body:
                 'The Percent Mean Aerodynamic Chord identifies where the center or gravity is along the chord of the wing. 0% MAC is located at the LEMAC, and 100% MAC is at the TEMAC(Trailing Edge Mean Aerodynamic Chord). The formula for calculating %MAC is (Balance Arm - LEMAC) / MAC) X 100 1C-17A-5-2(2-28).',
             },
             {
-              title: 'Reference Datum',
+              name: 'Reference Datum',
               body:
                 'The reference datum is a point located 80.5in forward of the nose of the C17. 1C-17A-5-2(2-28)',
             },
             {
-              title: 'Fuselage Station (FS)',
+              name: 'Fuselage Station (FS)',
               body:
                 'An imaginary plane, that runs along the length of the aircraft. It is identified by its distance from the reference datum in inches. FS 0 starts at the reference datum. 1C-17A-5-2(2-28)',
             },
             {
-              title: 'Balance Arm',
+              name: 'Balance Arm',
               body:
                 'The balance arm is the horizontal distance between the reference datum and the center or gravity. Balance arm = total simplified moment X 10,000 / total weight lb.',
             },
             {
-              title: 'Addenda A',
+              name: 'Addenda A',
               body:
                 'Configurations with common items, such as sidewall seat life vests, are listed in the Addenda A chapter 3. The weight and moment of these common configurations or their items can be added as cargo into the calculator. For the most accurate calculation, if the item is not accounted for in the Chart C, not listed in Addenda A table 2.1 as equipment that is included in the aircraft basic weight, add its weight and FS into the calculator. https://static.e-publishing.af.mil/production/1/af_a3/publication/afman11-2c-17v3add-a/afman11-2c-17v3add-a.pdf',
             },
             {
-              title: 'Moment',
+              name: 'Moment',
               body:
                 'The moment of an item is weight in lb multiplied by its arm(distance from the reference datum). Moment is measured in inch-pounds. Moment = Weight in lb x arm. Simplified moment = moment/10000. The moment of fuel is measured in simplified moment and can be found in tables 2-5 or 2-9 for ER jets. The weight and moment of items can be found in AFI 11-2C17V3ADD-A and 1C-17A-5-2',
             },
             {
-              title: 'Lemac',
+              name: 'Lemac',
               body:
                 'The Leading Edge of the Mean Aerodynamic Chord or LEMAC is a measurement of how far the leading edge of the wing is from the reference datum. For swept-wing aircraft, the LEMAC is an average of the distance the leading edge of the wing is from the reference datum. The LEMAC of the C17 is located 793.6in from the reference datum. 1C-17A-5-2(2-28)',
             },

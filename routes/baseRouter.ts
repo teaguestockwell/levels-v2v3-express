@@ -43,7 +43,7 @@ export const resMsg = {
 
   on400: (req: Request): msgI => {
     const msg = {
-      msg: `400: Name / title must be unique to ${req.method} @ ${req.originalUrl}`,
+      msg: `400: Name / name must be unique to ${req.method} @ ${req.originalUrl}`,
     }
     console.log(msg.msg)
     return msg

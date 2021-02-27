@@ -9,7 +9,7 @@ content-type: application/json
 {
   "userid": 0,
   "aircraftid": 1,
-  "email": "create",
+  "name": "create",
   "role": 1
 }
 ###
@@ -19,7 +19,7 @@ content-type: application/json
 {
   "userid": 17,
   "aircraftid": 1,
-  "email": "update",
+  "name": "update",
   "role": 2
 }
 ###

@@ -24,7 +24,7 @@ const query = {
       update: user,
       create: {
         aircraft: {connect: {id: user.aircraftid}},
-        email: user.email,
+        name: user.name,
         role: user.role,
       },
     })
@@ -86,7 +86,7 @@ const query = {
       await prisma.user.create({
         data: {
           aircraft: {connect: {id: newAir.id}},
-          email: reqUser.email,
+          name: reqUser.name,
           role: 4,
         },
       })
@@ -105,7 +105,7 @@ const query = {
       update: glossary,
       create: {
         aircraft: {connect: {id: glossary.aircraftid}},
-        title: glossary.title,
+        name: glossary.name,
         body: glossary.body,
       },
     })
@@ -176,8 +176,8 @@ const query = {
 
 
 
-  readFirstUserAtEmail: async (email: string): Promise<User> => {
-    return await prisma.user.findFirst({where: {email}})
+  readFirstUserAtname: async (name: string): Promise<User> => {
+    return await prisma.user.findFirst({where: {name}})
   },
 
   readUsersAtAircraftID: async (aircraftid: number): Promise<User[]> => {
@@ -202,16 +202,15 @@ const query = {
   },
   /** if no user => role = 0 */
   readRoleAtAircraftID: async (req: Request, id: number): Promise<number> => {
-    const email = query.readEmail(req)
-    const aircraftid_email = {aircraftid: id, email: email}
+    const name = query.readName(req)
+    const aircraftid_name = {aircraftid: id, name: name}
 
     try {
       const user = await prisma.user.findUnique({
         where: {
-          aircraftid_email,
+          aircraftid_name,
         },
       })
-
       return user.role
     } catch (e) {
       return 0
@@ -227,11 +226,11 @@ const query = {
     x: number
   ): Promise<number[]> => {
     const ret: number[] = []
-    const email = query.readEmail(req)
+    const name = query.readName(req)
 
     const users = await prisma.user.findMany({
       where: {
-        email: {equals: email},
+        name: {equals: name},
         role: {gt: x},
       },
     })
@@ -247,10 +246,10 @@ const query = {
   readHighestRole: async (req: Request): Promise<number> => {
     ////console.log('read highest role')
     try {
-      const email = query.readEmail(req)
-      if (email != null) {
+      const name = query.readName(req)
+      if (name != null) {
         const users = await prisma.user.findMany({
-          where: {email},
+          where: {name},
         })
 
         let highest = 0
@@ -266,12 +265,12 @@ const query = {
     }
   },
 
-  readEmail: (req: Request): string | null => {
+  readName: (req: Request): string | null => {
     const auth = req.get('authorization')
     if (auth != null) {
       const jwt = JSON.parse(atob(auth.split('.')[1]))
-      const email: string = jwt.email
-      return email
+      const name: string = jwt.email
+      return name
     } else {
       return null
     }
@@ -356,9 +355,9 @@ const query = {
     req: Request,
     aircraftid: number
   ): Promise<User> => {
-    const reqEmail = query.readEmail(req)
-    const aircraftid_email = {email: reqEmail, aircraftid: aircraftid}
-    return await prisma.user.findUnique({where: {aircraftid_email}})
+    const reqname = query.readName(req)
+    const aircraftid_name = {name: reqname, aircraftid: aircraftid}
+    return await prisma.user.findUnique({where: {aircraftid_name}})
   },
 
   readGeneral: async (role: number): Promise<General> => {
