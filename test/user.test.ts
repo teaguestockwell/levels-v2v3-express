@@ -32,7 +32,7 @@ describe('GET /user', () => {
       .end(done)
   })
 
-  it('Should deny requests that have an accses level < 2', (done: Done) => {
+  it('Should deny requests that have an access level < 2', (done: Done) => {
     req(server)
       .get('/user?aircraftid=1')
       .set('authorization', role1e)
@@ -59,7 +59,7 @@ describe('PUT /user', () => {
 
   const mockDuplicateUserUpdate: User = {
     aircraftid: 1,
-    userid: 4, // this coresponds to name role1@test.com
+    userid: 4, // this corresponds to name role1@test.com
     name: 'role0@test.com', // cannot put to duplicate user
     role: 2,
   }
@@ -69,7 +69,7 @@ describe('PUT /user', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should deny reqs that have accses level < 2', (done: Done) => {
+  it('Should deny reqs that have access level < 2', (done: Done) => {
     req(server)
       .put('/user')
       .set('authorization', role1e)
@@ -78,7 +78,7 @@ describe('PUT /user', () => {
       .end(done)
   })
 
-  it('Should deny reqs puting users with >= requesters role', (done: Done) => {
+  it('Should deny reqs putting users with >= requesters role', (done: Done) => {
     req(server)
       .put('/user')
       .set('authorization', role2e)
@@ -136,7 +136,7 @@ describe('DELETE /user', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should 403 when reqest.role <= userid.role', (done: Done) => {
+  it('Should 403 when request.role <= userid.role', (done: Done) => {
     req(server)
       .delete('/user?userid=7')
       .set('authorization', role1e)
@@ -144,7 +144,7 @@ describe('DELETE /user', () => {
       .end(done)
   })
 
-  it('Should delete when reqest.role > userid.role', (done: Done) => {
+  it('Should delete when request.role > userid.role', (done: Done) => {
     req(server)
       .delete('/user?userid=5')
       .set('authorization', role5e)

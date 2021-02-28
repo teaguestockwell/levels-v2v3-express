@@ -1,10 +1,9 @@
-##To build and run tests:
+###To compose locally 
+Use the fullstack template by pointing it's .env to the front and backend docker files, then run bin/run.sh || bin/run.cmd
 
-docker rm apiimg && docker build . -t api && docker run -p 8080:8080 --name apiimg api && docker exec -it apiimg bash
+What the heck is a fullstack template and why are we using it? BSwenson made a tool that mock the P1 env locally by injecting an auth header. This allows us to create roles and profiles for users authenticated with P1's Keycloak: https://code.il2.dso.mil/brandon.swenson/fullstack-template
 
-To compose localy using the docker-compose-dev / fullstack template, create a .env in the local dir with the folloing contents:
-
-PORT=8080
-DATABASE_URL="postgresql://fl_admin_user:password@database:5432"
-
-Then point the fullstack templates .env to the front and backend docker files
+###TODO:
+Last modified field for CRUD routes on models
+Last modified field by for CRUD routes on models
+Named route for /aircraft?id
