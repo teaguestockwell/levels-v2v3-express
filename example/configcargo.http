@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/fl-api/configcargo?aircraftid=1&configid=1
+GET http://localhost:8080/fl-api/configcargo?configid=1
 ###
 PUT http://localhost:8080/fl-api/configcargo
 content-type: application/json
