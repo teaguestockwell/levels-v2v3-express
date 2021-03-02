@@ -215,100 +215,22 @@ describe('DELETE /aircraft', () => {
       .set('authorization', role4e)
       .expect(200)
       .expect(async () => {
-        const didFind: boolean[] = []
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const didFind: any[] = []
 
-        // did the top lvl delete?
-        try {
-          await query.readAircraftAtID(1)
-          didFind.push(true)
-        } catch (e) {
-          didFind.push(false)
-        }
+        // expect everthing to cascade delete
+        didFind.push(await prisma.aircraft.findMany({where: {id: 1}}))
+        didFind.push(await prisma.user.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.tank.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.config.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.configCargo.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.cargo.findMany({where: {aircraftid: 1}}))
 
-        // did users cascade delete
-        const users: Promise<boolean>[] = await air1.users.map(
-          async (u: User) => {
-            try {
-              await query.readUserAtUserID(u.userid)
-              didFind.push(true)
-            } catch (e) {
-              didFind.push(false)
-            }
-          }
-        )
-
-        // did glossarys cascade delete
-        const glossarys: Promise<boolean>[] = await air1.glossarys.map(
-          async (g: Glossary) => {
-            try {
-              await query.readGlossaryAtGlossaryID(g.glossaryid)
-              didFind.push(true)
-            } catch (e) {
-              didFind.push(false)
-            }
-          }
-        )
-
-        // did tanks cascade delete
-        const tanks: Promise<boolean>[] = await air1.tanks.map(
-          async (t: Tank) => {
-            try {
-              await query.readTankAtTankID(t.tankid)
-              didFind.push(true)
-            } catch (e) {
-              didFind.push(false)
-            }
-          }
-        )
-
-        // did configs cascasde delete
-        let conCargo: Promise<boolean>[] = []
-        const configs: Promise<boolean>[] = await air1.configs.map(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          async (c: any) => {
-            // did cargo configs cascade delete
-            conCargo = await c.configcargos.map(async (cc: ConfigCargo) => {
-              try {
-                await query.readConfigCargoAtConfigCargoId(cc.configcargoid)
-                didFind.push(true)
-              } catch (e) {
-                didFind.push(false)
-              }
-            })
-
-            try {
-              await query.readConfigAtConfigID(c.configid)
-              didFind.push(true)
-            } catch (e) {
-              didFind.push(false)
-            }
-          }
-        )
-
-        // did cargos cascade delete
-        const cargos: Promise<boolean>[] = await air1.cargos.map(
-          async (c: Cargo) => {
-            try {
-              await query.readConfigCargoAtConfigCargoId(c.cargoid)
-              didFind.push(true)
-            } catch (e) {
-              didFind.push(false)
-            }
-          }
-        )
-
-        const allPromises: Promise<boolean>[] = cargos.concat(
-          configs,
-          conCargo,
-          tanks,
-          glossarys,
-          users
-        )
-        await Promise.all(allPromises)
-        console.log(didFind.length + ' did find length')
-
-        const foundTrue: boolean = didFind.includes(true)
-        assert.deepStrictEqual(foundTrue, false)
+        assert.deepStrictEqual(didFind.length, 0)
       })
       .end(done)
   })
