@@ -5,14 +5,8 @@ import server from '../server'
 import {role0e, role2e, role3e, role4e, role2OnAir1e} from './utils'
 import {
   Aircraft,
-  Cargo,
-  ConfigCargo,
-  Glossary,
-  Tank,
-  User,
   PrismaClient,
 } from '@prisma/client'
-import query from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
 
 const prisma = new PrismaClient()
@@ -193,12 +187,10 @@ describe('PUT /aircraft', () => {
 
 // DELETE
 describe('DELETE /aircraft', () => {
-  let air1
 
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
-    air1 = await query.readAircraftAtID(1)
   })
 
   it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
