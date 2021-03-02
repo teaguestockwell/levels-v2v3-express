@@ -12,10 +12,9 @@
     "@prisma/client": "^2.15.0",
     "assert": "^2.0.0",
     "atob": "^2.1.2",
+    "btoa": "^1.2.1",
     "compression": "^1.7.4",
     "express": "^4.17.1",
-    "btoa": "^1.2.1",
-    "dotenv": "^8.2.0",
     "nyc": "^15.1.0"
   },
   "devDependencies": {
