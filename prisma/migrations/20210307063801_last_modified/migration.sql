@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Cargo" ADD COLUMN     "lastModified" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ADD COLUMN     "lastModifiedBy" TEXT NOT NULL DEFAULT E'unknown';

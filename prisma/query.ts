@@ -133,6 +133,8 @@ const query = {
         name: cargo.name,
         fs: cargo.fs,
         weight: cargo.weight,
+        lastModified:cargo.lastModified,
+        lastModifiedBy:cargo.lastModifiedBy,
       },
     })
   },

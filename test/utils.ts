@@ -1,6 +1,10 @@
 import btoa from 'btoa'
 
-const role0 = {
+interface Role {
+  email: string
+}
+
+export const role0 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -33,7 +37,7 @@ const role0 = {
   email: 'role0@test.com',
 }
 
-const role1 = {
+export const role1 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -66,7 +70,7 @@ const role1 = {
   email: 'role1@test.com',
 }
 
-const role2 = {
+export const role2 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -98,7 +102,7 @@ const role2 = {
   family_name: 'Dylan',
   email: 'role2@test.com',
 }
-const role2OnAir1 = {
+export const role2OnAir1 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -131,7 +135,7 @@ const role2OnAir1 = {
   email: 'role2OnAir1@test.com',
 }
 
-const role3OnAir1 = {
+export const role3OnAir1 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -164,7 +168,7 @@ const role3OnAir1 = {
   email: 'role3OnAir1@test.com',
 }
 
-const role3 = {
+export const role3 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -197,7 +201,7 @@ const role3 = {
   email: 'role3@test.com',
 }
 
-const role4 = {
+export const role4 = {
   exp: 1602735212,
   iat: 1602734312,
   auth_time: 1602731339,
@@ -263,11 +267,19 @@ const role5 = {
   email: 'role5@test.com',
 }
 
-export const role0e = 'Bearer fakestuff.' + btoa(JSON.stringify(role0))
-export const role1e = 'Bearer fakestuff.' + btoa(JSON.stringify(role1))
-export const role2e = 'Bearer fakestuff.' + btoa(JSON.stringify(role2))
-export const role3e = 'Bearer fakestuff.' + btoa(JSON.stringify(role3))
-export const role4e = 'Bearer fakestuff.' + btoa(JSON.stringify(role4))
-export const role5e = 'Bearer fakestuff.' + btoa(JSON.stringify(role5))
-export const role2OnAir1e = 'Bearer fakestuff.' + btoa(JSON.stringify(role2OnAir1))
-export const role3OnAir1e = 'Bearer fakestuff.' + btoa(JSON.stringify(role3OnAir1))
+export function fakeWrapper(role:Role):string  { return 'Bearer fakestuff.' + btoa(JSON.stringify(role)); }
+export const role0e = fakeWrapper(role0) 
+export const role1e = fakeWrapper(role1) 
+export const role2e = fakeWrapper(role2) 
+export const role3e = fakeWrapper(role3) 
+export const role4e = fakeWrapper(role4) 
+export const role5e = fakeWrapper(role5) 
+export const role3OnAir1e = fakeWrapper(role3OnAir1)
+export const role2OnAir1e = fakeWrapper(role2OnAir1)
+
+export const oldDate = new Date('03/08/1980');
+
+export const lastModifiedInfo = {    
+    lastModified: oldDate,
+    lastModifiedBy: "bogus"
+  }

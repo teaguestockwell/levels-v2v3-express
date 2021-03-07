@@ -16,6 +16,8 @@ cargoRouter.get('*', async (req: Request, res: Response) => {
 
 // UPDATE 1 || CREATE 1 (Cargo)
 cargoRouter.put('/', async (req: Request, res: Response) => {
+  req.body.lastModifiedBy=query.readName(req)
+  req.body.lastModified=new Date(Date.now())
   await baseRouter.put1({
     req: req,
     res: res,
