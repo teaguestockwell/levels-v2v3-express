@@ -26,6 +26,7 @@ server.use('/config',configRouter);
 server.use('/configcargo', configCargoRouter);
 
 const port = process.env.PORT || 8080
+console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! Database URL: " + process.env.DATABASE_URL + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 server.listen(port, () => console.log(`server listening on ${port}`))
 
 export default server

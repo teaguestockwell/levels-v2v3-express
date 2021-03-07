@@ -12,6 +12,9 @@ WORKDIR /api
 
 COPY . /api
 
+# Overwrite .env with fullStack .env file to allow developer to easily run tests locally
+COPY .env.fullStack /api/.env 
+
 EXPOSE 8080
 
 RUN npm install
