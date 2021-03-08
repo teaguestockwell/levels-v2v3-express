@@ -22,7 +22,7 @@ in mem array of all aircraft in front of /aircraft with frequent db polling?
 
 rm General.name from prisma/db then: /general => General.name = "First Last"
 
-rm all but 1 General from prisma/db && rm General.role then: /general => General.role = req.role
+rm all but 1 General from prisma/ db && rm General.role then: /general => General.role = req.role
 
 edited && editedBy for routes:
 
