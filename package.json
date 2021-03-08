@@ -11,7 +11,8 @@
     "test:unitOnly": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test:unit": "npm install && npx prisma migrate dev --name init --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "lint": "npm install && eslint .",
-    "formatCode": "npx prettier --write ."
+    "formatCode": "npx prettier --write .",
+    "preinstall": "npx npm-force-resolutions"
   },
   "author": "",
   "license": "ISC",
@@ -37,9 +38,13 @@
     "btoa": "^1.2.1",
     "eslint": "^7.7.0",
     "mocha": "^8.1.1",
+    "npm-force-resolutions": "0.0.10",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
     "supertest": "^4.0.2",
     "typescript": "^4.1.3"
+  },
+  "resolutions": {
+    "lodash": "4.17.21"
   }
 }
