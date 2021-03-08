@@ -12,6 +12,7 @@
     "@prisma/client": "^2.15.0",
     "atob": "^2.1.2",
     "compression": "^1.7.4",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "ts-node": "^9.1.1"
   },
