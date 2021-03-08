@@ -9,7 +9,8 @@ content-type: application/json
   "aircraftid": 2,
   "name": "create",
   "weight": 120,
-  "fs": 300
+  "fs": 300,
+  "category": "Emergency"
 }
 ###
 PUT http://localhost:8080/fl-api/cargo
@@ -20,7 +21,8 @@ content-type: application/json
   "aircraftid": 2,
   "name": "update",
   "weight": 120,
-  "fs": 300
+  "fs": 300,
+  "category": "Emergency"
 }
 ###
 DELETE http://localhost:8080/fl-api/cargo?cargoid=4

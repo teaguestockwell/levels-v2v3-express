@@ -17,7 +17,7 @@ model General {
   role Int @id
 
   // Scalar Fields
-  name      String   @map("name")
+  name      String
   body      String
   names     String[]
   icondatas Int[]
@@ -27,7 +27,6 @@ model General {
 model User {
   // Composite key, no two aircraft will have same name
   // However, one name may have multiple accses levels, as long as they are on diffrent aircraft
-
 
   aircraft   Aircraft @relation(fields: [aircraftid], references: [id])
   aircraftid Int
@@ -39,7 +38,6 @@ model User {
   @@id([aircraftid, name])
 }
 
-//TODO: add Last modified to all routes
 
 model Aircraft {
   // Primary Key
@@ -76,7 +74,7 @@ model Glossary {
 
   // Scalar Fields
   glossaryid Int    @unique @default(autoincrement())
-  name       String @map("name")
+  name       String
   body       String
   @@id([name, aircraftid])
 }
@@ -126,18 +124,14 @@ model Cargo {
   name           String
   weight         Float
   fs             Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
-  // enums are not fully supported in all primsa DB, so ints we go:
-  // 1: Steward Equip
-  // 2: Emergency equip
-  // 3: Extra Equip
-  category       CargoCategory? @default(ExtraEquip)
+  category       CargoCategory? @default(Extra)
   @@id([name, aircraftid])
 }
 
 enum CargoCategory {
-  StewardEquip    @map("stewardEquip")
-  EmergencyEquip  @map("emergencyEquip")
-  ExtraEquip      @map("extraEquip")
+  Steward    @map("steward")
+  Emergency  @map("emergency")
+  Extra     @map("extra")
 
   @@map("_CargoCategory")
 }

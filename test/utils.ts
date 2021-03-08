@@ -267,15 +267,15 @@ const role5 = {
   email: 'role5@test.com',
 }
 
-export function fakeWrapper(role:Role):string  { return 'Bearer fakestuff.' + btoa(JSON.stringify(role)); }
-export const role0e = fakeWrapper(role0) 
-export const role1e = fakeWrapper(role1) 
-export const role2e = fakeWrapper(role2) 
-export const role3e = fakeWrapper(role3) 
-export const role4e = fakeWrapper(role4) 
-export const role5e = fakeWrapper(role5) 
-export const role3OnAir1e = fakeWrapper(role3OnAir1)
-export const role2OnAir1e = fakeWrapper(role2OnAir1)
+export function encodeAuth(role:Role):string  { return 'Bearer fakestuff.' + btoa(JSON.stringify(role)); }
+export const role0e = encodeAuth(role0) 
+export const role1e = encodeAuth(role1) 
+export const role2e = encodeAuth(role2) 
+export const role3e = encodeAuth(role3) 
+export const role4e = encodeAuth(role4) 
+export const role5e = encodeAuth(role5) 
+export const role3OnAir1e = encodeAuth(role3OnAir1)
+export const role2OnAir1e = encodeAuth(role2OnAir1)
 
 export const oldDate = new Date('03/08/1980');
 

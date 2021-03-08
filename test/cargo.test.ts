@@ -1,5 +1,5 @@
 import {seedTest} from '../prisma/seed_test'
-import {fakeWrapper, role0, role1, role2, role3, role3OnAir1, lastModifiedInfo} from './utils'
+import {encodeAuth, role0e, role1e, role2e, role3e, role3OnAir1e, lastModifiedInfo, role3} from './utils'
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
@@ -18,7 +18,7 @@ describe('GET /cargo', () => {
   it('Should return cargos[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
       .get('/cargo?aircraftid=1')
-      .set('authorization', fakeWrapper(role1))
+      .set('authorization', role1e)
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
@@ -31,7 +31,7 @@ describe('GET /cargo', () => {
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
     req(server)
       .get('/cargo?aircraftid=1')
-      .set('authorization', fakeWrapper(role0))
+      .set('authorization', role0e)
       .expect(403)
       .end(done)
   })
@@ -88,7 +88,7 @@ describe('PUT /cargo', () => {
   it('Should return 200 and update where cargo is unquique && req.role >= 3', (done: Done) => {
     req(server)
       .put('/cargo')
-      .set('authorization', fakeWrapper(role3))
+      .set('authorization', role3e)
       .send(updateCargo)
       .expect(200)
       .end(done)
@@ -97,7 +97,7 @@ describe('PUT /cargo', () => {
   it('Should return 200 and create where cargo is unquique && req.role >= 3', async () => {
     await req(server)
       .put('/cargo')
-      .set('authorization', fakeWrapper(role3))
+      .set('authorization', encodeAuth(role3))
       .send(newCargo)
       .expect(200);
 
@@ -119,7 +119,7 @@ describe('PUT /cargo', () => {
   it('Should return 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
       .put('/cargo')
-      .set('authorization', fakeWrapper(role2))
+      .set('authorization', role2e)
       .send(updateCargo)
       .expect(403)
       .end(done)
@@ -131,7 +131,7 @@ describe('PUT /cargo', () => {
   it('Should return 403 where req.role <= 2 @ obj with inalid aircraft id', (done: Done) => {
     req(server)
       .put('/cargo')
-      .set('authorization', fakeWrapper(role3OnAir1))
+      .set('authorization', role3OnAir1e)
       .send(updateCargoWithWrongAircraftId)
       .expect(403)
       .end(done)
@@ -140,7 +140,7 @@ describe('PUT /cargo', () => {
   it('Should return 400 where cargo name and aircraft id is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/cargo')
-      .set('authorization', fakeWrapper(role3))
+      .set('authorization', role3e)
       .send(updateCargoNonUnique)
       .expect(400)
       .end(done)
@@ -157,7 +157,7 @@ describe('DELETE /cargo', () => {
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
       .delete('/cargo?cargoid=1')
-      .set('authorization', fakeWrapper(role2))
+      .set('authorization', role2e)
       .expect(403)
       .end(done)
   })
@@ -165,7 +165,7 @@ describe('DELETE /cargo', () => {
   it('Should 200 and delete where req.role <= 2 on aircraft', async () => {
     await req(server)
       .delete('/cargo?cargoid=1')
-      .set('authorization', fakeWrapper(role3))
+      .set('authorization', role3e)
       .expect(200)
       
     const found=await prisma.cargo.findUnique({where: {cargoid: 1}})
