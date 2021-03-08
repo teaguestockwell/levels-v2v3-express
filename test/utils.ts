@@ -267,19 +267,21 @@ const role5 = {
   email: 'role5@test.com',
 }
 
-export function encodeAuth(role:Role):string  { return 'Bearer fakestuff.' + btoa(JSON.stringify(role)); }
-export const role0e = encodeAuth(role0) 
-export const role1e = encodeAuth(role1) 
-export const role2e = encodeAuth(role2) 
-export const role3e = encodeAuth(role3) 
-export const role4e = encodeAuth(role4) 
-export const role5e = encodeAuth(role5) 
+export function encodeAuth(role: Role): string {
+  return 'Bearer fakestuff.' + btoa(JSON.stringify(role))
+}
+export const role0e = encodeAuth(role0)
+export const role1e = encodeAuth(role1)
+export const role2e = encodeAuth(role2)
+export const role3e = encodeAuth(role3)
+export const role4e = encodeAuth(role4)
+export const role5e = encodeAuth(role5)
 export const role3OnAir1e = encodeAuth(role3OnAir1)
 export const role2OnAir1e = encodeAuth(role2OnAir1)
 
-export const oldDate = new Date('03/08/1980');
+export const oldDate = new Date('03/08/1980')
 
-export const lastModifiedInfo = {    
-    lastModified: oldDate,
-    lastModifiedBy: "bogus"
-  }
+export const lastModifiedInfo = {
+  lastModified: oldDate,
+  lastModifiedBy: 'bogus',
+}

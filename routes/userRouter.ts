@@ -55,7 +55,9 @@ userRouter.delete('*', async (req: Request, res: Response) => {
       query.deleteUserAtUserid(tryDeleteUser.userid)
       res.status(200).send(resMsg.on200(req))
     } else {
-      res.status(403).send(resMsg.on403(tryDeleteUser.role + 1, reqUser.role, req))
+      res
+        .status(403)
+        .send(resMsg.on403(tryDeleteUser.role + 1, reqUser.role, req))
     }
   } catch (e) {
     console.log(e)

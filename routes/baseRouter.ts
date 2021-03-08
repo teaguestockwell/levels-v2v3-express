@@ -35,7 +35,7 @@ interface msgI {
   msg: string
 }
 export const resMsg = {
-  on200: (req: Request): msgI=> {
+  on200: (req: Request): msgI => {
     const msg = {msg: `200: ${req.method} @ ${req.originalUrl}`}
     console.log(msg.msg)
     return msg
@@ -74,21 +74,23 @@ export const baseRouter = {
     reqRoleGE,
     pk = 'aircraftid',
     readNAtPK,
-    readAircraftIDOfOBJpk
+    readAircraftIDOfOBJpk,
   }: getN): Promise<void> => {
     try {
-      
       const pkNum = Number(`${req.query[pk]}`)
       let roleAtAircraft: number
 
       // to mitigate role explotation, verify the aircraft id given the obj pk.
       // an example of where this is applicable is GET /configcargo
       // if the pk is aircraft id this is unnecacary
-      if(pk != 'aircraftid'){
+      if (pk != 'aircraftid') {
         const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
-        roleAtAircraft = await query.readRoleAtAircraftID(req,verifiedAirId)
-      } else{
-        roleAtAircraft = await query.readRoleAtAircraftID(req, Number(`${req.query['aircraftid']}`))
+        roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
+      } else {
+        roleAtAircraft = await query.readRoleAtAircraftID(
+          req,
+          Number(`${req.query['aircraftid']}`)
+        )
       }
 
       if (roleAtAircraft >= reqRoleGE) {
@@ -109,7 +111,7 @@ export const baseRouter = {
     reqRoleGE,
     pk = 'aircraftid',
     upsertType,
-    readAircraftIDOfOBJpk
+    readAircraftIDOfOBJpk,
   }: put1): Promise<void> => {
     try {
       try {
@@ -119,13 +121,16 @@ export const baseRouter = {
 
         // because this is a create or update ep and a pkNum of 0 is a create req,
         // we dont need to check the role @ an object that has not been created yet
-        if(pk != 'aircraftid' && pkNum != 0){
+        if (pk != 'aircraftid' && pkNum != 0) {
           const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
-          roleAtAircraft = await query.readRoleAtAircraftID(req,verifiedAirId)
-        } else{
-          roleAtAircraft = await query.readRoleAtAircraftID(req, req.body.aircraftid)
-        }        
-        
+          roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
+        } else {
+          roleAtAircraft = await query.readRoleAtAircraftID(
+            req,
+            req.body.aircraftid
+          )
+        }
+
         if (roleAtAircraft >= reqRoleGE) {
           await upsertType(obj)
           res.status(200).send(resMsg.on200(req))

@@ -1,6 +1,7 @@
-{"compilerOptions": {
-  "composite": true,
-  "esModuleInterop": true,
-  "noEmit": true
-}
+{
+  "compilerOptions": {
+    "composite": true,
+    "esModuleInterop": true,
+    "noEmit": true
+  }
 }

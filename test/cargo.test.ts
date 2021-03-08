@@ -1,5 +1,14 @@
 import {seedTest} from '../prisma/seed_test'
-import {encodeAuth, role0e, role1e, role2e, role3e, role3OnAir1e, lastModifiedInfo, role3} from './utils'
+import {
+  encodeAuth,
+  role0e,
+  role1e,
+  role2e,
+  role3e,
+  role3OnAir1e,
+  lastModifiedInfo,
+  role3,
+} from './utils'
 import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
@@ -22,8 +31,8 @@ describe('GET /cargo', () => {
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
-        assert.strictEqual(res.body[0].lastModifiedBy, "unknown")
-        assert("lastModified" in res.body[0])
+        assert.strictEqual(res.body[0].lastModifiedBy, 'unknown')
+        assert('lastModified' in res.body[0])
       })
       .end(done)
   })
@@ -46,7 +55,7 @@ describe('PUT /cargo', () => {
     name: 'update cargo name',
     fs: 221,
     weight: 200,
-    ...lastModifiedInfo
+    ...lastModifiedInfo,
   }
 
   const updateCargoNonUnique: Cargo = {
@@ -56,7 +65,7 @@ describe('PUT /cargo', () => {
     name: 'Pax info card',
     fs: 221,
     weight: 200,
-    ...lastModifiedInfo
+    ...lastModifiedInfo,
   }
 
   const newCargo: Cargo = {
@@ -66,7 +75,7 @@ describe('PUT /cargo', () => {
     name: 'new cargo',
     fs: 221,
     weight: 200,
-    ...lastModifiedInfo
+    ...lastModifiedInfo,
   }
 
   const updateCargoWithWrongAircraftId: Cargo = {
@@ -76,7 +85,7 @@ describe('PUT /cargo', () => {
     name: 'Pax info card',
     fs: 221,
     weight: 200,
-    ...lastModifiedInfo
+    ...lastModifiedInfo,
   }
 
   before(async () => {
@@ -99,7 +108,7 @@ describe('PUT /cargo', () => {
       .put('/cargo')
       .set('authorization', encodeAuth(role3))
       .send(newCargo)
-      .expect(200);
+      .expect(200)
 
     const name_aircraftid = {
       aircraftid: newCargo.aircraftid,
@@ -167,8 +176,8 @@ describe('DELETE /cargo', () => {
       .delete('/cargo?cargoid=1')
       .set('authorization', role3e)
       .expect(200)
-      
-    const found=await prisma.cargo.findUnique({where: {cargoid: 1}})
-    assert.deepStrictEqual(found, null);
+
+    const found = await prisma.cargo.findUnique({where: {cargoid: 1}})
+    assert.deepStrictEqual(found, null)
   })
 })

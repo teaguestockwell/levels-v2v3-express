@@ -6,7 +6,6 @@ import assert from 'assert'
 import server from '../server'
 import {ConfigCargo, PrismaClient} from '@prisma/client'
 
-
 const prisma = new PrismaClient()
 
 // READ

@@ -3,10 +3,7 @@ import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
 import {role0e, role2e, role3e, role4e, role2OnAir1e} from './utils'
-import {
-  Aircraft,
-  PrismaClient,
-} from '@prisma/client'
+import {Aircraft, PrismaClient} from '@prisma/client'
 import {seedTest} from '../prisma/seed_test'
 
 const prisma = new PrismaClient()
@@ -187,7 +184,6 @@ describe('PUT /aircraft', () => {
 
 // DELETE
 describe('DELETE /aircraft', () => {
-
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
@@ -218,7 +214,9 @@ describe('DELETE /aircraft', () => {
         didFind.push(await prisma.tank.findMany({where: {aircraftid: 1}}))
         didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
         didFind.push(await prisma.config.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.configCargo.findMany({where: {aircraftid: 1}}))
+        didFind.push(
+          await prisma.configCargo.findMany({where: {aircraftid: 1}})
+        )
         didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
         didFind.push(await prisma.cargo.findMany({where: {aircraftid: 1}}))
 

@@ -174,8 +174,8 @@ export const seedTest = {
               role: 2,
             },
             {
-            name: 'role3OnAir1@test.com',
-            role: 3,
+              name: 'role3OnAir1@test.com',
+              role: 3,
             },
             {
               name: 'teague.stockwell@us.af.mil',
@@ -280,7 +280,7 @@ export const seedTest = {
         fs: 358,
         weight: 40,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -290,7 +290,7 @@ export const seedTest = {
         weight: 25,
         fs: 260,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -300,7 +300,7 @@ export const seedTest = {
         fs: 260,
         weight: 3,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -310,7 +310,7 @@ export const seedTest = {
         fs: 280,
         weight: 5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -320,7 +320,7 @@ export const seedTest = {
         fs: 280,
         weight: 3.5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -330,7 +330,7 @@ export const seedTest = {
         fs: 280,
         weight: 2,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -340,7 +340,7 @@ export const seedTest = {
         fs: -1,
         weight: 1,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -350,7 +350,7 @@ export const seedTest = {
         fs: -1,
         weight: 0.5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -360,7 +360,7 @@ export const seedTest = {
         fs: 260,
         weight: 10,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -370,7 +370,7 @@ export const seedTest = {
         fs: 380,
         weight: 3,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -380,7 +380,7 @@ export const seedTest = {
         fs: 280,
         weight: 3,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -390,7 +390,7 @@ export const seedTest = {
         fs: 401,
         weight: 3620,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Steward
+        category: CargoCategory.Steward,
       },
     })
 
@@ -400,7 +400,7 @@ export const seedTest = {
         fs: 280,
         weight: 4,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -410,7 +410,7 @@ export const seedTest = {
         fs: -1,
         weight: 1.5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -420,7 +420,7 @@ export const seedTest = {
         fs: 280,
         weight: 36,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -430,7 +430,7 @@ export const seedTest = {
         fs: 280,
         weight: 28,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -440,7 +440,7 @@ export const seedTest = {
         fs: 280,
         weight: 4,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -450,7 +450,7 @@ export const seedTest = {
         fs: -1,
         weight: 2,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -460,7 +460,7 @@ export const seedTest = {
         fs: 280,
         weight: 5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -470,7 +470,7 @@ export const seedTest = {
         fs: 280,
         weight: 11.5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -480,7 +480,7 @@ export const seedTest = {
         fs: 280,
         weight: 8.5,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Emergency
+        category: CargoCategory.Emergency,
       },
     })
 
@@ -490,7 +490,7 @@ export const seedTest = {
         fs: 252,
         weight: 43,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -500,7 +500,7 @@ export const seedTest = {
         fs: -1,
         weight: 66,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -510,7 +510,7 @@ export const seedTest = {
         fs: -1,
         weight: 591,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -520,7 +520,7 @@ export const seedTest = {
         fs: -1,
         weight: 767,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -530,7 +530,7 @@ export const seedTest = {
         fs: -1,
         weight: 943,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -540,7 +540,7 @@ export const seedTest = {
         fs: 744,
         weight: 255,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -550,7 +550,7 @@ export const seedTest = {
         fs: 400,
         weight: 20,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -560,7 +560,7 @@ export const seedTest = {
         fs: 217,
         weight: 1125,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -570,7 +570,7 @@ export const seedTest = {
         fs: -1,
         weight: 1350,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -580,7 +580,7 @@ export const seedTest = {
         fs: 580,
         weight: 3790,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -590,7 +590,7 @@ export const seedTest = {
         fs: 685,
         weight: 4660,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -600,7 +600,7 @@ export const seedTest = {
         fs: 305,
         weight: 30,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 
@@ -610,7 +610,7 @@ export const seedTest = {
         fs: 280,
         weight: 10,
         aircraft: {connect: {id: 1}},
-        category: CargoCategory.Extra
+        category: CargoCategory.Extra,
       },
     })
 

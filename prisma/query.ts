@@ -133,8 +133,8 @@ const query = {
         name: cargo.name,
         fs: cargo.fs,
         weight: cargo.weight,
-        lastModified:cargo.lastModified,
-        lastModifiedBy:cargo.lastModifiedBy,
+        lastModified: cargo.lastModified,
+        lastModifiedBy: cargo.lastModifiedBy,
       },
     })
   },
@@ -148,7 +148,6 @@ const query = {
   },
 
   //////////////////////////////READ//////////////////////////////////////
-
 
   //////// ROLE VERIFICATION //////////////
   readAircraftIdAtTankid: async (tankid: number): Promise<number> => {
@@ -171,12 +170,12 @@ const query = {
     return (await prisma.cargo.findFirst({where: {cargoid}})).aircraftid
   },
 
-  readAircraftIdAtConfigCargoid: async (configcargoid: number):Promise<number> => {
-    return (await prisma.configCargo.findFirst({where: {configcargoid}})).aircraftid
+  readAircraftIdAtConfigCargoid: async (
+    configcargoid: number
+  ): Promise<number> => {
+    return (await prisma.configCargo.findFirst({where: {configcargoid}}))
+      .aircraftid
   },
-
-
-
 
   readFirstUserAtname: async (name: string): Promise<User> => {
     return await prisma.user.findFirst({where: {name}})
@@ -418,7 +417,7 @@ const query = {
   readConfigCargosDeepAtConfigId: async (configid: number): Promise<any[]> => {
     return await prisma.configCargo.findMany({
       where: {configid},
-      include: {cargo: true}
+      include: {cargo: true},
     })
   },
 
