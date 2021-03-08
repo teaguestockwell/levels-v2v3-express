@@ -282,6 +282,6 @@ export const role2OnAir1e = encodeAuth(role2OnAir1)
 export const oldDate = new Date('03/08/1980')
 
 export const lastModifiedInfo = {
-  lastModified: oldDate,
-  lastModifiedBy: 'bogus',
+  updated: oldDate,
+  updatedBy: 'bogus',
 }

@@ -31,8 +31,8 @@ describe('GET /cargo', () => {
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
-        assert.strictEqual(res.body[0].lastModifiedBy, 'unknown')
-        assert('lastModified' in res.body[0])
+        assert.strictEqual(res.body[0].updatedBy, 'unknown')
+        assert('updated' in res.body[0])
       })
       .end(done)
   })
@@ -120,9 +120,9 @@ describe('PUT /cargo', () => {
     assert.deepStrictEqual(found.name, newCargo.name)
     assert.deepStrictEqual(found.weight, newCargo.weight)
     assert.deepStrictEqual(found.aircraftid, newCargo.aircraftid)
-    assert.notStrictEqual(found.lastModified, newCargo.lastModified)
-    assert.notStrictEqual(found.lastModifiedBy, newCargo.lastModifiedBy)
-    assert.strictEqual(found.lastModifiedBy, role3.email)
+    assert.notStrictEqual(found.updated, newCargo.updated)
+    assert.notStrictEqual(found.updatedBy, newCargo.updatedBy)
+    assert.strictEqual(found.updatedBy, role3.email)
   })
 
   it('Should return 403 where req.role <= 2 on aircraft', (done: Done) => {

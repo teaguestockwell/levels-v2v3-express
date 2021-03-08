@@ -119,8 +119,8 @@ model Cargo {
 
   // Scalar Fields
   cargoid        Int            @unique @default(autoincrement())
-  lastModified   DateTime       @updatedAt
-  lastModifiedBy String         @default("unknown")
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("unknown")
   name           String
   weight         Float
   fs             Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
