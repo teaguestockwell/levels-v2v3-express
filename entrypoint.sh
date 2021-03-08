@@ -1,8 +1,8 @@
 echo "waiting for DB to accept conenctions"
 sleep 5 
 
-echo "generating prisma types from prisma.schema into node_modules"
-npx prisma generate
+# echo "generating prisma types from prisma.schema into node_modules"
+# npx prisma generate
 
 echo "init db schema"
 npx prisma migrate dev --name init --preview-feature
