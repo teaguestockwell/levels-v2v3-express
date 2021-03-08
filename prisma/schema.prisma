@@ -120,18 +120,26 @@ model Cargo {
   configCargos ConfigCargo[]
 
   // Scalar Fields
-  cargoid        Int      @unique @default(autoincrement())
-  lastModified   DateTime @default(now())
-  lastModifiedBy String   @default("unknown")
+  cargoid        Int            @unique @default(autoincrement())
+  lastModified   DateTime       @updatedAt
+  lastModifiedBy String         @default("unknown")
   name           String
   weight         Float
-  fs             Float?   @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
+  fs             Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
   // enums are not fully supported in all primsa DB, so ints we go:
   // 1: Steward Equip
   // 2: Emergency equip
   // 3: Extra Equip
-  category       Int?     @default(3)
+  category       CargoCategory? @default(ExtraEquip)
   @@id([name, aircraftid])
+}
+
+enum CargoCategory {
+  StewardEquip    @map("stewardEquip")
+  EmergencyEquip  @map("emergencyEquip")
+  ExtraEquip      @map("extraEquip")
+
+  @@map("_CargoCategory")
 }
 
 model ConfigCargo {

@@ -6,7 +6,7 @@
     "cleanDocker": "docker system prune --filter until=24h -f",
     "prisma:studio": "npx prisma studio",
     "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npx prisma migrate dev --preview-feature",
+    "prisma:migrate": "npx prisma generate && npx prisma migrate dev --preview-feature",
     "db:seed": "npx ts-node prisma/seed.ts",
     "test:unitOnly": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test:unit": "npm install && npx prisma migrate dev --name init --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
