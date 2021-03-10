@@ -36,6 +36,7 @@
     "@typescript-eslint/parser": "^4.14.2",
     "assert": "^2.0.0",
     "btoa": "^1.2.1",
+    "cors": "^2.8.5",
     "eslint": "^7.7.0",
     "mocha": "^8.1.1",
     "npm-force-resolutions": "0.0.10",
