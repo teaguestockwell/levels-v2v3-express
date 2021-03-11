@@ -1,8 +1,8 @@
-# Required dependancies
+# Required dependencies
 1. install git https://www.atlassian.com/git/tutorials/install-git
 2. install docker: https://docs.docker.com/get-docker/
 3. install vscode: https://code.visualstudio.com/download
-4. install the vs code extension: https://marketplace.visualstudio.com/items?
+4. install the vs code extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers 
 # To compose UI-API-DB
 #### Mac
 git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git frontend && git clone https://code.il2.dso.mil/tron/products/five-level-app/api.git api && git clone https://code.il2.dso.mil/tron/products/five-level-app/docker-compose-dev.git fullstack-template && cd fullstack-template && bin/run.sh
@@ -16,8 +16,8 @@ git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git fro
 # What the heck is a fullstack template?
 BSwenson made a tool that mock the P1 env locally by injecting an auth header. This allows us to create roles and profiles for users authenticated with P1's Keycloak: https://code.il2.dso.mil/brandon.swenson/fullstack-template
 # A REST API with auth using Prisma-Express-Node-PGSql
-to view live data while runing, use the examples with vs code rest client || attach terminal to running api container and run: npx prisma studio
-### Postgress img out of space on mac?
+to view live data while running, use the examples with vs code rest client || attach terminal to running api container and run: npx prisma studio
+### Postgresql img out of space on mac?
 1. https://github.com/docker/for-mac/issues/371#issuecomment-248404423
 2. reset docker to factory defaults
 3. docker pull nginx && docker pull node:14.15.4 && docker pull nginx
@@ -32,7 +32,7 @@ logs for all routes? log: Datetime, email, role, req.route, req.method, req.body
 
 route to view logs?: req.params ?from=datetime1&to=datetime2
 1. suggest this .... /logs?start_date=2012-01-01&end_date=2012-01-31 -
-2. I liked the last comments on this site https://stackoverflow.com/questions/9637297/proper-rest-formatted-url-with-date-ranges "As the name of the parameter it should be meaningful. start could mean anything, but start_date is more meaninful."
+2. I liked the last comments on this site https://stackoverflow.com/questions/9637297/proper-rest-formatted-url-with-date-ranges "As the name of the parameter it should be meaningful. start could mean anything, but start_date is more meaningful."
 3. Would it possibly make sense to streamline the logs to all fall under logs, have 1 column indicate the table, another indicate the remarks which would include what changed?
 
 in mem array of all aircraft in front of /aircraft with frequent db polling?
