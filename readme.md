@@ -1,17 +1,27 @@
-### To compose locally
-
-Use the fullstack template by pointing it's .env to the front and backend docker files, then run bin/run.sh || bin/run.cmd
-
-What the heck is a fullstack template and why are we using it? BSwenson made a tool that mock the P1 env locally by injecting an auth header. This allows us to create roles and profiles for users authenticated with P1's Keycloak: https://code.il2.dso.mil/brandon.swenson/fullstack-template
-
+# Required dependancies
+1. install git https://www.atlassian.com/git/tutorials/install-git
+2. install docker: https://docs.docker.com/get-docker/
+3. install vscode: https://code.visualstudio.com/download
+4. install the vs code extension: https://marketplace.visualstudio.com/items?
+# To compose UI-API-DB
+#### Mac
+git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git frontend && git clone https://code.il2.dso.mil/tron/products/five-level-app/api.git && git clone https://code.il2.dso.mil/tron/products/five-level-app/docker-compose-dev.git fullstack-template && cd fullstack-template && bin/run.sh
+#### Windows
+git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git frontend && git clone https://code.il2.dso.mil/tron/products/five-level-app/api.git && git clone https://code.il2.dso.mil/tron/products/five-level-app/docker-compose-dev.git fullstack-template && cd fullstack-template && bin/run.ps1
+# Setup your dev env
+1. click on green button that looks like this in bottom left of vs code >< 
+2. click open workspace in container
+3. run: npx prisma generate && npm install
+4. code stuff && profit?
+# What the heck is a fullstack template?
+BSwenson made a tool that mock the P1 env locally by injecting an auth header. This allows us to create roles and profiles for users authenticated with P1's Keycloak: https://code.il2.dso.mil/brandon.swenson/fullstack-template
+# A REST API with auth using Prisma-Express-Node-PGSql
+to view live data while runing, use the examples with vs code rest client || attach terminal to running api container and run: npx prisma studio
 ### Postgress img out of space on mac?
-
 1. https://github.com/docker/for-mac/issues/371#issuecomment-248404423
 2. reset docker to factory defaults
 3. docker pull nginx && docker pull node:14.15.4 && docker pull nginx
-
 ### TODO?:
-
 cascading updated && updatedBy for models?
 1. "updated" can be added to all models without being concerned about cascading since it inherently would be taken care of.
 2. "updatedBy" is reasonable and probably wouldn't be significant amount of work
