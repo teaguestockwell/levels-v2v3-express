@@ -14,4 +14,4 @@ EXPOSE 8080
 
 RUN npm install
 
-CMD ["/bin/bash", "/api/entrypoint.sh"]
+CMD ["/bin/bash", "/app/entrypoint.sh"]
