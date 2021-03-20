@@ -8,11 +8,11 @@ USER root
 RUN node -e "const fs = require('fs');  fs.chown('/home/node/', 950, 950, (error) => {console.log(error)});"
 USER 950
 
-# COPY --chown=950:950 [^.env]* .
+# COPY without dev env
 COPY --chown=950:950 [^.env]* .
 
-EXPOSE 8080
-
 RUN npm install
+
+EXPOSE 8080
 
 CMD ["/bin/bash", "/app/entrypoint.sh"]
