@@ -4,9 +4,9 @@ FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/base-image/hard
 WORKDIR /app
 
 # temporary fix until P1 adds chown capabilities or makes /home/node owned by appuser
-USER root
-RUN node -e "const fs = require('fs');  fs.chown('/home/node/', 950, 950, (error) => {console.log(error)});"
-USER 950
+# USER root
+# RUN node -e "const fs = require('fs');  fs.chown('/home/node/', 950, 950, (error) => {console.log(error)});"
+# USER 950
 
 # COPY without dev env
 COPY --chown=950:950 [^.env]* .
