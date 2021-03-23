@@ -9,7 +9,7 @@ WORKDIR /app
 # USER 950
 
 # COPY without dev env
-COPY --chown=950:950 [^.env]* .
+COPY . [^.env]*.
 
 RUN npm install
 
