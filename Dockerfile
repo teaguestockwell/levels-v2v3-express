@@ -4,7 +4,7 @@ FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/base-image/hard
 WORKDIR /app
 
 # COPY without dev env
-COPY . [^.env]*.
+COPY --chown=950:950 [^.env]* .
 
 RUN npm install
 
