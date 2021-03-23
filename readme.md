@@ -1,3 +1,12 @@
+# A REST API with auth using Prisma-Express-Node-PGSql
+A node server leveraging:
+1. Express
+2. Prisma
+3. Postgresql
+4. Typescript
+5. User roles
+6. Nested models
+
 ![output](https://user-images.githubusercontent.com/71202372/112101303-a4edc080-8b63-11eb-9712-97a42599a66d.gif)
 ![output](https://user-images.githubusercontent.com/71202372/112105405-986c6680-8b69-11eb-9c34-b60b4aff17e6.gif)
 # Required dependencies
@@ -16,7 +25,7 @@ git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git fro
 3. code stuff && profit?
 # What the heck is a fullstack template?
 BSwenson made a tool that mock the P1 env locally by injecting an auth header. This allows us to create roles and profiles for users authenticated with P1's Keycloak: https://code.il2.dso.mil/brandon.swenson/fullstack-template
-# A REST API with auth using Prisma-Express-Node-PGSql
+
 to view live data while running, use the examples with vs code rest client || attach terminal to running api container and run: npx prisma studio
 ### Postgresql img out of space on mac?
 1. https://github.com/docker/for-mac/issues/371#issuecomment-248404423
