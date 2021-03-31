@@ -8,8 +8,8 @@ import query from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
 
 const newUserRole1: User = {
-  aircraftid: 1,
-  userid: 0, // 0 tells upsert that user was created by ui, and to assign them a userid
+  aircraftId: 1,
+  userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
   name: 'newb@name',
   role: 1,
 }
@@ -23,7 +23,7 @@ describe('GET /user', () => {
 
   it('Should return users of a given aircraft when request.user.role >= 2', (done: Done) => {
     req(server)
-      .get('/user?aircraftid=1')
+      .get('/user?aircraftId=1')
       .set('authorization', role2e)
       .expect(200)
       .expect((res) => {
@@ -34,7 +34,7 @@ describe('GET /user', () => {
 
   it('Should deny requests that have an access level < 2', (done: Done) => {
     req(server)
-      .get('/user?aircraftid=1')
+      .get('/user?aircraftId=1')
       .set('authorization', role1e)
       .expect(403)
       .end(done)
@@ -44,22 +44,22 @@ describe('GET /user', () => {
 // CREATE || UPDATE
 describe('PUT /user', () => {
   const seededUserRole0: User = {
-    aircraftid: 1,
-    userid: 1,
+    aircraftId: 1,
+    userId: 1,
     name: 'role0@test.com',
     role: 2, // updating role 0 to role 2
   }
 
   const newUserRole10: User = {
-    aircraftid: 1,
-    userid: 0, // 0 tells upsert that user was created by ui, and to assign them a userid
+    aircraftId: 1,
+    userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
     name: 'newb@name',
     role: 10, // fake role to assert this user has higher role than request maker
   }
 
   const mockDuplicateUserUpdate: User = {
-    aircraftid: 1,
-    userid: 4, // this corresponds to name role1@test.com
+    aircraftId: 1,
+    userId: 4, // this corresponds to name role1@test.com
     name: 'role0@test.com', // cannot put to duplicate user
     role: 2,
   }
@@ -95,7 +95,7 @@ describe('PUT /user', () => {
       .expect(200)
       .expect(async () => {
         const updated: User = await query.readUserAtUserID(
-          seededUserRole0.userid
+          seededUserRole0.userId
         )
         assert.deepStrictEqual(updated, seededUserRole0)
       })
@@ -109,7 +109,7 @@ describe('PUT /user', () => {
       .send(newUserRole1)
       .expect(200)
       .expect(async () => {
-        const updated: User = await query.readUserAtUserID(newUserRole1.userid)
+        const updated: User = await query.readUserAtUserID(newUserRole1.userId)
         assert.deepStrictEqual(updated, newUserRole1)
       })
       .end(done)
@@ -122,7 +122,7 @@ describe('PUT /user', () => {
       .send(mockDuplicateUserUpdate)
       .expect(400)
       .expect(async () => {
-        const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userid)
+        const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userId)
         assert.notStrictEqual(db.name, mockDuplicateUserUpdate.name)
       })
       .end(done)
@@ -136,17 +136,17 @@ describe('DELETE /user', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should 403 when request.role <= userid.role', (done: Done) => {
+  it('Should 403 when request.role <= userId.role', (done: Done) => {
     req(server)
-      .delete('/user?userid=7')
+      .delete('/user?userId=7')
       .set('authorization', role1e)
       .expect(403)
       .end(done)
   })
 
-  it('Should delete when request.role > userid.role', (done: Done) => {
+  it('Should delete when request.role > userId.role', (done: Done) => {
     req(server)
-      .delete('/user?userid=5')
+      .delete('/user?userId=5')
       .set('authorization', role5e)
       .expect(200)
       .end(done)

@@ -18,7 +18,7 @@ describe('GET /glossary', () => {
 
   it('Should return glossarys[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/glossary?aircraftid=1')
+      .get('/glossary?aircraftId=1')
       .set('authorization', role1e)
       .expect(200)
       .expect((res) => {
@@ -29,7 +29,7 @@ describe('GET /glossary', () => {
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
     req(server)
-      .get('/glossary?aircraftid=1')
+      .get('/glossary?aircraftId=1')
       .set('authorization', role0e)
       .expect(403)
       .end(done)
@@ -39,22 +39,22 @@ describe('GET /glossary', () => {
 // UPDATE || CREATE
 describe('PUT /glossary', () => {
   const updateGloss: Glossary = {
-    aircraftid: 1,
-    glossaryid: 1,
+    aircraftId: 1,
+    glossaryId: 1,
     name: 'update glossary name',
     body: 'update info here',
   }
 
   const updateGlossNonUnique: Glossary = {
-    aircraftid: 1,
-    glossaryid: 1,
+    aircraftId: 1,
+    glossaryId: 1,
     name: '%MAC',
     body: 'update info here',
   }
 
   const newGloss: Glossary = {
-    aircraftid: 1,
-    glossaryid: 0, // 0 means this is a new glossary - no id has been assined by db
+    aircraftId: 1,
+    glossaryId: 0, // 0 means this is a new glossary - no id has been assined by db
     name: 'new glossary name',
     body: 'info here',
   }
@@ -81,7 +81,7 @@ describe('PUT /glossary', () => {
       .expect(200)
       .expect(async () => {
         const name_aircraftid = {
-          aircraftid: newGloss.aircraftid,
+          aircraftId: newGloss.aircraftId,
           name: newGloss.name,
         }
         const found = await prisma.glossary.findUnique({
@@ -89,7 +89,7 @@ describe('PUT /glossary', () => {
         })
         assert.deepStrictEqual(found.name, newGloss.name)
         assert.deepStrictEqual(found.body, newGloss.body)
-        assert.deepStrictEqual(found.aircraftid, newGloss.aircraftid)
+        assert.deepStrictEqual(found.aircraftId, newGloss.aircraftId)
       })
       .end(done)
   })
@@ -122,7 +122,7 @@ describe('DELETE /glossary', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/glossary?glossaryid=1')
+      .delete('/glossary?glossaryId=1')
       .set('authorization', role2e)
       .expect(403)
       .end(done)
@@ -130,13 +130,13 @@ describe('DELETE /glossary', () => {
 
   it('Should 200 and delete where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/glossary?glossaryid=1')
+      .delete('/glossary?glossaryId=1')
       .set('authorization', role3e)
       .expect(200)
       .expect(async () => {
         let didFind: boolean
         await prisma.glossary
-          .findUnique({where: {glossaryid: 1}})
+          .findUnique({where: {glossaryId: 1}})
           .then(() => {
             didFind = true
           })

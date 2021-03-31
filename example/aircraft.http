@@ -16,7 +16,7 @@ content-type: application/json
   "cargoweight1": 300000,
   "lemac": 793.6,
   "mac": 309.5,
-  "mommultiplyer": 10000
+  "momMultiplyer": 10000
 }
 ###
 PUT http://localhost:8080/fl-api/aircraft
@@ -34,7 +34,7 @@ content-type: application/json
   "cargoweight1": 300000,
   "lemac": 793.6,
   "mac": 309.5,
-  "mommultiplyer": 10000
+  "momMultiplyer": 10000
 }
 ###
 DELETE http://localhost:8080/fl-api/aircraft?id=4

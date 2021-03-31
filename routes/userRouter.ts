@@ -5,12 +5,12 @@ import {resMsg} from './baseRouter'
 
 const userRouter = Router()
 
-// READ ({aircraftid}) || ()
+// READ ({aircraftId}) || ()
 userRouter.get('*', async (req: Request, res: Response) => {
   try {
-    const aircraftid = Number(`${req.query['aircraftid']}`)
+    const aircraftId = Number(`${req.query['aircraftId']}`)
     if ((await query.readHighestRole(req)) >= 2) {
-      const users = await query.readUsersAtAircraftID(aircraftid)
+      const users = await query.readUsersAtAircraftID(aircraftId)
       resMsg.on200(req)
       res.status(200).send(users)
     } else {
@@ -28,7 +28,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
     const reqBodyUser: User = req.body
     const reqUser: User = await query.readUserAtReqAndAircraftId(
       req,
-      reqBodyUser.aircraftid
+      reqBodyUser.aircraftId
     )
 
     if (reqUser.role >= 2 && reqUser.role > reqBodyUser.role) {
@@ -42,17 +42,17 @@ userRouter.put('/', async (req: Request, res: Response) => {
   }
 })
 
-// DELETE ({userid})
+// DELETE ({userId})
 userRouter.delete('*', async (req: Request, res: Response) => {
   try {
-    const userid = Number(`${req.query['userid']}`)
-    const tryDeleteUser = await query.readUserAtUserID(userid)
+    const userId = Number(`${req.query['userId']}`)
+    const tryDeleteUser = await query.readUserAtUserID(userId)
     const reqUser = await query.readUserAtReqAndAircraftId(
       req,
-      tryDeleteUser.aircraftid
+      tryDeleteUser.aircraftId
     )
     if (reqUser.role > tryDeleteUser.role) {
-      query.deleteUserAtUserid(tryDeleteUser.userid)
+      query.deleteUserAtUserid(tryDeleteUser.userId)
       res.status(200).send(resMsg.on200(req))
     } else {
       res

@@ -4,7 +4,7 @@ import {baseRouter} from './baseRouter'
 
 const cargoRouter = Router()
 
-// READ N ({aircraftid})
+// READ N ({aircraftId})
 cargoRouter.get('*', async (req: Request, res: Response) => {
   await baseRouter.getN({
     req: req,

@@ -1,12 +1,12 @@
 ###
-GET http://localhost:8080/fl-api/configcargo?configid=1
+GET http://localhost:8080/fl-api/configcargo?configId=1
 ###
 PUT http://localhost:8080/fl-api/configcargo
 content-type: application/json
 
 {
-  "aircraftid": 1,
-  "configid": 1,
+  "aircraftId": 1,
+  "configId": 1,
   "cargoid": 10,
   "configcargoid": 0,
   "fs": 4000,
@@ -17,8 +17,8 @@ PUT http://localhost:8080/fl-api/configcargo
 content-type: application/json
 
 {
-  "aircraftid": 1,
-  "configid": 1,
+  "aircraftId": 1,
+  "configId": 1,
   "cargoid": 10,
   "configcargoid": 860,
   "fs": 400,

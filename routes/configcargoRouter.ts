@@ -7,7 +7,7 @@ const configCargoRouter = Router()
 // READ N (Config)
 configCargoRouter.get('*', async (req: Request, res: Response) => {
   const reqRoleGE = 1
-  const pk = 'configid'
+  const pk = 'configId'
   const readAircraftIDOfOBJpk = query.readAircraftIdAtConfigid
   const readNAtPK = query.readConfigCargosDeepAtConfigId
   try {

@@ -57,10 +57,10 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     else if ((await query.readRoleAtAircraftID(req, reqAir.id)) >= 3) {
       try {
         const mockUser: User = {
-          aircraftid: 0,
+          aircraftId: 0,
           role: 0,
           name: 'mock',
-          userid: 0,
+          userId: 0,
         }
         await query.upsertAircraftShallow(reqAir, mockUser)
         res.status(200).send(resMsg.on200(req))

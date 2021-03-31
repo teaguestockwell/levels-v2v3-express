@@ -1,12 +1,12 @@
 ###
-GET http://localhost:8080/fl-api/config?aircraftid=2
+GET http://localhost:8080/fl-api/config?aircraftId=2
 ###
 PUT http://localhost:8080/fl-api/config
 content-type: application/json
 
 {
-  "configid": 0,
-  "aircraftid": 2,
+  "configId": 0,
+  "aircraftId": 2,
   "name": "create"
 }
 ###
@@ -14,9 +14,9 @@ PUT http://localhost:8080/fl-api/config
 content-type: application/json
 
 {
-  "configid": 39,
-  "aircraftid": 2,
+  "configId": 39,
+  "aircraftId": 2,
   "name": "update"
 }
 ###
-DELETE http://localhost:8080/fl-api/config?configid=39
+DELETE http://localhost:8080/fl-api/config?configId=39

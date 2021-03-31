@@ -20,7 +20,7 @@ const createAir: Aircraft = {
   cargoweight1: 20000,
   lemac: 700,
   mac: 90,
-  mommultiplyer: 10000,
+  momMultiplyer: 10000,
 }
 
 const createAirNonUniqueName: Aircraft = {
@@ -35,7 +35,7 @@ const createAirNonUniqueName: Aircraft = {
   cargoweight1: 20000,
   lemac: 700,
   mac: 90,
-  mommultiplyer: 10000,
+  momMultiplyer: 10000,
 }
 
 const updateAirNonUniqueName: Aircraft = {
@@ -50,7 +50,7 @@ const updateAirNonUniqueName: Aircraft = {
   cargoweight1: 20000,
   lemac: 700,
   mac: 90,
-  mommultiplyer: 10000,
+  momMultiplyer: 10000,
 }
 
 const updateAir: Aircraft = {
@@ -65,7 +65,7 @@ const updateAir: Aircraft = {
   cargoweight1: 300000,
   lemac: 793.6,
   mac: 309.5,
-  mommultiplyer: 10000,
+  momMultiplyer: 10000,
 }
 
 // READ
@@ -208,17 +208,17 @@ describe('DELETE /aircraft', () => {
 
         // expect everthing to cascade delete
         didFind.push(await prisma.aircraft.findMany({where: {id: 1}}))
-        didFind.push(await prisma.user.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.tank.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.config.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.user.findMany({where: {aircraftId: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))
+        didFind.push(await prisma.tank.findMany({where: {aircraftId: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))
+        didFind.push(await prisma.config.findMany({where: {aircraftId: 1}}))
         didFind.push(
-          await prisma.configCargo.findMany({where: {aircraftid: 1}})
+          await prisma.configCargo.findMany({where: {aircraftId: 1}})
         )
-        didFind.push(await prisma.glossary.findMany({where: {aircraftid: 1}}))
-        didFind.push(await prisma.cargo.findMany({where: {aircraftid: 1}}))
+        didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))
+        didFind.push(await prisma.cargo.findMany({where: {aircraftId: 1}}))
 
         assert.deepStrictEqual(didFind.length, 0)
       })

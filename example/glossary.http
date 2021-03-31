@@ -1,12 +1,12 @@
 ###
-GET http://localhost:8080/fl-api/glossary?aircraftid=2
+GET http://localhost:8080/fl-api/glossary?aircraftId=2
 ###
 PUT http://localhost:8080/fl-api/glossary
 content-type: application/json
 
 {
-  "glossaryid": 0,
-  "aircraftid": 2,
+  "glossaryId": 0,
+  "aircraftId": 2,
   "name": "create",
   "body": "body"
 }
@@ -15,10 +15,10 @@ PUT http://localhost:8080/fl-api/glossary
 content-type: application/json
 
 {
-  "glossaryid": 19,
-  "aircraftid": 2,
+  "glossaryId": 19,
+  "aircraftId": 2,
   "name": "update",
   "body": "body"
 }
 ###
-DELETE http://localhost:8080/fl-api/glossary?"glossaryid=19
+DELETE http://localhost:8080/fl-api/glossary?"glossaryId=19

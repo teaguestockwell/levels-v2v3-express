@@ -15,9 +15,9 @@ describe('GET /configcargo', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should return configcargos[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
+  it('Should return configCargos[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/configcargo?aircraftid=1&configid=1')
+      .get('/configcargo?aircraftId=1&configId=1')
       .set('authorization', role1e)
       .expect(200)
       .expect((res) => {
@@ -28,7 +28,7 @@ describe('GET /configcargo', () => {
 
   it('Should 403 where req.role <3 on aircraft', (done: Done) => {
     req(server)
-      .get('/configcargo?aircraftid=1&configid=1')
+      .get('/configcargo?aircraftId=1&configId=1')
       .set('authorization', role0e)
       .expect(403)
       .end(done)
@@ -39,33 +39,33 @@ describe('GET /configcargo', () => {
 describe('PUT /configcargo', () => {
   //
   const updateConfigCargo: ConfigCargo = {
-    aircraftid: 1,
+    aircraftId: 1,
     cargoid: 10,
     configcargoid: 24,
-    configid: 2,
+    configId: 2,
     fs: 200,
     qty: 20,
   }
 
   const updateConfigCargoNonUnique: ConfigCargo = {
-    aircraftid: 1,
+    aircraftId: 1,
     // cannot have the same cargo id as config cargo #1,
     // because this would make two rows of the same type of cargo,
     // to add more of a cargo in a config, the user will change the qty,
     // they will not add more redundant rows!
     cargoid: 1,
     configcargoid: 2,
-    configid: 1,
+    configId: 1,
     fs: 200,
     qty: 20,
   }
 
   // add pass demo kits to AE-1 on C-17A-ER
   const newConfigCargo: ConfigCargo = {
-    aircraftid: 1,
+    aircraftId: 1,
     cargoid: 10,
     configcargoid: 0,
-    configid: 1,
+    configId: 1,
     fs: 200,
     qty: 1337,
   }
@@ -92,15 +92,15 @@ describe('PUT /configcargo', () => {
       .expect(200)
       .expect(async () => {
         const configid_aircraftid_cargoid = {
-          aircraftid: newConfigCargo.aircraftid,
-          configid: newConfigCargo.configid,
+          aircraftId: newConfigCargo.aircraftId,
+          configId: newConfigCargo.configId,
           cargoid: newConfigCargo.cargoid,
         }
         const found = await prisma.configCargo.findUnique({
           where: {configid_aircraftid_cargoid},
         })
         assert.deepStrictEqual(found.qty, newConfigCargo.qty)
-        assert.deepStrictEqual(found.aircraftid, newConfigCargo.aircraftid)
+        assert.deepStrictEqual(found.aircraftId, newConfigCargo.aircraftId)
       })
       .end(done)
   })

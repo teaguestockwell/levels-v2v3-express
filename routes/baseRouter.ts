@@ -72,7 +72,7 @@ export const baseRouter = {
     req,
     res,
     reqRoleGE,
-    pk = 'aircraftid',
+    pk = 'aircraftId',
     readNAtPK,
     readAircraftIDOfOBJpk,
   }: getN): Promise<void> => {
@@ -83,13 +83,13 @@ export const baseRouter = {
       // to mitigate role explotation, verify the aircraft id given the obj pk.
       // an example of where this is applicable is GET /configcargo
       // if the pk is aircraft id this is unnecacary
-      if (pk != 'aircraftid') {
+      if (pk != 'aircraftId') {
         const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
         roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
       } else {
         roleAtAircraft = await query.readRoleAtAircraftID(
           req,
-          Number(`${req.query['aircraftid']}`)
+          Number(`${req.query['aircraftId']}`)
         )
       }
 
@@ -109,7 +109,7 @@ export const baseRouter = {
     req,
     res,
     reqRoleGE,
-    pk = 'aircraftid',
+    pk = 'aircraftId',
     upsertType,
     readAircraftIDOfOBJpk,
   }: put1): Promise<void> => {
@@ -121,13 +121,13 @@ export const baseRouter = {
 
         // because this is a create or update ep and a pkNum of 0 is a create req,
         // we dont need to check the role @ an object that has not been created yet
-        if (pk != 'aircraftid' && pkNum != 0) {
+        if (pk != 'aircraftId' && pkNum != 0) {
           const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
           roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
         } else {
           roleAtAircraft = await query.readRoleAtAircraftID(
             req,
-            req.body.aircraftid
+            req.body.aircraftId
           )
         }
 
@@ -156,7 +156,7 @@ export const baseRouter = {
     try {
       const pk = Number(`${req.query[objPK]}`)
       const obj: any = await readOBJatPK(pk)
-      const reqRoleAtOBJ = await query.readRoleAtAircraftID(req, obj.aircraftid)
+      const reqRoleAtOBJ = await query.readRoleAtAircraftID(req, obj.aircraftId)
 
       if (reqRoleAtOBJ >= reqRoleGE) {
         await delete1(pk)

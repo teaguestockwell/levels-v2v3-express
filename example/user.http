@@ -1,5 +1,5 @@
 ###
-GET http://localhost:8080/fl-api/user?aircraftid=1
+GET http://localhost:8080/fl-api/user?aircraftId=1
 ###
 GET http://localhost:8080/fl-api/user
 ###
@@ -7,8 +7,8 @@ PUT http://localhost:8080/fl-api/user
 content-type: application/json
 
 {
-  "userid": 0,
-  "aircraftid": 1,
+  "userId": 0,
+  "aircraftId": 1,
   "name": "create",
   "role": 1
 }
@@ -17,10 +17,10 @@ PUT http://localhost:8080/fl-api/user
 content-type: application/json
 
 {
-  "userid": 17,
-  "aircraftid": 1,
+  "userId": 17,
+  "aircraftId": 1,
   "name": "update",
   "role": 2
 }
 ###
-DELETE http://localhost:8080/fl-api/user?userid=17
+DELETE http://localhost:8080/fl-api/user?userId=17

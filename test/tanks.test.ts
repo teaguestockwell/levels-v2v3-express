@@ -18,7 +18,7 @@ describe('GET /tank', () => {
 
   it('Should return tanks[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/tank?aircraftid=1')
+      .get('/tank?aircraftId=1')
       .set('authorization', role1e)
       .expect(200)
       .expect((res) => {
@@ -29,7 +29,7 @@ describe('GET /tank', () => {
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
     req(server)
-      .get('/tank?aircraftid=1')
+      .get('/tank?aircraftId=1')
       .set('authorization', role0e)
       .expect(403)
       .end(done)
@@ -39,27 +39,27 @@ describe('GET /tank', () => {
 // UPDATE || CREATE
 describe('PUT /tank', () => {
   const updateTank: Tank = {
-    aircraftid: 1,
-    tankid: 1,
+    aircraftId: 1,
+    tankId: 1,
     name: 'update tank name',
-    simplemoms: 'update info here',
-    weights: '123 I love pe',
+    simpleMomsCSV: 'update info here',
+    weightsCSV: '123 I love pe',
   }
 
   const updateTankNonUnique: Tank = {
-    aircraftid: 1,
-    tankid: 1, // this is tank 1
+    aircraftId: 1,
+    tankId: 1, // this is tank 1
     name: 'Tank 3 ER', // tank 1 cant be the same as tanks 3
-    simplemoms: 'update info here',
-    weights: '123 I love pe',
+    simpleMomsCSV: 'update info here',
+    weightsCSV: '123 I love pe',
   }
 
   const newTank: Tank = {
-    aircraftid: 1,
-    tankid: 0, // 0 means this is a new tank - no id has been assined by db
+    aircraftId: 1,
+    tankId: 0, // 0 means this is a new tank - no id has been assined by db
     name: 'new tank name',
-    simplemoms: 'info here',
-    weights: '123 I love pe',
+    simpleMomsCSV: 'info here',
+    weightsCSV: '123 I love pe',
   }
 
   before(async () => {
@@ -84,15 +84,15 @@ describe('PUT /tank', () => {
       .expect(200)
       .expect(async () => {
         const aircraftid_name = {
-          aircraftid: newTank.aircraftid,
+          aircraftId: newTank.aircraftId,
           name: newTank.name,
         }
         const found = await prisma.tank.findUnique({
           where: {aircraftid_name},
         })
         assert.deepStrictEqual(found.name, newTank.name)
-        assert.deepStrictEqual(found.simplemoms, newTank.simplemoms)
-        assert.deepStrictEqual(found.aircraftid, newTank.aircraftid)
+        assert.deepStrictEqual(found.simpleMomsCSV, newTank.simpleMomsCSV)
+        assert.deepStrictEqual(found.aircraftId, newTank.aircraftId)
       })
       .end(done)
   })
@@ -125,7 +125,7 @@ describe('DELETE /tank', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/tank?tankid=1')
+      .delete('/tank?tankId=1')
       .set('authorization', role2e)
       .expect(403)
       .end(done)
@@ -133,13 +133,13 @@ describe('DELETE /tank', () => {
 
   it('Should 200 and delete where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/tank?tankid=1')
+      .delete('/tank?tankId=1')
       .set('authorization', role3e)
       .expect(200)
       .expect(async () => {
         let didFind: boolean
         await prisma.tank
-          .findUnique({where: {tankid: 1}})
+          .findUnique({where: {tankId: 1}})
           .then(() => {
             didFind = true
           })

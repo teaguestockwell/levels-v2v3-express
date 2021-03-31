@@ -26,7 +26,7 @@ describe('GET /cargo', () => {
 
   it('Should return cargos[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/cargo?aircraftid=1')
+      .get('/cargo?aircraftId=1')
       .set('authorization', role1e)
       .expect(200)
       .expect((res) => {
@@ -39,7 +39,7 @@ describe('GET /cargo', () => {
 
   it('Should 403 where req.role <1 on aircraft', (done: Done) => {
     req(server)
-      .get('/cargo?aircraftid=1')
+      .get('/cargo?aircraftId=1')
       .set('authorization', role0e)
       .expect(403)
       .end(done)
@@ -50,7 +50,7 @@ describe('GET /cargo', () => {
 describe('PUT /cargo', () => {
   const updateCargo: Cargo = {
     category: null,
-    aircraftid: 1,
+    aircraftId: 1,
     cargoid: 1,
     name: 'update cargo name',
     fs: 221,
@@ -60,7 +60,7 @@ describe('PUT /cargo', () => {
 
   const updateCargoNonUnique: Cargo = {
     category: null,
-    aircraftid: 1,
+    aircraftId: 1,
     cargoid: 1,
     name: 'Pax info card',
     fs: 221,
@@ -70,7 +70,7 @@ describe('PUT /cargo', () => {
 
   const newCargo: Cargo = {
     category: null,
-    aircraftid: 1,
+    aircraftId: 1,
     cargoid: 0,
     name: 'new cargo',
     fs: 221,
@@ -80,7 +80,7 @@ describe('PUT /cargo', () => {
 
   const updateCargoWithWrongAircraftId: Cargo = {
     category: null,
-    aircraftid: 1,
+    aircraftId: 1,
     cargoid: 50, // cargo id one does not belong to aircraft id 2
     name: 'Pax info card',
     fs: 221,
@@ -111,7 +111,7 @@ describe('PUT /cargo', () => {
       .expect(200)
 
     const name_aircraftid = {
-      aircraftid: newCargo.aircraftid,
+      aircraftId: newCargo.aircraftId,
       name: newCargo.name,
     }
     const found = await prisma.cargo.findUnique({
@@ -119,7 +119,7 @@ describe('PUT /cargo', () => {
     })
     assert.deepStrictEqual(found.name, newCargo.name)
     assert.deepStrictEqual(found.weight, newCargo.weight)
-    assert.deepStrictEqual(found.aircraftid, newCargo.aircraftid)
+    assert.deepStrictEqual(found.aircraftId, newCargo.aircraftId)
     assert.notStrictEqual(found.updated, newCargo.updated)
     assert.notStrictEqual(found.updatedBy, newCargo.updatedBy)
     assert.strictEqual(found.updatedBy, role3.email)

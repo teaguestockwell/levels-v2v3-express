@@ -1,12 +1,12 @@
 ###
-GET http://localhost:8080/fl-api/cargo?aircraftid=1
+GET http://localhost:8080/fl-api/cargo?aircraftId=1
 ###
 PUT http://localhost:8080/fl-api/cargo
 content-type: application/json
 
 {
   "cargoid": 0,
-  "aircraftid": 2,
+  "aircraftId": 2,
   "name": "create",
   "weight": 120,
   "fs": 300,
@@ -18,7 +18,7 @@ content-type: application/json
 
 {
   "cargoid": 4,
-  "aircraftid": 2,
+  "aircraftId": 2,
   "name": "update",
   "weight": 120,
   "fs": 300,

@@ -18,7 +18,7 @@ describe('GET /config', () => {
 
   it('Should return configs[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
     req(server)
-      .get('/config?aircraftid=1')
+      .get('/config?aircraftId=1')
       .set('authorization', role1e)
       .expect(200)
       .expect((res) => {
@@ -29,7 +29,7 @@ describe('GET /config', () => {
 
   it('Should 403 where req.role <3 on aircraft', (done: Done) => {
     req(server)
-      .get('/config?aircraftid=1')
+      .get('/config?aircraftId=1')
       .set('authorization', role0e)
       .expect(403)
       .end(done)
@@ -39,20 +39,20 @@ describe('GET /config', () => {
 // UPDATE || CREATE
 describe('PUT /config', () => {
   const updateConfig: Config = {
-    aircraftid: 1,
-    configid: 1,
+    aircraftId: 1,
+    configId: 1,
     name: 'update config name',
   }
 
   const updateConfigNonUnique: Config = {
-    aircraftid: 1,
-    configid: 1,
+    aircraftId: 1,
+    configId: 1,
     name: 'AE-2', // non unique name
   }
 
   const newConfig: Config = {
-    aircraftid: 1,
-    configid: 0,
+    aircraftId: 1,
+    configId: 0,
     name: 'new config',
   }
 
@@ -78,14 +78,14 @@ describe('PUT /config', () => {
       .expect(200)
       .expect(async () => {
         const name_aircraftid = {
-          aircraftid: newConfig.aircraftid,
+          aircraftId: newConfig.aircraftId,
           name: newConfig.name,
         }
         const found = await prisma.config.findUnique({
           where: {name_aircraftid},
         })
         assert.deepStrictEqual(found.name, newConfig.name)
-        assert.deepStrictEqual(found.aircraftid, newConfig.aircraftid)
+        assert.deepStrictEqual(found.aircraftId, newConfig.aircraftId)
       })
       .end(done)
   })
@@ -118,7 +118,7 @@ describe('DELETE /config', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/config?configid=1')
+      .delete('/config?configId=1')
       .set('authorization', role2e)
       .expect(403)
       .end(done)
@@ -126,13 +126,13 @@ describe('DELETE /config', () => {
 
   it('Should 200 and delete where req.role >= 3 on aircraft', (done: Done) => {
     req(server)
-      .delete('/config?configid=1')
+      .delete('/config?configId=1')
       .set('authorization', role3e)
       .expect(200)
       .expect(async () => {
         let didFind: boolean
         await prisma.config
-          .findUnique({where: {configid: 1}})
+          .findUnique({where: {configId: 1}})
           .then(() => {
             didFind = true
           })

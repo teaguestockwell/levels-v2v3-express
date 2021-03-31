@@ -28,14 +28,14 @@ model User {
   // Composite key, no two aircraft will have same name
   // However, one name may have multiple accses levels, as long as they are on diffrent aircraft
 
-  aircraft   Aircraft @relation(fields: [aircraftid], references: [id])
-  aircraftid Int
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraftId Int
 
   //scalar values
-  userid Int    @unique @default(autoincrement())
+  userId Int    @unique @default(autoincrement())
   name   String // used to identify users, but this is not unique because it will be duplicatied if the user is assined to multple aircraft @map("name")
   role   Int    @default(0)
-  @@id([aircraftid, name])
+  @@id([aircraftId, name])
 }
 
 
@@ -51,10 +51,10 @@ model Aircraft {
   mom1          Float
   weight0       Float
   weight1       Float
-  cargoweight1  Float
+  cargoWeight1  Float
   lemac         Float
   mac           Float
-  mommultiplyer Float
+  momMultiplyer Float
 
   // 1-n Relationships
   users        User[]
@@ -62,21 +62,21 @@ model Aircraft {
   tanks        Tank[]
   configs      Config[]
   cargos       Cargo[]
-  configcargos ConfigCargo[]
+  configCargos ConfigCargo[]
 }
 
 model Glossary {
   // Compund forein key, name will be unique in a given aircraft
 
   // Relation Fields / Foriegn Key
-  aircraft   Aircraft @relation(fields: [aircraftid], references: [id])
-  aircraftid Int
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraftId Int
 
   // Scalar Fields
-  glossaryid Int    @unique @default(autoincrement())
+  glossaryId Int    @unique @default(autoincrement())
   name       String
   body       String
-  @@id([name, aircraftid])
+  @@id([name, aircraftId])
 }
 
 model Tank {
@@ -84,48 +84,48 @@ model Tank {
   name String
 
   // Relation Fields / Foriegn Key
-  aircraft   Aircraft @relation(fields: [aircraftid], references: [id])
-  aircraftid Int
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraftId Int
 
   // Scalar Fields
-  tankid     Int    @unique @default(autoincrement())
-  weights    String // csv
-  simplemoms String // csv
-  @@id([aircraftid, name])
+  tankId     Int    @unique @default(autoincrement())
+  weightsCSV    String // csv
+  simpleMomsCSV String // csv
+  @@id([aircraftId, name])
 }
 
 model Config {
   // Compund foriegn key, one config name per aircraftname
   // Relation Fields / Foriegn Key
-  aircraft   Aircraft @relation(fields: [aircraftid], references: [id])
-  aircraftid Int
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraftId Int
 
   // Scalar Fields
-  configid Int    @unique @default(autoincrement())
+  configId Int    @unique @default(autoincrement())
   name     String
 
   // 1-n Relationships
-  configcargos ConfigCargo[]
-  @@id([name, aircraftid])
+  configCargos ConfigCargo[]
+  @@id([name, aircraftId])
 }
 
 model Cargo {
   // Compund foriegn key, one cargo name per aircraft name
 
   // Relation Fields / Foriegn Key
-  aircraft     Aircraft      @relation(fields: [aircraftid], references: [id])
-  aircraftid   Int
+  aircraft     Aircraft      @relation(fields: [aircraftId], references: [id])
+  aircraftId   Int
   configCargos ConfigCargo[]
 
   // Scalar Fields
-  cargoid        Int            @unique @default(autoincrement())
+  cargoId       Int            @unique @default(autoincrement())
   updated   DateTime       @updatedAt
   updatedBy String         @default("unknown")
   name           String
   weight         Float
   fs             Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
   category       CargoCategory? @default(Extra)
-  @@id([name, aircraftid])
+  @@id([name, aircraftId])
 }
 
 enum CargoCategory {
@@ -137,22 +137,22 @@ enum CargoCategory {
 }
 
 model ConfigCargo {
-  // Compund foriegn key, no two cargoid will be under the same config and aircraft
+  // Compund foriegn key, no two cargoIdwill be under the same config and aircraft
   // for example aircraft c17a with c2 config cannot have 2 rows of watercontainers.
   // additinal qty is hanlded by the qty, not by adding more rows
 
   // Relation Fields / Foriegn Key
-  config     Config   @relation(fields: [configid], references: [configid])
-  configid   Int
-  aircraft   Aircraft @relation(fields: [aircraftid], references: [id])
-  aircraftid Int
-  cargo      Cargo    @relation(fields: [cargoid], references: [cargoid])
-  cargoid    Int
+  config     Config   @relation(fields: [configId], references: [configId])
+  configId   Int
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraftId Int
+  cargo      Cargo    @relation(fields: [cargoId], references: [cargoId])
+  cargoId   Int
 
   // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
   configcargoid Int   @unique @default(autoincrement())
   fs            Float
   qty           Int
-  @@id([configid, aircraftid, cargoid])
+  @@id([configId, aircraftId, cargoId])
 }

@@ -4,7 +4,7 @@ import {baseRouter} from './baseRouter'
 
 const glossaryRouter = Router()
 
-// READ N ({aircraftid})
+// READ N ({aircraftId})
 glossaryRouter.get('*', async (req: Request, res: Response) => {
   await baseRouter.getN({
     req: req,
@@ -20,19 +20,19 @@ glossaryRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
-    pk: 'glossaryid',
+    pk: 'glossaryId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtGlossaryid,
     upsertType: query.upsertGlossary,
   })
 })
 
-// DELETE 1 Glossary ({glossaryid})
+// DELETE 1 Glossary ({glossaryId})
 glossaryRouter.delete('*', async (req: Request, res: Response) => {
   await baseRouter.delete1({
     req: req,
     res: res,
     reqRoleGE: 3,
-    objPK: 'glossaryid',
+    objPK: 'glossaryId',
     delete1: query.deleteGlossary,
     readOBJatPK: query.readGlossartAtGlossaryId,
   })
