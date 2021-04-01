@@ -66,7 +66,7 @@ export const resMsg = {
     return msg
   },
 }
-// TODO: add 400 res for request that dont have aircraft id / pk
+// TODO: add 400 res for request that dont have aircraft aircraftId / pk
 export const baseRouter = {
   getN: async ({
     req,
@@ -80,9 +80,9 @@ export const baseRouter = {
       const pkNum = Number(`${req.query[pk]}`)
       let roleAtAircraft: number
 
-      // to mitigate role explotation, verify the aircraft id given the obj pk.
+      // to mitigate role explotation, verify the aircraft aircraftId given the obj pk.
       // an example of where this is applicable is GET /configcargo
-      // if the pk is aircraft id this is unnecacary
+      // if the pk is aircraft aircraftId this is unnecacary
       if (pk != 'aircraftId') {
         const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
         roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)

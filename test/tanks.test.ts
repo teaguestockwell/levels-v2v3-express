@@ -56,7 +56,7 @@ describe('PUT /tank', () => {
 
   const newTank: Tank = {
     aircraftId: 1,
-    tankId: 0, // 0 means this is a new tank - no id has been assined by db
+    tankId: 0, // 0 means this is a new tank - no aircraftId has been assined by db
     name: 'new tank name',
     simpleMomsCSV: 'info here',
     weightsCSV: '123 I love pe',
@@ -106,7 +106,7 @@ describe('PUT /tank', () => {
       .end(done)
   })
 
-  it('Should return 400 where tank name and aircraft id is not unique UPDATE', (done: Done) => {
+  it('Should return 400 where tank name and aircraft aircraftId is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/tank')
       .set('authorization', role3e)

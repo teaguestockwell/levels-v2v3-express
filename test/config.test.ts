@@ -99,7 +99,7 @@ describe('PUT /config', () => {
       .end(done)
   })
 
-  it('Should return 400 where config name and aircraft id is not unique UPDATE', (done: Done) => {
+  it('Should return 400 where config name and aircraft aircraftId is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/config')
       .set('authorization', role3e)

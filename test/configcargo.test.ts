@@ -49,7 +49,7 @@ describe('PUT /configcargo', () => {
 
   const updateConfigCargoNonUnique: ConfigCargo = {
     aircraftId: 1,
-    // cannot have the same cargo id as config cargo #1,
+    // cannot have the same cargo aircraftId as config cargo #1,
     // because this would make two rows of the same type of cargo,
     // to add more of a cargo in a config, the user will change the qty,
     // they will not add more redundant rows!
@@ -114,7 +114,7 @@ describe('PUT /configcargo', () => {
       .end(done)
   })
 
-  it('Should return 400 where configcargo name and aircraft id is not unique UPDATE', (done: Done) => {
+  it('Should return 400 where configcargo name and aircraft aircraftId is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/configcargo')
       .set('authorization', role3e)

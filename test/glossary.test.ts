@@ -54,7 +54,7 @@ describe('PUT /glossary', () => {
 
   const newGloss: Glossary = {
     aircraftId: 1,
-    glossaryId: 0, // 0 means this is a new glossary - no id has been assined by db
+    glossaryId: 0, // 0 means this is a new glossary - no aircraftId has been assined by db
     name: 'new glossary name',
     body: 'info here',
   }
@@ -103,7 +103,7 @@ describe('PUT /glossary', () => {
       .end(done)
   })
 
-  it('Should return 400 where glossary name and aircraft id is not unique UPDATE', (done: Done) => {
+  it('Should return 400 where glossary name and aircraft aircraftId is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/glossary')
       .set('authorization', role3e)

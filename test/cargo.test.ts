@@ -81,7 +81,7 @@ describe('PUT /cargo', () => {
   const updateCargoWithWrongAircraftId: Cargo = {
     category: null,
     aircraftId: 1,
-    cargoid: 50, // cargo id one does not belong to aircraft id 2
+    cargoid: 50, // cargo aircraftId one does not belong to aircraft aircraftId 2
     name: 'Pax info card',
     fs: 221,
     weight: 200,
@@ -135,9 +135,9 @@ describe('PUT /cargo', () => {
   })
 
   // this user does not have roles on this aircraft,
-  // so they are trying trick our api by sending an aircraft id where they have roles,
+  // so they are trying trick our api by sending an aircraft aircraftId where they have roles,
   // not today hacker!
-  it('Should return 403 where req.role <= 2 @ obj with inalid aircraft id', (done: Done) => {
+  it('Should return 403 where req.role <= 2 @ obj with inalid aircraft aircraftId', (done: Done) => {
     req(server)
       .put('/cargo')
       .set('authorization', role3OnAir1e)
@@ -146,7 +146,7 @@ describe('PUT /cargo', () => {
       .end(done)
   })
 
-  it('Should return 400 where cargo name and aircraft id is not unique UPDATE', (done: Done) => {
+  it('Should return 400 where cargo name and aircraft aircraftId is not unique UPDATE', (done: Done) => {
     req(server)
       .put('/cargo')
       .set('authorization', role3e)

@@ -9,7 +9,7 @@ import {seedTest} from '../prisma/seed_test'
 const prisma = new PrismaClient()
 
 const createAir: Aircraft = {
-  id: 0,
+  aircraftId: 0,
   name: 'new',
   fs0: 100,
   fs1: 2000,
@@ -24,7 +24,7 @@ const createAir: Aircraft = {
 }
 
 const createAirNonUniqueName: Aircraft = {
-  id: 0,
+  aircraftId: 0,
   name: 'C-17A-ER',
   fs0: 100,
   fs1: 2000,
@@ -39,7 +39,7 @@ const createAirNonUniqueName: Aircraft = {
 }
 
 const updateAirNonUniqueName: Aircraft = {
-  id: 1,
+  aircraftId: 1,
   name: 'C-17A', // update from C-17A-ER to reflect a non unique name
   fs0: 100,
   fs1: 2000,
@@ -54,7 +54,7 @@ const updateAirNonUniqueName: Aircraft = {
 }
 
 const updateAir: Aircraft = {
-  id: 1,
+  aircraftId: 1,
   name: 'C-17A-Er', // update 'r'to be lowercase
   fs0: 80.5,
   fs1: 2168,
@@ -137,7 +137,7 @@ describe('PUT /aircraft', () => {
       .expect(200)
       .expect(async () => {
         const didfind = await prisma.aircraft.findUnique({
-          where: {id: updateAir.id},
+          where: {aircraftId: updateAir.aircraftId},
         })
         assert.deepStrictEqual(didfind, updateAir)
       })
@@ -191,7 +191,7 @@ describe('DELETE /aircraft', () => {
 
   it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
     req(server)
-      .delete('/aircraft?id=1')
+      .delete('/aircraft?aircraftId=1')
       .set('authorization', role2e)
       .expect(403)
       .end(done)
@@ -199,7 +199,7 @@ describe('DELETE /aircraft', () => {
 
   it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
     req(server)
-      .delete('/aircraft?id=1')
+      .delete('/aircraft?aircraftId=1')
       .set('authorization', role4e)
       .expect(200)
       .expect(async () => {
@@ -207,7 +207,7 @@ describe('DELETE /aircraft', () => {
         const didFind: any[] = []
 
         // expect everthing to cascade delete
-        didFind.push(await prisma.aircraft.findMany({where: {id: 1}}))
+        didFind.push(await prisma.aircraft.findMany({where: {aircraftId: 1}}))
         didFind.push(await prisma.user.findMany({where: {aircraftId: 1}}))
         didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))
         didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))

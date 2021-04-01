@@ -13,7 +13,7 @@ configCargoRouter.get('*', async (req: Request, res: Response) => {
   try {
     const pkNum = Number(`${req.query[pk]}`)
 
-    // to mitigate role explotation, verify the aircraft id given the obj pk.
+    // to mitigate role explotation, verify the aircraft aircraftId given the obj pk.
     // an example of where this is applicable is GET /configcargo
     const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
     const roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)

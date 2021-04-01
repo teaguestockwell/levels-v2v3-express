@@ -5,7 +5,7 @@ PUT http://localhost:8080/fl-api/aircraft
 content-type: application/json
 
 {
-  "id": 0,
+  "aircraftId": 0,
   "name": "create",
   "fs0": 80.5,
   "fs1": 2168,
@@ -23,7 +23,7 @@ PUT http://localhost:8080/fl-api/aircraft
 content-type: application/json
 
 {
-  "id": 1,
+  "aircraftId": 1,
   "name": "update",
   "fs0": 80.5,
   "fs1": 2168,
@@ -37,4 +37,4 @@ content-type: application/json
   "momMultiplyer": 10000
 }
 ###
-DELETE http://localhost:8080/fl-api/aircraft?id=4
+DELETE http://localhost:8080/fl-api/aircraft?aircraftId=4

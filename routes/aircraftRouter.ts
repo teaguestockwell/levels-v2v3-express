@@ -20,7 +20,7 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
     const ret: Aircraft[] = []
 
     // fill ret[] from map
-    airids.forEach((id) => ret.push(allAirsMap.get(id)))
+    airids.forEach((aircraftId) => ret.push(allAirsMap.get(aircraftId)))
 
     resMsg.on200(req)
     res.status(200).send(ret)
@@ -35,7 +35,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     const reqAir: Aircraft = req.body
     const highestRole = await query.readHighestRole(req)
 
-    if (reqAir.id == 0 && highestRole >= 3) {
+    if (reqAir.aircraftId == 0 && highestRole >= 3) {
       const reqname = query.readName(req)
 
       // we have asserted that this req has a role >= 3 on some aircraft,
@@ -54,7 +54,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     }
 
     // UPDATE
-    else if ((await query.readRoleAtAircraftID(req, reqAir.id)) >= 3) {
+    else if ((await query.readRoleAtAircraftID(req, reqAir.aircraftId)) >= 3) {
       try {
         const mockUser: User = {
           aircraftId: 0,
@@ -68,7 +68,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
         res.status(400).send(resMsg.on400(req))
       }
     } else {
-      const role = await query.readRoleAtAircraftID(req, reqAir.id)
+      const role = await query.readRoleAtAircraftID(req, reqAir.aircraftId)
       res.status(403).send(resMsg.on403(3, role, req))
     }
   } catch (e) {
@@ -76,14 +76,14 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
   }
 })
 
-// DELETE ({id})
+// DELETE ({aircraftId})
 aircraftRouter.delete('*', async (req: Request, res: Response) => {
   try {
-    const id = Number(`${req.query['id']}`)
-    const roleAtAir = await query.readRoleAtAircraftID(req, id)
+    const aircraftId = Number(`${req.query['aircraftId']}`)
+    const roleAtAir = await query.readRoleAtAircraftID(req, aircraftId)
 
     if (roleAtAir > 2) {
-      await query.deleteAircraft(id) // recursive delete to all nested relashionships
+      await query.deleteAircraft(aircraftId) // recursive delete to all nested relashionships
       res.status(200).send(resMsg.on200(req))
     } else {
       res.status(403).send(resMsg.on403(2, roleAtAir, req))
