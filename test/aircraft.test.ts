@@ -17,7 +17,7 @@ const createAir: Aircraft = {
   mom1: 10000,
   weight0: 100000,
   weight1: 200000,
-  cargoweight1: 20000,
+  cargoWeight1: 20000,
   lemac: 700,
   mac: 90,
   momMultiplyer: 10000,
@@ -32,7 +32,7 @@ const createAirNonUniqueName: Aircraft = {
   mom1: 10000,
   weight0: 100000,
   weight1: 200000,
-  cargoweight1: 20000,
+  cargoWeight1: 20000,
   lemac: 700,
   mac: 90,
   momMultiplyer: 10000,
@@ -47,7 +47,7 @@ const updateAirNonUniqueName: Aircraft = {
   mom1: 10000,
   weight0: 100000,
   weight1: 200000,
-  cargoweight1: 20000,
+  cargoWeight1: 20000,
   lemac: 700,
   mac: 90,
   momMultiplyer: 10000,
@@ -55,14 +55,14 @@ const updateAirNonUniqueName: Aircraft = {
 
 const updateAir: Aircraft = {
   aircraftId: 1,
-  name: 'C-17A-Er', // update 'r'to be lowercase
+  name: 'C-17A-Er', // update 'r 'to be lowercase
   fs0: 80.5,
   fs1: 2168,
   mom0: 9999,
   mom1: 50000,
   weight0: 260000,
   weight1: 300000,
-  cargoweight1: 300000,
+  cargoWeight1: 300000,
   lemac: 793.6,
   mac: 309.5,
   momMultiplyer: 10000,
@@ -112,7 +112,7 @@ describe('GET /aircraft', () => {
 
 // UPDATE || CREATE
 describe('PUT /aircraft', () => {
-  // before each prevents bade state when modifys unique constrains
+  // before each prevents bade state when modifies unique constrains
   // between tests
   beforeEach(async () => {
     await seedTest.deleteAll()
@@ -136,29 +136,29 @@ describe('PUT /aircraft', () => {
       .send(updateAir)
       .expect(200)
       .expect(async () => {
-        const didfind = await prisma.aircraft.findUnique({
+        const didFind = await prisma.aircraft.findUnique({
           where: {aircraftId: updateAir.aircraftId},
         })
-        assert.deepStrictEqual(didfind, updateAir)
+        assert.deepStrictEqual(didFind, updateAir)
       })
       .end(done)
   })
 
-  it('Should 200 and create when the acft is valid, and req.highestrole >= 3', (done: Done) => {
+  it('Should 200 and create when the acft is valid, and req.highestRole >= 3', (done: Done) => {
     req(server)
       .put('/aircraft')
       .set('authorization', role3e)
       .send(createAir)
       .expect(200)
       .expect(async () => {
-        const didfind = await prisma.aircraft.findUnique({
+        const didFind = await prisma.aircraft.findUnique({
           where: {name: createAir.name},
           include: {users: true},
         })
 
         // if req user creates air, they will have role 4 on it
-        assert.deepStrictEqual(didfind.users[0].role, 4)
-        assert.deepStrictEqual(didfind.name, createAir.name)
+        assert.deepStrictEqual(didFind.users[0].role, 4)
+        assert.deepStrictEqual(didFind.name, createAir.name)
       })
       .end(done)
   })
@@ -189,7 +189,7 @@ describe('DELETE /aircraft', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should 403 requests whos role @ aircraft <= 2', (done: Done) => {
+  it('Should 403 requests whose role @ aircraft <= 2', (done: Done) => {
     req(server)
       .delete('/aircraft?aircraftId=1')
       .set('authorization', role2e)
@@ -197,7 +197,7 @@ describe('DELETE /aircraft', () => {
       .end(done)
   })
 
-  it('Should delete all recusivly where requests role @ aircraft > 2', (done: Done) => {
+  it('Should delete all recursively where requests role @ aircraft > 2', (done: Done) => {
     req(server)
       .delete('/aircraft?aircraftId=1')
       .set('authorization', role4e)
@@ -206,7 +206,7 @@ describe('DELETE /aircraft', () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const didFind: any[] = []
 
-        // expect everthing to cascade delete
+        // expect everything to cascade delete
         didFind.push(await prisma.aircraft.findMany({where: {aircraftId: 1}}))
         didFind.push(await prisma.user.findMany({where: {aircraftId: 1}}))
         didFind.push(await prisma.glossary.findMany({where: {aircraftId: 1}}))

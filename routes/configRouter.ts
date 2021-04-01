@@ -10,7 +10,7 @@ configRouter.get('*', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 1,
-    readNAtPK: query.readConfigsDeepAtAircraftID,
+    readNAtPK: query.readConfigsDeepAtAircraftId,
   })
 })
 
@@ -34,7 +34,7 @@ configRouter.delete('*', async (req: Request, res: Response) => {
     objPK: 'configId',
     reqRoleGE: 3,
     delete1: query.deleteConfig,
-    readOBJatPK: query.readConfigAtConfigID,
+    readOBJatPK: query.readConfigAtConfigId,
   })
 })
 

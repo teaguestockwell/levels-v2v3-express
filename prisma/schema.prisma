@@ -20,7 +20,7 @@ model General {
   name      String
   body      String
   names     String[]
-  icondatas Int[]
+  iconDatas Int[]
   urls      String[]
 }
 
@@ -28,7 +28,7 @@ model User {
   // Composite key, no two aircraft will have same name
   // However, one name may have multiple accses levels, as long as they are on diffrent aircraft
 
-  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId Int
 
   //scalar values
@@ -41,7 +41,7 @@ model User {
 
 model Aircraft {
   // Primary Key
-  id Int @id @default(autoincrement())
+  aircraftId Int @id @default(autoincrement())
 
   // Scalar Fields
   name          String @unique
@@ -69,7 +69,7 @@ model Glossary {
   // Compund forein key, name will be unique in a given aircraft
 
   // Relation Fields / Foriegn Key
-  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId Int
 
   // Scalar Fields
@@ -84,7 +84,7 @@ model Tank {
   name String
 
   // Relation Fields / Foriegn Key
-  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId Int
 
   // Scalar Fields
@@ -97,7 +97,7 @@ model Tank {
 model Config {
   // Compund foriegn key, one config name per aircraftname
   // Relation Fields / Foriegn Key
-  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId Int
 
   // Scalar Fields
@@ -113,7 +113,7 @@ model Cargo {
   // Compund foriegn key, one cargo name per aircraft name
 
   // Relation Fields / Foriegn Key
-  aircraft     Aircraft      @relation(fields: [aircraftId], references: [id])
+  aircraft     Aircraft      @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId   Int
   configCargos ConfigCargo[]
 
@@ -144,14 +144,14 @@ model ConfigCargo {
   // Relation Fields / Foriegn Key
   config     Config   @relation(fields: [configId], references: [configId])
   configId   Int
-  aircraft   Aircraft @relation(fields: [aircraftId], references: [id])
+  aircraft   Aircraft @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId Int
   cargo      Cargo    @relation(fields: [cargoId], references: [cargoId])
   cargoId   Int
 
   // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
-  configcargoid Int   @unique @default(autoincrement())
+  configCargoId Int   @unique @default(autoincrement())
   fs            Float
   qty           Int
   @@id([configId, aircraftId, cargoId])

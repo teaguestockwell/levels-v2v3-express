@@ -61,7 +61,7 @@ describe('PUT /config', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should return 200 and update where config is unquique && req.role >= 3', (done: Done) => {
+  it('Should return 200 and update where config is unique && req.role >= 3', (done: Done) => {
     req(server)
       .put('/config')
       .set('authorization', role3e)
@@ -70,19 +70,19 @@ describe('PUT /config', () => {
       .end(done)
   })
 
-  it('Should return 200 and create where config is unquique && req.role >= 3', (done: Done) => {
+  it('Should return 200 and create where config is unique && req.role >= 3', (done: Done) => {
     req(server)
       .put('/config')
       .set('authorization', role3e)
       .send(newConfig)
       .expect(200)
       .expect(async () => {
-        const name_aircraftid = {
+        const name_aircraftId = {
           aircraftId: newConfig.aircraftId,
           name: newConfig.name,
         }
         const found = await prisma.config.findUnique({
-          where: {name_aircraftid},
+          where: {name_aircraftId},
         })
         assert.deepStrictEqual(found.name, newConfig.name)
         assert.deepStrictEqual(found.aircraftId, newConfig.aircraftId)

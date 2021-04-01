@@ -5,7 +5,7 @@ PUT http://localhost:8080/fl-api/cargo
 content-type: application/json
 
 {
-  "cargoid": 0,
+  "cargoId": 0,
   "aircraftId": 2,
   "name": "create",
   "weight": 120,
@@ -17,7 +17,7 @@ PUT http://localhost:8080/fl-api/cargo
 content-type: application/json
 
 {
-  "cargoid": 4,
+  "cargoId": 4,
   "aircraftId": 2,
   "name": "update",
   "weight": 120,
@@ -25,4 +25,4 @@ content-type: application/json
   "category": "Emergency"
 }
 ###
-DELETE http://localhost:8080/fl-api/cargo?cargoid=4
+DELETE http://localhost:8080/fl-api/cargo?cargoId=4

@@ -83,12 +83,12 @@ describe('PUT /tank', () => {
       .send(newTank)
       .expect(200)
       .expect(async () => {
-        const aircraftid_name = {
+        const aircraftId_name = {
           aircraftId: newTank.aircraftId,
           name: newTank.name,
         }
         const found = await prisma.tank.findUnique({
-          where: {aircraftid_name},
+          where: {aircraftId_name},
         })
         assert.deepStrictEqual(found.name, newTank.name)
         assert.deepStrictEqual(found.simpleMomsCSV, newTank.simpleMomsCSV)

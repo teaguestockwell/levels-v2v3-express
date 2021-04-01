@@ -22,21 +22,21 @@ cargoRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
-    pk: 'cargoid',
+    pk: 'cargoId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtCargoid,
     upsertType: query.upsertCargo,
   })
 })
 
-// DELETE 1 Cargo({cargoid})
+// DELETE 1 Cargo({cargoId})
 cargoRouter.delete('/', async (req: Request, res: Response) => {
   await baseRouter.delete1({
     req: req,
     res: res,
-    objPK: 'cargoid',
+    objPK: 'cargoId',
     reqRoleGE: 3,
     delete1: query.deleteCargo,
-    readOBJatPK: query.readCargoAtCargoID,
+    readOBJatPK: query.readCargoAtCargoId,
   })
 })
 

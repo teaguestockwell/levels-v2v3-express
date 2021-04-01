@@ -80,12 +80,12 @@ describe('PUT /glossary', () => {
       .send(newGloss)
       .expect(200)
       .expect(async () => {
-        const name_aircraftid = {
+        const name_aircraftId = {
           aircraftId: newGloss.aircraftId,
           name: newGloss.name,
         }
         const found = await prisma.glossary.findUnique({
-          where: {name_aircraftid},
+          where: {name_aircraftId},
         })
         assert.deepStrictEqual(found.name, newGloss.name)
         assert.deepStrictEqual(found.body, newGloss.body)

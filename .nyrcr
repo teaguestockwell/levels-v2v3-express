@@ -1,6 +1,6 @@
 {
   "exclude": [
-    "pisma/seed_test.ts",
+    "prisma/seed_test.ts",
     "prisma/seed.ts"
   ]
 }

@@ -21,7 +21,7 @@ glossaryRouter.put('/', async (req: Request, res: Response) => {
     res: res,
     reqRoleGE: 3,
     pk: 'glossaryId',
-    readAircraftIDOfOBJpk: query.readAircraftIdAtGlossaryid,
+    readAircraftIDOfOBJpk: query.readAircraftIdAtGlossaryId,
     upsertType: query.upsertGlossary,
   })
 })
@@ -34,7 +34,7 @@ glossaryRouter.delete('*', async (req: Request, res: Response) => {
     reqRoleGE: 3,
     objPK: 'glossaryId',
     delete1: query.deleteGlossary,
-    readOBJatPK: query.readGlossartAtGlossaryId,
+    readOBJatPK: query.readGlossaryAtGlossaryId,
   })
 })
 

@@ -41,22 +41,22 @@ const query = {
     })
   },
 
-  upsertConfigCargoShallow: async (configcargo: ConfigCargo): Promise<void> => {
+  upsertConfigCargoShallow: async (configCargo: ConfigCargo): Promise<void> => {
     await prisma.configCargo.upsert({
-      where: {configcargoid: configcargo.configcargoid},
+      where: {configCargoId: configCargo.configCargoId},
       update: {
         // an user may change the cargo type within a config,
         // however, th UI will prevent them from changing the aircraft, or config
-        cargo: {connect: {cargoid: configcargo.cargoid}},
-        fs: configcargo.fs,
-        qty: configcargo.qty,
+        cargo: {connect: {cargoId: configCargo.cargoId}},
+        fs: configCargo.fs,
+        qty: configCargo.qty,
       },
       create: {
-        config: {connect: {configId: configcargo.configId}},
-        aircraft: {connect: {aircraftId: configcargo.aircraftId}},
-        cargo: {connect: {cargoid: configcargo.cargoid}},
-        fs: configcargo.fs,
-        qty: configcargo.qty,
+        config: {connect: {configId: configCargo.configId}},
+        aircraft: {connect: {aircraftId: configCargo.aircraftId}},
+        cargo: {connect: {cargoId: configCargo.cargoId}},
+        fs: configCargo.fs,
+        qty: configCargo.qty,
       },
     })
   },
@@ -76,7 +76,7 @@ const query = {
           mom1: aircraft.mom1,
           weight0: aircraft.weight0,
           weight1: aircraft.weight1,
-          cargoweight1: aircraft.cargoweight1,
+          cargoWeight1: aircraft.cargoWeight1,
           lemac: aircraft.lemac,
           mac: aircraft.mac,
           momMultiplyer: aircraft.momMultiplyer,
@@ -126,7 +126,7 @@ const query = {
 
   upsertCargo: async (cargo: Cargo): Promise<void> => {
     await prisma.cargo.upsert({
-      where: {cargoid: cargo.cargoid},
+      where: {cargoId: cargo.cargoId},
       update: cargo,
       create: {
         aircraft: {connect: {aircraftId: cargo.aircraftId}},
@@ -150,7 +150,7 @@ const query = {
   //////////////////////////////READ//////////////////////////////////////
 
   //////// ROLE VERIFICATION //////////////
-  readAircraftIdAtTankid: async (tankId: number): Promise<number> => {
+  readAircraftIdAtTankId: async (tankId: number): Promise<number> => {
     return (await prisma.tank.findFirst({where: {tankId}})).aircraftId
   },
 
@@ -158,7 +158,7 @@ const query = {
     return (await prisma.user.findFirst({where: {userId}})).aircraftId
   },
 
-  readAircraftIdAtGlossaryid: async (glossaryId: number): Promise<number> => {
+  readAircraftIdAtGlossaryId: async (glossaryId: number): Promise<number> => {
     return (await prisma.glossary.findFirst({where: {glossaryId}})).aircraftId
   },
 
@@ -166,28 +166,28 @@ const query = {
     return (await prisma.config.findFirst({where: {configId}})).aircraftId
   },
 
-  readAircraftIdAtCargoid: async (cargoid: number): Promise<number> => {
-    return (await prisma.cargo.findFirst({where: {cargoid}})).aircraftId
+  readAircraftIdAtCargoid: async (cargoId: number): Promise<number> => {
+    return (await prisma.cargo.findFirst({where: {cargoId}})).aircraftId
   },
 
   readAircraftIdAtConfigCargoid: async (
-    configcargoid: number
+    configCargoId: number
   ): Promise<number> => {
-    return (await prisma.configCargo.findFirst({where: {configcargoid}}))
+    return (await prisma.configCargo.findFirst({where: {configCargoId}}))
       .aircraftId
   },
 
-  readFirstUserAtname: async (name: string): Promise<User> => {
+  readFirstUserAtName: async (name: string): Promise<User> => {
     return await prisma.user.findFirst({where: {name}})
   },
 
-  readUsersAtAircraftID: async (aircraftId: number): Promise<User[]> => {
+  readUsersAtAircraftId: async (aircraftId: number): Promise<User[]> => {
     return await prisma.user.findMany({
       where: {aircraftId},
     })
   },
 
-  readRoleAtUserID: async (userId: number): Promise<number> => {
+  readRoleAtUserId: async (userId: number): Promise<number> => {
     try {
       await prisma.user
         .findFirst({
@@ -202,14 +202,17 @@ const query = {
     }
   },
   /** if no user => role = 0 */
-  readRoleAtAircraftID: async (req: Request, aircraftId: number): Promise<number> => {
+  readRoleAtAircraftId: async (
+    req: Request,
+    aircraftId: number
+  ): Promise<number> => {
     const name = query.readName(req)
-    const aircraftid_name = {aircraftId, name}
+    const aircraftId_name = {aircraftId, name}
 
     try {
       const user = await prisma.user.findUnique({
         where: {
-          aircraftid_name,
+          aircraftId_name,
         },
       })
       return user.role
@@ -219,10 +222,10 @@ const query = {
   },
 
   /**
-   * given a request, then return all aircraftids
-   * that are assined to the users with a role > x
+   * given a request, then return all aircraftIds
+   * that are assigned to the users with a role > x
    */
-  readAllAircraftIDsOfRoleWhereRoleGreaterThanX: async (
+  readAllAircraftIdsOfRoleWhereRoleGreaterThanX: async (
     req: Request,
     x: number
   ): Promise<number[]> => {
@@ -240,7 +243,7 @@ const query = {
     return ret
   },
 
-  readUserAtUserID: async (userId: number): Promise<User> => {
+  readUserAtUserId: async (userId: number): Promise<User> => {
     return await prisma.user.findFirst({where: {userId}})
   },
 
@@ -279,10 +282,10 @@ const query = {
 
   // 1 Aircraft(aircraftId)
   /**
-   * returns a recusive aircraft object with all nested relations
+   * returns a recursive aircraft object with all nested relations
    */
-  readAircraftAtID: async (aircraftId: number): Promise<Aircraft> => {
-    //console.log('readOneAircraftAtID: ' + aircraftId)
+  readAircraftAtId: async (aircraftId: number): Promise<Aircraft> => {
+    //console.log('readOneAircraftAtId: ' + aircraftId)
 
     const air = await prisma.aircraft.findUnique({
       where: {aircraftId},
@@ -299,8 +302,10 @@ const query = {
     return air
   },
 
-  readAircraftAtIDIncludeUsers: async (aircraftId: number): Promise<Aircraft> => {
-    //console.log('readOneAircraftAtID: ' + aircraftId)
+  readAircraftAtIdIncludeUsers: async (
+    aircraftId: number
+  ): Promise<Aircraft> => {
+    //console.log('readOneAircraftAtId: ' + aircraftId)
 
     const air = await prisma.aircraft.findUnique({
       where: {aircraftId},
@@ -317,7 +322,7 @@ const query = {
     return air
   },
 
-  readConfigsDeepAtAircraftID: async (
+  readConfigsDeepAtAircraftId: async (
     aircraftId: number
   ): Promise<Config[]> => {
     return await prisma.config.findMany({
@@ -346,8 +351,8 @@ const query = {
 
   readAircraftsAsMap: async (): Promise<Map<number, Aircraft>> => {
     const ret = new Map<number, Aircraft>()
-    const allairs = await query.readAircrafts()
-    allairs.forEach((a) => ret.set(a.aircraftId, a))
+    const allAirs = await query.readAircrafts()
+    allAirs.forEach((a) => ret.set(a.aircraftId, a))
     return ret
   },
 
@@ -356,9 +361,9 @@ const query = {
     req: Request,
     aircraftId: number
   ): Promise<User> => {
-    const reqname = query.readName(req)
-    const aircraftid_name = {name: reqname, aircraftId: aircraftId}
-    return await prisma.user.findUnique({where: {aircraftid_name}})
+    const name = query.readName(req)
+    const aircraftId_name = {name, aircraftId}
+    return await prisma.user.findUnique({where: {aircraftId_name}})
   },
 
   readGeneral: async (role: number): Promise<General> => {
@@ -367,7 +372,7 @@ const query = {
     })
   },
 
-  readGlossaryAtGlossaryID: async (glossaryId: number): Promise<Glossary> => {
+  readGlossaryAtGlossaryId: async (glossaryId: number): Promise<Glossary> => {
     return await prisma.glossary.findUnique({where: {glossaryId}})
   },
 
@@ -377,11 +382,7 @@ const query = {
     return await prisma.glossary.findMany({where: {aircraftId}})
   },
 
-  readGlossartAtGlossaryId: async (glossaryId: number): Promise<Glossary> => {
-    return await prisma.glossary.findUnique({where: {glossaryId}})
-  },
-
-  readTankAtTankID: async (tankId: number): Promise<Tank> => {
+  readTankAtTankId: async (tankId: number): Promise<Tank> => {
     return await prisma.tank.findUnique({where: {tankId}})
   },
 
@@ -389,15 +390,15 @@ const query = {
     return await prisma.tank.findMany({where: {aircraftId}})
   },
 
-  readConfigAtConfigID: async (configId: number): Promise<Config> => {
+  readConfigAtConfigId: async (configId: number): Promise<Config> => {
     return await prisma.config.findUnique({
       where: {configId},
     })
   },
 
-  readCargoAtCargoID: async (cargoid: number): Promise<Cargo> => {
+  readCargoAtCargoId: async (cargoId: number): Promise<Cargo> => {
     return await prisma.cargo.findUnique({
-      where: {cargoid},
+      where: {cargoId},
     })
   },
 
@@ -408,9 +409,9 @@ const query = {
   },
 
   readConfigCargoAtConfigCargoId: async (
-    configcargoid: number
+    configCargoId: number
   ): Promise<ConfigCargo> => {
-    return await prisma.configCargo.findUnique({where: {configcargoid}})
+    return await prisma.configCargo.findUnique({where: {configCargoId}})
   },
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -423,7 +424,7 @@ const query = {
 
   //////////////////////////////DELETE//////////////////////////////////////
 
-  // 1 Aircraft cascade to all relashionships/recursive (Aircraft.aircraftId)
+  // 1 Aircraft cascade to all relationships/recursive (Aircraft.aircraftId)
   deleteAircraft: async (aircraftId: number): Promise<void> => {
     await query.deleteGlossarys(aircraftId)
     await query.deleteTanks(aircraftId)
@@ -487,11 +488,11 @@ const query = {
   },
 
   // 1 Cargo (Cargo.aircraftId)
-  deleteCargo: async (cargoid: number): Promise<void> => {
-    await query.deleteConfigCargosAtCargo(cargoid)
+  deleteCargo: async (cargoId: number): Promise<void> => {
+    await query.deleteConfigCargosAtCargo(cargoId)
 
     await prisma.cargo.delete({
-      where: {cargoid},
+      where: {cargoId},
     })
   },
 
@@ -505,20 +506,20 @@ const query = {
   },
 
   // 1 ConfigCargo (ConfigCargo.aircraftId)
-  deleteConfigCargo: async (configcargoid: number): Promise<void> => {
+  deleteConfigCargo: async (configCargoId: number): Promise<void> => {
     await prisma.configCargo.delete({
-      where: {configcargoid},
+      where: {configCargoId},
     })
   },
 
-  // n CongfCargo (Config.aircraftId)
-  deleteConfigCargosAtCargo: async (cargoid: number): Promise<void> => {
+  // n ConfigCargo (Config.aircraftId)
+  deleteConfigCargosAtCargo: async (cargoId: number): Promise<void> => {
     await prisma.configCargo.deleteMany({
-      where: {cargoid},
+      where: {cargoId},
     })
   },
 
-  // n configcarogs(configId)
+  // n configCargos(configId)
   deleteConfigCargosAtConfig: async (configId: number): Promise<void> => {
     await prisma.configCargo.deleteMany({
       where: {configId},

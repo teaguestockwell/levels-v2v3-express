@@ -37,7 +37,7 @@ describe('PUT /general', () => {
     name: 'welcome', // update name
     body: 'body', //update body
     names: ['name1', 'name2'],
-    icondatas: [123, 342134],
+    iconDatas: [123, 342134],
     urls: ['url 1', 'url2 '],
   }
 
@@ -46,7 +46,7 @@ describe('PUT /general', () => {
     name: 'welcome', // update name
     body: 'body', //update body
     names: ['name1', 'name2'],
-    icondatas: [123, 342134],
+    iconDatas: [123, 342134],
     urls: ['url 1', 'url2 '],
   }
 

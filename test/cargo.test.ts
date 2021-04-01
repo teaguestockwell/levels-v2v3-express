@@ -51,7 +51,7 @@ describe('PUT /cargo', () => {
   const updateCargo: Cargo = {
     category: null,
     aircraftId: 1,
-    cargoid: 1,
+    cargoId: 1,
     name: 'update cargo name',
     fs: 221,
     weight: 200,
@@ -61,7 +61,7 @@ describe('PUT /cargo', () => {
   const updateCargoNonUnique: Cargo = {
     category: null,
     aircraftId: 1,
-    cargoid: 1,
+    cargoId: 1,
     name: 'Pax info card',
     fs: 221,
     weight: 200,
@@ -71,7 +71,7 @@ describe('PUT /cargo', () => {
   const newCargo: Cargo = {
     category: null,
     aircraftId: 1,
-    cargoid: 0,
+    cargoId: 0,
     name: 'new cargo',
     fs: 221,
     weight: 200,
@@ -81,7 +81,7 @@ describe('PUT /cargo', () => {
   const updateCargoWithWrongAircraftId: Cargo = {
     category: null,
     aircraftId: 1,
-    cargoid: 50, // cargo aircraftId one does not belong to aircraft aircraftId 2
+    cargoId: 50, // cargo aircraftId one does not belong to aircraft aircraftId 2
     name: 'Pax info card',
     fs: 221,
     weight: 200,
@@ -94,7 +94,7 @@ describe('PUT /cargo', () => {
     await seedTest.C_17_A()
   })
 
-  it('Should return 200 and update where cargo is unquique && req.role >= 3', (done: Done) => {
+  it('Should return 200 and update where cargo is unique && req.role >= 3', (done: Done) => {
     req(server)
       .put('/cargo')
       .set('authorization', role3e)
@@ -103,19 +103,19 @@ describe('PUT /cargo', () => {
       .end(done)
   })
 
-  it('Should return 200 and create where cargo is unquique && req.role >= 3', async () => {
+  it('Should return 200 and create where cargo is unique && req.role >= 3', async () => {
     await req(server)
       .put('/cargo')
       .set('authorization', encodeAuth(role3))
       .send(newCargo)
       .expect(200)
 
-    const name_aircraftid = {
+    const name_aircraftId = {
       aircraftId: newCargo.aircraftId,
       name: newCargo.name,
     }
     const found = await prisma.cargo.findUnique({
-      where: {name_aircraftid},
+      where: {name_aircraftId},
     })
     assert.deepStrictEqual(found.name, newCargo.name)
     assert.deepStrictEqual(found.weight, newCargo.weight)
@@ -137,7 +137,7 @@ describe('PUT /cargo', () => {
   // this user does not have roles on this aircraft,
   // so they are trying trick our api by sending an aircraft aircraftId where they have roles,
   // not today hacker!
-  it('Should return 403 where req.role <= 2 @ obj with inalid aircraft aircraftId', (done: Done) => {
+  it('Should return 403 where req.role <= 2 @ obj with invalid aircraft aircraftId', (done: Done) => {
     req(server)
       .put('/cargo')
       .set('authorization', role3OnAir1e)
@@ -165,7 +165,7 @@ describe('DELETE /cargo', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/cargo?cargoid=1')
+      .delete('/cargo?cargoId=1')
       .set('authorization', role2e)
       .expect(403)
       .end(done)
@@ -173,11 +173,11 @@ describe('DELETE /cargo', () => {
 
   it('Should 200 and delete where req.role <= 2 on aircraft', async () => {
     await req(server)
-      .delete('/cargo?cargoid=1')
+      .delete('/cargo?cargoId=1')
       .set('authorization', role3e)
       .expect(200)
 
-    const found = await prisma.cargo.findUnique({where: {cargoid: 1}})
+    const found = await prisma.cargo.findUnique({where: {cargoId: 1}})
     assert.deepStrictEqual(found, null)
   })
 })

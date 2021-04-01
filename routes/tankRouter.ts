@@ -21,7 +21,7 @@ tankRouter.put('/', async (req: Request, res: Response) => {
     res: res,
     reqRoleGE: 3,
     pk: 'tankId',
-    readAircraftIDOfOBJpk: query.readAircraftIdAtTankid,
+    readAircraftIDOfOBJpk: query.readAircraftIdAtTankId,
     upsertType: query.upsertTank,
   })
 })
@@ -34,7 +34,7 @@ tankRouter.delete('*', async (req: Request, res: Response) => {
     reqRoleGE: 3,
     objPK: 'tankId',
     delete1: query.deleteTank,
-    readOBJatPK: query.readTankAtTankID,
+    readOBJatPK: query.readTankAtTankId,
   })
 })
 

@@ -40,8 +40,8 @@ describe('PUT /configcargo', () => {
   //
   const updateConfigCargo: ConfigCargo = {
     aircraftId: 1,
-    cargoid: 10,
-    configcargoid: 24,
+    cargoId: 10,
+    configCargoId: 24,
     configId: 2,
     fs: 200,
     qty: 20,
@@ -53,8 +53,8 @@ describe('PUT /configcargo', () => {
     // because this would make two rows of the same type of cargo,
     // to add more of a cargo in a config, the user will change the qty,
     // they will not add more redundant rows!
-    cargoid: 1,
-    configcargoid: 2,
+    cargoId: 1,
+    configCargoId: 2,
     configId: 1,
     fs: 200,
     qty: 20,
@@ -63,8 +63,8 @@ describe('PUT /configcargo', () => {
   // add pass demo kits to AE-1 on C-17A-ER
   const newConfigCargo: ConfigCargo = {
     aircraftId: 1,
-    cargoid: 10,
-    configcargoid: 0,
+    cargoId: 10,
+    configCargoId: 0,
     configId: 1,
     fs: 200,
     qty: 1337,
@@ -75,7 +75,7 @@ describe('PUT /configcargo', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should return 200 and update where configcargo is unquique && req.role >= 3', (done: Done) => {
+  it('Should return 200 and update where configcargo is unique && req.role >= 3', (done: Done) => {
     req(server)
       .put('/configcargo')
       .set('authorization', role3e)
@@ -84,20 +84,20 @@ describe('PUT /configcargo', () => {
       .end(done)
   })
 
-  it('Should return 200 and create where configcargo is unquique && req.role >= 3', (done: Done) => {
+  it('Should return 200 and create where configcargo is unique && req.role >= 3', (done: Done) => {
     req(server)
       .put('/configcargo')
       .set('authorization', role3e)
       .send(newConfigCargo)
       .expect(200)
       .expect(async () => {
-        const configid_aircraftid_cargoid = {
+        const configId_aircraftId_cargoId = {
           aircraftId: newConfigCargo.aircraftId,
           configId: newConfigCargo.configId,
-          cargoid: newConfigCargo.cargoid,
+          cargoId: newConfigCargo.cargoId,
         }
         const found = await prisma.configCargo.findUnique({
-          where: {configid_aircraftid_cargoid},
+          where: {configId_aircraftId_cargoId},
         })
         assert.deepStrictEqual(found.qty, newConfigCargo.qty)
         assert.deepStrictEqual(found.aircraftId, newConfigCargo.aircraftId)
@@ -133,7 +133,7 @@ describe('DELETE /configcargo', () => {
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {
     req(server)
-      .delete('/configcargo?configcargoid=1')
+      .delete('/configcargo?configCargoId=1')
       .set('authorization', role2e)
       .expect(403)
       .end(done)
@@ -141,13 +141,13 @@ describe('DELETE /configcargo', () => {
 
   it('Should 200 and delete where req.role >= 3 on aircraft', (done: Done) => {
     req(server)
-      .delete('/configcargo?configcargoid=1')
+      .delete('/configcargo?configCargoId=1')
       .set('authorization', role3e)
       .expect(200)
       .expect(async () => {
         let didFind: boolean
         await prisma.configCargo
-          .findUnique({where: {configcargoid: 1}})
+          .findUnique({where: {configCargoId: 1}})
           .then(() => {
             didFind = true
           })

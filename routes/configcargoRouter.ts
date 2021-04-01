@@ -13,10 +13,10 @@ configCargoRouter.get('*', async (req: Request, res: Response) => {
   try {
     const pkNum = Number(`${req.query[pk]}`)
 
-    // to mitigate role explotation, verify the aircraft aircraftId given the obj pk.
+    // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
     // an example of where this is applicable is GET /configcargo
     const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
-    const roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
+    const roleAtAircraft = await query.readRoleAtAircraftId(req, verifiedAirId)
 
     if (roleAtAircraft >= reqRoleGE) {
       const n = await readNAtPK(pkNum)
@@ -42,18 +42,18 @@ configCargoRouter.put('/', async (req: Request, res: Response) => {
     req: req,
     res: res,
     reqRoleGE: 3,
-    pk: 'configcargoid',
+    pk: 'configCargoId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtConfigCargoid,
     upsertType: query.upsertConfigCargoShallow,
   })
 })
 
-// DELETE 1 ConfigCargo({configcargoid})
+// DELETE 1 ConfigCargo({configCargoId})
 configCargoRouter.delete('*', async (req: Request, res: Response) => {
   await baseRouter.delete1({
     req: req,
     res: res,
-    objPK: 'configcargoid',
+    objPK: 'configCargoId',
     reqRoleGE: 3,
     delete1: query.deleteConfigCargo,
     readOBJatPK: query.readConfigCargoAtConfigCargoId,

@@ -94,7 +94,7 @@ describe('PUT /user', () => {
       .send(seededUserRole0)
       .expect(200)
       .expect(async () => {
-        const updated: User = await query.readUserAtUserID(
+        const updated: User = await query.readUserAtUserId(
           seededUserRole0.userId
         )
         assert.deepStrictEqual(updated, seededUserRole0)
@@ -109,7 +109,7 @@ describe('PUT /user', () => {
       .send(newUserRole1)
       .expect(200)
       .expect(async () => {
-        const updated: User = await query.readUserAtUserID(newUserRole1.userId)
+        const updated: User = await query.readUserAtUserId(newUserRole1.userId)
         assert.deepStrictEqual(updated, newUserRole1)
       })
       .end(done)
@@ -122,7 +122,7 @@ describe('PUT /user', () => {
       .send(mockDuplicateUserUpdate)
       .expect(400)
       .expect(async () => {
-        const db = await query.readUserAtUserID(mockDuplicateUserUpdate.userId)
+        const db = await query.readUserAtUserId(mockDuplicateUserUpdate.userId)
         assert.notStrictEqual(db.name, mockDuplicateUserUpdate.name)
       })
       .end(done)

@@ -7,8 +7,8 @@ content-type: application/json
 {
   "aircraftId": 1,
   "configId": 1,
-  "cargoid": 10,
-  "configcargoid": 0,
+  "cargoId": 10,
+  "configCargoId": 0,
   "fs": 4000,
   "qty": 2
 }
@@ -19,10 +19,10 @@ content-type: application/json
 {
   "aircraftId": 1,
   "configId": 1,
-  "cargoid": 10,
-  "configcargoid": 860,
+  "cargoId": 10,
+  "configCargoId": 860,
   "fs": 400,
   "qty": 1
 }
 ###
-DELETE http://localhost:8080/fl-api/configcargo?configcargoid=860
+DELETE http://localhost:8080/fl-api/configcargo?configCargoId=860

@@ -80,14 +80,14 @@ export const baseRouter = {
       const pkNum = Number(`${req.query[pk]}`)
       let roleAtAircraft: number
 
-      // to mitigate role explotation, verify the aircraft aircraftId given the obj pk.
+      // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
       // an example of where this is applicable is GET /configcargo
-      // if the pk is aircraft aircraftId this is unnecacary
+      // if the pk is aircraft aircraftId this is unnecessary
       if (pk != 'aircraftId') {
         const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
-        roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
+        roleAtAircraft = await query.readRoleAtAircraftId(req, verifiedAirId)
       } else {
-        roleAtAircraft = await query.readRoleAtAircraftID(
+        roleAtAircraft = await query.readRoleAtAircraftId(
           req,
           Number(`${req.query['aircraftId']}`)
         )
@@ -123,9 +123,9 @@ export const baseRouter = {
         // we dont need to check the role @ an object that has not been created yet
         if (pk != 'aircraftId' && pkNum != 0) {
           const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
-          roleAtAircraft = await query.readRoleAtAircraftID(req, verifiedAirId)
+          roleAtAircraft = await query.readRoleAtAircraftId(req, verifiedAirId)
         } else {
-          roleAtAircraft = await query.readRoleAtAircraftID(
+          roleAtAircraft = await query.readRoleAtAircraftId(
             req,
             req.body.aircraftId
           )
@@ -156,7 +156,7 @@ export const baseRouter = {
     try {
       const pk = Number(`${req.query[objPK]}`)
       const obj: any = await readOBJatPK(pk)
-      const reqRoleAtOBJ = await query.readRoleAtAircraftID(req, obj.aircraftId)
+      const reqRoleAtOBJ = await query.readRoleAtAircraftId(req, obj.aircraftId)
 
       if (reqRoleAtOBJ >= reqRoleGE) {
         await delete1(pk)

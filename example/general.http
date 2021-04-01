@@ -9,7 +9,7 @@ content-type: application/json
   "name": "Welcome",
   "body": "disclaimer help",
   "names": ["about", "help"],
-  "icondatas": [12312,12312],
+  "iconDatas": [12312,12312],
   "urls": ["about.com","help.com"]
 }
 ###

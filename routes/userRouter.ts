@@ -10,7 +10,7 @@ userRouter.get('*', async (req: Request, res: Response) => {
   try {
     const aircraftId = Number(`${req.query['aircraftId']}`)
     if ((await query.readHighestRole(req)) >= 2) {
-      const users = await query.readUsersAtAircraftID(aircraftId)
+      const users = await query.readUsersAtAircraftId(aircraftId)
       resMsg.on200(req)
       res.status(200).send(users)
     } else {
@@ -46,7 +46,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
 userRouter.delete('*', async (req: Request, res: Response) => {
   try {
     const userId = Number(`${req.query['userId']}`)
-    const tryDeleteUser = await query.readUserAtUserID(userId)
+    const tryDeleteUser = await query.readUserAtUserId(userId)
     const reqUser = await query.readUserAtReqAndAircraftId(
       req,
       tryDeleteUser.aircraftId

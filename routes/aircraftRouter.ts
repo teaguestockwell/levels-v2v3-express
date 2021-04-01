@@ -12,7 +12,7 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
     const allAirsMap = await query.readAircraftsAsMap()
 
     // roles > 0 of requester are allowed to view aircraft data
-    const airids: number[] = await query.readAllAircraftIDsOfRoleWhereRoleGreaterThanX(
+    const airIds: number[] = await query.readAllAircraftIdsOfRoleWhereRoleGreaterThanX(
       req, // used to lookup users name
       0 // roles > 0 have role 1 @ aircraft
     )
@@ -20,7 +20,7 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
     const ret: Aircraft[] = []
 
     // fill ret[] from map
-    airids.forEach((aircraftId) => ret.push(allAirsMap.get(aircraftId)))
+    airIds.forEach((aircraftId) => ret.push(allAirsMap.get(aircraftId)))
 
     resMsg.on200(req)
     res.status(200).send(ret)
@@ -36,11 +36,11 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     const highestRole = await query.readHighestRole(req)
 
     if (reqAir.aircraftId == 0 && highestRole >= 3) {
-      const reqname = query.readName(req)
+      const reqName = query.readName(req)
 
       // we have asserted that this req has a role >= 3 on some aircraft,
       // so we can grab a copy of that to pass to the new aircraft
-      const reqUser = await query.readFirstUserAtname(reqname)
+      const reqUser = await query.readFirstUserAtName(reqName)
 
       // they should be able to create users with role 3
       reqUser.role = 4
@@ -54,7 +54,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     }
 
     // UPDATE
-    else if ((await query.readRoleAtAircraftID(req, reqAir.aircraftId)) >= 3) {
+    else if ((await query.readRoleAtAircraftId(req, reqAir.aircraftId)) >= 3) {
       try {
         const mockUser: User = {
           aircraftId: 0,
@@ -68,7 +68,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
         res.status(400).send(resMsg.on400(req))
       }
     } else {
-      const role = await query.readRoleAtAircraftID(req, reqAir.aircraftId)
+      const role = await query.readRoleAtAircraftId(req, reqAir.aircraftId)
       res.status(403).send(resMsg.on403(3, role, req))
     }
   } catch (e) {
@@ -80,10 +80,10 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 aircraftRouter.delete('*', async (req: Request, res: Response) => {
   try {
     const aircraftId = Number(`${req.query['aircraftId']}`)
-    const roleAtAir = await query.readRoleAtAircraftID(req, aircraftId)
+    const roleAtAir = await query.readRoleAtAircraftId(req, aircraftId)
 
     if (roleAtAir > 2) {
-      await query.deleteAircraft(aircraftId) // recursive delete to all nested relashionships
+      await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
       res.status(200).send(resMsg.on200(req))
     } else {
       res.status(403).send(resMsg.on403(2, roleAtAir, req))
