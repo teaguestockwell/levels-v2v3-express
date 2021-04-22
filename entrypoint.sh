@@ -1,5 +1,5 @@
 echo "waiting for DB to accept conenctions"
-sleep 5 
+npx ts-node --transpile-only wait.ts
 
 # echo "generating prisma types from prisma.schema into node_modules"
 # npx prisma generate
@@ -11,7 +11,7 @@ npx prisma migrate dev --name init --preview-feature
 # npx nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit
 
 echo "rm test data && seed prod data"
-npx ts-node prisma/seed.ts
+npx ts-node --transpile-only prisma/seed.ts
 
 echo "starting server"
-npx ts-node server.ts
+npx ts-node --transpile-only server.ts

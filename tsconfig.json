@@ -1,7 +1,16 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "composite": true,
     "esModuleInterop": true,
-    "noEmit": true
-  }
+    "outDir": "build",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+  },
+  "exclude": ["node_modules", "test"]
 }
