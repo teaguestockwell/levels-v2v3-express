@@ -1,3 +1,10 @@
+echo $PG_USER
+echo $PG_PASSWORD
+echo $PG_DATABASE
+export DATABASE_URL="postgresql://${PG_USER}:${PG_PASSWORD}@${PG_DATABASE}:5432"
+export PORT="${PORT:-8080}"
+echo "the db url from entrypoint: ${DATABASE_URL}"
+
 echo "waiting for DB to accept conenctions"
 npx ts-node --transpile-only wait.ts
 
