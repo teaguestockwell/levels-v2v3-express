@@ -9,7 +9,17 @@ npx ts-node --transpile-only wait.ts
 # npx prisma generate
 
 echo "init db schema"
-npx prisma migrate dev --name init --preview-feature
+# Mainly for use in Development 
+# npx prisma migrate dev --preview-feature 
+
+# Will reset everything
+npx prisma migrate reset --force --skip-generate --preview-feature
+
+# Seed is not very useful since it is run from migrate reset
+# npx prisma db seed --preview-feature
+
+# The normal production work flow
+# npx prisma migrate deploy --preview-feature 
 
 # echo "running tests"
 # npx nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit
