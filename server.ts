@@ -27,7 +27,6 @@ server.use('/config', configRouter)
 server.use('/configCargo', configCargoRouter)
 
 const port = process.env.PORT
-console.log(process.env.DATABASE_URL)
-server.listen(port, () => console.log(`server listening on ${port}`))
+server.listen(port)
 
 export default server
