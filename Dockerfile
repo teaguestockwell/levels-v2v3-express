@@ -1,5 +1,4 @@
-#FROM node:14.15.4
-FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/base-image/harden-nodejs14:14.16.0 as build
+FROM registry.il2.dso.mil/platform-one/devops/pipeline-templates/base-image/harden-nodejs14:14.15.4
 
 WORKDIR /app
 
