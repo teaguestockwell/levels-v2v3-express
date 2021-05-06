@@ -8,15 +8,13 @@ npx ts-node --transpile-only wait.ts
 # echo "generating prisma types from prisma.schema into node_modules"
 # npx prisma generate
 
-echo "init db schema"
-# Mainly for use in Development 
-npx prisma migrate dev --preview-feature 
+# echo "init db schema"
+# Mainly for use in Development, creates shadow db: no permissions in aws
+# npx prisma migrate dev --preview-feature 
 
 # Will reset everything
+echo "applying migrations"
 npx prisma migrate reset --force --skip-generate --preview-feature
-
-# Seed is not very useful since it is run from migrate reset
-# npx prisma db seed --preview-feature
 
 # The normal production work flow
 # npx prisma migrate deploy --preview-feature 
