@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "alwaysStrict": true,
     "composite": true,
     "esModuleInterop": true,
     "noEmit": true
