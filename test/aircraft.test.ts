@@ -110,6 +110,47 @@ describe('GET /aircraft', () => {
   })
 })
 
+describe('GET /aircraft/lastUpdated', () => {
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.C_17_A_ER()
+    await seedTest.C_17_A()
+  })
+
+  it('Should return empty[] for users with roles < 1', (done: Done) => {
+    req(server)
+      .get('/aircraft/lastUpdated')
+      .set('authorization', role0e)
+      .expect(200)
+      .expect((res) => {
+        assert(res.body.airs.length == 0)
+      })
+      .end(done)
+  })
+
+  it('Should return [].length == 2 for users with roles > 2 on 2 aircraft', (done: Done) => {
+    req(server)
+      .get('/aircraft/lastUpdated')
+      .set('authorization', role2e)
+      .expect(200)
+      .expect((res) => {
+        assert(res.body.airs.length == 2)
+      })
+      .end(done)
+  })
+
+  it('Should return [].length == 1 for users with roles > 2 on 1 aircraft', (done: Done) => {
+    req(server)
+      .get('/aircraft/lastUpdated')
+      .set('authorization', role2OnAir1e)
+      .expect(200)
+      .expect((res) => {
+        assert(res.body.airs.length == 1)
+      })
+      .end(done)
+  })
+})
+
 // UPDATE || CREATE
 describe('PUT /aircraft', () => {
   // before each prevents bade state when modifies unique constrains

@@ -26,7 +26,6 @@ server.use('/cargo', cargoRouter)
 server.use('/config', configRouter)
 server.use('/configCargo', configCargoRouter)
 
-const port = process.env.PORT
-server.listen(port)
+server.listen(process.env.PORT)
 
 export default server

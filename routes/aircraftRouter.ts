@@ -29,6 +29,28 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
   }
 })
 
+aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
+  try {
+    // faster to read all data, and sort it then to make many request to db
+    // also more flexible than writing nested query
+    const allAirsMap = await query.readAircraftsAsMap()
+
+    // roles > 0 of requester are allowed to view aircraft data
+    const airIds: number[] = await query.readAllAircraftIdsOfRoleWhereRoleGreaterThanX(
+      req, // used to lookup users name
+      0 // roles > 0 have role 1 @ aircraft
+    )
+
+    const airs = airIds.map((aircraftId) => allAirsMap.get(aircraftId))
+    const ret = {lastUpdated: Date.now(), airs}
+
+    resMsg.on200(req)
+    res.status(200).send(ret)
+  } catch (e) {
+    res.status(500).send(resMsg.on500(req, e))
+  }
+})
+
 // UPDATE || CREATE (Aircraft)
 aircraftRouter.put('/', async (req: Request, res: Response) => {
   try {
