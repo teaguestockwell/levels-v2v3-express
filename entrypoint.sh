@@ -3,7 +3,7 @@ export PORT="${PORT:-8080}"
 # echo $DATABASE_URL
 
 echo "waiting for DB to accept conenctions"
-npx ts-node --transpile-only wait.ts
+node wait.js
 
 # echo "generating prisma types from prisma.schema into node_modules"
 # npx prisma generate
@@ -23,7 +23,7 @@ npx prisma migrate reset --force --skip-generate --preview-feature
 # npx nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit
 
 echo "reseeding db"
-npx ts-node --transpile-only prisma/reseed.ts
+node prisma/reseed.js
 
-echo "starting server"
-npx ts-node --transpile-only server.ts
+echo "starting prod build server"
+node server.js

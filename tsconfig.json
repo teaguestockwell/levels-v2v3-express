@@ -3,6 +3,6 @@
     "alwaysStrict": true,
     "composite": true,
     "esModuleInterop": true,
-    "noEmit": true
+    "outDir": "build",
   }
 }
