@@ -349,11 +349,10 @@ const query = {
     return airs
   },
 
-  readAircraftsAsMap: async (): Promise<Map<number, Aircraft>> => {
-    const ret = new Map<number, Aircraft>()
-    const allAirs = await query.readAircrafts()
-    allAirs.forEach((a) => ret.set(a.aircraftId, a))
-    return ret
+  readAircraftsAsObj: async (): Promise<{[key:number]:Aircraft}> => {
+    const ret2: {[key:number]:Aircraft} = {};
+    (await query.readAircrafts()).forEach(a => ret2[a.aircraftId] = a)
+    return ret2
   },
 
   // 1 role (endpoint request)
