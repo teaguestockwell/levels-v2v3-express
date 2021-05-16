@@ -123,7 +123,7 @@ describe('GET /aircraft/lastUpdated', () => {
       .set('authorization', role0e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.airs.length == 0)
+        assert(res.body.data.length == 0)
       })
       .end(done)
   })
@@ -134,7 +134,7 @@ describe('GET /aircraft/lastUpdated', () => {
       .set('authorization', role2e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.airs.length == 2)
+        assert(res.body.data.length == 2)
       })
       .end(done)
   })
@@ -145,7 +145,7 @@ describe('GET /aircraft/lastUpdated', () => {
       .set('authorization', role2OnAir1e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.airs.length == 1)
+        assert(res.body.data.length == 1)
       })
       .end(done)
   })

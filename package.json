@@ -4,12 +4,8 @@
   "description": "",
   "scripts": {
     "cleanDocker": "docker system prune --filter until=24h -f",
-    "prisma:studio": "npx prisma studio",
-    "prisma:generate": "npx prisma generate",
-    "prisma:migrate": "npx prisma generate && npx prisma migrate dev --preview-feature",
-    "db:seed": "npx ts-node prisma/seed.ts",
-    "test:unitOnly": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "test:unit": "npm install && npx prisma migrate dev --name init --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test:unit": "npm install && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps",
     "lint": "npm install && eslint .",
     "pretty": "npx prettier --write .",
     "preinstall": "npx npm-force-resolutions"

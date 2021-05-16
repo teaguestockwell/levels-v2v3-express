@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+
+  PG_DATABASE:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: PG_USER
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: PG_DATABASE
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.test
+    environment: 
+      NODE_ENV: development
+      DATABASE_URL: postgresql://PG_USER:password@PG_DATABASE:5432
+      PORT: 8080
+      
