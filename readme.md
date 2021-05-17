@@ -21,7 +21,7 @@ A node server leveraging:
 
 # To compose UI-API-DB
  #### Mac
-
+ 
 git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git frontend && git clone https://code.il2.dso.mil/tron/products/five-level-app/api.git api && git clone https://code.il2.dso.mil/tron/products/five-level-app/docker-compose-dev.git fullstack-template && cd fullstack-template && bin/run.sh
 
 #### Windows
