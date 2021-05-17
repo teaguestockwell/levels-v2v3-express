@@ -6,7 +6,7 @@
     "cleanDocker": "docker system prune --filter until=24h -f",
     "test:unit": "npm install && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "init:db": "npx prisma migrate reset --force --skip-generate --preview-feature",
-    "test:unit2": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test:unit2": "SKIP_GENERATE=true npm install && npx prisma generate && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps",
     "lint": "npm install && eslint .",
     "pretty": "npx prettier --write ."
