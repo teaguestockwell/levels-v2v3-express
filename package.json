@@ -4,18 +4,21 @@
   "description": "",
   "scripts": {
     "cleanDocker": "docker system prune --filter until=24h -f",
-    "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps",
     "init:db": "npx prisma migrate reset --force --skip-generate --preview-feature",
-    "test:unit": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test:unit2": "nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test:unit": "npm install && npx prisma generate && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps",
     "lint": "npm install && eslint .",
     "pretty": "npx prettier --write ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^2.22.1",
     "atob": "^2.1.2",
     "compression": "^1.7.4",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "prisma": "^2.22.1"
   },
   "devDependencies": {
     "@types/assert": "^1.5.4",
