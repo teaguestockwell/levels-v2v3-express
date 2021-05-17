@@ -11,7 +11,7 @@ A node server leveraging:
 
 ![output](https://user-images.githubusercontent.com/71202372/112101303-a4edc080-8b63-11eb-9712-97a42599a66d.gif)
 ![output](https://user-images.githubusercontent.com/71202372/112105405-986c6680-8b69-11eb-9c34-b60b4aff17e6.gif)
- 
+  
 # Required dependencies
 
 1. install git https://www.atlassian.com/git/tutorials/install-git
