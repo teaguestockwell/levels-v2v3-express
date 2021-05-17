@@ -20,8 +20,7 @@ A node server leveraging:
 4. install the vs code extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
 
 # To compose UI-API-DB
-
-#### Mac
+ #### Mac
 
 git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git frontend && git clone https://code.il2.dso.mil/tron/products/five-level-app/api.git api && git clone https://code.il2.dso.mil/tron/products/five-level-app/docker-compose-dev.git fullstack-template && cd fullstack-template && bin/run.sh
 
