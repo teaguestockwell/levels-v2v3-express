@@ -4,5 +4,6 @@
     "composite": true,
     "esModuleInterop": true,
     "outDir": "build",
+    "sourceMap": false
   }
 }
