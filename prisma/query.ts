@@ -15,6 +15,30 @@ import atob from 'atob'
 const prisma = new PrismaClient()
 
 const query = {
+
+  readAirsAtReq: async (req: Request, roleGT: number): Promise<Aircraft[]> => {
+    const name = await query.readName(req)
+    
+    return (await prisma.user.findMany({
+      where: {
+        name: name,
+        role: {gt: roleGT}
+      },
+      include: {
+        aircraft: {
+          include: {
+          cargos: true,
+          tanks: true,
+          glossarys: true,
+          configs: {
+            include: {configCargos: {include: {cargo: true}}},
+          },
+        }
+        },
+      },
+      
+    })).map(u => u.aircraft)
+  },
   //////////////////////////////UPDATE || CREATE////////////////////////////
   //////////////////////////////UPSERT//////////////////////////////////////
 

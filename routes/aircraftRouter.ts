@@ -7,18 +7,8 @@ const aircraftRouter = Router()
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
-    // faster to read all data, and sort it then to make many request to db
-    // also more flexible than writing nested query
-    const allAirsObj = await query.readAircraftsAsObj()
-
-    // roles > 0 of requester are allowed to view aircraft data
-    const airIds: number[] = await query.readAllAircraftIdsOfRoleWhereRoleGreaterThanX(
-      req, // used to lookup users name
-      0 // roles > 0 have role 1 @ aircraft
-    )
-
     res.status(200).send(
-      airIds.map(id => allAirsObj[id])
+      await query.readAirsAtReq(req, 0)
     )
   } catch (e) {
     res.status(500).send(resMsg.on500(req, e))
@@ -27,20 +17,10 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
-    // faster to read all data, and sort it then to make many request to db
-    // also more flexible than writing nested query
-    const allAirsObj = await query.readAircraftsAsObj()
-
-    // roles > 0 of requester are allowed to view aircraft data
-    const airIds: number[] = await query.readAllAircraftIdsOfRoleWhereRoleGreaterThanX(
-      req, // used to lookup users name
-      0 // roles > 0 have role 1 @ aircraft
-    )
-
     res.status(200).send(
       {
         serverEpoch: Date.now(),
-        data: airIds.map((id) => allAirsObj[id])
+        data: await query.readAirsAtReq(req, 0)
       }
     )
   } catch (e) {
