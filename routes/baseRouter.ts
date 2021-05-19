@@ -48,7 +48,7 @@ export const sendWrapped = (
     status,
     req,
     res,
-    user = undefined,
+    user,
     resBody,
     roleGE
   }:
@@ -62,23 +62,23 @@ export const sendWrapped = (
     roleGE: number | undefined
   }): void => { 
     try{
-      res.status(status).send(
-        status === 200 && resBody ? resBody : msg ? {msg} : getMsg(req,status,roleGE,user?.role)
-      )
-      user = user ? user : {name: query.readName(req), role: -1, aircraftId: -1, userId: -1},
-      prisma.log.create({
-        data:{
-          status,
-          ep: req.baseUrl,
-          email: user?.name ?? 'no name',
-          method: req.method,
-          role: user?.role ?? 0,
-          body: req.body && req.method === 'put' ? JSON.stringify(req.body) : undefined
-        }
-      })
-    } catch (e) {
-      console.error(e + '############################')
-    }
+      user = user ? user : {name: query.readName(req), role: -1, aircraftId: -1, userId: -1}
+
+      const data = {
+        status,
+        ep: req.baseUrl,
+        email: user.name,
+        method: req.method,
+        role: user.role,
+        body: req.body && req.method === 'put' && status === 200 ? JSON.stringify(req.body) : undefined
+      }
+      prisma.log.create({data})
+  } catch (e) {
+    console.error(e)
+  }
+  res.status(status).send(
+    status === 200 && resBody ? resBody : msg ? {msg} : getMsg(req,status,roleGE,user?.role)
+  )
 }
 
 export const sendWrapped500 = (

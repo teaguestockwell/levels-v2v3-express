@@ -7,9 +7,13 @@ const aircraftRouter = Router()
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
-    res.status(200).send(
-      await query.readAirsAtReq(req, 0)
-    )
+    sendWrapped({
+      req,
+      res,
+      status: 200,
+      resBody: await query.readAirsAtReq(req, 0),
+      roleGE: 1
+    })
   } catch (e) {
     sendWrapped500({
       req,
@@ -21,12 +25,16 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
-    res.status(200).send(
-      {
+    sendWrapped({
+      req,
+      res,
+      status: 200,
+      roleGE: 1,
+      resBody: {
         serverEpoch: Date.now(),
         data: await query.readAirsAtReq(req, 0)
       }
-    )
+    })
   } catch (e) {
     sendWrapped500({
       req,
@@ -114,27 +122,38 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 // DELETE ({aircraftId})
 aircraftRouter.delete('*', async (req: Request, res: Response) => {
   try {
-    const aircraftId = Number(`${req.query['aircraftId']}`)
-    const user = await query.readUserAtReqAndAircraftId(req, aircraftId)
+    const roleGE = 3
+    try{
 
-    if (user.role >= 3) {
-      await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 200,
-        roleGE: 3
-      })
+      const aircraftId = Number(req.query['aircraftId'])
+      const user = await query.readUserAtReqAndAircraftId(req, aircraftId)
+      
+      if (user.role >= roleGE) {
+        await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
+        sendWrapped({
+          user,
+          req,
+          res,
+          status: 200,
+          roleGE
+        })
     } else {
       sendWrapped({
         user,
         req,
         res,
         status: 403,
-        roleGE: 3
+        roleGE
       })
     }
+  } catch (e) {
+    sendWrapped({
+      req,
+      res,
+      status: 400,
+      roleGE
+    })
+  }
   } catch (e) {
     sendWrapped500({
       req,

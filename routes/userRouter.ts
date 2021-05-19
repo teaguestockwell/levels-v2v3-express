@@ -9,26 +9,35 @@ const userRouter = Router()
 userRouter.get('*', async (req: Request, res: Response) => {
   try {
     const roleGE = 2
-    const user = await query.readUserWithHighestRole(req)
-    const aircraftId = Number(`${req.query['aircraftId']}`)
-    if (user.role >= roleGE) {
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 200,
-        resBody: await query.readUsersAtAircraftId(aircraftId),
-        roleGE
-      })
-    } else {
-      sendWrapped({
-        user,
+    try{
+      const user = await query.readUserWithHighestRole(req)
+      const aircraftId = Number(`${req.query['aircraftId']}`)
+      if (user.role >= roleGE) {
+        sendWrapped({
+          user,
+          req,
+          res,
+          status: 200,
+          resBody: await query.readUsersAtAircraftId(aircraftId),
+          roleGE
+        })
+      } else {
+        sendWrapped({
+          user,
         req,
         res,
         status: 403,
         roleGE
       })
     }
+  } catch (e) {
+    sendWrapped({
+      req,
+      res,
+      status: 400,
+      roleGE
+    })
+  }
   } catch (e) {
     sendWrapped500({
       req,
@@ -87,7 +96,6 @@ userRouter.put('/', async (req: Request, res: Response) => {
 userRouter.delete('*', async (req: Request, res: Response) => {
   try {
     try{
-
       const tryDeleteUser = await query.readUserAtUserId(Number(`${req.query['userId']}`))
       const reqUser = await query.readUserAtReqAndAircraftId(
         req,

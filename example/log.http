@@ -1,2 +1,2 @@
 ###
-GET http://localhost:8080/fl-api/log?pageIdx=0&fromDateTime=2021-04-19T00:455Z&toDateTime=2022-05-19T00:45:33.945Z
+GET http://localhost:8080/fl-api/log?pageIdx=0&status=200
