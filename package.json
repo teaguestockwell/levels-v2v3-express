@@ -7,7 +7,8 @@
     "test:unit": "npm install && npx prisma generate && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps",
     "lint": "npm install && eslint .",
-    "pretty": "npx prettier --write ."
+    "pretty": "npx prettier --write .",
+    "migrate": "docker run --name fl-api-migration --rm -d -e POSTGRES_DB=PG_DATABASE -e POSTGRES_USER=PG_USER -e POSTGRES_PASSWORD=password -p 5432:5432 postgres && sleep 5 && DATABASE_URL=postgresql://PG_USER:password@localhost:5432 npx prisma migrate dev"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +17,9 @@
     "atob": "^2.1.2",
     "compression": "^1.7.4",
     "express": "^4.17.1",
-    "prisma": "^2.22.1"
+    "prisma": "^2.22.1",
+    "cors": "^2.8.5",
+    "yup": "^0.32.9"
   },
   "devDependencies": {
     "@types/assert": "^1.5.4",
@@ -30,7 +33,6 @@
     "@typescript-eslint/parser": "^4.23.0",
     "assert": "^2.0.0",
     "btoa": "^1.2.1",
-    "cors": "^2.8.5",
     "eslint": "^7.26.0",
     "mocha": "^8.4.0",
     "nyc": "^15.1.0",

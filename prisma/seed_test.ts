@@ -21,6 +21,16 @@ export const seedTest = {
     }
   },
 
+  logs: async (): Promise<void> => {
+    await prisma.log.create({data: {
+      status: 200,
+      ep: 'log',
+      method: 'put',
+      body: 'hello logs',
+      email: 'teague.stockwell@us.af.mil',
+    }})
+  },
+
   generals: async (): Promise<void> => {
     await prisma.general.create({
       data: {

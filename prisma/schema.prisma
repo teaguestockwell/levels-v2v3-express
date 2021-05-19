@@ -11,6 +11,17 @@ generator client {
   binaryTargets = ["native"]
 }
 
+model Log {
+  logId Int @id @default(autoincrement())
+
+  dateTime DateTime @default(now())
+  status Int
+  ep String
+  email String
+  method String
+  body String?
+}
+
 //differnt greetings for diffrent roles
 model General {
   // Primary Key

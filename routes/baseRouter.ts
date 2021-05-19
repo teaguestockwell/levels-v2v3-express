@@ -41,9 +41,9 @@ export const resMsg = {
     return msg
   },
 
-  on400: (req: Request): msgI => {
+  on400: (req: Request, msgOrid?: string): msgI => {
     const msg = {
-      msg: `400: Name / name must be unique to ${req.method} @ ${req.originalUrl}`,
+      msg: !msgOrid ? `400: Name / name must be unique to ${req.method} @ ${req.originalUrl}` : msgOrid,
     }
     console.log(msg.msg)
     return msg

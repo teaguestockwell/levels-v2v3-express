@@ -12,7 +12,7 @@ import {
 } from '@prisma/client'
 import atob from 'atob'
 
-const prisma = new PrismaClient()
+export const prisma = new PrismaClient()
 
 const query = {
 

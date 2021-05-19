@@ -8,15 +8,17 @@ import tankRouter from './routes/tankRouter'
 import cargoRouter from './routes/cargoRouter'
 import configRouter from './routes/configRouter'
 import configCargoRouter from './routes/configCargoRouter'
-//import cors from 'cors';
+import logRouter from './routes/logRouter'
+import cors from 'cors';
 
 const server: Application = express()
 server.disable('x-powered-by')
 
 server.use(express.json())
 server.use(compression())
-//server.use(cors())
+server.use(cors())
 
+server.use('/log',logRouter)
 server.use('/aircraft', aircraftRouter)
 server.use('/general', generalRouter)
 server.use('/user', userRouter)
