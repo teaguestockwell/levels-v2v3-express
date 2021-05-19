@@ -61,21 +61,6 @@ export const sendWrapped = (
     user?: User | undefined,
     roleGE: number | undefined
   }): void => { 
-    try{
-      user = user ? user : {name: query.readName(req), role: -1, aircraftId: -1, userId: -1}
-
-      const data = {
-        status,
-        ep: req.baseUrl,
-        email: user.name,
-        method: req.method,
-        role: user.role,
-        body: req.body && req.method === 'put' && status === 200 ? JSON.stringify(req.body) : undefined
-      }
-      prisma.log.create({data})
-  } catch (e) {
-    console.error(e)
-  }
   res.status(status).send(
     status === 200 && resBody ? resBody : msg ? {msg} : getMsg(req,status,roleGE,user?.role)
   )
@@ -95,20 +80,6 @@ export const sendWrapped500 = (
     res.status(500).send({
       msg: `500: We cant ${req.method} @ ${req.originalUrl}. Please refresh the previous screen`,
     })
-    try{
-      prisma.log.create({
-        data:{
-          status: 500,
-          ep: req.baseUrl,
-          email: 'api.user@dev.com',
-          method: req.method,
-          role: 0,
-          body: e
-        }
-      })
-    } catch (e) {
-      console.error(e)
-    }
   }
 
 // TODO: add 400 res for request that dont have aircraft aircraftId / pk

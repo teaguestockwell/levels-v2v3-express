@@ -3,38 +3,18 @@ import {Router, Request, Response} from 'express'
 import {Aircraft, User} from '@prisma/client'
 import { sendWrapped, sendWrapped500 } from './baseRouter'
 const aircraftRouter = Router()
-
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
-    sendWrapped({
-      req,
-      res,
-      status: 200,
-      resBody: await query.readAirsAtReq(req, 0),
-      roleGE: 1
-    })
+    res.status(200).send(await query.readAirsAtReq(req, 0))
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
-    sendWrapped({
-      req,
-      res,
-      status: 200,
-      roleGE: 1,
-      resBody: {
-        serverEpoch: Date.now(),
-        data: await query.readAirsAtReq(req, 0)
-      }
-    })
+    
   } catch (e) {
     sendWrapped500({
       req,

@@ -10,12 +10,18 @@ import configRouter from './routes/configRouter'
 import configCargoRouter from './routes/configCargoRouter'
 import logRouter from './routes/logRouter'
 import cors from 'cors';
+import responseTime from 'response-time'
+import errorHandler from './middleware/errorHandler'
+import logger from './middleware/logger'
 
 const server: Application = express()
 server.disable('x-powered-by')
 
 server.use(express.json())
 server.use(compression())
+server.use(responseTime())
+server.use(errorHandler)
+server.use(logger)
 server.use(cors())
 
 server.use('/log',logRouter)
@@ -27,6 +33,7 @@ server.use('/tank', tankRouter)
 server.use('/cargo', cargoRouter)
 server.use('/config', configRouter)
 server.use('/configCargo', configCargoRouter)
+
 
 server.listen(process.env.PORT)
 

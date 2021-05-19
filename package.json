@@ -16,9 +16,11 @@
     "@prisma/client": "^2.22.1",
     "atob": "^2.1.2",
     "compression": "^1.7.4",
-    "express": "^4.17.1",
-    "prisma": "^2.22.1",
     "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-mung": "^0.5.1",
+    "prisma": "^2.22.1",
+    "response-time": "^2.3.2",
     "yup": "^0.32.9"
   },
   "devDependencies": {

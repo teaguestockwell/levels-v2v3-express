@@ -20,8 +20,8 @@ model Log {
   email String
   method String
   body String?
-  role Int
   query String?
+  resTime String? 
 }
 
 //differnt greetings for diffrent roles
