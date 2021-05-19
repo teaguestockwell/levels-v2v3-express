@@ -23,11 +23,12 @@ export const seedTest = {
 
   logs: async (): Promise<void> => {
     await prisma.log.create({data: {
+      role: 0,
       status: 200,
       ep: 'log',
       method: 'put',
       body: 'hello logs',
-      email: 'teague.stockwell@us.af.mil',
+      email: 'api.user@dev.com',
     }})
   },
 

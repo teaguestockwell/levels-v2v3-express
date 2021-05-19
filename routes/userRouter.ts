@@ -1,67 +1,131 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
 import {User} from '@prisma/client'
-import {resMsg} from './baseRouter'
+import { sendWrapped, sendWrapped500 } from './baseRouter'
 
 const userRouter = Router()
 
 // READ ({aircraftId}) || ()
 userRouter.get('*', async (req: Request, res: Response) => {
   try {
+    const roleGE = 2
+    const user = await query.readUserWithHighestRole(req)
     const aircraftId = Number(`${req.query['aircraftId']}`)
-    if ((await query.readHighestRole(req)) >= 2) {
-      const users = await query.readUsersAtAircraftId(aircraftId)
-      resMsg.on200(req)
-      res.status(200).send(users)
+    if (user.role >= roleGE) {
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 200,
+        resBody: await query.readUsersAtAircraftId(aircraftId),
+        roleGE
+      })
     } else {
-      const role = await query.readHighestRole(req)
-      res.status(403).send(resMsg.on403(2, role, req))
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 403,
+        roleGE
+      })
     }
   } catch (e) {
-    res.status(500).send(resMsg.on500(req, e))
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 
 // UPDATE || CREATE (User)
 userRouter.put('/', async (req: Request, res: Response) => {
   try {
-    const reqBodyUser: User = req.body
     const reqUser: User = await query.readUserAtReqAndAircraftId(
       req,
-      reqBodyUser.aircraftId
+      req.body.aircraftId
     )
-
-    if (reqUser.role >= 2 && reqUser.role > reqBodyUser.role) {
-      await query.upsertUser(reqBodyUser)
-      res.status(200).send(resMsg.on200(req))
+    const roleGE = req.body.role > 2 ? req.body.role + 1 : 2
+    if (reqUser.role >= roleGE) {
+      try{
+        await query.upsertUser(req.body)
+        sendWrapped({
+          user: reqUser,
+          req,
+          res,
+          status: 200,
+          roleGE
+        })
+      } catch (e) {
+        sendWrapped({
+          user: reqUser,
+          req,
+          res,
+          status: 400,
+          roleGE
+        })
+      }
     } else {
-      res.status(403).send(resMsg.on403(reqBodyUser.role, reqUser.role, req))
-    }
+      sendWrapped({
+        user: reqUser,
+        req,
+        res,
+        status: 403,
+        roleGE
+      })
+    } 
   } catch (e) {
-    res.status(400).send(resMsg.on400(req))
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 
 // DELETE ({userId})
 userRouter.delete('*', async (req: Request, res: Response) => {
   try {
-    const userId = Number(`${req.query['userId']}`)
-    const tryDeleteUser = await query.readUserAtUserId(userId)
-    const reqUser = await query.readUserAtReqAndAircraftId(
-      req,
-      tryDeleteUser.aircraftId
-    )
-    if (reqUser.role > tryDeleteUser.role) {
-      query.deleteUserAtUserid(tryDeleteUser.userId)
-      res.status(200).send(resMsg.on200(req))
+    try{
+
+      const tryDeleteUser = await query.readUserAtUserId(Number(`${req.query['userId']}`))
+      const reqUser = await query.readUserAtReqAndAircraftId(
+        req,
+        tryDeleteUser.aircraftId
+        )
+        
+        if (reqUser.role > tryDeleteUser.role) {
+          query.deleteUserAtUserid(tryDeleteUser.userId)
+          sendWrapped({
+            user: reqUser,
+            req,
+            res,
+            status: 200,
+        roleGE: tryDeleteUser.role
+      })
     } else {
-      res
-        .status(403)
-        .send(resMsg.on403(tryDeleteUser.role + 1, reqUser.role, req))
+      sendWrapped({
+        user: reqUser,
+        req,
+        res,
+        status: 403,
+        roleGE: tryDeleteUser.role + 1
+      })
     }
   } catch (e) {
-    console.log(e)
-    res.status(500).send()
+    sendWrapped({
+      req,
+      res,
+      status: 400,
+      roleGE: -1
+    })
+  }
+  } catch (e) {
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 

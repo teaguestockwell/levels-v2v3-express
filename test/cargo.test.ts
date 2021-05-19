@@ -137,12 +137,12 @@ describe('PUT /cargo', () => {
   // this user does not have roles on this aircraft,
   // so they are trying trick our api by sending an aircraft aircraftId where they have roles,
   // not today hacker!
-  it('Should return 403 where req.role <= 2 @ obj with invalid aircraft aircraftId', (done: Done) => {
+  it('Should return 400 where req.role <= 2 @ obj with invalid aircraft aircraftId', (done: Done) => {
     req(server)
       .put('/cargo')
       .set('authorization', role3OnAir1e)
       .send(updateCargoWithWrongAircraftId)
-      .expect(403)
+      .expect(400)
       .end(done)
   })
 

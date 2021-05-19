@@ -1,7 +1,7 @@
 import query from '../prisma/query'
 import {Router, Request, Response} from 'express'
 import {Aircraft, User} from '@prisma/client'
-import {resMsg} from './baseRouter'
+import { sendWrapped, sendWrapped500 } from './baseRouter'
 const aircraftRouter = Router()
 
 // READ ()
@@ -11,7 +11,11 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
       await query.readAirsAtReq(req, 0)
     )
   } catch (e) {
-    res.status(500).send(resMsg.on500(req, e))
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 
@@ -24,31 +28,42 @@ aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
       }
     )
   } catch (e) {
-    res.status(500).send(resMsg.on500(req, e))
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 
 // UPDATE || CREATE (Aircraft)
 aircraftRouter.put('/', async (req: Request, res: Response) => {
+  const roleGE = 3
   try {
     const reqAir: Aircraft = req.body
-    const highestRole = await query.readHighestRole(req)
-
-    if (reqAir.aircraftId == 0 && highestRole >= 3) {
-      const reqName = query.readName(req)
-
-      // we have asserted that this req has a role >= 3 on some aircraft,
-      // so we can grab a copy of that to pass to the new aircraft
-      const reqUser = await query.readFirstUserAtName(reqName)
-
+    const user = await query.readUserWithHighestRole(req)
+    
+    if (reqAir.aircraftId === 0 && user.role >= roleGE) {
       // they should be able to create users with role 3
-      reqUser.role = 4
+      user.role = 4
 
       try {
-        await query.upsertAircraftShallow(reqAir, reqUser)
-        res.status(200).send(resMsg.on200(req))
+        await query.upsertAircraftShallow(reqAir, user)
+        sendWrapped({
+          user,
+          req,
+          res,
+          status: 200,
+          roleGE: 3
+        })
       } catch (e) {
-        res.status(400).send(resMsg.on400(req))
+        sendWrapped({
+          user,
+          req,
+          res,
+          status: 400,
+          roleGE
+        })
       }
     }
 
@@ -62,16 +77,37 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
           userId: 0,
         }
         await query.upsertAircraftShallow(reqAir, mockUser)
-        res.status(200).send(resMsg.on200(req))
+        sendWrapped({
+          user,
+          req,
+          res,
+          status: 200,
+          roleGE
+        })
       } catch (e) {
-        res.status(400).send(resMsg.on400(req))
+        sendWrapped({
+          req,
+          res,
+          status: 400,
+          roleGE
+        })
       }
     } else {
-      const role = await query.readRoleAtAircraftId(req, reqAir.aircraftId)
-      res.status(403).send(resMsg.on403(3, role, req))
+
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 403,
+        roleGE
+      })
     }
   } catch (e) {
-    res.status(500).send(resMsg.on500(req, e))
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 
@@ -79,16 +115,32 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 aircraftRouter.delete('*', async (req: Request, res: Response) => {
   try {
     const aircraftId = Number(`${req.query['aircraftId']}`)
-    const roleAtAir = await query.readRoleAtAircraftId(req, aircraftId)
+    const user = await query.readUserAtReqAndAircraftId(req, aircraftId)
 
-    if (roleAtAir > 2) {
+    if (user.role >= 3) {
       await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
-      res.status(200).send(resMsg.on200(req))
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 200,
+        roleGE: 3
+      })
     } else {
-      res.status(403).send(resMsg.on403(2, roleAtAir, req))
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 403,
+        roleGE: 3
+      })
     }
   } catch (e) {
-    res.status(500).send(resMsg.on500(req, e))
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 

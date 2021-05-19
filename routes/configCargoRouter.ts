@@ -1,38 +1,59 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {baseRouter, resMsg} from './baseRouter'
+import {baseRouter, sendWrapped, sendWrapped500} from './baseRouter'
 
 const configCargoRouter = Router()
 
 // READ N (Config)
 configCargoRouter.get('*', async (req: Request, res: Response) => {
-  const reqRoleGE = 1
-  const pk = 'configId'
-  const readAircraftIDOfOBJpk = query.readAircraftIdAtConfigid
-  const readNAtPK = query.readConfigCargosDeepAtConfigId
+  const roleGE = 1
   try {
-    const pkNum = Number(`${req.query[pk]}`)
+    try{
 
-    // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
-    // an example of where this is applicable is GET /configcargo
-    const verifiedAirId = await readAircraftIDOfOBJpk(pkNum)
-    const roleAtAircraft = await query.readRoleAtAircraftId(req, verifiedAirId)
-
-    if (roleAtAircraft >= reqRoleGE) {
-      const n = await readNAtPK(pkNum)
-
+      const pkNum = Number(req.query.configId)
+      const verifidAirId = await query.readAircraftIdAtConfigid(pkNum)
+      // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
+      // an example of where this is applicable is GET /configcargo
+      const user = await query.readUserAtReqAndAircraftId(req, verifidAirId)
+      
+    if (user.role >= roleGE) {
+      
       // using the nested cargo, insert a name prop into configcargo
-      const nx = n.map((x) => {
-        x['name'] = x['cargo']['name']
-        return x
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 200,
+        resBody: (await query.readConfigCargosDeepAtConfigId(pkNum)).map((x) => {
+          x['name'] = x['cargo']['name']
+          return x
+        }),
+        roleGE: roleGE
       })
-      resMsg.on200(req)
-      res.status(200).send(nx)
     } else {
-      res.status(403).send(resMsg.on403(reqRoleGE, roleAtAircraft, req))
+      sendWrapped({
+        user,
+        req,
+        res,
+        status: 403,
+        roleGE
+      })
     }
   } catch (e) {
-    res.status(500).send(resMsg.on500(req, e))
+    sendWrapped({
+      user: {name: await query.readName(req), role: -1, aircraftId: -1, userId: -1},
+      req,
+      res,
+      status: 400,
+      roleGE: -1
+    })
+  }
+  } catch (e) {
+    sendWrapped500({
+      req,
+      res,
+      e
+    })
   }
 })
 

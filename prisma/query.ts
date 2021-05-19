@@ -245,6 +245,22 @@ const query = {
     }
   },
 
+  readUserOfReqAndAircraftIdImplementsNoRole: async (req: Request, aircraftId: number): Promise<User> => {
+    const name = query.readName(req) ?? 'No name found'
+    const aircraftId_name = {aircraftId, name}
+    const user = await prisma.user.findUnique({
+      where: {
+        aircraftId_name,
+      },
+    })
+    return user ? user : {
+      userId: -1,
+      aircraftId,
+      name,
+      role: 0
+    }
+  },
+
   /**
    * given a request, then return all aircraftIds
    * that are assigned to the users with a role > x
@@ -286,11 +302,29 @@ const query = {
             highest = u.role
           }
         })
-        return highest
+        return highest  
       }
     } catch (e) {
       return 0
     }
+  },
+
+  readUserWithHighestRole:  async (req: Request): Promise<User> => {
+
+    const name = query.readName(req)
+
+    const users = await prisma.user.findMany({
+      where: {name},
+    })
+
+    let highest:User = {name: 'no name', role: 0, aircraftId: 0, userId: 0}
+    users.forEach((u) => {
+      if (u.role > highest.role) {
+        highest = u
+      }
+    })
+
+    return highest
   },
 
   readName: (req: Request): string | null => {

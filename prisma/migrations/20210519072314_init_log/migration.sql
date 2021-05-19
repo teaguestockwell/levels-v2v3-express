@@ -7,6 +7,8 @@ CREATE TABLE "Log" (
     "email" TEXT NOT NULL,
     "method" TEXT NOT NULL,
     "body" TEXT,
+    "role" INTEGER NOT NULL,
+    "query" TEXT,
 
     PRIMARY KEY ("logId")
 );
