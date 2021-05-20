@@ -23,7 +23,7 @@ const handle = (body, req: Request, res: Response) => {
       }
     }
   } catch (e) {
-    console.log(e)
+    return
   }
 }
 

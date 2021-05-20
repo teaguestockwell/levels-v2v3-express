@@ -221,7 +221,6 @@ const query = {
           return u.role
         })
     } catch (e) {
-      //console.log('could not read role at user ')
       return 0
     }
   },
@@ -293,7 +292,6 @@ const query = {
   },
 
   readHighestRole: async (req: Request): Promise<number> => {
-    ////console.log('read highest role')
     try {
       const name = query.readName(req)
       if (name != null) {
@@ -347,7 +345,6 @@ const query = {
    * returns a recursive aircraft object with all nested relations
    */
   readAircraftAtId: async (aircraftId: number): Promise<Aircraft> => {
-    //console.log('readOneAircraftAtId: ' + aircraftId)
 
     const air = await prisma.aircraft.findUnique({
       where: {aircraftId},
@@ -367,7 +364,6 @@ const query = {
   readAircraftAtIdIncludeUsers: async (
     aircraftId: number
   ): Promise<Aircraft> => {
-    //console.log('readOneAircraftAtId: ' + aircraftId)
 
     const air = await prisma.aircraft.findUnique({
       where: {aircraftId},
@@ -395,7 +391,6 @@ const query = {
 
   // n Aircraft()
   readAircrafts: async (): Promise<Aircraft[]> => {
-    //console.log('readAircrafts')
 
     const airs = await prisma.aircraft.findMany({
       include: {
