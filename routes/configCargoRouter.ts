@@ -1,6 +1,6 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {baseRouter } from './baseRouter'
+import {baseRouter} from './baseRouter'
 
 const configCargoRouter = Router()
 
@@ -8,28 +8,27 @@ const configCargoRouter = Router()
 configCargoRouter.get('*', async (req: Request, res: Response) => {
   const roleGE = 1
   try {
-    try{
-
+    try {
       const pkNum = Number(req.query.configId)
       const verifidAirId = await query.readAircraftIdAtConfigid(pkNum)
       // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
       // an example of where this is applicable is GET /configcargo
       const user = await query.readUserAtReqAndAircraftId(req, verifidAirId)
-      
-    if (user.role >= roleGE) {  
-      // using the nested cargo, insert a name prop into configcargo
-      res.status(200).json(
-        (await query.readConfigCargosDeepAtConfigId(pkNum)).map((x) => {
-          x['name'] = x['cargo']['name']
-          return x
-        }),
-      )
-    } else {
-      res.status(403).json()
+
+      if (user.role >= roleGE) {
+        // using the nested cargo, insert a name prop into configcargo
+        res.status(200).json(
+          (await query.readConfigCargosDeepAtConfigId(pkNum)).map((x) => {
+            x['name'] = x['cargo']['name']
+            return x
+          })
+        )
+      } else {
+        res.status(403).json()
+      }
+    } catch (e) {
+      res.status(400).json()
     }
-  } catch (e) {
-    res.status(400).json()
-  }
   } catch (e) {
     res.status(500).json()
   }

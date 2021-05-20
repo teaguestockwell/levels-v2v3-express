@@ -9,7 +9,7 @@ import cargoRouter from './routes/cargoRouter'
 import configRouter from './routes/configRouter'
 import configCargoRouter from './routes/configCargoRouter'
 import logRouter from './routes/logRouter'
-import cors from 'cors';
+import cors from 'cors'
 import responseTime from 'response-time'
 import errorHandler from './middleware/errorHandler'
 import logger from './middleware/logger'
@@ -28,7 +28,7 @@ server.use(logger)
 server.use(compression())
 
 // use route middleware
-server.use('/log',logRouter)
+server.use('/log', logRouter)
 server.use('/aircraft', aircraftRouter)
 server.use('/general', generalRouter)
 server.use('/user', userRouter)

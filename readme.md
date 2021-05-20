@@ -20,7 +20,7 @@ A node server leveraging:
 4. install the vs code extension: https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
 
 # To compose UI-API-DB
- 
+
 #### Mac
 
 git clone https://code.il2.dso.mil/tron/products/five-level-app/frontend.git frontend && git clone https://code.il2.dso.mil/tron/products/five-level-app/api.git api && git clone https://code.il2.dso.mil/tron/products/five-level-app/docker-compose-dev.git fullstack-template && cd fullstack-template && bin/run.sh
@@ -46,5 +46,3 @@ to view live data while running, use the examples with vs code rest client || at
 1. https://github.com/docker/for-mac/issues/371#issuecomment-248404423
 2. reset docker to factory defaults
 3. docker pull nginx && docker pull node:14.15.4 && docker pull nginx
-
-

@@ -1,7 +1,6 @@
 version: '3.3'
 
 services:
-
   fl-api-test-db:
     image: postgres
     restart: always
@@ -14,8 +13,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.test
-    environment: 
+    environment:
       NODE_ENV: development
       DATABASE_URL: postgresql://PG_USER:password@fl-api-test-db:5432
       PORT: 8080
-      

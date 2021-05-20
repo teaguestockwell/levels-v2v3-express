@@ -15,29 +15,29 @@ import atob from 'atob'
 export const prisma = new PrismaClient()
 
 const query = {
-
   readAirsAtReq: async (req: Request, roleGT: number): Promise<Aircraft[]> => {
     const name = await query.readName(req)
-    
-    return (await prisma.user.findMany({
-      where: {
-        name: name,
-        role: {gt: roleGT}
-      },
-      include: {
-        aircraft: {
-          include: {
-          cargos: true,
-          tanks: true,
-          glossarys: true,
-          configs: {
-            include: {configCargos: {include: {cargo: true}}},
-          },
-        }
+
+    return (
+      await prisma.user.findMany({
+        where: {
+          name: name,
+          role: {gt: roleGT},
         },
-      },
-      
-    })).map(u => u.aircraft)
+        include: {
+          aircraft: {
+            include: {
+              cargos: true,
+              tanks: true,
+              glossarys: true,
+              configs: {
+                include: {configCargos: {include: {cargo: true}}},
+              },
+            },
+          },
+        },
+      })
+    ).map((u) => u.aircraft)
   },
   //////////////////////////////UPDATE || CREATE////////////////////////////
   //////////////////////////////UPSERT//////////////////////////////////////
@@ -245,7 +245,10 @@ const query = {
     }
   },
 
-  readUserOfReqAndAircraftIdImplementsNoRole: async (req: Request, aircraftId: number): Promise<User> => {
+  readUserOfReqAndAircraftIdImplementsNoRole: async (
+    req: Request,
+    aircraftId: number
+  ): Promise<User> => {
     const name = query.readName(req) ?? 'No name found'
     const aircraftId_name = {aircraftId, name}
     const user = await prisma.user.findUnique({
@@ -253,12 +256,14 @@ const query = {
         aircraftId_name,
       },
     })
-    return user ? user : {
-      userId: -1,
-      aircraftId,
-      name,
-      role: 0
-    }
+    return user
+      ? user
+      : {
+          userId: -1,
+          aircraftId,
+          name,
+          role: 0,
+        }
   },
 
   /**
@@ -302,22 +307,21 @@ const query = {
             highest = u.role
           }
         })
-        return highest  
+        return highest
       }
     } catch (e) {
       return 0
     }
   },
 
-  readUserWithHighestRole:  async (req: Request): Promise<User> => {
-
+  readUserWithHighestRole: async (req: Request): Promise<User> => {
     const name = query.readName(req)
 
     const users = await prisma.user.findMany({
       where: {name},
     })
 
-    let highest:User = {name: 'no name', role: 0, aircraftId: 0, userId: 0}
+    let highest: User = {name: 'no name', role: 0, aircraftId: 0, userId: 0}
     users.forEach((u) => {
       if (u.role > highest.role) {
         highest = u
@@ -407,9 +411,9 @@ const query = {
     return airs
   },
 
-  readAircraftsAsObj: async (): Promise<{[key:number]:Aircraft}> => {
-    const ret2: {[key:number]:Aircraft} = {};
-    (await query.readAircrafts()).forEach(a => ret2[a.aircraftId] = a)
+  readAircraftsAsObj: async (): Promise<{[key: number]: Aircraft}> => {
+    const ret2: {[key: number]: Aircraft} = {}
+    ;(await query.readAircrafts()).forEach((a) => (ret2[a.aircraftId] = a))
     return ret2
   },
 

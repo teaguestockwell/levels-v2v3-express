@@ -42,22 +42,24 @@ export const baseRouter = {
     readAircraftIDOfOBJpk,
   }: getN): Promise<void> => {
     try {
-      try{
-
+      try {
         // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
         // an example of where this is applicable is GET /configcargo
         // if the pk is aircraft aircraftId this is unnecessary
         const pkNum = Number(req.query[pk])
-        const user = await query.readUserAtReqAndAircraftId(req, pk !== 'aircraftId' ? await readAircraftIDOfOBJpk(pkNum) : pkNum) 
-        
+        const user = await query.readUserAtReqAndAircraftId(
+          req,
+          pk !== 'aircraftId' ? await readAircraftIDOfOBJpk(pkNum) : pkNum
+        )
+
         if (user.role >= roleGE) {
           res.status(200).json(await readNAtPK(pkNum))
         } else {
-         res.status(403).json()
+          res.status(403).json()
+        }
+      } catch (e) {
+        res.status(400).json()
       }
-    } catch (e) {
-      res.status(400).json()
-    }
     } catch (e) {
       res.status(500).json()
     }
@@ -77,7 +79,10 @@ export const baseRouter = {
         // we dont need to check the role @ an object that has not been created yet
         const obj = req.body
         const pkNum = Number(req.body[pk])
-        const verifiedAirId = pk !== 'aircraftId' && pkNum !== 0 ? await readAircraftIDOfOBJpk(pkNum) : req.body.aircraftId
+        const verifiedAirId =
+          pk !== 'aircraftId' && pkNum !== 0
+            ? await readAircraftIDOfOBJpk(pkNum)
+            : req.body.aircraftId
         const user = await query.readUserAtReqAndAircraftId(req, verifiedAirId)
 
         if (user.role >= roleGE) {
@@ -103,21 +108,20 @@ export const baseRouter = {
     objPK,
   }: delete1): Promise<void> => {
     try {
-      try{
-
+      try {
         const pk = Number(req.query[objPK])
         const obj: any = await readOBJatPK(pk)
         const user = await query.readUserAtReqAndAircraftId(req, obj.aircraftId)
-        
+
         if (user.role >= roleGE) {
           await delete1(pk)
           res.status(200).json()
-      } else {
-        res.status(403).json()
+        } else {
+          res.status(403).json()
+        }
+      } catch (e) {
+        res.status(400).json()
       }
-    } catch (e) {
-      res.status(400).json()
-    }
     } catch (e) {
       res.status(500).json()
     }

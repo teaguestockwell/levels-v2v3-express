@@ -14,12 +14,10 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
-    res.status(200).json(
-      {
-        serverEpoch: Date.now(),
-        data: await query.readAirsAtReq(req, 0)
-      }
-    )
+    res.status(200).json({
+      serverEpoch: Date.now(),
+      data: await query.readAirsAtReq(req, 0),
+    })
   } catch (e) {
     res.status(500).json()
   }
@@ -31,7 +29,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
   try {
     const reqAir: Aircraft = req.body
     const user = await query.readUserWithHighestRole(req)
-    
+
     if (reqAir.aircraftId === 0 && user.role >= roleGE) {
       // they should be able to create users with role 3
       user.role = 4
@@ -70,20 +68,19 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 aircraftRouter.delete('*', async (req: Request, res: Response) => {
   try {
     const roleGE = 3
-    try{
-
+    try {
       const aircraftId = Number(req.query['aircraftId'])
       const user = await query.readUserAtReqAndAircraftId(req, aircraftId)
-      
+
       if (user.role >= roleGE) {
         await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
         res.status(200).json()
-    } else {
-      res.status(403).json()
+      } else {
+        res.status(403).json()
+      }
+    } catch (e) {
+      res.status(400).json()
     }
-  } catch (e) {
-    res.status(400).json()
-  }
   } catch (e) {
     res.status(500).json()
   }
