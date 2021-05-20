@@ -7,9 +7,9 @@ const cargoRouter = Router()
 // READ N ({aircraftId})
 cargoRouter.get('*', async (req: Request, res: Response) => {
   await baseRouter.getN({
-    req: req,
-    res: res,
-    reqRoleGE: 1,
+    req,
+    res,
+    roleGE: 1,
     readNAtPK: query.readCargosAtAircraftId,
   })
 })
@@ -19,9 +19,9 @@ cargoRouter.put('/', async (req: Request, res: Response) => {
   req.body.updatedBy = query.readName(req)
   req.body.updated = new Date(Date.now())
   await baseRouter.put1({
-    req: req,
-    res: res,
-    reqRoleGE: 3,
+    req,
+    res,
+    roleGE: 3,
     pk: 'cargoId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtCargoid,
     upsertType: query.upsertCargo,
@@ -31,10 +31,10 @@ cargoRouter.put('/', async (req: Request, res: Response) => {
 // DELETE 1 Cargo({cargoId})
 cargoRouter.delete('/', async (req: Request, res: Response) => {
   await baseRouter.delete1({
-    req: req,
-    res: res,
+    req,
+    res,
     objPK: 'cargoId',
-    reqRoleGE: 3,
+    roleGE: 3,
     delete1: query.deleteCargo,
     readOBJatPK: query.readCargoAtCargoId,
   })

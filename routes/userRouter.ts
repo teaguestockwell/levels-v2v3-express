@@ -1,7 +1,6 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
 import {User} from '@prisma/client'
-import { sendWrapped, sendWrapped500 } from './baseRouter'
 
 const userRouter = Router()
 
@@ -13,37 +12,15 @@ userRouter.get('*', async (req: Request, res: Response) => {
       const user = await query.readUserWithHighestRole(req)
       const aircraftId = Number(`${req.query['aircraftId']}`)
       if (user.role >= roleGE) {
-        sendWrapped({
-          user,
-          req,
-          res,
-          status: 200,
-          resBody: await query.readUsersAtAircraftId(aircraftId),
-          roleGE
-        })
+        res.status(200).send(await query.readUsersAtAircraftId(aircraftId),)
       } else {
-        sendWrapped({
-          user,
-        req,
-        res,
-        status: 403,
-        roleGE
-      })
+       res.status(403).send()
     }
   } catch (e) {
-    sendWrapped({
-      req,
-      res,
-      status: 400,
-      roleGE
-    })
+    res.status(400).send()
   }
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 
@@ -58,37 +35,15 @@ userRouter.put('/', async (req: Request, res: Response) => {
     if (reqUser.role >= roleGE) {
       try{
         await query.upsertUser(req.body)
-        sendWrapped({
-          user: reqUser,
-          req,
-          res,
-          status: 200,
-          roleGE
-        })
+        res.status(200).send()
       } catch (e) {
-        sendWrapped({
-          user: reqUser,
-          req,
-          res,
-          status: 400,
-          roleGE
-        })
+        res.status(400).send()
       }
     } else {
-      sendWrapped({
-        user: reqUser,
-        req,
-        res,
-        status: 403,
-        roleGE
-      })
+      res.status(403).send()
     } 
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 
@@ -104,36 +59,15 @@ userRouter.delete('*', async (req: Request, res: Response) => {
         
         if (reqUser.role > tryDeleteUser.role) {
           query.deleteUserAtUserid(tryDeleteUser.userId)
-          sendWrapped({
-            user: reqUser,
-            req,
-            res,
-            status: 200,
-        roleGE: tryDeleteUser.role
-      })
+          res.status(200).send()
     } else {
-      sendWrapped({
-        user: reqUser,
-        req,
-        res,
-        status: 403,
-        roleGE: tryDeleteUser.role + 1
-      })
+      res.status(403).send()
     }
   } catch (e) {
-    sendWrapped({
-      req,
-      res,
-      status: 400,
-      roleGE: -1
-    })
+    res.status(400).send()
   }
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 

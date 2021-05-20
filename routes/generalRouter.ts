@@ -1,7 +1,6 @@
 import {General} from '@prisma/client'
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {getMsg } from './baseRouter'
 const generalRouter = Router()
 
 // the general route is used to authenticate users against the
@@ -18,7 +17,7 @@ generalRouter.get('/', async (req: Request, res: Response) => {
     const general = await query.readGeneral(role)
     res.status(200).send(general)
   } catch (e) {
-    res.status(500).send(getMsg(req,500,0,undefined))
+    res.status(500).send()
   }
 })
 

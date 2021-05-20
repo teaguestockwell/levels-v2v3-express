@@ -6,9 +6,9 @@ CREATE TABLE "Log" (
     "ep" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "method" TEXT NOT NULL,
-    "body" TEXT,
+    "resTime" INTEGER NOT NULL,
+    "body" JSONB,
     "query" TEXT,
-    "resTime" TEXT,
 
     PRIMARY KEY ("logId")
 );

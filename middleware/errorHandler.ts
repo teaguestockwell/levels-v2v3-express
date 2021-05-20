@@ -11,6 +11,9 @@ const getMsg = (req:Request, status: number): {msg: string} => {
   }} catch (e){console.error(e)}
 }
 
-export default errorHandler.json(async (body, req: Request, res: Response):Promise<void> => {
-  if(!body){body = getMsg(req,res.statusCode)}
+export default errorHandler.json((body, req: Request, res: Response) => {
+  console.log(body)
+  try{
+    if(Object.keys(body).length === 0){body = getMsg(req,res.statusCode)}
+  } catch (e){console.log(e)}
 })

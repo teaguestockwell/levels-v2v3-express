@@ -1,2 +1,2 @@
 ###
-GET http://localhost:8080/fl-api/log?pageIdx=0
+GET http://localhost:8080/fl-api/log?pageIdx=2

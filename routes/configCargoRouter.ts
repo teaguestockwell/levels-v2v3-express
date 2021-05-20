@@ -1,6 +1,6 @@
 import {Router, Request, Response} from 'express'
 import query from '../prisma/query'
-import {baseRouter, sendWrapped, sendWrapped500} from './baseRouter'
+import {baseRouter } from './baseRouter'
 
 const configCargoRouter = Router()
 
@@ -16,53 +16,31 @@ configCargoRouter.get('*', async (req: Request, res: Response) => {
       // an example of where this is applicable is GET /configcargo
       const user = await query.readUserAtReqAndAircraftId(req, verifidAirId)
       
-    if (user.role >= roleGE) {
-      
+    if (user.role >= roleGE) {  
       // using the nested cargo, insert a name prop into configcargo
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 200,
-        resBody: (await query.readConfigCargosDeepAtConfigId(pkNum)).map((x) => {
+      res.status(200).send(
+        (await query.readConfigCargosDeepAtConfigId(pkNum)).map((x) => {
           x['name'] = x['cargo']['name']
           return x
         }),
-        roleGE: roleGE
-      })
+      )
     } else {
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 403,
-        roleGE
-      })
+      res.status(403).send()
     }
   } catch (e) {
-    sendWrapped({
-      user: {name: await query.readName(req), role: -1, aircraftId: -1, userId: -1},
-      req,
-      res,
-      status: 400,
-      roleGE: -1
-    })
+    res.status(400).send()
   }
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 
 // UPDATE 1 || CREATE 1 (ConfigCargo)
 configCargoRouter.put('/', async (req: Request, res: Response) => {
   await baseRouter.put1({
-    req: req,
-    res: res,
-    reqRoleGE: 3,
+    req,
+    res,
+    roleGE: 3,
     pk: 'configCargoId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtConfigCargoid,
     upsertType: query.upsertConfigCargoShallow,
@@ -72,10 +50,10 @@ configCargoRouter.put('/', async (req: Request, res: Response) => {
 // DELETE 1 ConfigCargo({configCargoId})
 configCargoRouter.delete('*', async (req: Request, res: Response) => {
   await baseRouter.delete1({
-    req: req,
-    res: res,
+    req,
+    res,
     objPK: 'configCargoId',
-    reqRoleGE: 3,
+    roleGE: 3,
     delete1: query.deleteConfigCargo,
     readOBJatPK: query.readConfigCargoAtConfigCargoId,
   })

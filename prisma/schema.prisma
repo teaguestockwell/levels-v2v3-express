@@ -15,13 +15,13 @@ model Log {
   logId Int @id @default(autoincrement())
 
   dateTime DateTime @default(now())
-  status Int
-  ep String
-  email String
-  method String
-  body String?
-  query String?
-  resTime String? 
+  status   Int
+  ep       String
+  email    String
+  method   String
+  resTime  Int
+  body     Json?
+  query    String?
 }
 
 //differnt greetings for diffrent roles
@@ -50,7 +50,6 @@ model User {
   role   Int    @default(0)
   @@id([aircraftId, name])
 }
-
 
 model Aircraft {
   // Primary Key
@@ -101,7 +100,7 @@ model Tank {
   aircraftId Int
 
   // Scalar Fields
-  tankId     Int    @unique @default(autoincrement())
+  tankId        Int    @unique @default(autoincrement())
   weightsCSV    String // csv
   simpleMomsCSV String // csv
   @@id([aircraftId, name])
@@ -131,20 +130,20 @@ model Cargo {
   configCargos ConfigCargo[]
 
   // Scalar Fields
-  cargoId       Int            @unique @default(autoincrement())
+  cargoId   Int            @unique @default(autoincrement())
   updated   DateTime       @updatedAt
   updatedBy String         @default("unknown")
-  name           String
-  weight         Float
-  fs             Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
-  category       CargoCategory? @default(Extra)
+  name      String
+  weight    Float
+  fs        Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
+  category  CargoCategory? @default(Extra)
   @@id([name, aircraftId])
 }
 
 enum CargoCategory {
   Steward    @map("steward")
   Emergency  @map("emergency")
-  Extra     @map("extra")
+  Extra      @map("extra")
 
   @@map("_CargoCategory")
 }
@@ -160,7 +159,7 @@ model ConfigCargo {
   aircraft   Aircraft @relation(fields: [aircraftId], references: [aircraftId])
   aircraftId Int
   cargo      Cargo    @relation(fields: [cargoId], references: [cargoId])
-  cargoId   Int
+  cargoId    Int
 
   // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations

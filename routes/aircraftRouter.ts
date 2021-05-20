@@ -1,7 +1,7 @@
 import query from '../prisma/query'
 import {Router, Request, Response} from 'express'
 import {Aircraft, User} from '@prisma/client'
-import { sendWrapped, sendWrapped500 } from './baseRouter'
+
 const aircraftRouter = Router()
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
@@ -14,13 +14,14 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
-    
+    res.status(200).send(
+      {
+        serverEpoch: Date.now(),
+        data: await query.readAirsAtReq(req, 0)
+      }
+    )
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 
@@ -37,21 +38,9 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
 
       try {
         await query.upsertAircraftShallow(reqAir, user)
-        sendWrapped({
-          user,
-          req,
-          res,
-          status: 200,
-          roleGE: 3
-        })
+        res.status(200).json()
       } catch (e) {
-        sendWrapped({
-          user,
-          req,
-          res,
-          status: 400,
-          roleGE
-        })
+        res.status(400).send()
       }
     }
 
@@ -65,37 +54,15 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
           userId: 0,
         }
         await query.upsertAircraftShallow(reqAir, mockUser)
-        sendWrapped({
-          user,
-          req,
-          res,
-          status: 200,
-          roleGE
-        })
+        res.status(200).send()
       } catch (e) {
-        sendWrapped({
-          req,
-          res,
-          status: 400,
-          roleGE
-        })
+        res.status(400).send()
       }
     } else {
-
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 403,
-        roleGE
-      })
+      res.status(403).send()
     }
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 
@@ -110,36 +77,15 @@ aircraftRouter.delete('*', async (req: Request, res: Response) => {
       
       if (user.role >= roleGE) {
         await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
-        sendWrapped({
-          user,
-          req,
-          res,
-          status: 200,
-          roleGE
-        })
+        res.status(200).send()
     } else {
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 403,
-        roleGE
-      })
+      res.status(403).send()
     }
   } catch (e) {
-    sendWrapped({
-      req,
-      res,
-      status: 400,
-      roleGE
-    })
+    res.status(400).send()
   }
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 

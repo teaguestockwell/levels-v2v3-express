@@ -1,20 +1,21 @@
 import {Router} from 'express'
 import query, {prisma} from '../prisma/query'
 import * as yup from 'yup'
-import { sendWrapped, sendWrapped500 } from './baseRouter'
 
 
 const logRouter = Router()
 
 const logQuerySchema = yup.object().shape({
   logId: yup.number().integer().moreThan(0),
-  toDateTime: yup.date(),
-  fromDateTime: yup.date(),
-  status: yup.number(),
+  dateLTE: yup.date(),
+  dateGTE: yup.date(),
+  status: yup.number().integer(),
   ep: yup.string(),
   email: yup.string(),
   method: yup.string(),
-  pageIdx: yup.number().integer().moreThan(-1).required()
+  pageIdx: yup.number().integer().moreThan(-1).required(),
+  resTimeGTE: yup.number().integer().positive(),
+  resTimeLTE: yup.number().integer().positive()
 })
 
 logRouter.get('*', async (req, res) => {
@@ -22,55 +23,35 @@ logRouter.get('*', async (req, res) => {
      const user = await query.readUserWithHighestRole(req)
     if (user.role >= 3) {
       try{
-        console.log(req.query)
         const query = logQuerySchema.validateSync(req.query)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const where: {[key: string]:any} = {}
 
-        where.dateTime = query.fromDateTime && query.toDateTime ? {gte: query.fromDateTime, lte: query.toDateTime} : undefined
+        where.resTime = query.resTimeGTE && query.dateLTE ? {gte: query.resTimeGTE, lte: query.dateLTE} : undefined
+        where.dateTime = query.dateGTE && query.dateLTE ? {gte: query.dateGTE, lte: query.dateLTE} : undefined
         where.status = query.status ? query.status : undefined
         where.ep = query.ep ? query.ep : undefined
         where.email = query.email ? query.email : undefined
         where.method = query.method ? query.method : undefined
 
-        sendWrapped({
-          user,
-          req,
-          res,
-          roleGE: 3,
-          status: 200,
-          resBody: await prisma.log.findMany({
-            orderBy: [
-              {dateTime: 'asc'}
-            ],
-            where,
-            skip: 1000 * query.pageIdx,
-            take: 1000
-          })
-        }) 
-      } catch(e){
-        sendWrapped({
-          req,
-          res,
-          status: 400,
-          roleGE: 3
+       res.status(200).send(
+         await prisma.log.findMany({
+          orderBy: [
+            {dateTime: 'asc'}
+          ],
+          where,
+          skip: 1000 * query.pageIdx,
+          take: 1000
         })
+      )
+      } catch(e){
+        res.status(400).send(e.toString())
       }
     } else {
-      sendWrapped({
-        user,
-        req,
-        res,
-        status: 403,
-        roleGE: 3
-      })
+      res.status(403).send()
     }
   } catch (e) {
-    sendWrapped500({
-      req,
-      res,
-      e
-    })
+    res.status(500).send()
   }
 })
 

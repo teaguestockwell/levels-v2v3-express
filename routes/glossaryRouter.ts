@@ -7,9 +7,9 @@ const glossaryRouter = Router()
 // READ N ({aircraftId})
 glossaryRouter.get('*', async (req: Request, res: Response) => {
   await baseRouter.getN({
-    req: req,
-    res: res,
-    reqRoleGE: 1,
+    req,
+    res,
+    roleGE: 1,
     readNAtPK: query.readGlossarysAtAircraftId,
   })
 })
@@ -17,9 +17,9 @@ glossaryRouter.get('*', async (req: Request, res: Response) => {
 // UPDATE 1 || CREATE 1 (Glossary)
 glossaryRouter.put('/', async (req: Request, res: Response) => {
   baseRouter.put1({
-    req: req,
-    res: res,
-    reqRoleGE: 3,
+    req,
+    res,
+    roleGE: 3,
     pk: 'glossaryId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtGlossaryId,
     upsertType: query.upsertGlossary,
@@ -29,9 +29,9 @@ glossaryRouter.put('/', async (req: Request, res: Response) => {
 // DELETE 1 Glossary ({glossaryId})
 glossaryRouter.delete('*', async (req: Request, res: Response) => {
   await baseRouter.delete1({
-    req: req,
-    res: res,
-    reqRoleGE: 3,
+    req,
+    res,
+    roleGE: 3,
     objPK: 'glossaryId',
     delete1: query.deleteGlossary,
     readOBJatPK: query.readGlossaryAtGlossaryId,

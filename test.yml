@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
 
-  PG_DATABASE:
+  fl-api-test-db:
     image: postgres
     restart: always
     environment:
@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: PG_DATABASE
 
-  backend:
+  fl-api-test-api:
     build:
       context: .
       dockerfile: Dockerfile.test

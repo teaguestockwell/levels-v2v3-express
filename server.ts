@@ -17,12 +17,12 @@ import logger from './middleware/logger'
 const server: Application = express()
 server.disable('x-powered-by')
 
+server.use(cors())
+server.use(errorHandler)
+server.use(responseTime())
+server.use(logger)
 server.use(express.json())
 server.use(compression())
-server.use(responseTime())
-server.use(errorHandler)
-server.use(logger)
-server.use(cors())
 
 server.use('/log',logRouter)
 server.use('/aircraft', aircraftRouter)

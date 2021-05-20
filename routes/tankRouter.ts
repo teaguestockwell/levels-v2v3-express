@@ -7,9 +7,9 @@ const tankRouter = Router()
 // READ N ({aircraftId})
 tankRouter.get('*', async (req: Request, res: Response) => {
   await baseRouter.getN({
-    req: req,
-    res: res,
-    reqRoleGE: 1,
+    req,
+    res,
+    roleGE: 1,
     readNAtPK: query.readTanksAtAircraftId,
   })
 })
@@ -17,9 +17,9 @@ tankRouter.get('*', async (req: Request, res: Response) => {
 // UPDATE 1 || CREATE 1 (Tank)
 tankRouter.put('/', async (req: Request, res: Response) => {
   await baseRouter.put1({
-    req: req,
-    res: res,
-    reqRoleGE: 3,
+    req,
+    res,
+    roleGE: 3,
     pk: 'tankId',
     readAircraftIDOfOBJpk: query.readAircraftIdAtTankId,
     upsertType: query.upsertTank,
@@ -29,9 +29,9 @@ tankRouter.put('/', async (req: Request, res: Response) => {
 // DELETE 1 Tank ({tankId})
 tankRouter.delete('*', async (req: Request, res: Response) => {
   await baseRouter.delete1({
-    req: req,
-    res: res,
-    reqRoleGE: 3,
+    req,
+    res,
+    roleGE: 3,
     objPK: 'tankId',
     delete1: query.deleteTank,
     readOBJatPK: query.readTankAtTankId,

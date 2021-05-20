@@ -23,7 +23,7 @@ export const seedTest = {
 
   logs: async (): Promise<void> => {
     await prisma.log.create({data: {
-      resTime: '0ms',
+      resTime: 0,
       status: 200,
       ep: 'log',
       method: 'put',

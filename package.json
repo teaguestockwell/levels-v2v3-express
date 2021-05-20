@@ -5,7 +5,7 @@
   "scripts": {
     "cleanDocker": "docker system prune --filter until=24h -f",
     "test:unit": "npm install && npx prisma generate && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps",
+    "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps --exit-code-from fl-api-test-api",
     "lint": "npm install && eslint .",
     "pretty": "npx prettier --write .",
     "migrate": "docker run --name fl-api-migration --rm -d -e POSTGRES_DB=PG_DATABASE -e POSTGRES_USER=PG_USER -e POSTGRES_PASSWORD=password -p 5432:5432 postgres && sleep 5 && DATABASE_URL=postgresql://PG_USER:password@localhost:5432 npx prisma migrate dev && docker kill fl-api-migration"
