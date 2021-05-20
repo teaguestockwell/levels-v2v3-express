@@ -4,7 +4,7 @@ import * as yup from 'yup'
 
 const logRouter = Router()
 
-const logQuerySchema = yup.object().shape({
+const logParamsSchema = yup.object().shape({
   logId: yup.number().integer().moreThan(0),
   dateLTE: yup.date(),
   dateGTE: yup.date(),
@@ -22,28 +22,28 @@ logRouter.get('*', async (req, res) => {
     const user = await query.readUserWithHighestRole(req)
     if (user.role >= 3) {
       try {
-        const query = logQuerySchema.validateSync(req.query)
+        const logParams = logParamsSchema.validateSync(req.query)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const where: {[key: string]: any} = {}
 
         where.resTime =
-          query.resTimeGTE && query.dateLTE
-            ? {gte: query.resTimeGTE, lte: query.dateLTE}
+          logParams.resTimeGTE && logParams.dateLTE
+            ? {gte: logParams.resTimeGTE, lte: logParams.dateLTE}
             : undefined
         where.dateTime =
-          query.dateGTE && query.dateLTE
-            ? {gte: query.dateGTE, lte: query.dateLTE}
+          logParams.dateGTE && logParams.dateLTE
+            ? {gte: logParams.dateGTE, lte: logParams.dateLTE}
             : undefined
-        where.status = query.status ? query.status : undefined
-        where.ep = query.ep ? query.ep : undefined
-        where.email = query.email ? query.email : undefined
-        where.method = query.method ? query.method : undefined
+        where.status = logParams.status ? logParams.status : undefined
+        where.ep = logParams.ep ? logParams.ep : undefined
+        where.email = logParams.email ? logParams.email : undefined
+        where.method = logParams.method ? logParams.method : undefined
 
         res.status(200).json(
           await prisma.log.findMany({
             orderBy: [{dateTime: 'asc'}],
             where,
-            skip: 1000 * query.pageIdx,
+            skip: 1000 * logParams.pageIdx,
             take: 1000,
           })
         )
