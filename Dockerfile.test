@@ -11,6 +11,5 @@ USER 950
 
 # copy all but node modules
 COPY --chown=950:950 . .
-COPY --chown=950:950 . .
 
 ENTRYPOINT ["npm","run","test:unit"]

@@ -1,5 +1,4 @@
-import {seedTest} from './seed_test'
-import {prisma} from './seed_test'
+import {seedTest, prisma} from './seed_test'
 
 async function main() {
   await seedTest.deleteAll()

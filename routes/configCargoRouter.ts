@@ -18,20 +18,20 @@ configCargoRouter.get('*', async (req: Request, res: Response) => {
       
     if (user.role >= roleGE) {  
       // using the nested cargo, insert a name prop into configcargo
-      res.status(200).send(
+      res.status(200).json(
         (await query.readConfigCargosDeepAtConfigId(pkNum)).map((x) => {
           x['name'] = x['cargo']['name']
           return x
         }),
       )
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(400).send()
+    res.status(400).json()
   }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 

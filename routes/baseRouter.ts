@@ -51,15 +51,15 @@ export const baseRouter = {
         const user = await query.readUserAtReqAndAircraftId(req, pk !== 'aircraftId' ? await readAircraftIDOfOBJpk(pkNum) : pkNum) 
         
         if (user.role >= roleGE) {
-          res.status(200).send(await readNAtPK(pkNum))
+          res.status(200).json(await readNAtPK(pkNum))
         } else {
-         res.status(403).send()
+         res.status(403).json()
       }
     } catch (e) {
-      res.status(400).send()
+      res.status(400).json()
     }
     } catch (e) {
-      res.status(500).send()
+      res.status(500).json()
     }
   },
 
@@ -82,15 +82,15 @@ export const baseRouter = {
 
         if (user.role >= roleGE) {
           await upsertType(obj)
-          res.status(200).send()
+          res.status(200).json()
         } else {
-          res.status(403).send()
+          res.status(403).json()
         }
       } catch (e) {
-        res.status(400).send()
+        res.status(400).json()
       }
     } catch (e) {
-      res.status(500).send()
+      res.status(500).json()
     }
   },
 
@@ -111,15 +111,15 @@ export const baseRouter = {
         
         if (user.role >= roleGE) {
           await delete1(pk)
-          res.status(200).send()
+          res.status(200).json()
       } else {
-        res.status(403).send()
+        res.status(403).json()
       }
     } catch (e) {
-      res.status(400).send()
+      res.status(400).json()
     }
     } catch (e) {
-      res.status(500).send()
+      res.status(500).json()
     }
   },
 }

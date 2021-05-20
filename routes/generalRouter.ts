@@ -15,9 +15,9 @@ generalRouter.get('/', async (req: Request, res: Response) => {
   try {
     const role = await query.readHighestRole(req)
     const general = await query.readGeneral(role)
-    res.status(200).send(general)
+    res.status(200).json(general)
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
@@ -29,12 +29,12 @@ generalRouter.put('/', async (req: Request, res: Response) => {
 
     if (reqUserHighestRole >= 5) {
       await query.upsertGeneral(reqBodyGeneral)
-      res.status(200).send()
+      res.status(200).json()
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
@@ -45,12 +45,12 @@ generalRouter.delete('*', async (req: Request, res: Response) => {
     const generalid = Number(`${req.query['role']}`)
     if (role >= 5) {
       query.deleteGeneral(generalid)
-      res.status(200).send()
+      res.status(200).json()
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 

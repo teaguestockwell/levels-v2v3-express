@@ -34,7 +34,7 @@ logRouter.get('*', async (req, res) => {
         where.email = query.email ? query.email : undefined
         where.method = query.method ? query.method : undefined
 
-       res.status(200).send(
+       res.status(200).json(
          await prisma.log.findMany({
           orderBy: [
             {dateTime: 'asc'}
@@ -45,13 +45,13 @@ logRouter.get('*', async (req, res) => {
         })
       )
       } catch(e){
-        res.status(400).send(e.toString())
+        res.status(400).json(e.toString())
       }
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 

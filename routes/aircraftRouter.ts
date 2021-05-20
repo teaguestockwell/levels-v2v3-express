@@ -6,22 +6,22 @@ const aircraftRouter = Router()
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
-    res.status(200).send(await query.readAirsAtReq(req, 0))
+    res.status(200).json(await query.readAirsAtReq(req, 0))
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
-    res.status(200).send(
+    res.status(200).json(
       {
         serverEpoch: Date.now(),
         data: await query.readAirsAtReq(req, 0)
       }
     )
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
@@ -40,7 +40,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
         await query.upsertAircraftShallow(reqAir, user)
         res.status(200).json()
       } catch (e) {
-        res.status(400).send()
+        res.status(400).json()
       }
     }
 
@@ -54,15 +54,15 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
           userId: 0,
         }
         await query.upsertAircraftShallow(reqAir, mockUser)
-        res.status(200).send()
+        res.status(200).json()
       } catch (e) {
-        res.status(400).send()
+        res.status(400).json()
       }
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
@@ -77,15 +77,15 @@ aircraftRouter.delete('*', async (req: Request, res: Response) => {
       
       if (user.role >= roleGE) {
         await query.deleteAircraft(aircraftId) // recursive delete to all nested relationships
-        res.status(200).send()
+        res.status(200).json()
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(400).send()
+    res.status(400).json()
   }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 

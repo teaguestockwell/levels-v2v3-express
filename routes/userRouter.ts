@@ -12,15 +12,15 @@ userRouter.get('*', async (req: Request, res: Response) => {
       const user = await query.readUserWithHighestRole(req)
       const aircraftId = Number(`${req.query['aircraftId']}`)
       if (user.role >= roleGE) {
-        res.status(200).send(await query.readUsersAtAircraftId(aircraftId),)
+        res.status(200).json(await query.readUsersAtAircraftId(aircraftId),)
       } else {
-       res.status(403).send()
+       res.status(403).json()
     }
   } catch (e) {
-    res.status(400).send()
+    res.status(400).json()
   }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
@@ -35,15 +35,15 @@ userRouter.put('/', async (req: Request, res: Response) => {
     if (reqUser.role >= roleGE) {
       try{
         await query.upsertUser(req.body)
-        res.status(200).send()
+        res.status(200).json()
       } catch (e) {
-        res.status(400).send()
+        res.status(400).json()
       }
     } else {
-      res.status(403).send()
+      res.status(403).json()
     } 
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 
@@ -59,15 +59,15 @@ userRouter.delete('*', async (req: Request, res: Response) => {
         
         if (reqUser.role > tryDeleteUser.role) {
           query.deleteUserAtUserid(tryDeleteUser.userId)
-          res.status(200).send()
+          res.status(200).json()
     } else {
-      res.status(403).send()
+      res.status(403).json()
     }
   } catch (e) {
-    res.status(400).send()
+    res.status(400).json()
   }
   } catch (e) {
-    res.status(500).send()
+    res.status(500).json()
   }
 })
 

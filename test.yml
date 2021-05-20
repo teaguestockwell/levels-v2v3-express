@@ -16,6 +16,6 @@ services:
       dockerfile: Dockerfile.test
     environment: 
       NODE_ENV: development
-      DATABASE_URL: postgresql://PG_USER:password@PG_DATABASE:5432
+      DATABASE_URL: postgresql://PG_USER:password@fl-api-test-db:5432
       PORT: 8080
       

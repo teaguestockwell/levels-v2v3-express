@@ -1,0 +1,1 @@
+autocannon http://localhost:8080/fl-api/aircraft -c 100 -d 10 -m 'PUT' -H 'content-type: application/json' -b '{"aircraftId":1,"name":"update","fs0":80.5,"fs1":2168,"mom0":9999,"mom1":50000,"weight0":260000,"weight1":300000,"cargoWeight1":300000,"lemac":793.6,"mac":309.5,"momMultiplyer":10000}'

@@ -15,15 +15,19 @@ import errorHandler from './middleware/errorHandler'
 import logger from './middleware/logger'
 
 const server: Application = express()
+
+// rm header
 server.disable('x-powered-by')
 
+// use middleware
+server.use(express.json())
+server.use(responseTime())
 server.use(cors())
 server.use(errorHandler)
-server.use(responseTime())
 server.use(logger)
-server.use(express.json())
 server.use(compression())
 
+// use route middleware
 server.use('/log',logRouter)
 server.use('/aircraft', aircraftRouter)
 server.use('/general', generalRouter)
@@ -33,7 +37,6 @@ server.use('/tank', tankRouter)
 server.use('/cargo', cargoRouter)
 server.use('/config', configRouter)
 server.use('/configCargo', configCargoRouter)
-
 
 server.listen(process.env.PORT)
 
