@@ -22,7 +22,7 @@ server.disable('x-powered-by')
 // use middleware
 server.use(express.json())
 server.use(responseTime())
-server.use(cors({origin: 'https://login.dso.mil' , credentials: true}))
+server.use(cors({origin: process.env.IS_LOCAL ? '*' : 'https://login.dso.mil' , credentials: true}))
 server.use(errorHandler)
 server.use(logger)
 server.use(compression())

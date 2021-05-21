@@ -18,6 +18,9 @@ ENV NODE_ENV development
 # download some packages
 RUN npm install
 
+# create type orms from schema incase post install hook fails
+RUN npx prisma generate
+
 # build prod files
 RUN npx tsc
 
