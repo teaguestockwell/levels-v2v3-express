@@ -67,7 +67,7 @@ Dependencies:
    - "response-time": "^2.3.2" server middleware
    
 Databases:
-   - postgres
+   - NA
 
 External-Systems:
    - ui react
