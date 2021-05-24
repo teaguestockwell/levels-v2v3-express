@@ -25,29 +25,29 @@ Assess-interval:
 
 # Authorization boundary diagram. Include URL.
 System-architecture:
-
+   ./project_architecture_diargram
 # Confidentiality, Integrity, Availability M,M,M 
 # Classification: ie. UNCLASSIFIED, SECRET//NOFORN, TS/SCI
 # Personally Identifiable Information: Y/N. Assessment team can help data types
 Categorization:
-   Confidentiality: M
+   Confidentiality: 
 
-   Integrity: M
+   Integrity: 
    
-   Availability: M
+   Availability: 
 
    Classification-Level:
    
    PII: None
 
 Data-types:
-   - user email
-   - aircraft cargo
-   - aircraft cargo configurations
-   - aircraft fuel tank weights
-   - aircraft weight and balance limitations / cg
-   - common weight and balance terms
-   - endpoint logs 
+   - user email - user iteraction
+   - endpoint logs - user iteraction
+   - aircraft cargo - https://static.e-publishing.af.mil/production/1/af_a3/publication/afman11-2c-17v3add-a/afman11-2c-17v3add-a.pdf
+   - aircraft cargo configurations - https://static.e-publishing.af.mil/production/1/af_a3/publication/afman11-2c-17v3add-a/afman11-2c-17v3add-a.pdf
+   - aircraft fuel tank weights - 1C-17A-5-2
+   - aircraft weight and balance limitations / cg - 1C-17A-5-2
+   - common weight and balance terms - 1C-17A-5-2
 
 Deployment-sites:
    - https://five-level-app.staging.dso.mil
@@ -93,3 +93,8 @@ Role-Identification:
       email: matthew.huston.12@us.af.mil
       phone: 650-933-4121
    Product-Manager:
+      name: Brian Towner
+      title: Tron Product Manager
+      org: Tron 15th Wing USAF
+      email: btowner@tronaf.dev
+      phone: 460-300-2498

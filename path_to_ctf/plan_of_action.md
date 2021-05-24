@@ -1,41 +1,28 @@
-# Plan of Action for CAMP Sample Application
-
-## _Test App, MVP and Beyond_
-
-Note: The Test App consists of a subset of features that will comprise our MVP. 
+# Plan of Action for Atlas
+## Atlas, MVP and Beyond
 
 * **Kick-off Date:**
+2021-02-21
 * **Inception Date:**
+2020-12-07
 * **MVP Date:**
-
-
+2021-06-15
 #### Vision
-
+Make aircraft cargo loading / weight and balance extensible for mission needs
 #### Strategy
-
+While methods exist for loadmasters, they are not maintainable, require extensive training to implement and are not suited for all aircraft or use cases. Atlas's strategy is to deliver an extensible platform for weight and balance / cargo loading.
 #### Summary
-This project is to educate new and existing dev teams on current and future projects to read and interpret the plan as presented in the **CAMP Sample Application __..*__ Reduce the time it takes for dev teams to onboard and be prepared 
-
+Calculating %MAC for the most basic config takes a qualified maintenance technician an average of 12 minutes per attempt, and 1.5 attempts for the correct answer. When we encounter a math problem in our day to day lives we use a calculator to solve it. Our goal is to create an app that serves as a weight and balance calculator for the C-17 loadmaster, and maintainer that is maintainable and extensible to other aircraft.
 ### Goals and Metrics
-
-<!-- Put relevant metrics here
-```
-
-```
--->
-
-<!-- What is your focus for this release -->
-
+A dashboard to calculate weight and balance for aircraft, configurations, and cargo.
+A glossary for reference and learning about common weight and balance terminology.
+An admin portal that allows validated CRUD ops to admins for app data.
 **Release Focus**  
-- Increase confidence in dev teams ability to onboard
-
-<!-- What does this release or application do? -->
-
+- Aircraft weight and balance
 **Release Functionality** 
-- Provides developers with an application to get started 
-
-<!-- How could this application affect other applications within the system? This would be linked to your -->
+- Provides aircraft maintenance with a tool for weight and balance
 **System Integration Considerations** 
 - Integrates with the continuous ATO pipeline 
-- Reduces onboarding hassel for dev teams
-
+- Integrates with DB for data persistance
+- integrates with api for user roles, and data abstraction 
+- Integrates with keycloak for user authorization
