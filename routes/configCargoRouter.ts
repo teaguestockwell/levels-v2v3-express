@@ -1,5 +1,5 @@
 import {Router, Request, Response} from 'express'
-import query from '../prisma/query'
+import { query }from '../prisma/query'
 import {baseRouter} from './baseRouter'
 
 const configCargoRouter = Router()

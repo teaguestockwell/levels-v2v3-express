@@ -1,5 +1,6 @@
 import {Request, Response, NextFunction} from 'express'
-import query, {prisma} from '../prisma/query'
+import {query} from '../prisma/query'
+import {client as prisma} from '../prisma/client'
 
 const logger = (req: Request, res: Response, next: NextFunction): void => {
   res.on('finish', () => {

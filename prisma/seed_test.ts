@@ -1,5 +1,5 @@
-import {CargoCategory, PrismaClient} from '@prisma/client'
-export const prisma = new PrismaClient()
+import {CargoCategory} from '@prisma/client'
+import {client as prisma} from './client'
 
 export const seedTest = {
   deleteAll: async (): Promise<void> => {

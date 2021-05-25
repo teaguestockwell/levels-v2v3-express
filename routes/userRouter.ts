@@ -1,5 +1,5 @@
 import {Router, Request, Response} from 'express'
-import query from '../prisma/query'
+import {query} from '../prisma/query'
 import {User} from '@prisma/client'
 
 const userRouter = Router()

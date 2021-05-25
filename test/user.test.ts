@@ -4,7 +4,7 @@ import assert from 'assert'
 import server from '../server'
 import {role1e, role2e, role3e, role4e, role5e} from './utils'
 import {User} from '@prisma/client'
-import query from '../prisma/query'
+import { query }from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
 
 const newUserRole1: User = {

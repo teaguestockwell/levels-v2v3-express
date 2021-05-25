@@ -4,10 +4,8 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {General, PrismaClient} from '@prisma/client'
-//import query from '../prisma/query'
-
-const prisma = new PrismaClient()
+import {General } from '@prisma/client'
+import {client as prisma} from '../prisma/client'
 
 // READ
 describe('GET /general', () => {

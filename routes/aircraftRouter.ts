@@ -1,4 +1,4 @@
-import query from '../prisma/query'
+import { query }from '../prisma/query'
 import {Router, Request, Response} from 'express'
 import {Aircraft, User} from '@prisma/client'
 

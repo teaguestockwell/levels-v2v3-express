@@ -1,5 +1,6 @@
 import {Router} from 'express'
-import query, {prisma} from '../prisma/query'
+import {query} from '../prisma/query'
+import {client as prisma} from '../prisma/client'
 import * as yup from 'yup'
 
 const logRouter = Router()

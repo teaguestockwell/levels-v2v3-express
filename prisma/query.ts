@@ -1,4 +1,6 @@
 import {Request} from 'express'
+import {client as prisma} from './client'
+import atob from 'atob'
 import {
   Aircraft,
   Cargo,
@@ -6,15 +8,11 @@ import {
   ConfigCargo,
   General,
   Glossary,
-  PrismaClient,
   Tank,
   User,
 } from '@prisma/client'
-import atob from 'atob'
 
-export const prisma = new PrismaClient()
-
-const query = {
+export const query = {
   readAirsAtReq: async (req: Request, roleGT: number): Promise<Aircraft[]> => {
     const name = query.readName(req)
 
@@ -602,5 +600,3 @@ const query = {
     })
   },
 }
-
-export default query

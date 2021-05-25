@@ -1,6 +1,6 @@
 import {General} from '@prisma/client'
 import {Router, Request, Response} from 'express'
-import query from '../prisma/query'
+import {query} from '../prisma/query'
 const generalRouter = Router()
 
 // the general route is used to authenticate users against the

@@ -3,10 +3,9 @@ import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
 import {role0e, role2e, role3e, role4e, role2OnAir1e} from './utils'
-import {Aircraft, PrismaClient} from '@prisma/client'
+import {Aircraft } from '@prisma/client'
 import {seedTest} from '../prisma/seed_test'
-
-const prisma = new PrismaClient()
+import {client as prisma} from '../prisma/client'
 
 const createAir: Aircraft = {
   aircraftId: 0,
