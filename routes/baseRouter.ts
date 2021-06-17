@@ -3,7 +3,7 @@
 import { query }from '../prisma/query'
 import {Request, Response} from 'express'
 
-interface getN {
+interface GetN {
   req: Request
   res: Response
   roleGE: number
@@ -13,7 +13,7 @@ interface getN {
   readAircraftIDOfOBJpk?: (obj: number) => Promise<number>
 }
 
-interface put1 {
+interface Put1 {
   req: Request
   res: Response
   roleGE: number
@@ -22,7 +22,7 @@ interface put1 {
   upsertType: (obg: any) => Promise<void>
 }
 
-interface delete1 {
+interface Delete1 {
   objPK: string
   req: Request
   res: Response
@@ -31,7 +31,6 @@ interface delete1 {
   readOBJatPK: (pk: number) => Promise<any>
 }
 
-// TODO: add 400 res for request that dont have aircraft aircraftId / pk
 export const baseRouter = {
   getN: async ({
     req,
@@ -40,7 +39,7 @@ export const baseRouter = {
     pk = 'aircraftId',
     readNAtPK,
     readAircraftIDOfOBJpk,
-  }: getN): Promise<void> => {
+  }: GetN): Promise<void> => {
     try {
       try {
         // to mitigate role exploitation, verify the aircraft aircraftId given the obj pk.
@@ -72,7 +71,7 @@ export const baseRouter = {
     pk = 'aircraftId',
     upsertType,
     readAircraftIDOfOBJpk,
-  }: put1): Promise<void> => {
+  }: Put1): Promise<void> => {
     try {
       try {
         // because this is a create or update ep and a pkNum of 0 is a create req,
@@ -106,7 +105,7 @@ export const baseRouter = {
     delete1,
     readOBJatPK,
     objPK,
-  }: delete1): Promise<void> => {
+  }: Delete1): Promise<void> => {
     try {
       try {
         const pk = Number(req.query[objPK])

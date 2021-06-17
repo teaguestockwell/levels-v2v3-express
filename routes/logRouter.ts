@@ -18,32 +18,42 @@ const logParamsSchema = yup.object().shape({
   resTimeLTE: yup.number().integer().positive(),
 })
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const getQueryObj = (logParams:any):{[key: string]: any} => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const where: {[key: string]: any} = {}
+
+  where.resTime =
+    logParams.resTimeGTE && logParams.dateLTE
+      ? {gte: logParams.resTimeGTE, lte: logParams.dateLTE}
+      : undefined
+
+  where.dateTime = logParams.dateGTE && logParams.dateLTE
+      ? {gte: logParams.dateGTE, lte: logParams.dateLTE}
+      : undefined
+
+  where.status = logParams.status ? logParams.status : undefined
+
+  where.ep = logParams.ep ? logParams.ep : undefined
+
+  where.email = logParams.email ? logParams.email : undefined
+
+  where.method = logParams.method ? logParams.method : undefined
+
+  return where
+}
+
 logRouter.get('*', async (req, res) => {
   try {
     const user = await query.readUserWithHighestRole(req)
     if (user.role >= 3) {
       try {
         const logParams = logParamsSchema.validateSync(req.query)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const where: {[key: string]: any} = {}
-
-        where.resTime =
-          logParams.resTimeGTE && logParams.dateLTE
-            ? {gte: logParams.resTimeGTE, lte: logParams.dateLTE}
-            : undefined
-        where.dateTime =
-          logParams.dateGTE && logParams.dateLTE
-            ? {gte: logParams.dateGTE, lte: logParams.dateLTE}
-            : undefined
-        where.status = logParams.status ? logParams.status : undefined
-        where.ep = logParams.ep ? logParams.ep : undefined
-        where.email = logParams.email ? logParams.email : undefined
-        where.method = logParams.method ? logParams.method : undefined
 
         res.status(200).json(
           await prisma.log.findMany({
             orderBy: [{dateTime: 'asc'}],
-            where,
+            where: getQueryObj(logParams),
             skip: 1000 * logParams.pageIdx,
             take: 1000,
           })
