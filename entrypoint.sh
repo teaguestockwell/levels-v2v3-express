@@ -14,7 +14,7 @@ node wait.js
 
 # Will reset everything
 echo "applying migrations"
-npx prisma migrate reset --force --skip-generate --preview-feature
+npx prisma migrate deploy
 
 # The normal production work flow
 # npx prisma migrate deploy --preview-feature 
