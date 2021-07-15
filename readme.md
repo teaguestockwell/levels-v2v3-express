@@ -46,3 +46,4 @@ to view live data while running, use the examples with vs code rest client || at
 1. https://github.com/docker/for-mac/issues/371#issuecomment-248404423
 2. reset docker to factory defaults
 3. docker pull nginx && docker pull node:14.15.4 && docker pull nginx
+
