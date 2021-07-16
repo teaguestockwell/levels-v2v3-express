@@ -14,7 +14,7 @@ node wait.js
 
 # Will reset everything
 echo "applying migrations"
-npx prisma migrate deploy
+npx prisma db push --force-reset
 
 # The normal production work flow
 # npx prisma migrate deploy --preview-feature 
