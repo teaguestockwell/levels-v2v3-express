@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "cleanDocker": "docker system prune --filter until=24h -f",
-    "test:unit": "npm install && npx prisma generate && npx prisma migrate reset --force --skip-generate --preview-feature && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
+    "test:unit": "npm install && npx prisma db push --accept-data-loss --force-reset && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps --exit-code-from fl-api-test-api",
     "lint": "npm install && eslint .",
     "pretty": "npx prettier --write ."
@@ -12,7 +12,7 @@
   "author": "Teague Stockwell",
   "license": "",
   "dependencies": {
-    "@prisma/client": "^2.24.0",
+    "@prisma/client": "^2.27.0",
     "atob": "^2.1.2",
     "compression": "^1.7.4",
     "cors": "^2.8.5",
