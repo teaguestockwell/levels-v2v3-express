@@ -7,7 +7,8 @@
     "test:unit": "npm install && npx prisma db push --accept-data-loss --force-reset && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
     "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps --exit-code-from fl-api-test-api",
     "lint": "npm install && eslint .",
-    "pretty": "npx prettier --write ."
+    "pretty": "npx prettier --write .",
+    "test:e2e-ci": "echo not implemented in pipeline"
   },
   "author": "Teague Stockwell",
   "license": "",
