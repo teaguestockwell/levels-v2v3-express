@@ -9,7 +9,7 @@ import cargoRouter from './routes/cargoRouter'
 import configRouter from './routes/configRouter'
 import configCargoRouter from './routes/configCargoRouter'
 import logRouter from './routes/logRouter'
-import cors from 'cors'
+// import cors from 'cors'
 import responseTime from 'response-time'
 import errorHandler from './middleware/errorHandler'
 import logger from './middleware/logger'
@@ -23,7 +23,7 @@ server.disable('x-powered-by')
 // use middleware
 server.use(express.json())
 server.use(responseTime())
-server.use(cors({origin: process.env.IS_LOCAL ? '*' : 'https://login.dso.mil' , credentials: true}))
+// server.use(cors({origin: process.env.IS_LOCAL ? '*' : 'https://login.dso.mil' , credentials: true}))
 server.use(methodsWhitelist)
 server.use(errorHandler)
 server.use(logger)
