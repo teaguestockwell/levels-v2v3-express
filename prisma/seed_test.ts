@@ -21,6 +21,29 @@ export const seedTest = {
     }
   },
 
+  deleteAllUsers: async () => {
+    await prisma.user.deleteMany()
+  },
+
+  createProdAdmins: async () => {
+    await prisma.user.create({
+      data:{
+          name: 'teague.stockwell@us.af.mil',
+          role: 4,
+          aircraft: {connect: {name: 'C-17A'}}
+        }
+    })
+
+    await prisma.user.create({
+      data:{
+          name: 'teague.stockwell@us.af.mil',
+          role: 4,
+          aircraft: {connect: {name: 'C-17A-ER'}}
+        }
+    })
+
+  },
+
   logs: async (): Promise<void> => {
     await prisma.log.create({
       data: {
@@ -190,6 +213,14 @@ export const seedTest = {
             {
               name: 'john.snuffy@fakename.com',
               role: 3,
+            },
+            {
+              name: 'super.user0@test.com',
+              role: 100,
+            },
+            {
+              name: 'super.user1@test.com',
+              role: 100,
             },
           ],
         },

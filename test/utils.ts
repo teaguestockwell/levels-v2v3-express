@@ -267,9 +267,77 @@ const role5 = {
   email: 'role5@test.com',
 }
 
+export const roleSuper0 = {
+  exp: 1602735212,
+  iat: 1602734312,
+  auth_time: 1602731339,
+  jti: '######-####-####',
+  iss: 'https://login.dsop.io/auth/realms/baby-yoda',
+  sub: '######-####-####',
+  typ: 'Bearer',
+  azp: 'platform1_a8604cc9-f5e9-4656-802d-d05624370245_hello-world-authservice',
+  nonce: '###################',
+  session_state: '######-####-####',
+  acr: '0',
+  scope: '#### ######',
+  'group-simple': ['#########', '#######', '####'],
+  preferred_username: 'real-john-doe',
+  given_name: 'Bob',
+  activecac: '',
+  affiliation: 'US Air Force',
+  'group-full': [
+    '##########/########/#########',
+    '##########/########/#######',
+    '##########/########/####',
+  ],
+  organization: 'Platform One',
+  name: 'Bob Dylan',
+  nickname: 'Cool Nickname',
+  usercertificate: '##################',
+  rank: 'A1C',
+  position: 'Peasant',
+  family_name: 'Dylan',
+  email: 'super.user0@test.com',
+}
+
+export const roleSuper1 = {
+  exp: 1602735212,
+  iat: 1602734312,
+  auth_time: 1602731339,
+  jti: '######-####-####',
+  iss: 'https://login.dsop.io/auth/realms/baby-yoda',
+  sub: '######-####-####',
+  typ: 'Bearer',
+  azp: 'platform1_a8604cc9-f5e9-4656-802d-d05624370245_hello-world-authservice',
+  nonce: '###################',
+  session_state: '######-####-####',
+  acr: '0',
+  scope: '#### ######',
+  'group-simple': ['#########', '#######', '####'],
+  preferred_username: 'real-john-doe',
+  given_name: 'Bob',
+  activecac: '',
+  affiliation: 'US Air Force',
+  'group-full': [
+    '##########/########/#########',
+    '##########/########/#######',
+    '##########/########/####',
+  ],
+  organization: 'Platform One',
+  name: 'Bob Dylan',
+  nickname: 'Cool Nickname',
+  usercertificate: '##################',
+  rank: 'A1C',
+  position: 'Peasant',
+  family_name: 'Dylan',
+  email: 'super.user1@test.com',
+}
+
 export function encodeAuth(role: Role): string {
   return 'Bearer fakestuff.' + btoa(JSON.stringify(role))
 }
+export const roleSuper0e = encodeAuth(roleSuper0)
+export const roleSuper1e = encodeAuth(roleSuper1)
 export const role0e = encodeAuth(role0)
 export const role1e = encodeAuth(role1)
 export const role2e = encodeAuth(role2)

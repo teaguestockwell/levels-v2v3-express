@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {role1e, role2e, role3e, role4e, role5e} from './utils'
+import {role1e, role2e, role3e, role4e, role5e, roleSuper0e, roleSuper1, roleSuper1e} from './utils'
 import {User} from '@prisma/client'
 import { query }from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
@@ -42,13 +42,24 @@ describe('GET /user', () => {
 })
 
 // CREATE || UPDATE
-describe('PUT /user', () => {
+describe.only('PUT /user', () => {
   const seededUserRole0: User = {
     aircraftId: 1,
     userId: 1,
     name: 'role0@test.com',
     role: 2, // updating role 0 to role 2
   }
+
+  const seededSuperUser0: User = {
+    aircraftId: 1,
+    userId: 11,
+    name: 'super.user0@test.com',
+    role: 3
+  }
+
+  const demoteSuperUser0 = {...seededSuperUser0, role: 3}
+  const promoteSuperUser0 = {...demoteSuperUser0, role: 100}
+  const selfPromoteSuperUser0 = {...demoteSuperUser0, role: 101}
 
   const newUserRole10: User = {
     aircraftId: 1,
@@ -67,6 +78,20 @@ describe('PUT /user', () => {
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
+  })
+
+
+  it('Should create new users', (done: Done) => {
+    req(server)
+      .put('/user')
+      .set('authorization', role3e)
+      .send(newUserRole1)
+      .expect(200)
+      .expect(async () => {
+        const updated: User = await query.readUserAtUserId(newUserRole1.userId)
+        assert.deepStrictEqual(updated, newUserRole1)
+      })
+      .end(done)
   })
 
   it('Should deny reqs that have access level < 2', (done: Done) => {
@@ -102,19 +127,6 @@ describe('PUT /user', () => {
       .end(done)
   })
 
-  it('Should create new users', (done: Done) => {
-    req(server)
-      .put('/user')
-      .set('authorization', role3e)
-      .send(newUserRole1)
-      .expect(200)
-      .expect(async () => {
-        const updated: User = await query.readUserAtUserId(newUserRole1.userId)
-        assert.deepStrictEqual(updated, newUserRole1)
-      })
-      .end(done)
-  })
-
   it('Should 400 request that put users that dont have unique name-aircraft', (done: Done) => {
     req(server)
       .put('/user')
@@ -127,6 +139,47 @@ describe('PUT /user', () => {
       })
       .end(done)
   })
+
+
+  it('users may demote other users if they have role >= them', (done: Done) => {
+    
+    req(server)
+      .put('/user')
+      .set('authorization', roleSuper1e)
+      .send(demoteSuperUser0)
+      .expect(200)
+      .expect(async () => {
+        const updated: User = await query.readUserAtUserId(
+          seededUserRole0.userId
+        )
+        assert.deepStrictEqual(updated, {...seededUserRole0, role: 3})
+      })
+      .end(done)
+  })
+
+  it('users may promote other users if they have role >= them', (done: Done) => {
+    req(server)
+      .put('/user')
+      .set('authorization', roleSuper1e)
+      .send(promoteSuperUser0)
+      .expect(200)
+      .expect(async () => {
+        const updated: User = await query.readUserAtUserId(
+          seededUserRole0.userId
+        )
+        assert.deepStrictEqual(updated, {...seededUserRole0, role: 100})
+      })
+      .end(done)
+  })
+
+  it('users cannot self promote', (done: Done) => {
+    req(server)
+      .put('/user')
+      .set('authorization', roleSuper0e)
+      .send(selfPromoteSuperUser0)
+      .expect(403)
+      .end(done)
+  })
 })
 
 // DELETE
@@ -136,7 +189,7 @@ describe('DELETE /user', () => {
     await seedTest.C_17_A_ER()
   })
 
-  it('Should 403 when request.role <= userId.role', (done: Done) => {
+  it('Should 403 when request.role < userId.role', (done: Done) => {
     req(server)
       .delete('/user?userId=7')
       .set('authorization', role1e)
@@ -144,7 +197,7 @@ describe('DELETE /user', () => {
       .end(done)
   })
 
-  it('Should delete when request.role > userId.role', (done: Done) => {
+  it('Should delete when request.role => userId.role', (done: Done) => {
     req(server)
       .delete('/user?userId=5')
       .set('authorization', role5e)

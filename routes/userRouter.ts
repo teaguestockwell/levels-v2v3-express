@@ -31,7 +31,14 @@ userRouter.put('/', async (req: Request, res: Response) => {
       req,
       req.body.aircraftId
     )
-    const roleGE = req.body.role > 2 ? req.body.role + 1 : 2
+    
+    const roleGE = reqUser.role >= 2 
+    // users with role >= 2 may update users with role <= self.role
+    ? req.body.role 
+    // users with role 1 cannot update
+    : 99
+
+    // above rules do not apply to super users
     if (reqUser.role >= roleGE) {
       try {
         await query.upsertUser(req.body)
@@ -59,7 +66,7 @@ userRouter.delete('*', async (req: Request, res: Response) => {
         tryDeleteUser.aircraftId
       )
 
-      if (reqUser.role > tryDeleteUser.role) {
+      if (reqUser.role >= tryDeleteUser.role) {
         query.deleteUserAtUserid(tryDeleteUser.userId)
         res.status(200).json()
       } else {
