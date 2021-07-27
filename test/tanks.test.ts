@@ -4,7 +4,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {Tank } from '@prisma/client'
+import {Tank} from '@prisma/client'
 import {client as prisma} from '../prisma/client'
 
 // READ

@@ -27,21 +27,20 @@ export const seedTest = {
 
   createProdAdmins: async () => {
     await prisma.user.create({
-      data:{
-          name: 'teague.stockwell@us.af.mil',
-          role: 4,
-          aircraft: {connect: {name: 'C-17A'}}
-        }
+      data: {
+        name: 'teague.stockwell@us.af.mil',
+        role: 4,
+        aircraft: {connect: {name: 'C-17A'}},
+      },
     })
 
     await prisma.user.create({
-      data:{
-          name: 'teague.stockwell@us.af.mil',
-          role: 4,
-          aircraft: {connect: {name: 'C-17A-ER'}}
-        }
+      data: {
+        name: 'teague.stockwell@us.af.mil',
+        role: 4,
+        aircraft: {connect: {name: 'C-17A-ER'}},
+      },
     })
-
   },
 
   logs: async (): Promise<void> => {

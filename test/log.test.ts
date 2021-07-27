@@ -1,8 +1,8 @@
-import { Done } from "mocha";
-import { seedTest } from "../prisma/seed_test";
-import server from "../server";
+import {Done} from 'mocha'
+import {seedTest} from '../prisma/seed_test'
+import server from '../server'
 import req from 'supertest'
-import { role2e, role3e } from "./utils";
+import {role2e, role3e} from './utils'
 
 describe('GET /log', () => {
   before(async () => await seedTest.logs())

@@ -22,7 +22,9 @@ const logger = (req: Request, res: Response, next: NextFunction): void => {
               : req.originalUrl.split('?')[1],
         },
       })
-      .catch(() => {return})
+      .catch(() => {
+        return
+      })
   })
   next()
 }

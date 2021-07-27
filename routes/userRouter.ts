@@ -33,25 +33,29 @@ userRouter.put('/', async (req: Request, res: Response) => {
       req,
       req.body.aircraftId
     )
-    
-    const roleGE = reqUser.role >= 2 
-    // users with role >= 2 may update users with role <= self.role
-    ? req.body.role 
-    // users with role 1 cannot update
-    : 99
 
-    if(req.body.role > maxRole || req.body.role < minRol) {
+    const roleGE =
+      reqUser.role >= 2
+        ? // users with role >= 2 may update users with role <= self.role
+          req.body.role
+        : // users with role 1 cannot update
+          99
+
+    if (req.body.role > maxRole || req.body.role < minRol) {
       res.status(400).json()
       return
     }
-    
+
     // try to find the user that the req is trying to modify
-    const reqBodyUser = await query.readUserAtName_AircraftId(req.body.name, req.body.aircraftId)
-    
+    const reqBodyUser = await query.readUserAtName_AircraftId(
+      req.body.name,
+      req.body.aircraftId
+    )
+
     // if the reqBody user was found,
     if (reqBodyUser) {
       // make sure that req users role >= the user they are trying to update
-      if(reqBodyUser.role <= reqUser.role && reqUser.role >= roleGE){
+      if (reqBodyUser.role <= reqUser.role && reqUser.role >= roleGE) {
         try {
           await query.upsertUser(req.body)
           res.status(200).json()
@@ -60,7 +64,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
           res.status(400).json()
           return
         }
-      } else{
+      } else {
         res.status(403).json()
         return
       }

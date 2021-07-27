@@ -19,7 +19,7 @@ const logParamsSchema = yup.object().shape({
 })
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const getQueryObj = (logParams:any):{[key: string]: any} => {
+const getQueryObj = (logParams: any): {[key: string]: any} => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const where: {[key: string]: any} = {}
 
@@ -28,7 +28,8 @@ const getQueryObj = (logParams:any):{[key: string]: any} => {
       ? {gte: logParams.resTimeGTE, lte: logParams.dateLTE}
       : undefined
 
-  where.dateTime = logParams.dateGTE && logParams.dateLTE
+  where.dateTime =
+    logParams.dateGTE && logParams.dateLTE
       ? {gte: logParams.dateGTE, lte: logParams.dateLTE}
       : undefined
 

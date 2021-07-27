@@ -1,1 +1,5 @@
-(() => { setTimeout(() => {return}, 5000)})()
+;(() => {
+  setTimeout(() => {
+    return
+  }, 5000)
+})()

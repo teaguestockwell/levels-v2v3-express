@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/ban-types */
-import { query }from '../prisma/query'
+import {query} from '../prisma/query'
 import {Request, Response} from 'express'
 
 interface GetN {

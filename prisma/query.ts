@@ -205,7 +205,10 @@ export const query = {
     })
   },
 
-  readUserAtName_AircraftId : async (name: string, aircraftId: number): Promise<User | null> => {
+  readUserAtName_AircraftId: async (
+    name: string,
+    aircraftId: number
+  ): Promise<User | null> => {
     const aircraftId_name = {aircraftId, name}
     return prisma.user.findUnique({where: {aircraftId_name}}).catch(() => null)
   },
@@ -299,7 +302,6 @@ export const query = {
    * returns a recursive aircraft object with all nested relations
    */
   readAircraftAtId: async (aircraftId: number): Promise<Aircraft> => {
-
     return prisma.aircraft.findUnique({
       where: {aircraftId},
       include: {
@@ -316,7 +318,6 @@ export const query = {
   readAircraftAtIdIncludeUsers: async (
     aircraftId: number
   ): Promise<Aircraft> => {
-
     return prisma.aircraft.findUnique({
       where: {aircraftId},
       include: {
@@ -342,7 +343,6 @@ export const query = {
 
   // n Aircraft()
   readAircrafts: async (): Promise<Aircraft[]> => {
-
     return prisma.aircraft.findMany({
       include: {
         cargos: true,
@@ -353,7 +353,6 @@ export const query = {
         },
       },
     })
-
   },
 
   // readAircraftsAsObj: async (): Promise<{[key: number]: Aircraft}> => {

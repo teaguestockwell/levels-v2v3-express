@@ -27,7 +27,12 @@ server.use(methodsWhitelist)
 server.use(errorHandler)
 server.use(logger)
 server.use(compression())
-server.use(cors({origin: process.env.IS_LOCAL ? '*' : 'https://login.dso.mil' , credentials: true}))
+server.use(
+  cors({
+    origin: process.env.IS_LOCAL ? '*' : 'https://login.dso.mil',
+    credentials: true,
+  })
+)
 
 // use route middleware
 server.use('/log', logRouter)
