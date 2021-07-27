@@ -205,6 +205,11 @@ export const query = {
     })
   },
 
+  readUserAtName_AircraftId : async (name: string, aircraftId: number): Promise<User | null> => {
+    const aircraftId_name = {aircraftId, name}
+    return prisma.user.findUnique({where: {aircraftId_name}}).catch(() => null)
+  },
+
   readRoleAtUserId: async (userId: number): Promise<number> => {
     try {
       await prisma.user

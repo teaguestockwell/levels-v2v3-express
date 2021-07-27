@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {role1e, role2e, role3e, role4e, role5e, roleSuper0e, roleSuper1, roleSuper1e} from './utils'
+import {role1e, role2e, role3e, role4e, role5e, roleSuper0e, roleSuper1e} from './utils'
 import {User} from '@prisma/client'
 import { query }from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
@@ -42,7 +42,7 @@ describe('GET /user', () => {
 })
 
 // CREATE || UPDATE
-describe.only('PUT /user', () => {
+describe('PUT /user', () => {
   const seededUserRole0: User = {
     aircraftId: 1,
     userId: 1,
@@ -59,13 +59,26 @@ describe.only('PUT /user', () => {
 
   const demoteSuperUser0 = {...seededSuperUser0, role: 3}
   const promoteSuperUser0 = {...demoteSuperUser0, role: 100}
-  const selfPromoteSuperUser0 = {...demoteSuperUser0, role: 101}
 
   const newUserRole10: User = {
     aircraftId: 1,
     userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
     name: 'newb@name',
     role: 10, // fake role to assert this user has higher role than request maker
+  }
+
+  const newUserRoleNeg1: User = {
+    aircraftId: 1,
+    userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
+    name: 'newb2@name',
+    role: -1, 
+  }
+
+  const newUserRole101: User = {
+    aircraftId: 1,
+    userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
+    name: 'newb3@name',
+    role: 101, 
   }
 
   const mockDuplicateUserUpdate: User = {
@@ -91,6 +104,24 @@ describe.only('PUT /user', () => {
         const updated: User = await query.readUserAtUserId(newUserRole1.userId)
         assert.deepStrictEqual(updated, newUserRole1)
       })
+      .end(done)
+  })
+
+  it('Should deny reqs that have access level < 0', (done: Done) => {
+    req(server)
+      .put('/user')
+      .set('authorization', role3e)
+      .send(newUserRoleNeg1)
+      .expect(400)
+      .end(done)
+  })
+
+  it('Should deny reqs that have access level > 100', (done: Done) => {
+    req(server)
+      .put('/user')
+      .set('authorization', role3e)
+      .send(newUserRole101)
+      .expect(400)
       .end(done)
   })
 
@@ -142,7 +173,6 @@ describe.only('PUT /user', () => {
 
 
   it('users may demote other users if they have role >= them', (done: Done) => {
-    
     req(server)
       .put('/user')
       .set('authorization', roleSuper1e)
@@ -172,14 +202,6 @@ describe.only('PUT /user', () => {
       .end(done)
   })
 
-  it('users cannot self promote', (done: Done) => {
-    req(server)
-      .put('/user')
-      .set('authorization', roleSuper0e)
-      .send(selfPromoteSuperUser0)
-      .expect(403)
-      .end(done)
-  })
 })
 
 // DELETE

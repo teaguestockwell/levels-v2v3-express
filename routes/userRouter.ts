@@ -27,6 +27,8 @@ userRouter.get('*', async (req: Request, res: Response) => {
 // UPDATE || CREATE (User)
 userRouter.put('/', async (req: Request, res: Response) => {
   try {
+    const maxRole = 100
+    const minRol = 0
     const reqUser: User = await query.readUserAtReqAndAircraftId(
       req,
       req.body.aircraftId
@@ -38,7 +40,33 @@ userRouter.put('/', async (req: Request, res: Response) => {
     // users with role 1 cannot update
     : 99
 
-    // above rules do not apply to super users
+    if(req.body.role > maxRole || req.body.role < minRol) {
+      res.status(400).json()
+      return
+    }
+    
+    // try to find the user that the req is trying to modify
+    const reqBodyUser = await query.readUserAtName_AircraftId(req.body.name, req.body.aircraftId)
+    
+    // if the reqBody user was found,
+    if (reqBodyUser) {
+      // make sure that req users role >= the user they are trying to update
+      if(reqBodyUser.role <= reqUser.role && reqUser.role >= roleGE){
+        try {
+          await query.upsertUser(req.body)
+          res.status(200).json()
+          return
+        } catch (e) {
+          res.status(400).json()
+          return
+        }
+      } else{
+        res.status(403).json()
+        return
+      }
+    }
+
+    // if the reqBody is a new user
     if (reqUser.role >= roleGE) {
       try {
         await query.upsertUser(req.body)
