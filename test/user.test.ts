@@ -102,6 +102,16 @@ describe('PUT /user', () => {
     role: 2,
   }
 
+  const testCase = {
+    updated: new Date(),
+    updatedBy: 'developer',
+    aircraftId: 1,
+    userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
+    name: 'John.Doe@Email.Com',
+    role: 1
+  }
+
+
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.C_17_A_ER()
@@ -116,6 +126,19 @@ describe('PUT /user', () => {
       .expect(async () => {
         const updated: User = await query.readUserAtUserId(newUserRole1.userId)
         assert.deepStrictEqual(updated, newUserRole1)
+      })
+      .end(done)
+  })
+
+  it('User emails are not case sensitive', (done: Done) => {
+    req(server)
+      .put('/user')
+      .set('authorization', role3e)
+      .send(testCase)
+      .expect(200)
+      .expect(async () => {
+        const updated: User = await query.readUserAtName_AircraftId('john.doe@email.com', 1)
+        assert.deepStrictEqual({...updated, userId: 0}, {...testCase, name: 'john.doe@email.com'})
       })
       .end(done)
   })
