@@ -12,7 +12,7 @@ import logRouter from './routes/logRouter'
 import responseTime from 'response-time'
 import errorHandler from './middleware/errorHandler'
 import logger from './middleware/logger'
-import methodsWhitelist from './middleware/methodWhitelist'
+import methodsWhitelist from './middleware/methodsWhitelist'
 
 const server: Application = express()
 

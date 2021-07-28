@@ -26,54 +26,34 @@ userRouter.get('*', async (req: Request, res: Response) => {
 
 // UPDATE || CREATE (User)
 userRouter.put('/', async (req: Request, res: Response) => {
-  req.body.updatedBy = query.readName(req)
-  req.body.updated = new Date()
   try {
-    const maxRole = 100
-    const minRol = 0
+    req.body.updatedBy = query.readName(req)
+    req.body.updated = new Date()
+
+    if (req.body.role > 100 || req.body.role < 0) {
+      res.status(400).json()
+    }
+
     const reqUser: User = await query.readUserAtReqAndAircraftId(
       req,
       req.body.aircraftId
     )
 
-    const roleGE =
-      reqUser.role >= 2
-        ? // users with role >= 2 may update users with role <= self.role
-          req.body.role
-        : // users with role 1 cannot update
-          99
-
-    if (req.body.role > maxRole || req.body.role < minRol) {
-      res.status(400).json()
-      return
-    }
-
+    const isReqUserAdmin = reqUser.role >= 2
+    
+    const isReqUserRoleGTEUpsertRole = reqUser.role >= req.body.role
+      
     // try to find the user that the req is trying to modify
     const reqBodyUser = await query.readUserAtName_AircraftId(
       req.body.name,
       req.body.aircraftId
     )
-
-    // if the reqBody user was found,
-    if (reqBodyUser) {
-      // make sure that req users role >= the user they are trying to update
-      if (reqBodyUser.role <= reqUser.role && reqUser.role >= roleGE) {
-        try {
-          await query.upsertUser(req.body)
-          res.status(200).json()
-          return
-        } catch (e) {
-          res.status(400).json(e)
-          return
-        }
-      } else {
-        res.status(403).json()
-        return
-      }
-    }
+    
+    // if no existing user is found the requesters user is GTE
+    const isReqUserRoleGTEReqBodyUserRole = reqBodyUser ? reqUser.role >= reqBodyUser.role : true 
 
     // if the reqBody is a new user
-    if (reqUser.role >= roleGE) {
+    if (isReqUserAdmin && isReqUserRoleGTEUpsertRole && isReqUserRoleGTEReqBodyUserRole) {
       try {
         await query.upsertUser(req.body)
         res.status(200).json()
@@ -83,6 +63,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
     } else {
       res.status(403).json()
     }
+
   } catch (e) {
     res.status(500).json()
   }

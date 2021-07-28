@@ -25,10 +25,10 @@ aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
 
 // UPDATE || CREATE (Aircraft)
 aircraftRouter.put('/', async (req: Request, res: Response) => {
-  req.body.updatedBy = query.readName(req)
-  req.body.updated = new Date()
-  const roleGE = 3
   try {
+    req.body.updatedBy = query.readName(req)
+    req.body.updated = new Date()
+    const roleGE = 3
     const reqAir: Aircraft = req.body
     const user = await query.readUserWithHighestRole(req)
 
