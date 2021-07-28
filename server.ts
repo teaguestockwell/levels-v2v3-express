@@ -13,7 +13,6 @@ import responseTime from 'response-time'
 import errorHandler from './middleware/errorHandler'
 import logger from './middleware/logger'
 import methodsWhitelist from './middleware/methodWhitelist'
-import cors from 'cors'
 
 const server: Application = express()
 
@@ -27,12 +26,7 @@ server.use(methodsWhitelist)
 server.use(errorHandler)
 server.use(logger)
 server.use(compression())
-server.use(
-  cors({
-    origin: process.env.IS_LOCAL ? '*' : 'https://login.dso.mil',
-    credentials: true,
-  })
-)
+
 
 // use route middleware
 server.use('/log', logRouter)
