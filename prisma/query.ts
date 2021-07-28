@@ -45,6 +45,8 @@ export const query = {
       where: {userId: user.userId},
       update: user,
       create: {
+        updatedBy: user.updatedBy,
+        updated: user.updated,
         aircraft: {connect: {aircraftId: user.aircraftId}},
         name: user.name,
         role: user.role,
@@ -57,6 +59,8 @@ export const query = {
       where: {configId: config.configId},
       update: config,
       create: {
+        updated: config.updated,
+        updatedBy: config.updatedBy,
         aircraft: {connect: {aircraftId: config.aircraftId}},
         name: config.name,
       },
@@ -72,8 +76,12 @@ export const query = {
         cargo: {connect: {cargoId: configCargo.cargoId}},
         fs: configCargo.fs,
         qty: configCargo.qty,
+        updated: configCargo.updated,
+        updatedBy: configCargo.updatedBy,
       },
       create: {
+        updated: configCargo.updated,
+        updatedBy: configCargo.updatedBy,
         config: {connect: {configId: configCargo.configId}},
         aircraft: {connect: {aircraftId: configCargo.aircraftId}},
         cargo: {connect: {cargoId: configCargo.cargoId}},
@@ -91,6 +99,8 @@ export const query = {
     if (aircraft.aircraftId == 0) {
       const newAir = await prisma.aircraft.create({
         data: {
+          updatedBy: reqUser.name,
+          updated: aircraft.updated,
           name: aircraft.name,
           fs0: aircraft.fs0,
           fs1: aircraft.fs1,
@@ -107,6 +117,8 @@ export const query = {
 
       await prisma.user.create({
         data: {
+          updatedBy: reqUser.name,
+          updated:  aircraft.updated,
           aircraft: {connect: {aircraftId: newAir.aircraftId}},
           name: reqUser.name,
           role: 4,
@@ -116,7 +128,7 @@ export const query = {
     } else {
       await prisma.aircraft.update({
         where: {aircraftId: aircraft.aircraftId},
-        data: aircraft,
+        data: {...aircraft, updatedBy: reqUser.name, updated: new Date()},
       })
     }
   },
@@ -126,6 +138,8 @@ export const query = {
       where: {glossaryId: glossary.glossaryId},
       update: glossary,
       create: {
+        updatedBy: glossary.updatedBy,
+        updated: glossary.updated,
         aircraft: {connect: {aircraftId: glossary.aircraftId}},
         name: glossary.name,
         body: glossary.body,
@@ -138,6 +152,8 @@ export const query = {
       where: {tankId: tank.tankId},
       update: tank,
       create: {
+        updatedBy: tank.updatedBy,
+        updated: tank.updated,
         aircraft: {connect: {aircraftId: tank.aircraftId}},
         weightsCSV: tank.weightsCSV,
         simpleMomsCSV: tank.simpleMomsCSV,
@@ -151,12 +167,12 @@ export const query = {
       where: {cargoId: cargo.cargoId},
       update: cargo,
       create: {
+        updated: cargo.updated,
+        updatedBy: cargo.updatedBy,
         aircraft: {connect: {aircraftId: cargo.aircraftId}},
         name: cargo.name,
         fs: cargo.fs,
         weight: cargo.weight,
-        updated: cargo.updated,
-        updatedBy: cargo.updatedBy,
       },
     })
   },
@@ -278,7 +294,7 @@ export const query = {
       where: {name},
     })
 
-    let highest: User = {name: 'no name', role: 0, aircraftId: 0, userId: 0}
+    let highest: User = {name: 'no name', role: 0, aircraftId: 0, userId: 0, updated: new Date(), updatedBy: 'developer'}
     users.forEach((u) => {
       if (u.role > highest.role) {
         highest = u

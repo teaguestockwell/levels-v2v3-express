@@ -85,6 +85,8 @@ export const baseRouter = {
         const user = await query.readUserAtReqAndAircraftId(req, verifiedAirId)
 
         if (user.role >= roleGE) {
+          obj.updatedBy = user.name
+          obj.updated = new Date()
           await upsertType(obj)
           res.status(200).json()
         } else {

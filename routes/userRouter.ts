@@ -26,6 +26,8 @@ userRouter.get('*', async (req: Request, res: Response) => {
 
 // UPDATE || CREATE (User)
 userRouter.put('/', async (req: Request, res: Response) => {
+  req.body.updatedBy = query.readName(req)
+  req.body.updated = new Date()
   try {
     const maxRole = 100
     const minRol = 0
@@ -61,7 +63,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
           res.status(200).json()
           return
         } catch (e) {
-          res.status(400).json()
+          res.status(400).json(e)
           return
         }
       } else {
@@ -76,7 +78,7 @@ userRouter.put('/', async (req: Request, res: Response) => {
         await query.upsertUser(req.body)
         res.status(200).json()
       } catch (e) {
-        res.status(400).json()
+        res.status(400).json(e)
       }
     } else {
       res.status(403).json()
