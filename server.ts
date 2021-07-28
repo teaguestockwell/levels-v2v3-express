@@ -27,7 +27,6 @@ server.use(errorHandler)
 server.use(logger)
 server.use(compression())
 
-
 // use route middleware
 server.use('/log', logRouter)
 server.use('/aircraft', aircraftRouter)

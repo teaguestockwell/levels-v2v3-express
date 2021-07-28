@@ -118,7 +118,7 @@ export const query = {
       await prisma.user.create({
         data: {
           updatedBy: reqUser.name,
-          updated:  aircraft.updated,
+          updated: aircraft.updated,
           aircraft: {connect: {aircraftId: newAir.aircraftId}},
           name: reqUser.name,
           role: 4,
@@ -294,7 +294,14 @@ export const query = {
       where: {name},
     })
 
-    let highest: User = {name: 'no name', role: 0, aircraftId: 0, userId: 0, updated: new Date(), updatedBy: 'developer'}
+    let highest: User = {
+      name: 'no name',
+      role: 0,
+      aircraftId: 0,
+      userId: 0,
+      updated: new Date(),
+      updatedBy: 'developer',
+    }
     users.forEach((u) => {
       if (u.role > highest.role) {
         highest = u
