@@ -1,6 +1,6 @@
 import {Request, Response, NextFunction} from 'express'
 
-const whitelist = ['GET', 'PUT', 'DELETE']
+const whitelist = ['GET', 'PUT', 'DELETE', 'OPTIONS']
 
 const methodsWhitelist = (
   req: Request,
