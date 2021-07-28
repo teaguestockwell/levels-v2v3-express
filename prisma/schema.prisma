@@ -48,6 +48,9 @@ model User {
   userId Int    @unique @default(autoincrement())
   name   String // used to identify users, but this is not unique because it will be duplicatied if the user is assined to multple aircraft @map("name")
   role   Int    @default(0)
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("developer")
+
   @@id([aircraftId, name])
 }
 
@@ -67,6 +70,8 @@ model Aircraft {
   lemac         Float
   mac           Float
   momMultiplyer Float
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("developer")
 
   // 1-n Relationships
   users        User[]
@@ -88,6 +93,9 @@ model Glossary {
   glossaryId Int    @unique @default(autoincrement())
   name       String
   body       String
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("developer")
+
   @@id([name, aircraftId])
 }
 
@@ -103,6 +111,9 @@ model Tank {
   tankId        Int    @unique @default(autoincrement())
   weightsCSV    String // csv
   simpleMomsCSV String // csv
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("developer")
+
   @@id([aircraftId, name])
 }
 
@@ -115,6 +126,8 @@ model Config {
   // Scalar Fields
   configId Int    @unique @default(autoincrement())
   name     String
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("developer")
 
   // 1-n Relationships
   configCargos ConfigCargo[]
@@ -132,7 +145,7 @@ model Cargo {
   // Scalar Fields
   cargoId   Int            @unique @default(autoincrement())
   updated   DateTime       @updatedAt
-  updatedBy String         @default("unknown")
+  updatedBy String         @default("developer")
   name      String
   weight    Float
   fs        Float?         @default(-1) // distance cannot be nagative, this ensures imports will wil invalid without inputing fs
@@ -160,6 +173,8 @@ model ConfigCargo {
   aircraftId Int
   cargo      Cargo    @relation(fields: [cargoId], references: [cargoId])
   cargoId    Int
+  updated   DateTime       @updatedAt
+  updatedBy String         @default("developer")
 
   // Scalar Fields,
   //this is not a relashionship with cargo to allow ui flexibility when admin changes configurations
