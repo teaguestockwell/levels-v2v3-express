@@ -30,7 +30,7 @@ describe('GET /cargo', () => {
       .expect(200)
       .expect((res) => {
         assert(res.body.length != 0)
-        assert.strictEqual(res.body[0].updatedBy, 'unknown')
+        assert.strictEqual(res.body[0].updatedBy, 'developer')
         assert('updated' in res.body[0])
       })
       .end(done)

@@ -38,6 +38,8 @@ describe('GET /configcargo', () => {
 describe('PUT /configcargo', () => {
   //
   const updateConfigCargo: ConfigCargo = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     cargoId: 10,
     configCargoId: 24,
@@ -47,6 +49,8 @@ describe('PUT /configcargo', () => {
   }
 
   const updateConfigCargoNonUnique: ConfigCargo = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     // cannot have the same cargo aircraftId as config cargo #1,
     // because this would make two rows of the same type of cargo,
@@ -61,6 +65,8 @@ describe('PUT /configcargo', () => {
 
   // add pass demo kits to AE-1 on C-17A-ER
   const newConfigCargo: ConfigCargo = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     cargoId: 10,
     configCargoId: 0,

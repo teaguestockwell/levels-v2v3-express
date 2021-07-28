@@ -8,6 +8,8 @@ import {seedTest} from '../prisma/seed_test'
 import {client as prisma} from '../prisma/client'
 
 const createAir: Aircraft = {
+  updatedBy: 'developer',
+  updated: new Date(),
   aircraftId: 0,
   name: 'new',
   fs0: 100,
@@ -23,6 +25,8 @@ const createAir: Aircraft = {
 }
 
 const createAirNonUniqueName: Aircraft = {
+  updatedBy: 'developer',
+  updated: new Date(),
   aircraftId: 0,
   name: 'C-17A-ER',
   fs0: 100,
@@ -38,6 +42,8 @@ const createAirNonUniqueName: Aircraft = {
 }
 
 const updateAirNonUniqueName: Aircraft = {
+  updatedBy: 'developer',
+  updated: new Date(),
   aircraftId: 1,
   name: 'C-17A', // update from C-17A-ER to reflect a non unique name
   fs0: 100,
@@ -53,6 +59,8 @@ const updateAirNonUniqueName: Aircraft = {
 }
 
 const updateAir: Aircraft = {
+  updatedBy: 'developer',
+  updated: new Date(),
   aircraftId: 1,
   name: 'C-17A-Er', // update 'r 'to be lowercase
   fs0: 80.5,

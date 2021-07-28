@@ -26,6 +26,7 @@ export const seedTest = {
   },
 
   createProdAdmins: async () => {
+
     await prisma.user.create({
       data: {
         name: 'teague.stockwell@us.af.mil',
@@ -37,6 +38,22 @@ export const seedTest = {
     await prisma.user.create({
       data: {
         name: 'teague.stockwell@us.af.mil',
+        role: 4,
+        aircraft: {connect: {name: 'C-17A-ER'}},
+      },
+    })
+
+    await prisma.user.create({
+      data: {
+        name: 'john.snuffy@fakename.com',
+        role: 4,
+        aircraft: {connect: {name: 'C-17A'}},
+      },
+    })
+
+    await prisma.user.create({
+      data: {
+        name: 'john.snuffy@fakename.com',
         role: 4,
         aircraft: {connect: {name: 'C-17A-ER'}},
       },

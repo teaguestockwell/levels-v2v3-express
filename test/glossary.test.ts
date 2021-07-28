@@ -37,6 +37,8 @@ describe('GET /glossary', () => {
 // UPDATE || CREATE
 describe('PUT /glossary', () => {
   const updateGloss: Glossary = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     glossaryId: 1,
     name: 'update glossary name',
@@ -44,6 +46,8 @@ describe('PUT /glossary', () => {
   }
 
   const updateGlossNonUnique: Glossary = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     glossaryId: 1,
     name: '%MAC',
@@ -51,6 +55,8 @@ describe('PUT /glossary', () => {
   }
 
   const newGloss: Glossary = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     glossaryId: 0, // 0 means this is a new glossary - no aircraftId has been assined by db
     name: 'new glossary name',

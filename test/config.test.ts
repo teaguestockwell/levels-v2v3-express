@@ -37,18 +37,24 @@ describe('GET /config', () => {
 // UPDATE || CREATE
 describe('PUT /config', () => {
   const updateConfig: Config = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     configId: 1,
     name: 'update config name',
   }
 
   const updateConfigNonUnique: Config = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     configId: 1,
     name: 'AE-2', // non unique name
   }
 
   const newConfig: Config = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     configId: 0,
     name: 'new config',

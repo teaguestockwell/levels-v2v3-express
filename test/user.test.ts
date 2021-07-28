@@ -8,6 +8,8 @@ import {query} from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
 
 const newUserRole1: User = {
+  updated: new Date(),
+  updatedBy: 'developer',
   aircraftId: 1,
   userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
   name: 'newb@name',
@@ -44,6 +46,8 @@ describe('GET /user', () => {
 // CREATE || UPDATE
 describe('PUT /user', () => {
   const seededUserRole0: User = {
+    updated: new Date(),
+    updatedBy: 'developer',
     aircraftId: 1,
     userId: 1,
     name: 'role0@test.com',
@@ -51,6 +55,8 @@ describe('PUT /user', () => {
   }
 
   const seededSuperUser0: User = {
+    updated: new Date(),
+    updatedBy: 'developer',
     aircraftId: 1,
     userId: 11,
     name: 'super.user0@test.com',
@@ -61,6 +67,8 @@ describe('PUT /user', () => {
   const promoteSuperUser0 = {...demoteSuperUser0, role: 100}
 
   const newUserRole10: User = {
+    updated: new Date(),
+    updatedBy: 'developer',
     aircraftId: 1,
     userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
     name: 'newb@name',
@@ -68,6 +76,8 @@ describe('PUT /user', () => {
   }
 
   const newUserRoleNeg1: User = {
+    updated: new Date(),
+    updatedBy: 'developer',
     aircraftId: 1,
     userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
     name: 'newb2@name',
@@ -75,6 +85,8 @@ describe('PUT /user', () => {
   }
 
   const newUserRole101: User = {
+    updated: new Date(),
+    updatedBy: 'developer',
     aircraftId: 1,
     userId: 0, // 0 tells upsert that user was created by ui, and to assign them a userId
     name: 'newb3@name',
@@ -82,6 +94,8 @@ describe('PUT /user', () => {
   }
 
   const mockDuplicateUserUpdate: User = {
+    updated: new Date(),
+    updatedBy: 'developer',
     aircraftId: 1,
     userId: 4, // this corresponds to name role1@test.com
     name: 'role0@test.com', // cannot put to duplicate user

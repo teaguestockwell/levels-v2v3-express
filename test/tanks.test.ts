@@ -37,6 +37,8 @@ describe('GET /tank', () => {
 // UPDATE || CREATE
 describe('PUT /tank', () => {
   const updateTank: Tank = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     tankId: 1,
     name: 'update tank name',
@@ -45,6 +47,8 @@ describe('PUT /tank', () => {
   }
 
   const updateTankNonUnique: Tank = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     tankId: 1, // this is tank 1
     name: 'Tank 3 ER', // tank 1 cant be the same as tanks 3
@@ -53,6 +57,8 @@ describe('PUT /tank', () => {
   }
 
   const newTank: Tank = {
+    updatedBy: 'developer',
+    updated: new Date(),
     aircraftId: 1,
     tankId: 0, // 0 means this is a new tank - no aircraftId has been assined by db
     name: 'new tank name',
