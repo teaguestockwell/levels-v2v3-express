@@ -48,7 +48,7 @@ export const query = {
         updatedBy: user.updatedBy,
         updated: user.updated,
         aircraft: {connect: {aircraftId: user.aircraftId}},
-        name: (user.name as string).toLowerCase(),
+        name: (user.name as string).toLowerCase().trim(),
         role: user.role,
       },
     })
