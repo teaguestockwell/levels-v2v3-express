@@ -17,3 +17,4 @@ services:
       NODE_ENV: development
       DATABASE_URL: postgresql://PG_USER:password@fl-api-test-db:5432
       PORT: 8080
+      IS_LOCAL: 'true'

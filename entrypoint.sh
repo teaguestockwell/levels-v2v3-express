@@ -5,17 +5,7 @@ export PORT="${PORT:-8080}"
 echo "waiting for DB to accept conenctions"
 node wait.js
 
-# Will reset everything
-echo "applying migrations with db reset"
-npx prisma db push --force-reset
+if [ "${IS_LOCAL}" = "true" ]; then echo "reseting db and reseeding" && npx prisma generate && npx prisma db push --force-reset && node prisma/reseed.js ; else echo "applying migrations prod" && npx prisma migrate deploy ; fi
 
-# echo "reseeding db"
-# node prisma/reseed.js
-
-# For prod mirgation
-echo "applying migrations prod"
-npx prisma migrate deploy
-
-
-echo "starting prod build server"
+echo "starting server"
 node server.js
