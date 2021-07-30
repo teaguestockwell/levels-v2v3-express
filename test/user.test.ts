@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {role1e, role2e, role3e, role4e, role5e, roleSuper1e} from './utils'
+import {role0e, role1e, role2e, role3e, role4e, role5e, roleSuper1e} from './utils'
 import {User} from '@prisma/client'
 import {query} from '../prisma/query'
 import {seedTest} from '../prisma/seed_test'
@@ -34,10 +34,10 @@ describe('GET /user', () => {
       .end(done)
   })
 
-  it('Should deny requests that have an access level < 2', (done: Done) => {
+  it('Should deny requests that have an access level < 1', (done: Done) => {
     req(server)
       .get('/user?aircraftId=1')
-      .set('authorization', role1e)
+      .set('authorization', role0e)
       .expect(403)
       .end(done)
   })
