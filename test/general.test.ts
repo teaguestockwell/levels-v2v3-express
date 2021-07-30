@@ -11,7 +11,7 @@ import {client as prisma} from '../prisma/client'
 describe('GET /general', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
     await seedTest.generals()
   })
 
@@ -50,7 +50,7 @@ describe('PUT /general', () => {
 
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
     await seedTest.generals()
   })
 
@@ -92,7 +92,7 @@ describe('PUT /general', () => {
 describe('DELETE /general', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
     await seedTest.generals()
   })
 

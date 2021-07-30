@@ -79,17 +79,18 @@ const updateAir: Aircraft = {
 describe('GET /aircraft', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
-    await seedTest.C_17_A()
+    await seedTest.c17aer()
+    await seedTest.c17a()
+    await seedTest.demo()
   })
 
-  it('Should return empty[] for users with roles < 1', (done: Done) => {
+  it('Should return demo aircraft for users with roles < 1', (done: Done) => {
     req(server)
       .get('/aircraft')
       .set('authorization', role0e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.length == 0)
+        assert(res.body.length == 1)
       })
       .end(done)
   })
@@ -120,17 +121,17 @@ describe('GET /aircraft', () => {
 describe('GET /aircraft/lastUpdated', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
-    await seedTest.C_17_A()
+    await seedTest.c17aer()
+    await seedTest.c17a()
   })
 
-  it('Should return empty[] for users with roles < 1', (done: Done) => {
+  it('Should return demo for users with roles < 1', (done: Done) => {
     req(server)
       .get('/aircraft/lastUpdated')
       .set('authorization', role0e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.data.length == 0)
+        assert(res.body.data.length == 1)
       })
       .end(done)
   })
@@ -164,8 +165,8 @@ describe('PUT /aircraft', () => {
   // between tests
   beforeEach(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
-    await seedTest.C_17_A()
+    await seedTest.c17aer()
+    await seedTest.c17a()
   })
 
   it('Should 403 if the req role <= 2', (done: Done) => {
@@ -234,7 +235,7 @@ describe('PUT /aircraft', () => {
 describe('DELETE /aircraft', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should 403 requests whose role @ aircraft <= 2', (done: Done) => {

@@ -11,7 +11,7 @@ import {client as prisma} from '../prisma/client'
 describe('GET /glossary', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should return glossarys[] of an aircraft given req.role on that aircraft >= 1', (done: Done) => {
@@ -65,7 +65,7 @@ describe('PUT /glossary', () => {
 
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should return 200 and update where gloss is unquique && req.role >= 3', (done: Done) => {
@@ -121,7 +121,7 @@ describe('PUT /glossary', () => {
 describe('DELETE /glossary', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should 403 where req.role <= 2 on aircraft', (done: Done) => {

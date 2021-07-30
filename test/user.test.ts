@@ -20,7 +20,7 @@ const newUserRole1: User = {
 describe('GET /user', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should return users of a given aircraft when request.user.role >= 2', (done: Done) => {
@@ -114,7 +114,7 @@ describe('PUT /user', () => {
 
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should create new users', (done: Done) => {
@@ -242,7 +242,7 @@ describe('PUT /user', () => {
 describe('DELETE /user', () => {
   before(async () => {
     await seedTest.deleteAll()
-    await seedTest.C_17_A_ER()
+    await seedTest.c17aer()
   })
 
   it('Should 403 when request.role < userId.role', (done: Done) => {
