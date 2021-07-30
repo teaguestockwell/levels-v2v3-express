@@ -7,7 +7,7 @@ const userRouter = Router()
 // READ ({aircraftId}) || ()
 userRouter.get('*', async (req: Request, res: Response) => {
   try {
-    const roleGE = 2
+    const roleGE = 1
     try {
       const user = await query.readUserWithHighestRole(req)
       const aircraftId = Number(`${req.query['aircraftId']}`)
