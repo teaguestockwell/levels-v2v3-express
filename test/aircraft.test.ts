@@ -123,6 +123,7 @@ describe('GET /aircraft/lastUpdated', () => {
     await seedTest.deleteAll()
     await seedTest.c17aer()
     await seedTest.c17a()
+    await seedTest.demo()
   })
 
   it('Should return demo for users with roles < 1', (done: Done) => {

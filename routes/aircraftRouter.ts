@@ -75,7 +75,7 @@ aircraftRouter.delete('*', async (req: Request, res: Response) => {
         res.status(403).json()
       }
     } catch (e) {
-      res.status(400).json()
+      res.status(403).json()
     }
   } catch (e) {
     res.status(500).json()

@@ -16,8 +16,8 @@ export const query = {
   readAirsAtReq: async (req: Request, roleGT: number): Promise<Aircraft[]> => {
     const name = query.readName(req)
 
-    const airs = (
-      await prisma.user.findMany({
+    const getAirs = async () => {
+      const users = await prisma.user.findMany({
         where: {
           name: name,
           role: {gt: roleGT},
@@ -35,21 +35,26 @@ export const query = {
           },
         },
       })
-    ).map((u) => u.aircraft)
+
+      if(users){
+        return users.map(u => u.aircraft)
+      }
+      return []
+  }
+
+    let airs = await getAirs()
 
     // give em the demo aircraft
     if(!airs.length){
-      return [(await prisma.aircraft.findUnique({
-        where: {name: 'Demo'},
-        include: {
-          cargos: true,
-          tanks: true,
-          glossarys: true,
-          configs: {
-            include: {configCargos: {include: {cargo: true}}},
-          },
-        }
-      }))]
+      await query.upsertUser({
+        name,
+        role: 1,
+        updated: new Date(),
+        updatedBy: 'developer',
+        aircraftId: 3,
+        userId: 0,
+      })
+      airs = await getAirs()
     }
 
     return airs
