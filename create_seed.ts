@@ -1,4 +1,4 @@
-const seed = `C_17_A_ER: async (): Promise<void> => {
+const seedString = `C_17_A_ER: async (): Promise<void> => {
   // create aircraft, glossary, tanks
   await prisma.aircraft.create({
     data: {
@@ -3460,7 +3460,7 @@ const createSeed = (i:number):string => {
   
   }
 
-  const replacedAir = incrementId(seed, 1 * i, /aircraftId: ([0-9])*/g, 'aircraftId')
+  const replacedAir = incrementId(seedString, 1 * i, /aircraftId: ([0-9])*/g, 'aircraftId')
   const replacedConfig = incrementId(replacedAir, 19 * i, /configId: ([0-9])*/g, 'configId')
   return incrementId(replacedConfig, 34 * i, /cargoId: ([0-9])*/g, 'cargoId')
   
