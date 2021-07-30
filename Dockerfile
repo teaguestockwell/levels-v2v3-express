@@ -36,14 +36,14 @@ USER 950
 WORKDIR /app
 
 # copy the js build
-COPY --from=0 /app/build .
+COPY --from=builder /app/build .
 
 # files that are not js need to be copied in since they are not  in ./build
-COPY --from=0 /app/package.json .
-COPY --from=0 /app/package-lock.json .
-COPY --from=0 /app/entrypoint.sh .
-COPY --from=0 /app/prisma/schema.prisma ./prisma
-COPY --from=0 /app/prisma/migrations ./prisma/migrations
+COPY --from=builder /app/package.json .
+COPY --from=builder /app/package-lock.json .
+COPY --from=builder /app/entrypoint.sh .
+COPY --from=builder /app/prisma/schema.prisma ./prisma
+COPY --from=builder /app/prisma/migrations ./prisma/migrations
 
 # dont install dev packages
 ENV NODE_ENV production
