@@ -6,7 +6,6 @@ import {
   Cargo,
   Config,
   ConfigCargo,
-  General,
   Glossary,
   Tank,
   User,
@@ -196,14 +195,6 @@ export const query = {
         fs: cargo.fs,
         weight: cargo.weight,
       },
-    })
-  },
-
-  upsertGeneral: async (general: General): Promise<void> => {
-    await prisma.general.upsert({
-      where: {role: general.role},
-      update: general,
-      create: general,
     })
   },
 
@@ -416,12 +407,6 @@ export const query = {
     return prisma.user.findUnique({where: {aircraftId_name}})
   },
 
-  readGeneral: async (role: number): Promise<General> => {
-    return prisma.general.findFirst({
-      where: {role},
-    })
-  },
-
   readGlossaryAtGlossaryId: async (glossaryId: number): Promise<Glossary> => {
     return prisma.glossary.findUnique({where: {glossaryId}})
   },
@@ -590,9 +575,4 @@ export const query = {
     })
   },
 
-  deleteGeneral: async (role: number): Promise<void> => {
-    await prisma.general.delete({
-      where: {role},
-    })
-  },
 }

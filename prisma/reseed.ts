@@ -7,7 +7,6 @@ async function main() {
   await seedTest.demo()
   await seedTest.deleteAllUsers()
   await seedTest.createProdAdmins()
-  await seedTest.generals()
   await seedTest.logs()
   process.exit()
 }

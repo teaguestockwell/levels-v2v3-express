@@ -1,7 +1,6 @@
 import express, {Application} from 'express'
 import compression from 'compression'
 import aircraftRouter from './routes/aircraftRouter'
-import generalRouter from './routes/generalRouter'
 import userRouter from './routes/userRouter'
 import glossaryRouter from './routes/glossaryRouter'
 import tankRouter from './routes/tankRouter'
@@ -30,7 +29,6 @@ server.use(compression())
 // use route middleware
 server.use('/log', logRouter)
 server.use('/aircraft', aircraftRouter)
-server.use('/general', generalRouter)
 server.use('/user', userRouter)
 server.use('/glossary', glossaryRouter)
 server.use('/tank', tankRouter)

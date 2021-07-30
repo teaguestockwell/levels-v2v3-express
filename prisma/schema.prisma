@@ -24,19 +24,6 @@ model Log {
   query    String?
 }
 
-//differnt greetings for diffrent roles
-model General {
-  // Primary Key
-  role Int @id
-
-  // Scalar Fields
-  name      String
-  body      String
-  names     String[]
-  iconDatas Int[]
-  urls      String[]
-}
-
 model User {
   // Composite key, no two aircraft will have same name
   // However, one name may have multiple accses levels, as long as they are on diffrent aircraft
