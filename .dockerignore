@@ -1,1 +1,1 @@
-node_modules
+# node_modules, this is to be used when using dockerfile.builder
