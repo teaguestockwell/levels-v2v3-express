@@ -1,8 +1,16 @@
 import {query} from '../prisma/query'
 import {Router, Request, Response} from 'express'
-import { useLocalMemCache } from '../middleware/localMemCache'
+import { localMemCache } from '../prisma/localMemCache'
 
 const aircraftRouter = Router()
+
+const allAirMap = async () => {
+  return (await query.readAircrafts()).reduce((prev,curr) => {
+    prev[curr.aircraftId] = curr
+    return prev
+  }, {} as any)
+}
+
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
@@ -14,22 +22,17 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
+
     const [allowedShallow, deep] = await Promise.all([
       query.readAirsAtReqShallow(req, 0),
-      useLocalMemCache({
-        fallback: query.readAircrafts,
-        key: 'allAircraft'
+      localMemCache({
+        fallback: allAirMap,
+        key: 'allAircraftMap'
       })
     ])  
-
-    // create a map to lookup allowed aircraft
-    const deepMap = deep.reduce((prev, curr) => {
-      prev[curr.aircraftId] = curr
-      return prev
-    }, {} as any)
     
     // for each allowed shallow aircraft, return the cached deep one
-    const data = allowedShallow.map(allowed => deepMap[allowed.aircraftId])
+    const data = allowedShallow.map(allowed => deep[allowed.aircraftId])
 
     res.status(200).json({
       serverEpoch: Date.now(),
