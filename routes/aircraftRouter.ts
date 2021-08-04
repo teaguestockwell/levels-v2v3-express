@@ -1,12 +1,12 @@
 import {query} from '../prisma/query'
 import {Router, Request, Response} from 'express'
-import {Aircraft} from '@prisma/client'
+import { useLocalMemCache } from '../middleware/localMemCache'
 
 const aircraftRouter = Router()
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
   try {
-    res.status(200).json(await query.readAirsAtReq(req, 0))
+    res.status(200).json(await query.readAirsAtReqShallow(req, 0))
   } catch (e) {
     res.status(500).json()
   }
@@ -14,11 +14,29 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
 
 aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
   try {
+    const [allowedShallow, deep] = await Promise.all([
+      query.readAirsAtReqShallow(req, 0),
+      useLocalMemCache({
+        fallback: query.readAircrafts,
+        key: 'allAircraft'
+      })
+    ])  
+
+    // create a map to lookup allowed aircraft
+    const deepMap = deep.reduce((prev, curr) => {
+      prev[curr.aircraftId] = curr
+      return prev
+    }, {} as any)
+    
+    // for each allowed shallow aircraft, return the cached deep one
+    const data = allowedShallow.map(allowed => deepMap[allowed.aircraftId])
+
     res.status(200).json({
       serverEpoch: Date.now(),
-      data: await query.readAirsAtReq(req, 0),
+      data
     })
   } catch (e) {
+    console.error(e)
     res.status(500).json()
   }
 })
@@ -29,7 +47,7 @@ aircraftRouter.put('/', async (req: Request, res: Response) => {
     req.body.updatedBy = query.readName(req)
     req.body.updated = new Date()
     const roleGE = 3
-    const reqAir: Aircraft = req.body
+    const reqAir = req.body
     const user = await query.readUserWithHighestRole(req)
 
     if (reqAir.aircraftId === 0 && user.role >= roleGE) {
