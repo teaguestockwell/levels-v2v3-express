@@ -60,6 +60,10 @@ model Aircraft {
   updated   DateTime       @updatedAt
   updatedBy String         @default("developer")
 
+  // The hash is used to identify the state of an aircraft and all its relatinal data.
+  // If a nested relation changes the hash will be updated to a new uuid.
+  // The has is used to quickly dif the state of an an aircraft with all its relatinal data
+  deepHashId   String? 
   // 1-n Relationships
   users        User[]
   glossarys    Glossary[]

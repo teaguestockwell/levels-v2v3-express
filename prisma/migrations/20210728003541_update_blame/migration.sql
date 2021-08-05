@@ -1,3 +1,5 @@
+-- The DB was reset when these mifration were applied, so the folling colums will never be null
+
 /*
   Warnings:
 

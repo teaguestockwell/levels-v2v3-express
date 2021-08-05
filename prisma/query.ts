@@ -10,6 +10,7 @@ import {
   Tank,
   User,
 } from '@prisma/client'
+import {v4} from 'uuid'
 
 export const query = {
   readAirsAtReqShallow: async (req: Request, roleGT: number): Promise<Aircraft[]> => {
@@ -22,7 +23,11 @@ export const query = {
           role: {gt: roleGT},
         },
         include: {
-          aircraft: true,
+          aircraft: {
+            include: {
+              configs: true
+            }
+          }
         },
       })
 
@@ -100,8 +105,17 @@ export const query = {
   //////////////////////////////UPDATE || CREATE////////////////////////////
   //////////////////////////////UPSERT//////////////////////////////////////
 
-  upsertUser: async (user: User): Promise<void> => {
-    await prisma.user.upsert({
+  updateAircraftHash: async (aircraftId: number): Promise<string> => {
+    return (await prisma.aircraft.update({
+      where: {aircraftId},
+      data: {
+        deepHashId: v4()
+      }
+    })).deepHashId
+  },
+
+  upsertUser: async (user: User): Promise<User> => {
+    return await prisma.user.upsert({
       where: {userId: user.userId},
       update: user,
       create: {
@@ -112,10 +126,13 @@ export const query = {
         role: user.role,
       },
     })
+
+    // no not update the deep hash because the last updated query does not return users
+
   },
 
-  upsertConfigShallow: async (config: Config): Promise<void> => {
-    await prisma.config.upsert({
+  upsertConfigShallow: async (config: Config): Promise<Config> => {
+    const upserted = await prisma.config.upsert({
       where: {configId: config.configId},
       update: config,
       create: {
@@ -125,10 +142,14 @@ export const query = {
         name: config.name,
       },
     })
+
+    query.updateAircraftHash(upserted.aircraftId)
+
+    return upserted
   },
 
-  upsertConfigCargoShallow: async (configCargo: ConfigCargo): Promise<void> => {
-    await prisma.configCargo.upsert({
+  upsertConfigCargoShallow: async (configCargo: ConfigCargo): Promise<ConfigCargo> => {
+    const upserted = await prisma.configCargo.upsert({
       where: {configCargoId: configCargo.configCargoId},
       update: {
         // an user may change the cargo type within a config,
@@ -149,15 +170,20 @@ export const query = {
         qty: configCargo.qty,
       },
     })
+
+    query.updateAircraftHash(upserted.aircraftId)
+
+    return upserted
   },
 
   upsertAircraftShallow: async (
     aircraft: Aircraft,
     reqUser: User
-  ): Promise<void> => {
+  ): Promise<Aircraft> => {
+    let upserted
     // CREATE
     if (aircraft.aircraftId == 0) {
-      const newAir = await prisma.aircraft.create({
+      upserted = await prisma.aircraft.create({
         data: {
           updatedBy: reqUser.name,
           updated: aircraft.updated,
@@ -172,6 +198,7 @@ export const query = {
           lemac: aircraft.lemac,
           mac: aircraft.mac,
           momMultiplyer: aircraft.momMultiplyer,
+          deepHashId: v4()
         },
       })
 
@@ -179,22 +206,25 @@ export const query = {
         data: {
           updatedBy: reqUser.name,
           updated: aircraft.updated,
-          aircraft: {connect: {aircraftId: newAir.aircraftId}},
+          aircraft: {connect: {aircraftId: upserted.aircraftId}},
           name: reqUser.name,
           role: 4,
         },
       })
       // UPDATE
     } else {
-      await prisma.aircraft.update({
+      upserted = await prisma.aircraft.update({
         where: {aircraftId: aircraft.aircraftId},
-        data: {...aircraft, updatedBy: reqUser.name, updated: new Date()},
+        data: {...aircraft, updatedBy: reqUser.name, updated: new Date(), deepHashId: v4()},
       })
     }
+    query.updateAircraftHash(upserted.aircraftId)
+
+    return upserted
   },
 
-  upsertGlossary: async (glossary: Glossary): Promise<void> => {
-    await prisma.glossary.upsert({
+  upsertGlossary: async (glossary: Glossary): Promise<Glossary> => {
+    const upserted = await prisma.glossary.upsert({
       where: {glossaryId: glossary.glossaryId},
       update: glossary,
       create: {
@@ -205,10 +235,14 @@ export const query = {
         body: glossary.body,
       },
     })
+
+    query.updateAircraftHash(upserted.aircraftId)
+
+    return upserted
   },
 
-  upsertTank: async (tank: Tank): Promise<void> => {
-    await prisma.tank.upsert({
+  upsertTank: async (tank: Tank): Promise<Tank> => {
+    const upserted = await prisma.tank.upsert({
       where: {tankId: tank.tankId},
       update: tank,
       create: {
@@ -220,10 +254,14 @@ export const query = {
         name: tank.name,
       },
     })
+
+    query.updateAircraftHash(upserted.aircraftId)
+
+    return upserted
   },
 
-  upsertCargo: async (cargo: Cargo): Promise<void> => {
-    await prisma.cargo.upsert({
+  upsertCargo: async (cargo: Cargo): Promise<Cargo> => {
+    const upserted = await prisma.cargo.upsert({
       where: {cargoId: cargo.cargoId},
       update: cargo,
       create: {
@@ -235,6 +273,10 @@ export const query = {
         weight: cargo.weight,
       },
     })
+
+    query.updateAircraftHash(upserted.aircraftId)
+
+    return upserted
   },
 
   //////////////////////////////READ//////////////////////////////////////

@@ -19,7 +19,7 @@ interface Put1 {
   roleGE: number
   pk?: string
   readAircraftIDOfOBJpk?: (obj: number) => Promise<number>
-  upsertType: (obg: any) => Promise<void>
+  upsertType: (obg: any) => Promise<any>
 }
 
 interface Delete1 {
@@ -87,8 +87,8 @@ export const baseRouter = {
         if (user.role >= roleGE) {
           obj.updatedBy = user.name
           obj.updated = new Date()
-          await upsertType(obj)
-          res.status(200).json()
+          const newObj = await upsertType(obj)
+          res.status(200).json(newObj)
         } else {
           res.status(403).json()
         }

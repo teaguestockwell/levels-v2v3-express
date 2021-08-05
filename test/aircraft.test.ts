@@ -22,6 +22,7 @@ const createAir: Aircraft = {
   lemac: 700,
   mac: 90,
   momMultiplyer: 10000,
+  deepHashId: '0',
 }
 
 const createAirNonUniqueName: Aircraft = {
@@ -39,6 +40,7 @@ const createAirNonUniqueName: Aircraft = {
   lemac: 700,
   mac: 90,
   momMultiplyer: 10000,
+  deepHashId: '0',
 }
 
 const updateAirNonUniqueName: Aircraft = {
@@ -56,6 +58,7 @@ const updateAirNonUniqueName: Aircraft = {
   lemac: 700,
   mac: 90,
   momMultiplyer: 10000,
+  deepHashId: '0',
 }
 
 const updateAir: Aircraft = {
@@ -73,6 +76,7 @@ const updateAir: Aircraft = {
   lemac: 793.6,
   mac: 309.5,
   momMultiplyer: 10000,
+  deepHashId: '0',
 }
 
 // READ
@@ -189,7 +193,7 @@ describe('PUT /aircraft', () => {
         const didFind = await prisma.aircraft.findUnique({
           where: {aircraftId: updateAir.aircraftId},
         })
-        assert.deepStrictEqual(didFind, updateAir)
+        assert.deepStrictEqual(didFind, {...updateAir, deepHashId: '0'})
       })
       .end(done)
   })
