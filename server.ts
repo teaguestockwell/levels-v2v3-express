@@ -12,6 +12,7 @@ import responseTime from 'response-time'
 import errorHandler from './middleware/errorHandler'
 import logger from './middleware/logger'
 import methodsWhitelist from './middleware/methodsWhitelist'
+import cors from 'cors'
 
 const server: Application = express()
 
@@ -24,6 +25,7 @@ server.use(responseTime())
 server.use(methodsWhitelist)
 server.use(errorHandler)
 server.use(logger)
+server.use(cors())
 server.use(compression())
 
 // use route middleware
