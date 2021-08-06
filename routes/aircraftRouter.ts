@@ -1,6 +1,7 @@
 import {query} from '../prisma/query'
 import {Router, Request, Response} from 'express'
 import { localMemCache } from '../prisma/localMemCache'
+import _ from 'lodash'
 
 const aircraftRouter = Router()
 
@@ -8,8 +9,17 @@ const allAirMap = async () => {
   return (await query.readAircrafts()).reduce((prev,curr) => {
     prev[curr.aircraftId] = curr
     return prev
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   }, {} as any)
 }
+
+const getAllowedShallowAndDeep = (req: any) => Promise.all([
+  query.readAirsAtReqShallow(req, 0),
+  localMemCache({
+    fallback: allAirMap,
+    key: 'allAircraftMap'
+  })
+])
 
 // READ ()
 aircraftRouter.get('/', async (req: Request, res: Response) => {
@@ -20,23 +30,46 @@ aircraftRouter.get('/', async (req: Request, res: Response) => {
   }
 })
 
-aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
+aircraftRouter.get('/client-server-sync', async (req: Request, res: Response) =>{
   try {
+    if(req.query){
+      const [allowedShallow, deep] = await getAllowedShallowAndDeep(req)
 
-    const [allowedShallow, deep] = await Promise.all([
-      query.readAirsAtReqShallow(req, 0),
-      localMemCache({
-        fallback: allAirMap,
-        key: 'allAircraftMap'
+      // get the memoized hash hash of each aircraft the requester has access to
+      // {[key: number as aircraftId]: string as deepHashId}
+      const dataState = {} as any
+      allowedShallow.forEach(a => dataState[a.aircraftId] = deep[a.aircraftId]?.deepHasshId)
+
+      res.status(200).json({
+        isClientSyncedWithServer: _.isEqual(dataState, req.query),
+        serverEpoch: Date.now(),
+        dataState
       })
-    ])  
+
+    } else { 
+      res.status(400).json()
+    }
+  } catch (e) {
+    res.status(500).json()
+  }
+})
+
+aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
+
+  try {
+    const [allowedShallow, deep] = await getAllowedShallowAndDeep(req)
+    
+    // get the memoized hash hash of each aircraft the requester has access to
+    const dataState = {} as any
+    allowedShallow.forEach(a => dataState[a.aircraftId] = deep[a.aircraftId]?.deepHashId)
     
     // for each allowed shallow aircraft, return the cached deep one
     const data = allowedShallow.map(allowed => deep[allowed.aircraftId])
 
     res.status(200).json({
       serverEpoch: Date.now(),
-      data
+      data,
+      dataState
     })
   } catch (e) {
     console.error(e)

@@ -9,7 +9,7 @@ const logger = (req: Request, res: Response, next: NextFunction): void => {
         data: {
           resTime: parseInt(res.get('X-Response-Time')),
           status: res.statusCode,
-          ep: req.baseUrl,
+          ep: req.baseUrl ?? '',
           email: query.readName(req),
           method: req.method,
           body:

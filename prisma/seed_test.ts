@@ -1,5 +1,6 @@
 import {CargoCategory} from '@prisma/client'
 import {client as prisma} from './client'
+import {v4} from 'uuid'
 
 export const seedTest = {
   deleteAll: async (): Promise<void> => {
@@ -94,6 +95,7 @@ export const seedTest = {
     // create aircraft, glossary, tanks
     await prisma.aircraft.create({
       data: {
+        deepHashId: v4(),
         name: 'C-17A-ER',
         fs0: 80.5,
         fs1: 2168,
@@ -3529,6 +3531,7 @@ export const seedTest = {
     // create aircraft, glossary, tanks
     await prisma.aircraft.create({
       data: {
+        deepHashId: v4(),
         name: 'C-17A',
         fs0: 80.5,
         fs1: 2168,
@@ -6943,6 +6946,7 @@ export const seedTest = {
     // create aircraft, glossary, tanks
     await prisma.aircraft.create({
       data: {
+        deepHashId: v4(),
         name: 'Demo',
         fs0: 80.5,
         fs1: 2168,
