@@ -115,7 +115,7 @@ export const query = {
   },
 
   upsertUser: async (user: User): Promise<User> => {
-    return await prisma.user.upsert({
+    return prisma.user.upsert({
       where: {userId: user.userId},
       update: user,
       create: {

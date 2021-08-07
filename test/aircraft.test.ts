@@ -2,7 +2,7 @@ import {Done} from 'mocha'
 import req from 'supertest'
 import assert from 'assert'
 import server from '../server'
-import {role0e, role2e, role3e, role4e, role2OnAir1e} from './utils'
+import {role0e, role2e, role3e, role4e, role2OnAir1e, role1e} from './utils'
 import {Aircraft} from '@prisma/client'
 import {seedTest} from '../prisma/seed_test'
 import {client as prisma} from '../prisma/client'
@@ -78,6 +78,63 @@ const updateAir: Aircraft = {
   momMultiplyer: 10000,
   deepHashId: '0',
 }
+
+describe('GET /aircraft/client-server-sync', () => {
+  before(async () => {
+    await seedTest.deleteAll()
+    await seedTest.c17aer()
+    await seedTest.c17a()
+  })
+
+  it('should 400 requests without query params',()=>{
+    req(server)
+    .get('/aircraft/client-server-sync')
+    .set('authorization', role1e)
+    .expect(400)
+  })
+
+  it('should 200 requests with a query params',()=>{
+    req(server)
+    .get('/aircraft/client-server-sync?1=asdasd&2=asdasd')
+    .set('authorization', role1e)
+    .expect(200)
+  })
+
+  it('should return the correct data state inside the body for c17a and c17aer', async ()=>{
+    const deepHashIdAir1 = '123'
+    const deepHashIdAir2 = '321'
+
+    const expectedDataState = {
+      1: deepHashIdAir1,
+      2: deepHashIdAir2,
+    }
+
+    // updated the hashed
+    await prisma.aircraft.update({
+      where: {aircraftId: 1},
+      data: {
+        deepHashId: deepHashIdAir1
+      }
+    })
+
+    await prisma.aircraft.update({
+      where: {aircraftId: 2},
+      data: {
+        deepHashId: deepHashIdAir2
+      }
+    })
+
+    req(server)
+    .get('/aircraft/client-server-sync?1=asdasd&2=asdasd')
+    .set('authorization', role1e)
+    .expect(200)
+    .expect(res => {
+      assert.deepStrictEqual(res.body.dataState, expectedDataState)
+      assert.deepStrictEqual(res.body.isClientSyncedWithServer, false)
+    })
+  })
+
+})
 
 // READ
 describe('GET /aircraft', () => {

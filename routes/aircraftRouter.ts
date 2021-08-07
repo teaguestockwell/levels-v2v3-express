@@ -38,7 +38,7 @@ aircraftRouter.get('/client-server-sync', async (req: Request, res: Response) =>
       // get the memoized hash hash of each aircraft the requester has access to
       // {[key: number as aircraftId]: string as deepHashId}
       const dataState = {} as any
-      allowedShallow.forEach(a => dataState[a.aircraftId] = deep[a.aircraftId]?.deepHasshId)
+      allowedShallow.forEach(a => dataState[a.aircraftId] = deep[a.aircraftId]?.deepHashId)
 
       res.status(200).json({
         isClientSyncedWithServer: _.isEqual(dataState, req.query),
