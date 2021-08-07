@@ -25,7 +25,7 @@ server.use(responseTime())
 server.use(methodsWhitelist)
 server.use(errorHandler)
 server.use(logger)
-server.use(cors())
+server.use(cors({origin: ['https://levels.apps.dso.mil', 'https://login.dso.mil']}))
 server.use(compression())
 
 // use route middleware
