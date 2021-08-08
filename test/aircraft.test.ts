@@ -129,7 +129,7 @@ describe('GET /aircraft/client-server-sync', () => {
     .set('authorization', role1e)
     .expect(200)
     .expect(res => {
-      assert.deepStrictEqual(res.body.dataState, expectedDataState)
+      assert.deepStrictEqual(res.body.aircraftsState, expectedDataState)
       assert.deepStrictEqual(res.body.isClientSyncedWithServer, false)
     })
   })
@@ -179,7 +179,7 @@ describe('GET /aircraft', () => {
   })
 })
 
-describe('GET /aircraft/lastUpdated', () => {
+describe('GET /aircraft/deep', () => {
   before(async () => {
     await seedTest.deleteAll()
     await seedTest.c17aer()
@@ -189,33 +189,33 @@ describe('GET /aircraft/lastUpdated', () => {
 
   it('Should return demo for users with roles < 1', (done: Done) => {
     req(server)
-      .get('/aircraft/lastUpdated')
+      .get('/aircraft/deep')
       .set('authorization', role0e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.data.length == 1)
+        assert(res.body.aircrafts.length == 1)
       })
       .end(done)
   })
 
   it('Should return [].length == 2 for users with roles > 2 on 2 aircraft', (done: Done) => {
     req(server)
-      .get('/aircraft/lastUpdated')
+      .get('/aircraft/deep')
       .set('authorization', role2e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.data.length == 2)
+        assert(res.body.aircrafts.length == 2)
       })
       .end(done)
   })
 
   it('Should return [].length == 1 for users with roles > 2 on 1 aircraft', (done: Done) => {
     req(server)
-      .get('/aircraft/lastUpdated')
+      .get('/aircraft/deep')
       .set('authorization', role2OnAir1e)
       .expect(200)
       .expect((res) => {
-        assert(res.body.data.length == 1)
+        assert(res.body.aircrafts.length == 1)
       })
       .end(done)
   })

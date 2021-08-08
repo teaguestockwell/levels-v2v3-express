@@ -54,7 +54,7 @@ aircraftRouter.get('/client-server-sync', async (req: Request, res: Response) =>
   }
 })
 
-aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
+aircraftRouter.get('/deep', async (req: Request, res: Response) => {
 
   try {
     const [allowedShallow, deep] = await getAllowedShallowAndDeep(req)
@@ -64,11 +64,11 @@ aircraftRouter.get('/lastUpdated', async (req: Request, res: Response) => {
     allowedShallow.forEach(a => dataState[a.aircraftId] = deep[a.aircraftId]?.deepHashId)
     
     // for each allowed shallow aircraft, return the cached deep one
-    const data = allowedShallow.map(allowed => deep[allowed.aircraftId])
+    const aircrafts = allowedShallow.map(allowed => deep[allowed.aircraftId])
 
     res.status(200).json({
       serverEpoch: Date.now(),
-      data,
+      aircrafts,
       dataState
     })
   } catch (e) {
