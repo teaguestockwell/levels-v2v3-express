@@ -25,7 +25,10 @@ export const query = {
         include: {
           aircraft: {
             include: {
-              configs: true
+              // configs is included in shallow because the ui app bar should know when a new config is available
+              configs: true,
+              // cargos are included because they need to be selected from when an admin is modifying config cargo
+              cargos: true
             }
           }
         },
