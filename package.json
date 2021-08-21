@@ -5,7 +5,8 @@
   "scripts": {
     "cleanDocker": "docker system prune --filter until=24h -f",
     "test:unit": "npm install && npx prisma db push --accept-data-loss --force-reset && nyc --reporter=lcovonly mocha -r ts-node/register test/**/*.test.ts --no-timeout --exit",
-    "test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps --exit-code-from fl-api-test-api",
+    "docker:test": "docker-compose -f test.yml -p fl-api-test up --build --force-recreate --no-deps --exit-code-from fl-api-test-api",
+    "docker:test:os": "docker-compose -f test-os.yml -p fl-api-test-os up --build --force-recreate --no-deps --exit-code-from fl-api-test-api",
     "lint": "npm install && eslint .",
     "pretty": "npx prettier --write .",
     "test:e2e-ci": "echo not implemented in pipeline"
@@ -21,6 +22,7 @@
     "express-mung": "^0.5.1",
     "lodash": "^4.17.21",
     "response-time": "^2.3.2",
+    "uuid": "^8.3.2",
     "yup": "^0.32.9"
   },
   "devDependencies": {
