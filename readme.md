@@ -15,7 +15,7 @@
   <p align="center">
     Aircraft cargo loading and weight and balance for the US Air Force
     <br />
-    <a href="https://teaguestockwell.com">View live</a>
+    <a href="https://levels.apps.dso.mil">View live</a>
     ·
     <a href="https://forms.gle/Bbqvubn6gwC6fRnc8">Report Bug</a>
   </p>
