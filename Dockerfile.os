@@ -1,10 +1,12 @@
-FROM node:16
+FROM node:14.16.0
 
 # make dir to copy into
 WORKDIR /app
 
 # copy all 
 COPY . .
+
+RUN npm install
 
 # build prod files
 RUN npx tsc
