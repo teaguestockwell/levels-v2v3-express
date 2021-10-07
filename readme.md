@@ -171,7 +171,7 @@ docker login registry.il2.dso.mil -u $gitlab_ci_token -p $gitlab_token_string
 6. Open the frontend repo
 
 ```sh
-cd frontend-react
+cd levels-v3-react
 ```
 ## Compose Prod
 To compose the production app run these within the frontend-react repo. Use :os at the end of these commands if you have not logged on to the hardened registry.
