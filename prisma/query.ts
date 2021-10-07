@@ -245,7 +245,7 @@ export const query = {
   },
 
   upsertTank: async (tank: Tank): Promise<Tank> => {
-    if(tank.weightsCSV.split(',') !== tank.simpleMomsCSV.split(',')){
+    if(tank.weightsCSV.split(',').length !== tank.simpleMomsCSV.split(',').length){
       throw new Error()
     }
 
