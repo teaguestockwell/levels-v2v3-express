@@ -40,7 +40,7 @@ export const localMemCache = async <T>({
   }
 
   // this method may be called in parallel, so await only for the first request to update cache
-  if (!cache[key]?.isLoading ?? false) {
+  if (!cache[key]?.isLoading) {
 
     // spread over inital state to ensure all props get defined
     cache[key] = {

@@ -245,6 +245,10 @@ export const query = {
   },
 
   upsertTank: async (tank: Tank): Promise<Tank> => {
+    if(tank.weightsCSV.split(',') !== tank.simpleMomsCSV.split(',')){
+      throw new Error()
+    }
+
     const upserted = await prisma.tank.upsert({
       where: {tankId: tank.tankId},
       update: tank,
@@ -274,6 +278,7 @@ export const query = {
         name: cargo.name,
         fs: cargo.fs,
         weight: cargo.weight,
+        category: cargo.category
       },
     })
 
