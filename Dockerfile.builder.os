@@ -1,7 +1,7 @@
 # this dockerfile creates an optimed production build without development dependancies
 
 # stage 1
-FROM node:16 as builder
+FROM node:14.16.0 as builder
 
 # make dir to copy into
 WORKDIR /app
@@ -22,7 +22,7 @@ RUN npx prisma generate
 RUN npx tsc --outDir ./build
 
 # stage 2
-FROM node:16 
+FROM node:14.16.0 
 
 # make dir to copy into
 WORKDIR /app
