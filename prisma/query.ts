@@ -246,7 +246,7 @@ export const query = {
 
   upsertTank: async (tank: Tank): Promise<Tank> => {
     if(tank.weightsCSV.split(',').length !== tank.simpleMomsCSV.split(',').length){
-      throw new Error()
+      throw new Error('Tank weights must be the same length as tank moments')
     }
 
     const upserted = await prisma.tank.upsert({

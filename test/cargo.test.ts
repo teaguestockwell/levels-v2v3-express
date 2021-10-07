@@ -122,6 +122,7 @@ describe('PUT /cargo', () => {
     assert.notStrictEqual(found.updated, newCargo.updated)
     assert.notStrictEqual(found.updatedBy, newCargo.updatedBy)
     assert.strictEqual(found.updatedBy, role3.email)
+    assert.strictEqual(found.category, newCargo.category)
   })
 
   it('Should return 403 where req.role <= 2 on aircraft', (done: Done) => {
